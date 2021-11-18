@@ -7,16 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14AFEFA6EB492561108251D9 /* userDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A861524A27F32C496805D4 /* userDataModel.swift */; };
+		1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42585BD5408AF40BA7C9B8E0 /* userDataModel+Schema.swift */; };
 		4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F7919AE38F140D052F4F4FA /* awsconfiguration.json */; };
 		5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */; };
 		ADF119FB2745D0060099ADF3 /* apollo4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF119FA2745D0060099ADF3 /* apollo4App.swift */; };
-		ADF119FD2745D0060099ADF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF119FC2745D0060099ADF3 /* ContentView.swift */; };
-		ADF119FF2745D0080099ADF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF119FE2745D0080099ADF3 /* Assets.xcassets */; };
 		ADF11A022745D0080099ADF3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A012745D0080099ADF3 /* Preview Assets.xcassets */; };
 		ADF11A0C2745D0080099ADF3 /* apollo4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A0B2745D0080099ADF3 /* apollo4Tests.swift */; };
 		ADF11A162745D0080099ADF3 /* apollo4UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A152745D0080099ADF3 /* apollo4UITests.swift */; };
 		ADF11A182745D0080099ADF3 /* apollo4UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A172745D0080099ADF3 /* apollo4UITestsLaunchTests.swift */; };
+		ADF11A262745D4500099ADF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A252745D4500099ADF3 /* Assets.xcassets */; };
+		ADF11A382745D4670099ADF3 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A282745D4670099ADF3 /* SetupView.swift */; };
+		ADF11A392745D4670099ADF3 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A292745D4670099ADF3 /* GraphView.swift */; };
+		ADF11A3B2745D4670099ADF3 /* LiveRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A2B2745D4670099ADF3 /* LiveRead.swift */; };
+		ADF11A3C2745D4670099ADF3 /* PairingLoadScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A2C2745D4670099ADF3 /* PairingLoadScreen.swift */; };
+		ADF11A3D2745D4670099ADF3 /* nameSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A2D2745D4670099ADF3 /* nameSetup.swift */; };
+		ADF11A3E2745D4670099ADF3 /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A2E2745D4670099ADF3 /* PairingView.swift */; };
+		ADF11A3F2745D4670099ADF3 /* userDataInputSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A2F2745D4670099ADF3 /* userDataInputSetup.swift */; };
+		ADF11A402745D4670099ADF3 /* swipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A302745D4670099ADF3 /* swipeView.swift */; };
+		ADF11A412745D4670099ADF3 /* finishedSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A312745D4670099ADF3 /* finishedSetupView.swift */; };
+		ADF11A422745D4670099ADF3 /* EmittingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A322745D4670099ADF3 /* EmittingView.swift */; };
+		ADF11A432745D4670099ADF3 /* HealthChoiceSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A332745D4670099ADF3 /* HealthChoiceSetup.swift */; };
+		ADF11A442745D4670099ADF3 /* RotatingRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A342745D4670099ADF3 /* RotatingRingView.swift */; };
+		ADF11A452745D4670099ADF3 /* healthSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A352745D4670099ADF3 /* healthSetupView.swift */; };
+		ADF11A462745D4670099ADF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A362745D4670099ADF3 /* ContentView.swift */; };
+		ADF11A472745D4670099ADF3 /* EmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A372745D4670099ADF3 /* EmitterView.swift */; };
+		ADF11A4D2745D4740099ADF3 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A492745D4740099ADF3 /* Backend.swift */; };
+		ADF11A4E2745D4740099ADF3 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A4A2745D4740099ADF3 /* UserData.swift */; };
+		ADF11A4F2745D4740099ADF3 /* TextLimiting.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A4B2745D4740099ADF3 /* TextLimiting.swift */; };
+		ADF11A502745D4740099ADF3 /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A4C2745D4740099ADF3 /* KeyboardHelper.swift */; };
+		ADF11A542745D47B0099ADF3 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A522745D47B0099ADF3 /* BLEManager.swift */; };
+		ADF11A552745D47B0099ADF3 /* UUID Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A532745D47B0099ADF3 /* UUID Structs.swift */; };
+		ADF11A5A2745D5300099ADF3 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A582745D5300099ADF3 /* amplifyconfiguration.json */; };
+		ADF11A5B2745D5300099ADF3 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A592745D5300099ADF3 /* awsconfiguration.json */; };
+		ADF11A602745E3050099ADF3 /* setupImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A5F2745E3050099ADF3 /* setupImage2.png */; };
+		ADF11A622745E3180099ADF3 /* nameImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A612745E3180099ADF3 /* nameImage.jpeg */; };
+		ADF11A642745E35B0099ADF3 /* healthImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A632745E35B0099ADF3 /* healthImage.png */; };
+		ADF11A662745E4280099ADF3 /* Apollo 1 Ring.obj in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A652745E4280099ADF3 /* Apollo 1 Ring.obj */; };
 		B947E94FEB56864267932FD3 /* Pods_apollo4_apollo4UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640E17A6646D270FD36F9D73 /* Pods_apollo4_apollo4UITests.framework */; };
+		C60B171744D888CA9DAA7377 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD0911A16987641E9C24AC /* AmplifyModels.swift */; };
 		F6818A389747A06AC13D3C31 /* Pods_apollo4Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05396547B94734C0AC72F675 /* Pods_apollo4Tests.framework */; };
 		FABB7A9EED2AF48405D4911E /* Pods_apollo4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5947E8335BA29513666FAEE /* Pods_apollo4.framework */; };
 /* End PBXBuildFile section */
@@ -40,22 +69,51 @@
 
 /* Begin PBXFileReference section */
 		05396547B94734C0AC72F675 /* Pods_apollo4Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; lastKnownFileType = text.json; name = amplifyconfiguration.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		1DCD0911A16987641E9C24AC /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
+		24A861524A27F32C496805D4 /* userDataModel.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = userDataModel.swift; path = amplify/generated/models/userDataModel.swift; sourceTree = "<group>"; };
+		42585BD5408AF40BA7C9B8E0 /* userDataModel+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "userDataModel+Schema.swift"; path = "amplify/generated/models/userDataModel+Schema.swift"; sourceTree = "<group>"; };
 		640E17A6646D270FD36F9D73 /* Pods_apollo4_apollo4UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4_apollo4UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964BF2CC7483627E5B10912F /* Pods-apollo4-apollo4UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.release.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.release.xcconfig"; sourceTree = "<group>"; };
 		988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		9F7919AE38F140D052F4F4FA /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; lastKnownFileType = text.json; name = awsconfiguration.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		9F7919AE38F140D052F4F4FA /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.release.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ADF119F72745D0060099ADF3 /* apollo4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apollo4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF119FA2745D0060099ADF3 /* apollo4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apollo4App.swift; sourceTree = "<group>"; };
-		ADF119FC2745D0060099ADF3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		ADF119FE2745D0080099ADF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADF11A012745D0080099ADF3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ADF11A072745D0080099ADF3 /* apollo4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = apollo4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF11A0B2745D0080099ADF3 /* apollo4Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apollo4Tests.swift; sourceTree = "<group>"; };
 		ADF11A112745D0080099ADF3 /* apollo4UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = apollo4UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF11A152745D0080099ADF3 /* apollo4UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apollo4UITests.swift; sourceTree = "<group>"; };
 		ADF11A172745D0080099ADF3 /* apollo4UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apollo4UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		ADF11A252745D4500099ADF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "3D Objects/Assets.xcassets"; sourceTree = "<group>"; };
+		ADF11A282745D4670099ADF3 /* SetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
+		ADF11A292745D4670099ADF3 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		ADF11A2B2745D4670099ADF3 /* LiveRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveRead.swift; sourceTree = "<group>"; };
+		ADF11A2C2745D4670099ADF3 /* PairingLoadScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingLoadScreen.swift; sourceTree = "<group>"; };
+		ADF11A2D2745D4670099ADF3 /* nameSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameSetup.swift; sourceTree = "<group>"; };
+		ADF11A2E2745D4670099ADF3 /* PairingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
+		ADF11A2F2745D4670099ADF3 /* userDataInputSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userDataInputSetup.swift; sourceTree = "<group>"; };
+		ADF11A302745D4670099ADF3 /* swipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = swipeView.swift; sourceTree = "<group>"; };
+		ADF11A312745D4670099ADF3 /* finishedSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = finishedSetupView.swift; sourceTree = "<group>"; };
+		ADF11A322745D4670099ADF3 /* EmittingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmittingView.swift; sourceTree = "<group>"; };
+		ADF11A332745D4670099ADF3 /* HealthChoiceSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthChoiceSetup.swift; sourceTree = "<group>"; };
+		ADF11A342745D4670099ADF3 /* RotatingRingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotatingRingView.swift; sourceTree = "<group>"; };
+		ADF11A352745D4670099ADF3 /* healthSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = healthSetupView.swift; sourceTree = "<group>"; };
+		ADF11A362745D4670099ADF3 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ADF11A372745D4670099ADF3 /* EmitterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitterView.swift; sourceTree = "<group>"; };
+		ADF11A492745D4740099ADF3 /* Backend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
+		ADF11A4A2745D4740099ADF3 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		ADF11A4B2745D4740099ADF3 /* TextLimiting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLimiting.swift; sourceTree = "<group>"; };
+		ADF11A4C2745D4740099ADF3 /* KeyboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
+		ADF11A522745D47B0099ADF3 /* BLEManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
+		ADF11A532745D47B0099ADF3 /* UUID Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UUID Structs.swift"; sourceTree = "<group>"; };
+		ADF11A582745D5300099ADF3 /* amplifyconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		ADF11A592745D5300099ADF3 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		ADF11A5F2745E3050099ADF3 /* setupImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setupImage2.png; sourceTree = "<group>"; };
+		ADF11A612745E3180099ADF3 /* nameImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nameImage.jpeg; sourceTree = "<group>"; };
+		ADF11A632745E35B0099ADF3 /* healthImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = healthImage.png; sourceTree = "<group>"; };
+		ADF11A652745E4280099ADF3 /* Apollo 1 Ring.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apollo 1 Ring.obj"; sourceTree = "<group>"; };
 		DAC3772788A412A79844DAD0 /* Pods-apollo4-apollo4UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F1AA8673E4552EA4EBD5846C /* Pods-apollo4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4.release.xcconfig"; path = "Target Support Files/Pods-apollo4/Pods-apollo4.release.xcconfig"; sourceTree = "<group>"; };
 		F5947E8335BA29513666FAEE /* Pods_apollo4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +148,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18B445935B70D148DD512589 /* AmplifyModels */ = {
+			isa = PBXGroup;
+			children = (
+				1DCD0911A16987641E9C24AC /* AmplifyModels.swift */,
+				42585BD5408AF40BA7C9B8E0 /* userDataModel+Schema.swift */,
+				24A861524A27F32C496805D4 /* userDataModel.swift */,
+			);
+			name = AmplifyModels;
+			sourceTree = "<group>";
+		};
 		81A13C1350C1AD080F4232EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +171,8 @@
 		ADF119EE2745D0060099ADF3 = {
 			isa = PBXGroup;
 			children = (
+				ADF11A582745D5300099ADF3 /* amplifyconfiguration.json */,
+				ADF11A592745D5300099ADF3 /* awsconfiguration.json */,
 				ADF119F92745D0060099ADF3 /* apollo4 */,
 				ADF11A0A2745D0080099ADF3 /* apollo4Tests */,
 				ADF11A142745D0080099ADF3 /* apollo4UITests */,
@@ -110,6 +180,7 @@
 				ED0BBA9A262AD514B1293357 /* AmplifyConfig */,
 				D104061A2C519A815099CDAE /* Pods */,
 				81A13C1350C1AD080F4232EC /* Frameworks */,
+				18B445935B70D148DD512589 /* AmplifyModels */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,8 +198,13 @@
 			isa = PBXGroup;
 			children = (
 				ADF119FA2745D0060099ADF3 /* apollo4App.swift */,
-				ADF119FC2745D0060099ADF3 /* ContentView.swift */,
-				ADF119FE2745D0080099ADF3 /* Assets.xcassets */,
+				ADF11A252745D4500099ADF3 /* Assets.xcassets */,
+				ADF11A512745D47B0099ADF3 /* BlueTooth */,
+				ADF11A482745D4740099ADF3 /* Core */,
+				ADF11A562745D4800099ADF3 /* Images */,
+				ADF11A572745D48C0099ADF3 /* Logos */,
+				ADF11A272745D4670099ADF3 /* Views */,
+				ADF11A242745D4440099ADF3 /* 3D Objects */,
 				ADF11A002745D0080099ADF3 /* Preview Content */,
 			);
 			path = apollo4;
@@ -159,6 +235,73 @@
 			path = apollo4UITests;
 			sourceTree = "<group>";
 		};
+		ADF11A242745D4440099ADF3 /* 3D Objects */ = {
+			isa = PBXGroup;
+			children = (
+				ADF11A652745E4280099ADF3 /* Apollo 1 Ring.obj */,
+			);
+			path = "3D Objects";
+			sourceTree = "<group>";
+		};
+		ADF11A272745D4670099ADF3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ADF11A282745D4670099ADF3 /* SetupView.swift */,
+				ADF11A292745D4670099ADF3 /* GraphView.swift */,
+				ADF11A2B2745D4670099ADF3 /* LiveRead.swift */,
+				ADF11A2C2745D4670099ADF3 /* PairingLoadScreen.swift */,
+				ADF11A2D2745D4670099ADF3 /* nameSetup.swift */,
+				ADF11A2E2745D4670099ADF3 /* PairingView.swift */,
+				ADF11A2F2745D4670099ADF3 /* userDataInputSetup.swift */,
+				ADF11A302745D4670099ADF3 /* swipeView.swift */,
+				ADF11A312745D4670099ADF3 /* finishedSetupView.swift */,
+				ADF11A322745D4670099ADF3 /* EmittingView.swift */,
+				ADF11A332745D4670099ADF3 /* HealthChoiceSetup.swift */,
+				ADF11A342745D4670099ADF3 /* RotatingRingView.swift */,
+				ADF11A352745D4670099ADF3 /* healthSetupView.swift */,
+				ADF11A362745D4670099ADF3 /* ContentView.swift */,
+				ADF11A372745D4670099ADF3 /* EmitterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ADF11A482745D4740099ADF3 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				ADF11A492745D4740099ADF3 /* Backend.swift */,
+				ADF11A4A2745D4740099ADF3 /* UserData.swift */,
+				ADF11A4B2745D4740099ADF3 /* TextLimiting.swift */,
+				ADF11A4C2745D4740099ADF3 /* KeyboardHelper.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		ADF11A512745D47B0099ADF3 /* BlueTooth */ = {
+			isa = PBXGroup;
+			children = (
+				ADF11A522745D47B0099ADF3 /* BLEManager.swift */,
+				ADF11A532745D47B0099ADF3 /* UUID Structs.swift */,
+			);
+			path = BlueTooth;
+			sourceTree = "<group>";
+		};
+		ADF11A562745D4800099ADF3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				ADF11A632745E35B0099ADF3 /* healthImage.png */,
+				ADF11A5F2745E3050099ADF3 /* setupImage2.png */,
+				ADF11A612745E3180099ADF3 /* nameImage.jpeg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		ADF11A572745D48C0099ADF3 /* Logos */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Logos;
+			sourceTree = "<group>";
+		};
 		D104061A2C519A815099CDAE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,7 +312,6 @@
 				988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */,
 				AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -291,9 +433,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADF11A602745E3050099ADF3 /* setupImage2.png in Resources */,
 				ADF11A022745D0080099ADF3 /* Preview Assets.xcassets in Resources */,
-				ADF119FF2745D0080099ADF3 /* Assets.xcassets in Resources */,
 				4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */,
+				ADF11A5B2745D5300099ADF3 /* awsconfiguration.json in Resources */,
+				ADF11A5A2745D5300099ADF3 /* amplifyconfiguration.json in Resources */,
+				ADF11A262745D4500099ADF3 /* Assets.xcassets in Resources */,
+				ADF11A622745E3180099ADF3 /* nameImage.jpeg in Resources */,
+				ADF11A642745E35B0099ADF3 /* healthImage.png in Resources */,
+				ADF11A662745E4280099ADF3 /* Apollo 1 Ring.obj in Resources */,
 				5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,9 +537,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -406,9 +558,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -422,8 +578,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADF119FD2745D0060099ADF3 /* ContentView.swift in Sources */,
+				ADF11A382745D4670099ADF3 /* SetupView.swift in Sources */,
+				ADF11A3E2745D4670099ADF3 /* PairingView.swift in Sources */,
+				ADF11A4D2745D4740099ADF3 /* Backend.swift in Sources */,
+				ADF11A4E2745D4740099ADF3 /* UserData.swift in Sources */,
+				ADF11A472745D4670099ADF3 /* EmitterView.swift in Sources */,
+				ADF11A552745D47B0099ADF3 /* UUID Structs.swift in Sources */,
+				ADF11A462745D4670099ADF3 /* ContentView.swift in Sources */,
+				ADF11A442745D4670099ADF3 /* RotatingRingView.swift in Sources */,
+				ADF11A3F2745D4670099ADF3 /* userDataInputSetup.swift in Sources */,
+				ADF11A502745D4740099ADF3 /* KeyboardHelper.swift in Sources */,
+				ADF11A3D2745D4670099ADF3 /* nameSetup.swift in Sources */,
+				ADF11A422745D4670099ADF3 /* EmittingView.swift in Sources */,
+				ADF11A3C2745D4670099ADF3 /* PairingLoadScreen.swift in Sources */,
+				ADF11A3B2745D4670099ADF3 /* LiveRead.swift in Sources */,
+				ADF11A402745D4670099ADF3 /* swipeView.swift in Sources */,
+				ADF11A542745D47B0099ADF3 /* BLEManager.swift in Sources */,
 				ADF119FB2745D0060099ADF3 /* apollo4App.swift in Sources */,
+				ADF11A412745D4670099ADF3 /* finishedSetupView.swift in Sources */,
+				ADF11A432745D4670099ADF3 /* HealthChoiceSetup.swift in Sources */,
+				ADF11A392745D4670099ADF3 /* GraphView.swift in Sources */,
+				ADF11A452745D4670099ADF3 /* healthSetupView.swift in Sources */,
+				ADF11A4F2745D4740099ADF3 /* TextLimiting.swift in Sources */,
+				C60B171744D888CA9DAA7377 /* AmplifyModels.swift in Sources */,
+				1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */,
+				14AFEFA6EB492561108251D9 /* userDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
