@@ -11,6 +11,8 @@ import SceneKit
 struct finishedSetupView: View {
     @EnvironmentObject var user: UserData
     @State private var stage = 0
+    @State private var showSecondStage = false
+    @State private var showThirdStage = false
     @State private var opacity = 0.0
     private var newscene = SceneView(
         scene: {
@@ -34,19 +36,28 @@ struct finishedSetupView: View {
                     }
                 HStack {
                     VStack {
-                        if stage > 0 {
+                        if user.isSignedIn {
                             Image(systemName: "checkmark.circle.fill")
                                 .foregroundColor(Color.green)
                                 .frame(width: 40, height: 40)
                                 .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.3)))
+                                .onTapGesture {
+                                    showSecondStage = true
+                                }
+                                .onAppear(){
+                                    Backend.shared.createUser(user: user)
+                                }
                         }
-                        if stage > 1 {
+                        if showSecondStage {
                             Image(systemName: "checkmark.circle.fill")
                                 .foregroundColor(Color.green)
                                 .frame(width: 40, height: 40)
                                 .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.3)))
+                                .onTapGesture {
+                                    showThirdStage = true
+                                }
                         }
-                        if stage > 2 {
+                        if showThirdStage {
                             Image(systemName: "checkmark.circle.fill")
                                 .foregroundColor(Color.green)
                                 .frame(width: 40, height: 40)
@@ -56,20 +67,24 @@ struct finishedSetupView: View {
                     .frame(width: 80, height: 150)
                     //.background(Color.red)
                     VStack {
-                        if stage > 0 {
-                            Text("Stored data")
+                        if user.isSignedIn {
+                            Text("Created user")
                                 .foregroundColor(Color.white)
                                 .frame(width: 200, height: 40)
                                 .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.3)))
                         }
-                        Text("Loaded settings")
-                            .foregroundColor(Color.white)
-                            .frame(width: 200, height: 40)
+                        if showSecondStage {
+                            Text("Loaded settings")
+                                .foregroundColor(Color.white)
+                                .frame(width: 200, height: 40)
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.3)))
-                        Text("Configured ring")
-                            .foregroundColor(Color.white)
-                            .frame(width: 200, height: 40)
+                        }
+                        if showThirdStage {
+                            Text("Configured ring")
+                                .foregroundColor(Color.white)
+                                .frame(width: 200, height: 40)
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.3)))
+                        }
                     }
                     .frame(width: 200, height: 150)
                     //.background(Color.blue)
@@ -85,16 +100,7 @@ struct finishedSetupView: View {
         .background(Color.black)
         .edgesIgnoringSafeArea(.all)
         .onAppear(){
-            DispatchQueue.main.async {
-                Backend.shared.signIn()
-                stage = 1
-                Backend.shared.createUser(user: user)
-                stage = 2
-                sleep(2)
-                stage = 3
-                sleep(2)
-                stage = 4
-            }
+            Backend.shared.reauth()
         }
     }
 }

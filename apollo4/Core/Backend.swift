@@ -83,7 +83,13 @@ class Backend {
             }
         }
     }
-
+    public func reauth() {
+        signOut()
+        signIn()
+    }
+    public func getUser() -> String? {
+        return Amplify.Auth.getCurrentUser()?.userId
+    }
     // change our internal state, this triggers an UI update on the main thread
     func updateUserData(withSignInStatus status : Bool) {
         DispatchQueue.main.async() {
@@ -92,13 +98,13 @@ class Backend {
         }
     }
     func createUser(user: UserData) {
-        let userDataModelInstance = userDataModel(name: user.getName()!)
+        let userDataModelInstance = userDataModel(name: user.getName() != nil ? user.getName()! : "Apollo")
         _ = Amplify.API.mutate(request: .create(userDataModelInstance)) { event in
             switch event {
             case .success(let result):
                 switch result {
                 case .success(let data):
-                    print("Successfully created note: \(data)")
+                    print("Successfully created user: \(data)")
                 case .failure(let error):
                     print("Got failed result with \(error.errorDescription)")
                 }

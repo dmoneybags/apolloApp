@@ -12,7 +12,7 @@ class UserData:  ObservableObject {
         self.id = id
         self.name = ""
         self.stage = 0
-        self.isSignedIn = true
+        self.isSignedIn = false
     }
     static let shared = UserData()
     private var id: String!

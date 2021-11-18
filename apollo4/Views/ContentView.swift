@@ -10,7 +10,7 @@ import SceneKit
 
 struct ContentView: View {
     @StateObject var bleManager: BLEManager = BLEManager()
-    @StateObject var user: UserData = UserData(id: "")
+    @StateObject var user: UserData = .shared
     @State private var numBarsANIMATION: CGFloat = 1.25
     @State private var opacityANIMATION: CGFloat = 0.0
     @State private var pairing: Bool = false

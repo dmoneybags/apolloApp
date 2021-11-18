@@ -114,6 +114,7 @@
 		ADF11A612745E3180099ADF3 /* nameImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nameImage.jpeg; sourceTree = "<group>"; };
 		ADF11A632745E35B0099ADF3 /* healthImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = healthImage.png; sourceTree = "<group>"; };
 		ADF11A652745E4280099ADF3 /* Apollo 1 Ring.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apollo 1 Ring.obj"; sourceTree = "<group>"; };
+		ADF11A672746F4B90099ADF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DAC3772788A412A79844DAD0 /* Pods-apollo4-apollo4UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F1AA8673E4552EA4EBD5846C /* Pods-apollo4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4.release.xcconfig"; path = "Target Support Files/Pods-apollo4/Pods-apollo4.release.xcconfig"; sourceTree = "<group>"; };
 		F5947E8335BA29513666FAEE /* Pods_apollo4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +198,7 @@
 		ADF119F92745D0060099ADF3 /* apollo4 */ = {
 			isa = PBXGroup;
 			children = (
+				ADF11A672746F4B90099ADF3 /* Info.plist */,
 				ADF119FA2745D0060099ADF3 /* apollo4App.swift */,
 				ADF11A252745D4500099ADF3 /* Assets.xcassets */,
 				ADF11A512745D47B0099ADF3 /* BlueTooth */,
@@ -767,6 +769,7 @@
 				DEVELOPMENT_TEAM = 4N3P6YU29S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = apollo4/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -797,6 +800,7 @@
 				DEVELOPMENT_TEAM = 4N3P6YU29S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = apollo4/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
