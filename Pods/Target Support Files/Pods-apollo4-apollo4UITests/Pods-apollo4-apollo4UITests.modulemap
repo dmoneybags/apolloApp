@@ -1,0 +1,6 @@
+framework module Pods_apollo4_apollo4UITests {
+  umbrella header "Pods-apollo4-apollo4UITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F7919AE38F140D052F4F4FA /* awsconfiguration.json */; };
+		5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */; };
 		ADF119FB2745D0060099ADF3 /* apollo4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF119FA2745D0060099ADF3 /* apollo4App.swift */; };
 		ADF119FD2745D0060099ADF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF119FC2745D0060099ADF3 /* ContentView.swift */; };
 		ADF119FF2745D0080099ADF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF119FE2745D0080099ADF3 /* Assets.xcassets */; };
@@ -14,6 +16,9 @@
 		ADF11A0C2745D0080099ADF3 /* apollo4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A0B2745D0080099ADF3 /* apollo4Tests.swift */; };
 		ADF11A162745D0080099ADF3 /* apollo4UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A152745D0080099ADF3 /* apollo4UITests.swift */; };
 		ADF11A182745D0080099ADF3 /* apollo4UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A172745D0080099ADF3 /* apollo4UITestsLaunchTests.swift */; };
+		B947E94FEB56864267932FD3 /* Pods_apollo4_apollo4UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640E17A6646D270FD36F9D73 /* Pods_apollo4_apollo4UITests.framework */; };
+		F6818A389747A06AC13D3C31 /* Pods_apollo4Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05396547B94734C0AC72F675 /* Pods_apollo4Tests.framework */; };
+		FABB7A9EED2AF48405D4911E /* Pods_apollo4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5947E8335BA29513666FAEE /* Pods_apollo4.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +39,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05396547B94734C0AC72F675 /* Pods_apollo4Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; lastKnownFileType = text.json; name = amplifyconfiguration.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		640E17A6646D270FD36F9D73 /* Pods_apollo4_apollo4UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4_apollo4UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		964BF2CC7483627E5B10912F /* Pods-apollo4-apollo4UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.release.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.release.xcconfig"; sourceTree = "<group>"; };
+		988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		9F7919AE38F140D052F4F4FA /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; lastKnownFileType = text.json; name = awsconfiguration.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.release.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ADF119F72745D0060099ADF3 /* apollo4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apollo4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF119FA2745D0060099ADF3 /* apollo4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apollo4App.swift; sourceTree = "<group>"; };
 		ADF119FC2745D0060099ADF3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +56,10 @@
 		ADF11A112745D0080099ADF3 /* apollo4UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = apollo4UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF11A152745D0080099ADF3 /* apollo4UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apollo4UITests.swift; sourceTree = "<group>"; };
 		ADF11A172745D0080099ADF3 /* apollo4UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apollo4UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DAC3772788A412A79844DAD0 /* Pods-apollo4-apollo4UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F1AA8673E4552EA4EBD5846C /* Pods-apollo4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4.release.xcconfig"; path = "Target Support Files/Pods-apollo4/Pods-apollo4.release.xcconfig"; sourceTree = "<group>"; };
+		F5947E8335BA29513666FAEE /* Pods_apollo4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F60A642BB7A23EA544249217 /* Pods-apollo4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4.debug.xcconfig"; path = "Target Support Files/Pods-apollo4/Pods-apollo4.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABB7A9EED2AF48405D4911E /* Pods_apollo4.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6818A389747A06AC13D3C31 /* Pods_apollo4Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,12 +83,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B947E94FEB56864267932FD3 /* Pods_apollo4_apollo4UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81A13C1350C1AD080F4232EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5947E8335BA29513666FAEE /* Pods_apollo4.framework */,
+				640E17A6646D270FD36F9D73 /* Pods_apollo4_apollo4UITests.framework */,
+				05396547B94734C0AC72F675 /* Pods_apollo4Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ADF119EE2745D0060099ADF3 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +107,9 @@
 				ADF11A0A2745D0080099ADF3 /* apollo4Tests */,
 				ADF11A142745D0080099ADF3 /* apollo4UITests */,
 				ADF119F82745D0060099ADF3 /* Products */,
+				ED0BBA9A262AD514B1293357 /* AmplifyConfig */,
+				D104061A2C519A815099CDAE /* Pods */,
+				81A13C1350C1AD080F4232EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +159,29 @@
 			path = apollo4UITests;
 			sourceTree = "<group>";
 		};
+		D104061A2C519A815099CDAE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F60A642BB7A23EA544249217 /* Pods-apollo4.debug.xcconfig */,
+				F1AA8673E4552EA4EBD5846C /* Pods-apollo4.release.xcconfig */,
+				DAC3772788A412A79844DAD0 /* Pods-apollo4-apollo4UITests.debug.xcconfig */,
+				964BF2CC7483627E5B10912F /* Pods-apollo4-apollo4UITests.release.xcconfig */,
+				988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */,
+				AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		ED0BBA9A262AD514B1293357 /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				9F7919AE38F140D052F4F4FA /* awsconfiguration.json */,
+				19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */,
+			);
+			name = AmplifyConfig;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,9 +189,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ADF11A1B2745D0080099ADF3 /* Build configuration list for PBXNativeTarget "apollo4" */;
 			buildPhases = (
+				462C87E2D5257F63B656856D /* [CP] Check Pods Manifest.lock */,
 				ADF119F32745D0060099ADF3 /* Sources */,
 				ADF119F42745D0060099ADF3 /* Frameworks */,
 				ADF119F52745D0060099ADF3 /* Resources */,
+				E112ED2076DE2C92F985FD2A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +208,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ADF11A1E2745D0080099ADF3 /* Build configuration list for PBXNativeTarget "apollo4Tests" */;
 			buildPhases = (
+				5AC1D9B7B455BC2467006519 /* [CP] Check Pods Manifest.lock */,
 				ADF11A032745D0080099ADF3 /* Sources */,
 				ADF11A042745D0080099ADF3 /* Frameworks */,
 				ADF11A052745D0080099ADF3 /* Resources */,
@@ -169,9 +227,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ADF11A212745D0080099ADF3 /* Build configuration list for PBXNativeTarget "apollo4UITests" */;
 			buildPhases = (
+				747AA84E82C37BCE0FE63551 /* [CP] Check Pods Manifest.lock */,
 				ADF11A0D2745D0080099ADF3 /* Sources */,
 				ADF11A0E2745D0080099ADF3 /* Frameworks */,
 				ADF11A0F2745D0080099ADF3 /* Resources */,
+				91C9DD2B60A7BEE1261373C3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,6 +293,8 @@
 			files = (
 				ADF11A022745D0080099ADF3 /* Preview Assets.xcassets in Resources */,
 				ADF119FF2745D0080099ADF3 /* Assets.xcassets in Resources */,
+				4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */,
+				5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +313,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		462C87E2D5257F63B656856D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-apollo4-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5AC1D9B7B455BC2467006519 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-apollo4Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		747AA84E82C37BCE0FE63551 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-apollo4-apollo4UITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91C9DD2B60A7BEE1261373C3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E112ED2076DE2C92F985FD2A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ADF119F32745D0060099ADF3 /* Sources */ = {
@@ -413,6 +578,7 @@
 		};
 		ADF11A1C2745D0080099ADF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F60A642BB7A23EA544249217 /* Pods-apollo4.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -442,6 +608,7 @@
 		};
 		ADF11A1D2745D0080099ADF3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1AA8673E4552EA4EBD5846C /* Pods-apollo4.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -471,6 +638,7 @@
 		};
 		ADF11A1F2745D0080099ADF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -496,6 +664,7 @@
 		};
 		ADF11A202745D0080099ADF3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -521,6 +690,7 @@
 		};
 		ADF11A222745D0080099ADF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAC3772788A412A79844DAD0 /* Pods-apollo4-apollo4UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -544,6 +714,7 @@
 		};
 		ADF11A232745D0080099ADF3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 964BF2CC7483627E5B10912F /* Pods-apollo4-apollo4UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
