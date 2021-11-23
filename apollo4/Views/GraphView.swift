@@ -55,20 +55,44 @@ struct LineGraph: View {
     @State var height: Double?
     @State var width: Double?
     @State var color: Color?
+    @State var backgroundColor: Color?
+    @State var heatGradient: Bool = false
+    let tempGradient = Gradient(colors: [
+      .purple,
+      Color(red: 0, green: 0, blue: 139.0/255.0),
+      .blue,
+      Color(red: 30.0/255.0, green: 144.0/255.0, blue: 1.0),
+      Color(red: 0, green: 191/255.0, blue: 1.0),
+      Color(red: 135.0/255.0, green: 206.0/255.0, blue: 250.0/255.0),
+      .green,
+      .yellow,
+      .orange,
+      Color(red: 1.0, green: 140.0/255.0, blue: 0.0),
+      .red,
+      Color(red: 139.0/255.0, green: 0.0, blue: 0.0)
+    ])
     var body: some View {
         let yPositions = genYvalues(data: data, ySize: height!)
         let xPositions = genXvalues(data: data, xSize: width!)
         ZStack {
             ZStack {
                 ForEach(data.indices, id: \.self) {i in
-                    Line(start: CGPoint(x: xPositions[i], y: yPositions[i]), end: CGPoint(x: getLeadingVal(Positions: xPositions, i: i), y: getLeadingVal(Positions: yPositions, i: i)))
-                        .stroke(color!, lineWidth: 2)
+                    if heatGradient {
+                        Line(start: CGPoint(x: xPositions[i], y: yPositions[i]), end: CGPoint(x: getLeadingVal(Positions: xPositions, i: i), y: getLeadingVal(Positions: yPositions, i: i)))
+                            .stroke(LinearGradient(
+                                gradient: self.tempGradient,
+                                startPoint: UnitPoint(x: 0.0, y: 1.0),
+                            endPoint: UnitPoint(x: 0.0, y: 0.0)), lineWidth: 2)
+                    } else {
+                        Line(start: CGPoint(x: xPositions[i], y: yPositions[i]), end: CGPoint(x: getLeadingVal(Positions: xPositions, i: i), y: getLeadingVal(Positions: yPositions, i: i)))
+                            .stroke(color!, lineWidth: 2)
+                    }
                 }
                 
                 .frame(width: CGFloat(width!), height: CGFloat(height!))
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 4))
+                .stroke(backgroundColor != nil ? backgroundColor! : Color.black.opacity(0.0), lineWidth: 4))
             }
             .scaleEffect(CGSize(width: 1.0, height: -1.0))
         }.onTapGesture {

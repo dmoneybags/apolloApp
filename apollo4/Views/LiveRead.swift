@@ -22,13 +22,13 @@ struct LiveRead: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
                 .foregroundColor(Color(UIColor.systemGray6))
-            LineGraph(data: $data, height: 280, width: 280, color: Color.red)
+            LineGraph(data: $data, height: 280, width: 280, color: Color.red, heatGradient: true)
             Text("Start")
-                .font(.largeTitle)
-                .frame(width: 200, height: 80)
-                .background(Capsule().fill(Color.red))
+                .font(.title2)
+                .frame(width: 70, height: 70)
                 .opacity(opacityAnimator)
                 .padding()
+                .foregroundColor(Color.white)
                 .onAppear(){
                     withAnimation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true)){
                         opacityAnimator = 1.0

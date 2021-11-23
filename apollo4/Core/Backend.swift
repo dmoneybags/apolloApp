@@ -64,8 +64,10 @@ class Backend {
         _ = Amplify.Auth.signInWithWebUI(presentationAnchor: UIApplication.shared.windows.first!) { result in
             switch result {
             case .success(_):
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Authorization"), object: 0)
                 print("Sign in succeeded")
             case .failure(let error):
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Authorization"), object: 1)
                 print("Sign in failed \(error)")
             }
         }
@@ -73,12 +75,13 @@ class Backend {
 
     // signout
     public func signOut() {
-
         _ = Amplify.Auth.signOut() { (result) in
             switch result {
             case .success:
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Authorization"), object: 0)
                 print("Successfully signed out")
             case .failure(let error):
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Authorization"), object: 1)
                 print("Sign out failed with error \(error)")
             }
         }
@@ -98,7 +101,8 @@ class Backend {
         }
     }
     func createUser(user: UserData) {
-        let userDataModelInstance = userDataModel(name: user.getName() != nil ? user.getName()! : "Apollo")
+        let userDataModelInstance : userDataModel = userDataModel(name: user.getName() != nil ? user.getName()! : "Apollo")
+        print(userDataModelInstance)
         _ = Amplify.API.mutate(request: .create(userDataModelInstance)) { event in
             switch event {
             case .success(let result):

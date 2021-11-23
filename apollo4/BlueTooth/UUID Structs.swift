@@ -9,13 +9,13 @@ import Foundation
 import CoreBluetooth
 
 struct CBUUIDs {
-    static let deviceUUID = CBUUID(string: "0x591afb07ae374a0fb295180550e26178")
-    static let sensorUUID = CBUUID(string: "0x8537045a364d461e9109e6031f5ab075")
-    static let characteristicsDict = [CBUUID(string: "0x20ceb34c0349427b9e9ae2e63f728d76"): "SerialNumber",
-                                  CBUUID(string: "0x118ae3fd894d4bde9e5ad9fae68a10b5"): "DataTransmissionFrequencyMode",
-                                  CBUUID(string: "0xdf5dd0937ea045028c62115f4ef824c1"): "SystolicPressure",
-                                  CBUUID(string: "0x6c011de3e781463dad42f4ca06da82e9"): "DiastolicPressure",
-                                  CBUUID(string: "0x7e96b8d293994e798ceaf0f8a8a7ca9c"): "HeartRate",
-                                  CBUUID(string: "0x0988710aae9045298a9be6dc6f008c86"): "SPO2"
+    static let deviceUUID = CBUUID(string: "38792B84-AD50-388A-EE4D-376DFF86F8B9")
+    static let sensorUUID = CBUUID(string: "F3D5488C-DA6B-BD8C-B54C-961963B399B8")
+    static let characteristicsDict = [CBUUID(string: "575d4d03-67c5-41ea-8cb4-c97864341973"): "SerialNumber",
+                                  CBUUID(string: "0ad7fa8d-52b9-4e25-9bcf-505d94c20881"): "DataTransmissionFrequencyMode",
+                                  CBUUID(string: "2778DD46-89C2-B882-6E48-8B160275B8E3"): "SystolicPressure",
+                                  CBUUID(string: "34341FDE-36AC-F6AA-DF4C-E29A727DA7EF"): "DiastolicPressure",
+                                  CBUUID(string: "E7568C31-FE31-A29B-A444-47E300C2D962"): "HeartRate",
+                                  CBUUID(string: "DECF365D-17A6-43A7-ED47-BE1634730BA2"): "SPO2"
     ]
 }

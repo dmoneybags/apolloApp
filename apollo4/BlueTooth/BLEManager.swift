@@ -31,12 +31,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
     func startScanning() -> Int {
         print("startScanning")
-        myCentral.scanForPeripherals(withServices: [CBUUIDs.deviceUUID, CBUUIDs.sensorUUID], options: nil)
+        myCentral.scanForPeripherals(withServices: [CBUUIDs.deviceUUID], options: nil)
         if self.connectedPeripheral == nil {
             return 1
         } else {
             return 0
-        }
+            }
         }
     func stopScanning() {
             print("stopScanning")
@@ -51,12 +51,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                     peripheralName = "Unknown"
                 }
         let newPeripheral = Peripheral(_CBPeripheral: peripheral, id:peripherals.count, name: peripheralName!, rssi: RSSI.intValue)
-        if connectedPeripheral == nil {
-            myCentral.connect(newPeripheral._CBPeripheral, options: nil)
-            connectedPeripheral = newPeripheral
-            connectedPeripheral!._CBPeripheral.delegate = self
-            print("connected to \(peripheralName)")
-        }
+        //if connectedPeripheral == nil && peripheral.name == "Feather nRF52832"{
+        myCentral.connect(newPeripheral._CBPeripheral, options: nil)
+        connectedPeripheral = newPeripheral
+        connectedPeripheral!._CBPeripheral.delegate = self
+        print("connected to \(peripheralName)")
+        //}
         print("Peripheral Discovered: \(peripheral)")
         print("Peripheral name: \(peripheral.name)")
         print ("Advertisement Data : \(advertisementData)")
@@ -89,10 +89,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
 
         print("Found \(characteristics.count) characteristics for service \(service.description)")
         for characteristic in characteristics {
-            self.connectedPeripheral?.characteristics[CBUUIDs.characteristicsDict[characteristic.uuid]!] = characteristic
             peripheral.setNotifyValue(true, for: characteristic)
             peripheral.readValue(for: characteristic)
-            print("Set up characteristic: \(CBUUIDs.characteristicsDict[characteristic.uuid]!)")
+            print(characteristic.uuid)
+            if CBUUIDs.characteristicsDict[characteristic.uuid] != nil {
+                print("Set up characteristic: \(CBUUIDs.characteristicsDict[characteristic.uuid]!)")
+                }
             }
     }
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -105,7 +107,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             guard let services = peripheral.services else {
                 return
             }
-            
+            print(services)
             //We need to discover the all characteristic
             for service in services {
                 peripheral.discoverCharacteristics(nil, for: service)
@@ -116,7 +118,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             print("*******************************************************")
           print("Function: \(#function),Line: \(#line)")
             if (error != nil) {
-                print("Error changing notification state:\(String(describing: error?.localizedDescription))")
+                print("Error changing notification state for \(characteristic.uuid):\(String(describing: error?.localizedDescription))")
 
             } else {
                 print("Characteristic's value subscribed")
@@ -127,16 +129,32 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             }
         }
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        if error != nil {
+            print("got error updating: \(error)")
+        }
           var characteristicASCIIValue = NSString()
 
-          guard let characteristicValue = characteristic.value,
-                let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue) else {
-                    print("exiting")
+          guard let characteristicValue = characteristic.value
+                else {
+                    print("found nil for \(characteristic)")
                     return
                 }
-
-            characteristicASCIIValue = ASCIIstring
+        print(characteristicValue)
+        guard let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue)
+            else {
+            print("ascii failed for \(characteristic)")
+                return
+        }
+        characteristicASCIIValue = ASCIIstring
           print("Value Recieved: \((characteristicASCIIValue as String)) for characteristic: \(characteristic)")
-        NotificationCenter.default.post(name:NSNotification.Name(rawValue: CBUUIDs.characteristicsDict[characteristic.uuid]!), object: "\((characteristicASCIIValue as String))")
+        if shouldWrite() {
+            print("----------writing-----------")
+            if CBUUIDs.characteristicsDict[characteristic.uuid] != nil {
+                writeToCsv(filename: getDocumentsDirectory().appendingPathComponent( CBUUIDs.characteristicsDict[characteristic.uuid]!), data: "\((characteristicASCIIValue as String))")
+            }
+        }
+        if CBUUIDs.characteristicsDict[characteristic.uuid] != nil {
+            NotificationCenter.default.post(name:NSNotification.Name(rawValue: CBUUIDs.characteristicsDict[characteristic.uuid]!), object: "\((characteristicASCIIValue as String))")
+            }
         }
 }

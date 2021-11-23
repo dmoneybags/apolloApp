@@ -15,7 +15,6 @@ struct ContentView: View {
     @State private var opacityANIMATION: CGFloat = 0.0
     @State private var pairing: Bool = false
     @State private var repeated = Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true)
-    @State private var error: Int = 0
     private var scene = SceneView(scene: SCNScene(named: "Apollo 1 Ring.obj"), options: [.allowsCameraControl,.autoenablesDefaultLighting])
     var body: some View {
         NavigationView {
@@ -28,7 +27,7 @@ struct ContentView: View {
                 Divider()
                     .padding(.horizontal, 27.0)
                     .padding(.bottom, 5)
-                if error == 1 {
+                if bleManager.connectedPeripheral == nil {
                     Text("Place ring close to device and pair by pressing the button below.")
                         .font(.footnote)
                         .foregroundColor(Color(UIColor.systemGray))
@@ -54,10 +53,10 @@ struct ContentView: View {
                 }
                 ZStack {
                     if !pairing {
-                        if error == 1 {
+                        if bleManager.connectedPeripheral == nil{
                             Button(action: {
                                 pairing = true
-                                error = bleManager.startScanning()
+                                bleManager.startScanning()
                                 pairing = false
                                 //set id
                                 }){

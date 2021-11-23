@@ -11,6 +11,10 @@
 		1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42585BD5408AF40BA7C9B8E0 /* userDataModel+Schema.swift */; };
 		4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F7919AE38F140D052F4F4FA /* awsconfiguration.json */; };
 		5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */; };
+		ADB9B8F4274837AD00EB9227 /* Option2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F3274837AD00EB9227 /* Option2.swift */; };
+		ADB9B8F62748482200EB9227 /* Option3.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F52748482200EB9227 /* Option3.swift */; };
+		ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F7274857DD00EB9227 /* Logging.swift */; };
+		ADB9B8FF274CEBB000EB9227 /* DataRetrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */; };
 		ADF119FB2745D0060099ADF3 /* apollo4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF119FA2745D0060099ADF3 /* apollo4App.swift */; };
 		ADF11A022745D0080099ADF3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A012745D0080099ADF3 /* Preview Assets.xcassets */; };
 		ADF11A0C2745D0080099ADF3 /* apollo4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A0B2745D0080099ADF3 /* apollo4Tests.swift */; };
@@ -44,6 +48,13 @@
 		ADF11A622745E3180099ADF3 /* nameImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A612745E3180099ADF3 /* nameImage.jpeg */; };
 		ADF11A642745E35B0099ADF3 /* healthImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A632745E35B0099ADF3 /* healthImage.png */; };
 		ADF11A662745E4280099ADF3 /* Apollo 1 Ring.obj in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A652745E4280099ADF3 /* Apollo 1 Ring.obj */; };
+		ADF11A6D27470D6A0099ADF3 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6A27470D6A0099ADF3 /* AmplifyModels.swift */; };
+		ADF11A6E27470D6A0099ADF3 /* userDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6B27470D6A0099ADF3 /* userDataModel.swift */; };
+		ADF11A6F27470D6A0099ADF3 /* userDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6C27470D6A0099ADF3 /* userDataModel+Schema.swift */; };
+		ADF11A7127478C110099ADF3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A7027478C110099ADF3 /* MainView.swift */; };
+		ADF11A7327478F0D0099ADF3 /* logowhttrans.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A7227478F0D0099ADF3 /* logowhttrans.png */; };
+		ADF11A78274795390099ADF3 /* RingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A77274795390099ADF3 /* RingChart.swift */; };
+		ADF11A7C2747AB050099ADF3 /* Option1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A7B2747AB050099ADF3 /* Option1.swift */; };
 		B947E94FEB56864267932FD3 /* Pods_apollo4_apollo4UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640E17A6646D270FD36F9D73 /* Pods_apollo4_apollo4UITests.framework */; };
 		C60B171744D888CA9DAA7377 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD0911A16987641E9C24AC /* AmplifyModels.swift */; };
 		F6818A389747A06AC13D3C31 /* Pods_apollo4Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05396547B94734C0AC72F675 /* Pods_apollo4Tests.framework */; };
@@ -78,6 +89,10 @@
 		988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F7919AE38F140D052F4F4FA /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.release.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.release.xcconfig"; sourceTree = "<group>"; };
+		ADB9B8F3274837AD00EB9227 /* Option2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option2.swift; sourceTree = "<group>"; };
+		ADB9B8F52748482200EB9227 /* Option3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option3.swift; sourceTree = "<group>"; };
+		ADB9B8F7274857DD00EB9227 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRetrieval.swift; sourceTree = "<group>"; };
 		ADF119F72745D0060099ADF3 /* apollo4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apollo4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF119FA2745D0060099ADF3 /* apollo4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apollo4App.swift; sourceTree = "<group>"; };
 		ADF11A012745D0080099ADF3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -115,6 +130,13 @@
 		ADF11A632745E35B0099ADF3 /* healthImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = healthImage.png; sourceTree = "<group>"; };
 		ADF11A652745E4280099ADF3 /* Apollo 1 Ring.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apollo 1 Ring.obj"; sourceTree = "<group>"; };
 		ADF11A672746F4B90099ADF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		ADF11A6A27470D6A0099ADF3 /* AmplifyModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplifyModels.swift; sourceTree = "<group>"; };
+		ADF11A6B27470D6A0099ADF3 /* userDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userDataModel.swift; sourceTree = "<group>"; };
+		ADF11A6C27470D6A0099ADF3 /* userDataModel+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "userDataModel+Schema.swift"; sourceTree = "<group>"; };
+		ADF11A7027478C110099ADF3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		ADF11A7227478F0D0099ADF3 /* logowhttrans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logowhttrans.png; sourceTree = "<group>"; };
+		ADF11A77274795390099ADF3 /* RingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingChart.swift; sourceTree = "<group>"; };
+		ADF11A7B2747AB050099ADF3 /* Option1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option1.swift; sourceTree = "<group>"; };
 		DAC3772788A412A79844DAD0 /* Pods-apollo4-apollo4UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F1AA8673E4552EA4EBD5846C /* Pods-apollo4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4.release.xcconfig"; path = "Target Support Files/Pods-apollo4/Pods-apollo4.release.xcconfig"; sourceTree = "<group>"; };
 		F5947E8335BA29513666FAEE /* Pods_apollo4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +220,7 @@
 		ADF119F92745D0060099ADF3 /* apollo4 */ = {
 			isa = PBXGroup;
 			children = (
+				ADF11A6827470D6A0099ADF3 /* generated */,
 				ADF11A672746F4B90099ADF3 /* Info.plist */,
 				ADF119FA2745D0060099ADF3 /* apollo4App.swift */,
 				ADF11A252745D4500099ADF3 /* Assets.xcassets */,
@@ -248,6 +271,7 @@
 		ADF11A272745D4670099ADF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ADF11A74274790200099ADF3 /* MainViewSubViews */,
 				ADF11A282745D4670099ADF3 /* SetupView.swift */,
 				ADF11A292745D4670099ADF3 /* GraphView.swift */,
 				ADF11A2B2745D4670099ADF3 /* LiveRead.swift */,
@@ -263,6 +287,7 @@
 				ADF11A352745D4670099ADF3 /* healthSetupView.swift */,
 				ADF11A362745D4670099ADF3 /* ContentView.swift */,
 				ADF11A372745D4670099ADF3 /* EmitterView.swift */,
+				ADF11A7027478C110099ADF3 /* MainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -274,6 +299,8 @@
 				ADF11A4A2745D4740099ADF3 /* UserData.swift */,
 				ADF11A4B2745D4740099ADF3 /* TextLimiting.swift */,
 				ADF11A4C2745D4740099ADF3 /* KeyboardHelper.swift */,
+				ADB9B8F7274857DD00EB9227 /* Logging.swift */,
+				ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -300,8 +327,39 @@
 		ADF11A572745D48C0099ADF3 /* Logos */ = {
 			isa = PBXGroup;
 			children = (
+				ADF11A7227478F0D0099ADF3 /* logowhttrans.png */,
 			);
 			path = Logos;
+			sourceTree = "<group>";
+		};
+		ADF11A6827470D6A0099ADF3 /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				ADF11A6927470D6A0099ADF3 /* models */,
+			);
+			name = generated;
+			path = amplify/generated;
+			sourceTree = SOURCE_ROOT;
+		};
+		ADF11A6927470D6A0099ADF3 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				ADF11A6A27470D6A0099ADF3 /* AmplifyModels.swift */,
+				ADF11A6B27470D6A0099ADF3 /* userDataModel.swift */,
+				ADF11A6C27470D6A0099ADF3 /* userDataModel+Schema.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		ADF11A74274790200099ADF3 /* MainViewSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				ADF11A77274795390099ADF3 /* RingChart.swift */,
+				ADF11A7B2747AB050099ADF3 /* Option1.swift */,
+				ADB9B8F3274837AD00EB9227 /* Option2.swift */,
+				ADB9B8F52748482200EB9227 /* Option3.swift */,
+			);
+			path = MainViewSubViews;
 			sourceTree = "<group>";
 		};
 		D104061A2C519A815099CDAE /* Pods */ = {
@@ -441,6 +499,7 @@
 				ADF11A5B2745D5300099ADF3 /* awsconfiguration.json in Resources */,
 				ADF11A5A2745D5300099ADF3 /* amplifyconfiguration.json in Resources */,
 				ADF11A262745D4500099ADF3 /* Assets.xcassets in Resources */,
+				ADF11A7327478F0D0099ADF3 /* logowhttrans.png in Resources */,
 				ADF11A622745E3180099ADF3 /* nameImage.jpeg in Resources */,
 				ADF11A642745E35B0099ADF3 /* healthImage.png in Resources */,
 				ADF11A662745E4280099ADF3 /* Apollo 1 Ring.obj in Resources */,
@@ -580,28 +639,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADF11A78274795390099ADF3 /* RingChart.swift in Sources */,
 				ADF11A382745D4670099ADF3 /* SetupView.swift in Sources */,
 				ADF11A3E2745D4670099ADF3 /* PairingView.swift in Sources */,
 				ADF11A4D2745D4740099ADF3 /* Backend.swift in Sources */,
 				ADF11A4E2745D4740099ADF3 /* UserData.swift in Sources */,
+				ADF11A6E27470D6A0099ADF3 /* userDataModel.swift in Sources */,
 				ADF11A472745D4670099ADF3 /* EmitterView.swift in Sources */,
 				ADF11A552745D47B0099ADF3 /* UUID Structs.swift in Sources */,
 				ADF11A462745D4670099ADF3 /* ContentView.swift in Sources */,
 				ADF11A442745D4670099ADF3 /* RotatingRingView.swift in Sources */,
 				ADF11A3F2745D4670099ADF3 /* userDataInputSetup.swift in Sources */,
 				ADF11A502745D4740099ADF3 /* KeyboardHelper.swift in Sources */,
+				ADF11A6F27470D6A0099ADF3 /* userDataModel+Schema.swift in Sources */,
 				ADF11A3D2745D4670099ADF3 /* nameSetup.swift in Sources */,
 				ADF11A422745D4670099ADF3 /* EmittingView.swift in Sources */,
 				ADF11A3C2745D4670099ADF3 /* PairingLoadScreen.swift in Sources */,
 				ADF11A3B2745D4670099ADF3 /* LiveRead.swift in Sources */,
+				ADB9B8F62748482200EB9227 /* Option3.swift in Sources */,
+				ADB9B8FF274CEBB000EB9227 /* DataRetrieval.swift in Sources */,
 				ADF11A402745D4670099ADF3 /* swipeView.swift in Sources */,
+				ADF11A7C2747AB050099ADF3 /* Option1.swift in Sources */,
 				ADF11A542745D47B0099ADF3 /* BLEManager.swift in Sources */,
+				ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */,
+				ADF11A6D27470D6A0099ADF3 /* AmplifyModels.swift in Sources */,
 				ADF119FB2745D0060099ADF3 /* apollo4App.swift in Sources */,
 				ADF11A412745D4670099ADF3 /* finishedSetupView.swift in Sources */,
 				ADF11A432745D4670099ADF3 /* HealthChoiceSetup.swift in Sources */,
 				ADF11A392745D4670099ADF3 /* GraphView.swift in Sources */,
 				ADF11A452745D4670099ADF3 /* healthSetupView.swift in Sources */,
 				ADF11A4F2745D4740099ADF3 /* TextLimiting.swift in Sources */,
+				ADF11A7127478C110099ADF3 /* MainView.swift in Sources */,
+				ADB9B8F4274837AD00EB9227 /* Option2.swift in Sources */,
 				C60B171744D888CA9DAA7377 /* AmplifyModels.swift in Sources */,
 				1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */,
 				14AFEFA6EB492561108251D9 /* userDataModel.swift in Sources */,
@@ -770,6 +839,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = apollo4/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Communicates health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -801,6 +871,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = apollo4/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Communicates health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

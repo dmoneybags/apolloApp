@@ -14,6 +14,9 @@ struct finishedSetupView: View {
     @State private var showSecondStage = false
     @State private var showThirdStage = false
     @State private var opacity = 0.0
+    @State private var attemptedSignIn = false
+    @State private var setupFinished = false
+    let authPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "Authorization"))
     private var newscene = SceneView(
         scene: {
             let scene = SCNScene(named: "Apollo 1 Ring.obj")!
@@ -36,17 +39,19 @@ struct finishedSetupView: View {
                     }
                 HStack {
                     VStack {
-                        if user.isSignedIn {
+                        if user.isSignedIn && attemptedSignIn {
                             Image(systemName: "checkmark.circle.fill")
                                 .foregroundColor(Color.green)
                                 .frame(width: 40, height: 40)
                                 .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.3)))
                                 .onTapGesture {
-                                    showSecondStage = true
+                                    withAnimation(){
+                                        showSecondStage = true
+                                    }
                                 }
-                                .onAppear(){
-                                    Backend.shared.createUser(user: user)
-                                }
+                                //.onAppear(){
+                                   // Backend.shared.createUser(user: user)
+                                //}
                         }
                         if showSecondStage {
                             Image(systemName: "checkmark.circle.fill")
@@ -54,7 +59,9 @@ struct finishedSetupView: View {
                                 .frame(width: 40, height: 40)
                                 .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.3)))
                                 .onTapGesture {
-                                    showThirdStage = true
+                                    withAnimation(){
+                                        showThirdStage = true
+                                    }
                                 }
                         }
                         if showThirdStage {
@@ -62,12 +69,15 @@ struct finishedSetupView: View {
                                 .foregroundColor(Color.green)
                                 .frame(width: 40, height: 40)
                                 .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.3)))
+                                .onTapGesture {
+                                    setupFinished = true
+                                }
                         }
                     }
                     .frame(width: 80, height: 150)
                     //.background(Color.red)
                     VStack {
-                        if user.isSignedIn {
+                        if user.isSignedIn && attemptedSignIn {
                             Text("Created user")
                                 .foregroundColor(Color.white)
                                 .frame(width: 200, height: 40)
@@ -100,7 +110,13 @@ struct finishedSetupView: View {
         .background(Color.black)
         .edgesIgnoringSafeArea(.all)
         .onAppear(){
-            Backend.shared.reauth()
+            Backend.shared.signOut()
+        }
+        .onReceive(authPub){ (output) in
+            if !attemptedSignIn {
+                Backend.shared.signIn()
+            }
+            attemptedSignIn = true
         }
     }
 }
