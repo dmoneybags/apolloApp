@@ -20,6 +20,11 @@ func getDocumentsDirectory() -> URL {
     return paths[0]
 }
 func writeToCsv(filename: URL, data: String){
+    if data == "0"{
+        print("Found 0, write failed")
+        return
+    }
+    print("writing to \(filename)")
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
     let dataDate: String = dateFormatter.string(from: Date())

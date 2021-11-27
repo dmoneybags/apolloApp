@@ -9,19 +9,20 @@ import SwiftUI
 import SceneKit
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme
     @StateObject var bleManager: BLEManager = BLEManager()
     @StateObject var user: UserData = .shared
     @State private var numBarsANIMATION: CGFloat = 1.25
     @State private var opacityANIMATION: CGFloat = 0.0
     @State private var pairing: Bool = false
     @State private var repeated = Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true)
-    private var scene = SceneView(scene: SCNScene(named: "Apollo 1 Ring.obj"), options: [.allowsCameraControl,.autoenablesDefaultLighting])
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
-                    Image("logo_white_background")
-                        .scaleEffect(0.3)
+                    Image(colorScheme == .dark ? "logowhttrans":"logo_white_background")
+                        .resizable()
+                        .frame(width: 100, height: 50, alignment: .center)
                 }
                 .frame(width: 100, height: 30)
                 Divider()
@@ -47,13 +48,19 @@ struct ContentView: View {
                         }
                 }
                 HStack {
-                    self.scene
+                    SceneView(
+                        scene: {
+                            let scene = SCNScene(named: "Apollo 1 Ring.obj")!
+                            scene.background.contents = colorScheme == .dark ? UIColor.black : UIColor.white
+                            return scene
+                        }(),
+                        options: [.autoenablesDefaultLighting,.allowsCameraControl])
                         .scaleEffect(0.6)
                         .frame(width: 350, height: 350)
                 }
                 ZStack {
                     if !pairing {
-                        if bleManager.connectedPeripheral == nil{
+                        if bleManager.connectedPeripheral != nil{
                             Button(action: {
                                 pairing = true
                                 bleManager.startScanning()

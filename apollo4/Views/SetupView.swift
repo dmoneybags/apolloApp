@@ -27,7 +27,7 @@ struct SetupView: View {
         case 1: return AnyView(userDataInputSetup())
         case 2: return AnyView(healthSetupView())
         case 3: return AnyView(finishedSetupView())
-        default: return AnyView(finishedSetupView())
+        default: return AnyView(MainTabView())
         }
     }
 }
