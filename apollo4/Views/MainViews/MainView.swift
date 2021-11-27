@@ -24,9 +24,10 @@ struct MainView: View {
             }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-        .background(Color(UIColor.systemGray6))
         .edgesIgnoringSafeArea(.all)
         .padding(.top, 0.3)
+        .padding(.bottom, 0.3)
+        .background(Color(UIColor.systemGray6))
     }
 }
 

@@ -118,9 +118,11 @@ struct LineGraph: View {
                         }
                     }
                     if showingIndicators {
-                        IndicatorPoint(index: $indexPosition, data: data)
-                                        .position(x: IndicatorPointPosition.x, y: IndicatorPointPosition.y - 15)
-                                }
+                        withAnimation(){
+                            IndicatorPoint(index: $indexPosition, data: data)
+                                            .position(x: IndicatorPointPosition.x, y: IndicatorPointPosition.y - 15)
+                        }
+                    }
                 }
                 .frame(width: CGFloat(width!), height: CGFloat(height!))
                 .padding()
