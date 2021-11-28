@@ -10,10 +10,18 @@ import SwiftUI
 struct Option3: View {
     @Binding var filename: URL
     @Binding var title: String
-    @State var dailyData: [Int]? = [150, 117, 117, 118, 119]
-    @State var monthlyData: [Int]? = [119, 119, 110, 110, 112]
-    @State var yearlyData: [Int]? = [111, 113]
+    @State var dailyData: [(Double, Date)]? = [(150, Date()), (117, Date()), (117, Date()), (118, Date()), (119, Date())]
+    @State var monthlyData: [(Double, Date)]? = [(150, Date()), (117, Date()), (117, Date()), (118, Date()), (119, Date())]
+    @State var yearlyData: [(Double, Date)]? = [(150, Date()), (117, Date()), (117, Date()), (118, Date()), (119, Date())]
     var body: some View {
+        let maxVal: Double = getMax(data: dailyData!.map{$0.0})
+        let minVal: Double = getMin(data: dailyData!.map{$0.0})
+        let minIndex: Int = dailyData!.map{$0.0}.firstIndex(of: minVal)!
+        let maxIndex: Int = dailyData!.map{$0.0}.firstIndex(of: minVal)!
+        let minTime: Date = dailyData!.map{$0.1}[minIndex]
+        let maxTime: Date = dailyData!.map{$0.1}[maxIndex]
+        let minTimeStr: String = getTimeComponent(date: minTime, timeFrame: .hour)
+        let maxTimeStr: String = getTimeComponent(date: maxTime, timeFrame: .hour)
         VStack {
             Text(title)
             Divider()
@@ -23,10 +31,10 @@ struct Option3: View {
                     Text("Current")
                         .foregroundColor(Color(UIColor.systemGray3))
                     HStack {
-                        Text(String(dailyData!.last!))
+                        Text(String(dailyData!.map{$0.0}.last!))
                             .font(.system(size: 30))
                             .fontWeight(.bold)
-                        Image(systemName: (dailyData!.last! > Int(averageData(data: dailyData!))) ? "arrow.up" : "arrow.down")
+                        Image(systemName: (dailyData!.map{$0.0}.last! > averageData(data: dailyData!.map{$0.0})) ? "arrow.up" : "arrow.down")
                             .resizable()
                             .frame(width: 20, height: 30, alignment: .center)
                             .foregroundColor(Color.red)
@@ -38,13 +46,13 @@ struct Option3: View {
                     Text("High")
                         .foregroundColor(Color(UIColor.systemGray3))
                     HStack {
-                        Text(String(Int(getMax(data: dailyData!))))
+                        Text(String(Int(maxVal)))
                             .font(.system(size: 30))
                             .fontWeight(.bold)
                         VStack{
-                            Text("4")
+                            Text(maxTimeStr.split(separator: " ")[0])
                                 .foregroundColor(Color(UIColor.systemGray3))
-                            Text("PM")
+                            Text(maxTimeStr.split(separator: " ")[1])
                                 .foregroundColor(Color(UIColor.systemGray3))
                         }
                     }
@@ -55,13 +63,13 @@ struct Option3: View {
                     Text("Low")
                         .foregroundColor(Color(UIColor.systemGray3))
                     HStack {
-                        Text(String(Int(getMin(data: dailyData!))))
+                        Text(String(Int(minVal)))
                             .font(.system(size: 30))
                             .fontWeight(.bold)
                         VStack{
-                            Text("2")
+                            Text(minTimeStr.split(separator: " ")[0])
                                 .foregroundColor(Color(UIColor.systemGray3))
-                            Text("AM")
+                            Text(minTimeStr.split(separator: " ")[1])
                                 .foregroundColor(Color(UIColor.systemGray3))
                         }
                     }

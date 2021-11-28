@@ -10,9 +10,9 @@ import SwiftUI
 struct Option2: View {
     @Binding var filename: URL
     @Binding var title: String
-    @State var dailyData: [Int]? = [150, 117, 117, 118, 119]
-    @State var monthlyData: [Int]? = [119, 119, 110, 110, 112]
-    @State var yearlyData: [Int]? = [111, 113]
+    @State var dailyData: [(Double, Date)]? = [(150, Date()), (117, Date()), (117, Date()), (118, Date()), (119, Date())]
+    @State var monthlyData: [(Double, Date)]? = [(150, Date()), (117, Date()), (117, Date()), (118, Date()), (119, Date())]
+    @State var yearlyData: [(Double, Date)]? = [(150, Date()), (117, Date()), (117, Date()), (118, Date()), (119, Date())]
     var body: some View {
         VStack {
             HStack {
@@ -28,16 +28,16 @@ struct Option2: View {
                 VStack {
                     Text("Today")
                         .foregroundColor(Color(UIColor.systemGray))
-                    LineGraph(data: .constant(dailyData!.map{Double($0)}), height: 100, width: 160, heatGradient: true)
+                    LineGraph(data: .constant(dailyData!.map{$0.0}), height: 100, width: 160, heatGradient: true)
                 }
                 VStack{
                     Text("Average")
                         .foregroundColor(Color(UIColor.systemGray))
                     HStack {
-                        Text(String(Int(averageData(data: dailyData!))))
+                        Text(String(Int(averageData(data: dailyData!.map{$0.0}))))
                             .font(.system(size: 48))
                             .fontWeight(.bold)
-                        Image(systemName: (dailyData!.last! > Int(averageData(data: dailyData!))) ? "arrow.up" : "arrow.down")
+                        Image(systemName: (dailyData!.map{$0.0}.last! > averageData(data: dailyData!.map{$0.0})) ? "arrow.up" : "arrow.down")
                             .resizable()
                             .frame(width: 20, height: 30, alignment: .center)
                             .foregroundColor(Color.blue)

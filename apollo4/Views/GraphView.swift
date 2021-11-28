@@ -84,6 +84,7 @@ public struct IndicatorPoint: View {
 }
 struct LineGraph: View {
     @Binding var data: [Double]
+    @State var dataTime: [(Double, Date)]? ///Maybe change this to a binding but its a fucking headache for now
     @State var height: Double?
     @State var width: Double?
     @State var color: Color?
@@ -94,8 +95,8 @@ struct LineGraph: View {
     @State var indexPosition: Int = 0
     @State var IndicatorPointPosition: CGPoint = .zero
     var body: some View {
-        let yPositions = genYvalues(data: data, ySize: height!, dataRange: nil, dataMin: nil)
-        let xPositions = genXvalues(data: data, xSize: width!)
+        let yPositions = genYvalues(data: dataTime != nil ? dataTime!.map{$0.0}:data, ySize: height!, dataRange: nil, dataMin: nil)
+        let xPositions = genXvalues(data: dataTime != nil ? dataTime!.map{$0.0}:data, xSize: width!)
         ZStack {
             ZStack {
                 ForEach(data.indices, id: \.self) {i in
@@ -119,7 +120,7 @@ struct LineGraph: View {
                     }
                     if showingIndicators {
                         withAnimation(){
-                            IndicatorPoint(index: $indexPosition, data: data)
+                            IndicatorPoint(index: $indexPosition, data: dataTime != nil ? dataTime!.map{$0.0} : data)
                                             .position(x: IndicatorPointPosition.x, y: IndicatorPointPosition.y - 15)
                         }
                     }

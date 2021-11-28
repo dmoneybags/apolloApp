@@ -12,9 +12,9 @@ struct MainLiveRead: View {
     var liveViews: [Any] = [1]
     @Environment(\.colorScheme) var colorScheme
     @State var selector = 0
-    @State var bpmData: [Double] = [getData(filename: getDocumentsDirectory().appendingPathComponent("HeartRate"), timeFrame: .day).map{Double($0)}.last!]
-    @State var SPO2Data: [Double] = [getData(filename: getDocumentsDirectory().appendingPathComponent("SPO2"), timeFrame: .day).map{Double($0)}.last!]
-    @State var bpData: [[Double]] = [[getData(filename: getDocumentsDirectory().appendingPathComponent("SystolicPressure"), timeFrame: .day).map{Double($0)}.last!], [getData(filename: getDocumentsDirectory().appendingPathComponent("DiastolicPressure"), timeFrame: .day).map{Double($0)}.last!]]
+    @State var bpmData: [Double] = [getData(filename: getDocumentsDirectory().appendingPathComponent("HeartRate"), timeFrame: .day).map{$0.0}.last!]
+    @State var SPO2Data: [Double] = [getData(filename: getDocumentsDirectory().appendingPathComponent("SPO2"), timeFrame: .day).map{$0.0}.last!]
+    @State var bpData: [[Double]] = [[getData(filename: getDocumentsDirectory().appendingPathComponent("SystolicPressure"), timeFrame: .day).map{$0.0}.last!], [getData(filename: getDocumentsDirectory().appendingPathComponent("DiastolicPressure"), timeFrame: .day).map{$0.0}.last!]]
     let bpmPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "HeartRate"))
     let SPO2Pub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "SPO2"))
     let sysPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "SystolicPressure"))

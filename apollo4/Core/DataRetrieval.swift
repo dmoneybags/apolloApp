@@ -6,8 +6,8 @@
 //
 
 import Foundation
-func getData(filename: URL, timeFrame: Calendar.Component) -> [Int] {
-    var data: [Int] = []
+func getData(filename: URL, timeFrame: Calendar.Component) -> [(Double, Date)] {
+    var data: [(Double, Date)] = []
     let calendar = Calendar.current
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
@@ -23,14 +23,14 @@ func getData(filename: URL, timeFrame: Calendar.Component) -> [Int] {
         let component = calendar.component(timeFrame, from: date!)
         let componentNow = calendar.component(timeFrame, from: now)
         if component == componentNow {
-            data.append(Int((lineTuple[1] as NSString).doubleValue))
+            data.append((Double((lineTuple[1] as NSString).doubleValue), date!))
         }
     }
     print("GOT DATA FOR \(timeFrame)")
     print(data)
     return data
 }
-func averageData(data: [Int]) -> Double {
+func averageData(data: [Double]) -> Double {
     var counter: Double = 0
     var total: Double = 0
     for i in data {
@@ -39,7 +39,7 @@ func averageData(data: [Int]) -> Double {
     }
     return total/counter
 }
-func getMax(data: [Int]) -> Double {
+func getMax(data: [Double]) -> Double {
     var max: Double = 0
     for i in data {
         if Double(i) > max {
@@ -48,7 +48,7 @@ func getMax(data: [Int]) -> Double {
     }
     return max
 }
-func getMin(data: [Int]) -> Double {
+func getMin(data: [Double]) -> Double {
     var min: Double = 10000000
     for i in data {
         if Double(i) < min {
@@ -57,7 +57,7 @@ func getMin(data: [Int]) -> Double {
     }
     return min
 }
-func getRange(data: [Int]) -> Double {
+func getRange(data: [Double]) -> Double {
     let min = getMin(data: data)
     let max = getMax(data: data)
     return max - min

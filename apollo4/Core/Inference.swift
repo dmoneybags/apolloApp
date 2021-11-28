@@ -72,3 +72,17 @@ func getColor(stat: String, progress: Double) -> Color{
     
     return Color(UIColor(red: CGFloat(red)/255, green: CGFloat(green)/255, blue: CGFloat(blue)/255, alpha: 1.0))
 }
+func getTimeComponent(date: Date, timeFrame: Calendar.Component) -> String{
+    let calendar = Calendar.current
+    let component = calendar.component(timeFrame, from: date)
+    if timeFrame == .hour{
+        var hour: Int = Int(component)
+        if hour > 12{
+            hour = hour % 12
+            return String(hour) + " PM"
+        } else {
+            return String(hour) + " AM"
+        }
+    }
+    return ""
+}
