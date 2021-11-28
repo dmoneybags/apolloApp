@@ -77,12 +77,53 @@ func getTimeComponent(date: Date, timeFrame: Calendar.Component) -> String{
     let component = calendar.component(timeFrame, from: date)
     if timeFrame == .hour{
         var hour: Int = Int(component)
-        if hour > 12{
+        let minutes: Int = Int(calendar.component(.minute, from: date))
+        if hour > 12 {
             hour = hour % 12
-            return String(hour) + " PM"
+            return String(hour) + ":" + String(format: "%02d", minutes) + " PM"
+        } else if hour == 0 {
+            return String(12) + ":" + String(format: "%02d", minutes) + " AM"
         } else {
-            return String(hour) + " AM"
+            return String(hour) + ":" + String(format: "%02d", minutes) + " AM"
         }
     }
+    let month: Int = Int(calendar.component(.month, from: date))
+    let day: Int = Int(component)
+    if timeFrame == .day{
+        let hour: String = getTimeComponent(date: date, timeFrame: .hour)
+        return String(month) + "/" + String(day) + ", " + hour
+    }
+    if timeFrame == .month{
+        return String(month) + "/" + String(day)
+    }
     return ""
+}
+func getTimeRangeVal(dates: [Date]) -> Calendar.Component {
+    let calendar = Calendar.current
+    let firstDay = calendar.component(.day, from: dates.first!)
+    let lastDay = calendar.component(.day, from: dates.last!)
+    if firstDay == lastDay {
+        return .hour
+    }
+    let firstMonth = calendar.component(.month, from: dates.first!)
+    let lastMonth = calendar.component(.month, from: dates.last!)
+    if firstMonth == lastMonth {
+        return .day
+    }
+    return .month
+}
+func filterData(data: [(Double, Date)], timeFrame: Calendar.Component, num: Int) -> [(Double, Date)]{
+    let dateList = data.map{$0.1}
+    let calendar = Calendar.current
+    var minutes = calendar.component(timeFrame, from: dateList.first!)
+    var filteredData: [(Double, Date)] = []
+    for reading in data{
+        let difference = calendar.component(timeFrame, from: reading.1) - minutes
+        if difference > minutes || difference < 0{
+            minutes = calendar.component(timeFrame, from: reading.1)
+            filteredData.append(reading)
+        }
+    }
+    print("Filtered data to \(filteredData)")
+    return filteredData
 }

@@ -28,7 +28,8 @@ struct Option2: View {
                 VStack {
                     Text("Today")
                         .foregroundColor(Color(UIColor.systemGray))
-                    LineGraph(data: .constant(dailyData!.map{$0.0}), height: 100, width: 160, heatGradient: true)
+                    LineGraph(data: .constant(dailyData!.map{$0.0}), dataTime: $dailyData, height: 100, width: 160, heatGradient: true)
+                        .frame(width: 180, height: 135, alignment: .center)
                 }
                 VStack{
                     Text("Average")

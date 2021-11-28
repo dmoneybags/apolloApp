@@ -14,6 +14,7 @@ func getData(filename: URL, timeFrame: Calendar.Component) -> [(Double, Date)] {
     let contents = try! String(contentsOf: filename)
     let lines = contents.components(separatedBy: "\n")
     for line in lines {
+        print(line)
         let lineTuple = line.components(separatedBy: ",")
         let date = dateFormatter.date(from: lineTuple[0])
         if date == nil {
@@ -27,7 +28,6 @@ func getData(filename: URL, timeFrame: Calendar.Component) -> [(Double, Date)] {
         }
     }
     print("GOT DATA FOR \(timeFrame)")
-    print(data)
     return data
 }
 func averageData(data: [Double]) -> Double {

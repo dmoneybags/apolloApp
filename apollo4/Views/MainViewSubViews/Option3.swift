@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct Option3: View {
-    @Binding var filename: URL
-    @Binding var title: String
+    @State var filename: URL
+    @State var title: String
     @State var dailyData: [(Double, Date)]? = [(150, Date()), (117, Date()), (117, Date()), (118, Date()), (119, Date())]
     @State var monthlyData: [(Double, Date)]? = [(150, Date()), (117, Date()), (117, Date()), (118, Date()), (119, Date())]
     @State var yearlyData: [(Double, Date)]? = [(150, Date()), (117, Date()), (117, Date()), (118, Date()), (119, Date())]
     var body: some View {
-        let maxVal: Double = getMax(data: dailyData!.map{$0.0})
-        let minVal: Double = getMin(data: dailyData!.map{$0.0})
-        let minIndex: Int = dailyData!.map{$0.0}.firstIndex(of: minVal)!
-        let maxIndex: Int = dailyData!.map{$0.0}.firstIndex(of: minVal)!
-        let minTime: Date = dailyData!.map{$0.1}[minIndex]
-        let maxTime: Date = dailyData!.map{$0.1}[maxIndex]
+        let maxVal: Double = getMax(data: monthlyData!.map{$0.0})
+        let minVal: Double = getMin(data: monthlyData!.map{$0.0})
+        let minIndex: Int = monthlyData!.map{$0.0}.firstIndex(of: minVal)!
+        let maxIndex: Int = monthlyData!.map{$0.0}.firstIndex(of: maxVal)!
+        let minTime: Date = monthlyData!.map{$0.1}[minIndex]
+        let maxTime: Date = monthlyData!.map{$0.1}[maxIndex]
         let minTimeStr: String = getTimeComponent(date: minTime, timeFrame: .hour)
         let maxTimeStr: String = getTimeComponent(date: maxTime, timeFrame: .hour)
         VStack {
@@ -31,8 +31,8 @@ struct Option3: View {
                     Text("Current")
                         .foregroundColor(Color(UIColor.systemGray3))
                     HStack {
-                        Text(String(dailyData!.map{$0.0}.last!))
-                            .font(.system(size: 30))
+                        Text(String(Int(dailyData!.map{$0.0}.last!)))
+                            .font(.system(size: 24))
                             .fontWeight(.bold)
                         Image(systemName: (dailyData!.map{$0.0}.last! > averageData(data: dailyData!.map{$0.0})) ? "arrow.up" : "arrow.down")
                             .resizable()
@@ -47,7 +47,7 @@ struct Option3: View {
                         .foregroundColor(Color(UIColor.systemGray3))
                     HStack {
                         Text(String(Int(maxVal)))
-                            .font(.system(size: 30))
+                            .font(.system(size: 24))
                             .fontWeight(.bold)
                         VStack{
                             Text(maxTimeStr.split(separator: " ")[0])
@@ -64,7 +64,7 @@ struct Option3: View {
                         .foregroundColor(Color(UIColor.systemGray3))
                     HStack {
                         Text(String(Int(minVal)))
-                            .font(.system(size: 30))
+                            .font(.system(size: 24))
                             .fontWeight(.bold)
                         VStack{
                             Text(minTimeStr.split(separator: " ")[0])
@@ -84,6 +84,6 @@ struct Option3: View {
 
 struct Option3_Previews: PreviewProvider {
     static var previews: some View {
-        Option3(filename: .constant(getDocumentsDirectory()), title: .constant("SPO2 Readings"))
+        Option3(filename: getDocumentsDirectory(), title: "SPO2 Readings")
     }
 }

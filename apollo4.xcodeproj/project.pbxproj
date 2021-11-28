@@ -19,6 +19,13 @@
 		AD3EE4F42751CC43001A30A2 /* bloodPressureMinibox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4F32751CC43001A30A2 /* bloodPressureMinibox.swift */; };
 		AD3EE4F62751E1D7001A30A2 /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4F52751E1D7001A30A2 /* Gradients.swift */; };
 		AD3EE4F827521F76001A30A2 /* SPO2MiniBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4F727521F75001A30A2 /* SPO2MiniBox.swift */; };
+		AD67BD7C2753079800341539 /* MultiLineGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD7B2753079800341539 /* MultiLineGraph.swift */; };
+		AD67BD8027535ED300341539 /* BPMDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD7F27535ED300341539 /* BPMDetailView.swift */; };
+		AD67BD822753687700341539 /* bpmReadingsBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD812753687700341539 /* bpmReadingsBox.swift */; };
+		AD67BD842753F18200341539 /* timeFrameGrapher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD832753F18200341539 /* timeFrameGrapher.swift */; };
+		AD67BD86275420DC00341539 /* backBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD85275420DC00341539 /* backBtn.swift */; };
+		AD67BD882754292C00341539 /* SPO2DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD872754292C00341539 /* SPO2DetailView.swift */; };
+		AD67BD8A275445F700341539 /* CapsuleGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD89275445F700341539 /* CapsuleGraph.swift */; };
 		ADA1ECA2274E1EE00079E6CE /* BPOption1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */; };
 		ADA1ECA4274E34B30079E6CE /* CapsuleReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */; };
 		ADB9B8F4274837AD00EB9227 /* Option2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F3274837AD00EB9227 /* Option2.swift */; };
@@ -107,6 +114,13 @@
 		AD3EE4F32751CC43001A30A2 /* bloodPressureMinibox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bloodPressureMinibox.swift; sourceTree = "<group>"; };
 		AD3EE4F52751E1D7001A30A2 /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
 		AD3EE4F727521F75001A30A2 /* SPO2MiniBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPO2MiniBox.swift; sourceTree = "<group>"; };
+		AD67BD7B2753079800341539 /* MultiLineGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineGraph.swift; sourceTree = "<group>"; };
+		AD67BD7F27535ED300341539 /* BPMDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMDetailView.swift; sourceTree = "<group>"; };
+		AD67BD812753687700341539 /* bpmReadingsBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bpmReadingsBox.swift; sourceTree = "<group>"; };
+		AD67BD832753F18200341539 /* timeFrameGrapher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timeFrameGrapher.swift; sourceTree = "<group>"; };
+		AD67BD85275420DC00341539 /* backBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backBtn.swift; sourceTree = "<group>"; };
+		AD67BD872754292C00341539 /* SPO2DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPO2DetailView.swift; sourceTree = "<group>"; };
+		AD67BD89275445F700341539 /* CapsuleGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleGraph.swift; sourceTree = "<group>"; };
 		ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPOption1.swift; sourceTree = "<group>"; };
 		ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleReader.swift; sourceTree = "<group>"; };
 		ADB9B8F3274837AD00EB9227 /* Option2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option2.swift; sourceTree = "<group>"; };
@@ -305,6 +319,7 @@
 				ADF11A74274790200099ADF3 /* MainViewSubViews */,
 				ADF11A282745D4670099ADF3 /* SetupView.swift */,
 				ADF11A292745D4670099ADF3 /* GraphView.swift */,
+				AD67BD7B2753079800341539 /* MultiLineGraph.swift */,
 				ADF11A2B2745D4670099ADF3 /* LiveRead.swift */,
 				ADF11A2C2745D4670099ADF3 /* PairingLoadScreen.swift */,
 				ADF11A2D2745D4670099ADF3 /* nameSetup.swift */,
@@ -318,6 +333,7 @@
 				ADF11A352745D4670099ADF3 /* healthSetupView.swift */,
 				ADF11A362745D4670099ADF3 /* ContentView.swift */,
 				ADF11A372745D4670099ADF3 /* EmitterView.swift */,
+				AD67BD89275445F700341539 /* CapsuleGraph.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -396,6 +412,11 @@
 				AD3EE4EF275178AC001A30A2 /* bpmMiniBox.swift */,
 				AD3EE4F32751CC43001A30A2 /* bloodPressureMinibox.swift */,
 				AD3EE4F727521F75001A30A2 /* SPO2MiniBox.swift */,
+				AD67BD7F27535ED300341539 /* BPMDetailView.swift */,
+				AD67BD872754292C00341539 /* SPO2DetailView.swift */,
+				AD67BD832753F18200341539 /* timeFrameGrapher.swift */,
+				AD67BD812753687700341539 /* bpmReadingsBox.swift */,
+				AD67BD85275420DC00341539 /* backBtn.swift */,
 			);
 			path = MainViewSubViews;
 			sourceTree = "<group>";
@@ -677,10 +698,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD67BD8A275445F700341539 /* CapsuleGraph.swift in Sources */,
 				ADF11A78274795390099ADF3 /* RingChart.swift in Sources */,
 				ADF11A382745D4670099ADF3 /* SetupView.swift in Sources */,
 				AD3EE4F42751CC43001A30A2 /* bloodPressureMinibox.swift in Sources */,
 				ADF11A3E2745D4670099ADF3 /* PairingView.swift in Sources */,
+				AD67BD822753687700341539 /* bpmReadingsBox.swift in Sources */,
 				ADF11A4D2745D4740099ADF3 /* Backend.swift in Sources */,
 				ADF11A4E2745D4740099ADF3 /* UserData.swift in Sources */,
 				ADF11A6E27470D6A0099ADF3 /* userDataModel.swift in Sources */,
@@ -693,6 +716,7 @@
 				AD3EE4F227517EB0001A30A2 /* MainTabView.swift in Sources */,
 				ADF11A3F2745D4670099ADF3 /* userDataInputSetup.swift in Sources */,
 				ADF11A502745D4740099ADF3 /* KeyboardHelper.swift in Sources */,
+				AD67BD7C2753079800341539 /* MultiLineGraph.swift in Sources */,
 				AD3EE4EE2750C1E5001A30A2 /* LiveGrapher.swift in Sources */,
 				ADF11A6F27470D6A0099ADF3 /* userDataModel+Schema.swift in Sources */,
 				ADF11A3D2745D4670099ADF3 /* nameSetup.swift in Sources */,
@@ -710,15 +734,19 @@
 				ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */,
 				ADF11A6D27470D6A0099ADF3 /* AmplifyModels.swift in Sources */,
 				AD3EE4F0275178AC001A30A2 /* bpmMiniBox.swift in Sources */,
+				AD67BD86275420DC00341539 /* backBtn.swift in Sources */,
 				ADF119FB2745D0060099ADF3 /* apollo4App.swift in Sources */,
+				AD67BD842753F18200341539 /* timeFrameGrapher.swift in Sources */,
 				AD3EE4E9274F5D4C001A30A2 /* Inference.swift in Sources */,
 				ADF11A412745D4670099ADF3 /* finishedSetupView.swift in Sources */,
 				ADF11A432745D4670099ADF3 /* HealthChoiceSetup.swift in Sources */,
 				ADF11A392745D4670099ADF3 /* GraphView.swift in Sources */,
+				AD67BD8027535ED300341539 /* BPMDetailView.swift in Sources */,
 				ADF11A452745D4670099ADF3 /* healthSetupView.swift in Sources */,
 				ADF11A4F2745D4740099ADF3 /* TextLimiting.swift in Sources */,
 				ADF11A7127478C110099ADF3 /* MainView.swift in Sources */,
 				ADB9B8F4274837AD00EB9227 /* Option2.swift in Sources */,
+				AD67BD882754292C00341539 /* SPO2DetailView.swift in Sources */,
 				C60B171744D888CA9DAA7377 /* AmplifyModels.swift in Sources */,
 				1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */,
 				14AFEFA6EB492561108251D9 /* userDataModel.swift in Sources */,
