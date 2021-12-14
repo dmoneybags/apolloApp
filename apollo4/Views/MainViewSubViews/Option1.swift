@@ -29,7 +29,7 @@ struct Option1: View {
                 VStack {
                     Text("Today")
                         .foregroundColor(Color(UIColor.systemGray))
-                    RingChart(progress: .constant(Double(getProgres(stat: stat, reading: averageData(data: dailyData!.map{$0.0})))), text: .constant(String(Int(averageData(data: dailyData!.map{$0.0})))))
+                    RingChart(progress: .constant(Double(getProgress(stat: stat, reading: averageData(data: dailyData!.map{$0.0})))), text: .constant(String(Int(averageData(data: dailyData!.map{$0.0})))))
                         .frame(width: 60, height: 60, alignment: .center)
                 }
                 .frame(width: 100, height: 120, alignment: .center)
@@ -37,14 +37,14 @@ struct Option1: View {
                     Text("This month")
                         .foregroundColor(Color(UIColor.systemGray))
                         .multilineTextAlignment(.center)
-                    RingChart(progress: .constant(Double(getProgres(stat: stat, reading: averageData(data: monthlyData!.map{$0.0})))), text: .constant(String(Int(averageData(data: monthlyData!.map{$0.0})))))
+                    RingChart(progress: .constant(Double(getProgress(stat: stat, reading: averageData(data: monthlyData!.map{$0.0})))), text: .constant(String(Int(averageData(data: monthlyData!.map{$0.0})))))
                         .frame(width: 60, height: 60, alignment: .center)
                 }
                 .frame(width: 100, height: 120, alignment: .center)
                 VStack {
                     Text("This year")
                         .foregroundColor(Color(UIColor.systemGray))
-                    RingChart(progress: .constant(Double(getProgres(stat: stat, reading: averageData(data: yearlyData!.map{$0.0})))), text: .constant(String(Int(averageData(data: yearlyData!.map{$0.0})))))
+                    RingChart(progress: .constant(Double(getProgress(stat: stat, reading: averageData(data: yearlyData!.map{$0.0})))), text: .constant(String(Int(averageData(data: yearlyData!.map{$0.0})))))
                         .frame(width: 60, height: 60, alignment: .center)
                 }
                 .frame(width: 100, height: 120, alignment: .center)

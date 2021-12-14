@@ -28,8 +28,8 @@ struct BPMDetailView: View {
                         .padding()
                 }
                 timeFrameGrapher()
-                backBtn()
             }
+            backBtn()
         }
         .onReceive(bpmPub){reading in
             let value = (reading.object as! NSString).doubleValue

@@ -20,4 +20,14 @@ let tempGradient = Gradient(colors: [
   Color(red: 1.0, green: 140.0/255.0, blue: 0.0),
   .red,
   Color(red: 139.0/255.0, green: 0.0, blue: 0.0)
-])
+].reversed())
+let rangeGradient = Gradient(colors: [
+    .green,
+    .green,
+    .green,
+    .yellow,
+    .orange,
+    Color(red: 1.0, green: 140.0/255.0, blue: 0.0),
+    .red,
+    Color(red: 139.0/255.0, green: 0.0, blue: 0.0)
+  ])

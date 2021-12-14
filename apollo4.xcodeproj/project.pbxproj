@@ -26,6 +26,26 @@
 		AD67BD86275420DC00341539 /* backBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD85275420DC00341539 /* backBtn.swift */; };
 		AD67BD882754292C00341539 /* SPO2DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD872754292C00341539 /* SPO2DetailView.swift */; };
 		AD67BD8A275445F700341539 /* CapsuleGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD89275445F700341539 /* CapsuleGraph.swift */; };
+		AD6EB58E275B4A6F000BD56F /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB58A275B4A6F000BD56F /* BarChartView.swift */; };
+		AD6EB58F275B4A6F000BD56F /* BarChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB58B275B4A6F000BD56F /* BarChartRow.swift */; };
+		AD6EB590275B4A6F000BD56F /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB58C275B4A6F000BD56F /* LabelView.swift */; };
+		AD6EB591275B4A6F000BD56F /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB58D275B4A6F000BD56F /* BarChartCell.swift */; };
+		AD6EB593275B4A8C000BD56F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB592275B4A8C000BD56F /* Helpers.swift */; };
+		AD6EB595275B538A000BD56F /* BPDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB594275B538A000BD56F /* BPDetailView.swift */; };
+		AD6EB597275C2361000BD56F /* TimeFrameMultiLineGrapher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB596275C2361000BD56F /* TimeFrameMultiLineGrapher.swift */; };
+		AD6EB599275CBA80000BD56F /* HyperTensionStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB598275CBA80000BD56F /* HyperTensionStructs.swift */; };
+		AD6EB59D275D4EB3000BD56F /* TickMarkReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB59C275D4EB3000BD56F /* TickMarkReader.swift */; };
+		AD6EB59F275DDDB3000BD56F /* HyperTensionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB59E275DDDB3000BD56F /* HyperTensionBox.swift */; };
+		AD6EB5A1275F2C99000BD56F /* SegmentedRingChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB5A0275F2C98000BD56F /* SegmentedRingChartView.swift */; };
+		AD837C902760215600E0BDB9 /* SegmentedChartViewCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837C8F2760215600E0BDB9 /* SegmentedChartViewCenter.swift */; };
+		AD837C92276022A200E0BDB9 /* HorizontalCapsuleReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837C91276022A200E0BDB9 /* HorizontalCapsuleReader.swift */; };
+		AD837C942760350500E0BDB9 /* StatObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837C932760350500E0BDB9 /* StatObjects.swift */; };
+		AD837C9727645F4400E0BDB9 /* MainView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837C9627645F4400E0BDB9 /* MainView2.swift */; };
+		AD837CA227652B9900E0BDB9 /* StatData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD837CA027652B9900E0BDB9 /* StatData.xcdatamodeld */; };
+		AD837CE22765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837CE12765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift */; };
+		AD837CE62766835400E0BDB9 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837CE52766835400E0BDB9 /* DataController.swift */; };
+		AD837CE82766853D00E0BDB9 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837CE72766853D00E0BDB9 /* DebugView.swift */; };
+		AD837CF52766B95700E0BDB9 /* startImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AD837CF42766B95700E0BDB9 /* startImage.png */; };
 		ADA1ECA2274E1EE00079E6CE /* BPOption1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */; };
 		ADA1ECA4274E34B30079E6CE /* CapsuleReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */; };
 		ADB9B8F4274837AD00EB9227 /* Option2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F3274837AD00EB9227 /* Option2.swift */; };
@@ -121,6 +141,27 @@
 		AD67BD85275420DC00341539 /* backBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backBtn.swift; sourceTree = "<group>"; };
 		AD67BD872754292C00341539 /* SPO2DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPO2DetailView.swift; sourceTree = "<group>"; };
 		AD67BD89275445F700341539 /* CapsuleGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleGraph.swift; sourceTree = "<group>"; };
+		AD6EB58A275B4A6F000BD56F /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		AD6EB58B275B4A6F000BD56F /* BarChartRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
+		AD6EB58C275B4A6F000BD56F /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
+		AD6EB58D275B4A6F000BD56F /* BarChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
+		AD6EB592275B4A8C000BD56F /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helpers.swift; path = ../Helpers.swift; sourceTree = "<group>"; };
+		AD6EB594275B538A000BD56F /* BPDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPDetailView.swift; sourceTree = "<group>"; };
+		AD6EB596275C2361000BD56F /* TimeFrameMultiLineGrapher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrameMultiLineGrapher.swift; sourceTree = "<group>"; };
+		AD6EB598275CBA80000BD56F /* HyperTensionStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperTensionStructs.swift; sourceTree = "<group>"; };
+		AD6EB59C275D4EB3000BD56F /* TickMarkReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickMarkReader.swift; sourceTree = "<group>"; };
+		AD6EB59E275DDDB3000BD56F /* HyperTensionBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperTensionBox.swift; sourceTree = "<group>"; };
+		AD6EB5A0275F2C98000BD56F /* SegmentedRingChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedRingChartView.swift; sourceTree = "<group>"; };
+		AD6EB5A2275FFC5D000BD56F /* ToDo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ToDo.md; sourceTree = "<group>"; };
+		AD837C8F2760215600E0BDB9 /* SegmentedChartViewCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedChartViewCenter.swift; sourceTree = "<group>"; };
+		AD837C91276022A200E0BDB9 /* HorizontalCapsuleReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCapsuleReader.swift; sourceTree = "<group>"; };
+		AD837C932760350500E0BDB9 /* StatObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatObjects.swift; sourceTree = "<group>"; };
+		AD837C9627645F4400E0BDB9 /* MainView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView2.swift; sourceTree = "<group>"; };
+		AD837CA127652B9900E0BDB9 /* StatData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StatData.xcdatamodel; sourceTree = "<group>"; };
+		AD837CE12765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatDataObject+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		AD837CE52766835400E0BDB9 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		AD837CE72766853D00E0BDB9 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
+		AD837CF42766B95700E0BDB9 /* startImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = startImage.png; path = "apollo4/3D Objects/Assets.xcassets/startImage.imageset/startImage.png"; sourceTree = SOURCE_ROOT; };
 		ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPOption1.swift; sourceTree = "<group>"; };
 		ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleReader.swift; sourceTree = "<group>"; };
 		ADB9B8F3274837AD00EB9227 /* Option2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option2.swift; sourceTree = "<group>"; };
@@ -231,13 +272,46 @@
 				ADF11A7027478C110099ADF3 /* MainView.swift */,
 				AD3EE4EB27508E5B001A30A2 /* MainLiveRead.swift */,
 				AD3EE4F127517EB0001A30A2 /* MainTabView.swift */,
+				AD837CE72766853D00E0BDB9 /* DebugView.swift */,
 			);
 			path = MainViews;
+			sourceTree = "<group>";
+		};
+		AD6EB589275B4A6F000BD56F /* BarChart */ = {
+			isa = PBXGroup;
+			children = (
+				AD6EB592275B4A8C000BD56F /* Helpers.swift */,
+				AD6EB58A275B4A6F000BD56F /* BarChartView.swift */,
+				AD6EB58B275B4A6F000BD56F /* BarChartRow.swift */,
+				AD6EB58C275B4A6F000BD56F /* LabelView.swift */,
+				AD6EB58D275B4A6F000BD56F /* BarChartCell.swift */,
+			);
+			name = BarChart;
+			path = "../../../../Downloads/ChartView-master/Sources/SwiftUICharts/BarChart";
+			sourceTree = "<group>";
+		};
+		AD837C9527645ED800E0BDB9 /* MainViewsTake2 */ = {
+			isa = PBXGroup;
+			children = (
+				AD837C9627645F4400E0BDB9 /* MainView2.swift */,
+			);
+			path = MainViewsTake2;
+			sourceTree = "<group>";
+		};
+		AD837C98276461EB00E0BDB9 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				AD837CE12765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift */,
+				AD837CE52766835400E0BDB9 /* DataController.swift */,
+				AD837CA027652B9900E0BDB9 /* StatData.xcdatamodeld */,
+			);
+			path = DataModels;
 			sourceTree = "<group>";
 		};
 		ADF119EE2745D0060099ADF3 = {
 			isa = PBXGroup;
 			children = (
+				AD6EB5A2275FFC5D000BD56F /* ToDo.md */,
 				ADF11A582745D5300099ADF3 /* amplifyconfiguration.json */,
 				ADF11A592745D5300099ADF3 /* awsconfiguration.json */,
 				ADF119F92745D0060099ADF3 /* apollo4 */,
@@ -270,6 +344,7 @@
 				ADF11A252745D4500099ADF3 /* Assets.xcassets */,
 				ADF11A512745D47B0099ADF3 /* BlueTooth */,
 				ADF11A482745D4740099ADF3 /* Core */,
+				AD837C98276461EB00E0BDB9 /* DataModels */,
 				ADF11A562745D4800099ADF3 /* Images */,
 				ADF11A572745D48C0099ADF3 /* Logos */,
 				ADF11A272745D4670099ADF3 /* Views */,
@@ -315,12 +390,15 @@
 		ADF11A272745D4670099ADF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AD6EB589275B4A6F000BD56F /* BarChart */,
 				AD3EE4EA275081AD001A30A2 /* MainViews */,
+				AD837C9527645ED800E0BDB9 /* MainViewsTake2 */,
 				ADF11A74274790200099ADF3 /* MainViewSubViews */,
 				ADF11A282745D4670099ADF3 /* SetupView.swift */,
 				ADF11A292745D4670099ADF3 /* GraphView.swift */,
 				AD67BD7B2753079800341539 /* MultiLineGraph.swift */,
 				ADF11A2B2745D4670099ADF3 /* LiveRead.swift */,
+				AD67BD89275445F700341539 /* CapsuleGraph.swift */,
 				ADF11A2C2745D4670099ADF3 /* PairingLoadScreen.swift */,
 				ADF11A2D2745D4670099ADF3 /* nameSetup.swift */,
 				ADF11A2E2745D4670099ADF3 /* PairingView.swift */,
@@ -333,7 +411,7 @@
 				ADF11A352745D4670099ADF3 /* healthSetupView.swift */,
 				ADF11A362745D4670099ADF3 /* ContentView.swift */,
 				ADF11A372745D4670099ADF3 /* EmitterView.swift */,
-				AD67BD89275445F700341539 /* CapsuleGraph.swift */,
+				AD6EB59C275D4EB3000BD56F /* TickMarkReader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -349,6 +427,8 @@
 				ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */,
 				AD3EE4E8274F5D4C001A30A2 /* Inference.swift */,
 				AD3EE4F52751E1D7001A30A2 /* Gradients.swift */,
+				AD6EB598275CBA80000BD56F /* HyperTensionStructs.swift */,
+				AD837C932760350500E0BDB9 /* StatObjects.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -375,6 +455,7 @@
 		ADF11A572745D48C0099ADF3 /* Logos */ = {
 			isa = PBXGroup;
 			children = (
+				AD837CF42766B95700E0BDB9 /* startImage.png */,
 				ADF11A7227478F0D0099ADF3 /* logowhttrans.png */,
 			);
 			path = Logos;
@@ -414,9 +495,15 @@
 				AD3EE4F727521F75001A30A2 /* SPO2MiniBox.swift */,
 				AD67BD7F27535ED300341539 /* BPMDetailView.swift */,
 				AD67BD872754292C00341539 /* SPO2DetailView.swift */,
+				AD6EB594275B538A000BD56F /* BPDetailView.swift */,
 				AD67BD832753F18200341539 /* timeFrameGrapher.swift */,
 				AD67BD812753687700341539 /* bpmReadingsBox.swift */,
 				AD67BD85275420DC00341539 /* backBtn.swift */,
+				AD6EB596275C2361000BD56F /* TimeFrameMultiLineGrapher.swift */,
+				AD6EB59E275DDDB3000BD56F /* HyperTensionBox.swift */,
+				AD6EB5A0275F2C98000BD56F /* SegmentedRingChartView.swift */,
+				AD837C8F2760215600E0BDB9 /* SegmentedChartViewCenter.swift */,
+				AD837C91276022A200E0BDB9 /* HorizontalCapsuleReader.swift */,
 			);
 			path = MainViewSubViews;
 			sourceTree = "<group>";
@@ -554,6 +641,7 @@
 			files = (
 				ADF11A602745E3050099ADF3 /* setupImage2.png in Resources */,
 				ADF11A022745D0080099ADF3 /* Preview Assets.xcassets in Resources */,
+				AD837CF52766B95700E0BDB9 /* startImage.png in Resources */,
 				4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */,
 				ADF11A5B2745D5300099ADF3 /* awsconfiguration.json in Resources */,
 				ADF11A5A2745D5300099ADF3 /* amplifyconfiguration.json in Resources */,
@@ -699,18 +787,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD67BD8A275445F700341539 /* CapsuleGraph.swift in Sources */,
+				AD6EB593275B4A8C000BD56F /* Helpers.swift in Sources */,
+				AD837C942760350500E0BDB9 /* StatObjects.swift in Sources */,
+				AD6EB597275C2361000BD56F /* TimeFrameMultiLineGrapher.swift in Sources */,
+				AD837C902760215600E0BDB9 /* SegmentedChartViewCenter.swift in Sources */,
 				ADF11A78274795390099ADF3 /* RingChart.swift in Sources */,
 				ADF11A382745D4670099ADF3 /* SetupView.swift in Sources */,
 				AD3EE4F42751CC43001A30A2 /* bloodPressureMinibox.swift in Sources */,
+				AD6EB591275B4A6F000BD56F /* BarChartCell.swift in Sources */,
 				ADF11A3E2745D4670099ADF3 /* PairingView.swift in Sources */,
 				AD67BD822753687700341539 /* bpmReadingsBox.swift in Sources */,
+				AD837CE22765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift in Sources */,
 				ADF11A4D2745D4740099ADF3 /* Backend.swift in Sources */,
+				AD6EB595275B538A000BD56F /* BPDetailView.swift in Sources */,
 				ADF11A4E2745D4740099ADF3 /* UserData.swift in Sources */,
+				AD837C9727645F4400E0BDB9 /* MainView2.swift in Sources */,
 				ADF11A6E27470D6A0099ADF3 /* userDataModel.swift in Sources */,
 				ADA1ECA2274E1EE00079E6CE /* BPOption1.swift in Sources */,
 				ADF11A472745D4670099ADF3 /* EmitterView.swift in Sources */,
 				ADF11A552745D47B0099ADF3 /* UUID Structs.swift in Sources */,
 				ADF11A462745D4670099ADF3 /* ContentView.swift in Sources */,
+				AD6EB58E275B4A6F000BD56F /* BarChartView.swift in Sources */,
 				AD3EE4F62751E1D7001A30A2 /* Gradients.swift in Sources */,
 				ADF11A442745D4670099ADF3 /* RotatingRingView.swift in Sources */,
 				AD3EE4F227517EB0001A30A2 /* MainTabView.swift in Sources */,
@@ -721,15 +818,23 @@
 				ADF11A6F27470D6A0099ADF3 /* userDataModel+Schema.swift in Sources */,
 				ADF11A3D2745D4670099ADF3 /* nameSetup.swift in Sources */,
 				AD3EE4F827521F76001A30A2 /* SPO2MiniBox.swift in Sources */,
+				AD6EB599275CBA80000BD56F /* HyperTensionStructs.swift in Sources */,
 				ADF11A422745D4670099ADF3 /* EmittingView.swift in Sources */,
 				AD3EE4EC27508E5B001A30A2 /* MainLiveRead.swift in Sources */,
+				AD837CE62766835400E0BDB9 /* DataController.swift in Sources */,
+				AD837C92276022A200E0BDB9 /* HorizontalCapsuleReader.swift in Sources */,
 				ADF11A3C2745D4670099ADF3 /* PairingLoadScreen.swift in Sources */,
 				ADA1ECA4274E34B30079E6CE /* CapsuleReader.swift in Sources */,
 				ADF11A3B2745D4670099ADF3 /* LiveRead.swift in Sources */,
+				AD6EB5A1275F2C99000BD56F /* SegmentedRingChartView.swift in Sources */,
+				AD6EB590275B4A6F000BD56F /* LabelView.swift in Sources */,
 				ADB9B8F62748482200EB9227 /* Option3.swift in Sources */,
 				ADB9B8FF274CEBB000EB9227 /* DataRetrieval.swift in Sources */,
+				AD6EB59D275D4EB3000BD56F /* TickMarkReader.swift in Sources */,
+				AD6EB58F275B4A6F000BD56F /* BarChartRow.swift in Sources */,
 				ADF11A402745D4670099ADF3 /* swipeView.swift in Sources */,
 				ADF11A7C2747AB050099ADF3 /* Option1.swift in Sources */,
+				AD6EB59F275DDDB3000BD56F /* HyperTensionBox.swift in Sources */,
 				ADF11A542745D47B0099ADF3 /* BLEManager.swift in Sources */,
 				ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */,
 				ADF11A6D27470D6A0099ADF3 /* AmplifyModels.swift in Sources */,
@@ -744,12 +849,14 @@
 				AD67BD8027535ED300341539 /* BPMDetailView.swift in Sources */,
 				ADF11A452745D4670099ADF3 /* healthSetupView.swift in Sources */,
 				ADF11A4F2745D4740099ADF3 /* TextLimiting.swift in Sources */,
+				AD837CE82766853D00E0BDB9 /* DebugView.swift in Sources */,
 				ADF11A7127478C110099ADF3 /* MainView.swift in Sources */,
 				ADB9B8F4274837AD00EB9227 /* Option2.swift in Sources */,
 				AD67BD882754292C00341539 /* SPO2DetailView.swift in Sources */,
 				C60B171744D888CA9DAA7377 /* AmplifyModels.swift in Sources */,
 				1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */,
 				14AFEFA6EB492561108251D9 /* userDataModel.swift in Sources */,
+				AD837CA227652B9900E0BDB9 /* StatData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,7 +1025,6 @@
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Communicates health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -950,7 +1056,6 @@
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Communicates health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1106,6 +1211,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AD837CA027652B9900E0BDB9 /* StatData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AD837CA127652B9900E0BDB9 /* StatData.xcdatamodel */,
+			);
+			currentVersion = AD837CA127652B9900E0BDB9 /* StatData.xcdatamodel */;
+			path = StatData.xcdatamodeld;
+			sourceTree = "<group>";
+			usesTabs = 0;
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = ADF119EF2745D0060099ADF3 /* Project object */;
 }

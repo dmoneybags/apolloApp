@@ -12,9 +12,9 @@ struct MainLiveRead: View {
     var liveViews: [Any] = [1]
     @Environment(\.colorScheme) var colorScheme
     @State var selector = 0
-    @State var bpmData: [Double] = [getData(filename: getDocumentsDirectory().appendingPathComponent("HeartRate"), timeFrame: .day).map{$0.0}.last!]
-    @State var SPO2Data: [Double] = [getData(filename: getDocumentsDirectory().appendingPathComponent("SPO2"), timeFrame: .day).map{$0.0}.last!]
-    @State var bpData: [[Double]] = [[getData(filename: getDocumentsDirectory().appendingPathComponent("SystolicPressure"), timeFrame: .day).map{$0.0}.last!], [getData(filename: getDocumentsDirectory().appendingPathComponent("DiastolicPressure"), timeFrame: .day).map{$0.0}.last!]]
+    @State var bpmData: [Double] = [0.0]
+    @State var SPO2Data: [Double] = [0.0]
+    @State var bpData: [[Double]] = [[0.0],[0.0]]
     let bpmPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "HeartRate"))
     let SPO2Pub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "SPO2"))
     let sysPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "SystolicPressure"))
@@ -34,7 +34,7 @@ struct MainLiveRead: View {
         .onReceive(bpmPub){reading in
             let value = (reading.object as! NSString).doubleValue
             if value != 0.0{
-                if bpmData.count < 250 {
+                if bpmData.count < 50 {
                     withAnimation(){
                         bpmData.append(value)
                     }
@@ -51,7 +51,7 @@ struct MainLiveRead: View {
         .onReceive(SPO2Pub){reading in
             let value = (reading.object as! NSString).doubleValue
             if value != 0.0{
-                if SPO2Data.count < 250 {
+                if SPO2Data.count < 50 {
                     withAnimation(){
                         SPO2Data.append(value)
                     }
@@ -68,7 +68,7 @@ struct MainLiveRead: View {
         .onReceive(sysPub){reading in
             let value = (reading.object as! NSString).doubleValue
             if value != 0.0{
-                if bpData[0].count < 250 {
+                if bpData[0].count < 50 {
                     withAnimation(){
                         bpData[0].append(value)
                     }
@@ -85,7 +85,7 @@ struct MainLiveRead: View {
         .onReceive(diaPub){reading in
             let value = (reading.object as! NSString).doubleValue
             if value != 0.0{
-                if bpData[1].count < 250 {
+                if bpData[1].count < 50 {
                     withAnimation(){
                         bpData[1].append(value)
                     }

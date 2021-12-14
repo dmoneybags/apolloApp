@@ -28,9 +28,16 @@ struct bpmMiniBox: View {
                     }
             }
             .frame(width: 100, height: 100, alignment: .center)
-            Text(String(data))
-                .font(.title2)
-                .fontWeight(.bold)
+            if data != 0.0 {
+                Text(String(data))
+                    .font(.title2)
+                    .fontWeight(.bold)
+            } else {
+                Text("No Data")
+                    .font(.title2)
+                    .fontWeight(.bold)
+            }
+            
         }
         .frame(width: 150, height: 210, alignment: .center)
         .background(colorScheme != .dark ? Color.white: Color.black)

@@ -140,21 +140,19 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                     return
                 }
         print(characteristicValue)
+        
         guard let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue)
             else {
             print("ascii failed for \(characteristic)")
                 return
         }
+        
         characteristicASCIIValue = ASCIIstring
           print("Value Recieved: \((characteristicASCIIValue as String)) for characteristic: \(characteristic)")
-        if shouldWrite() {
-            print("----------writing-----------")
-            if CBUUIDs.characteristicsDict[characteristic.uuid] != nil {
-                writeToCsv(filename: getDocumentsDirectory().appendingPathComponent( CBUUIDs.characteristicsDict[characteristic.uuid]!), data: "\((characteristicASCIIValue as String))")
-            }
-        }
+        
         if CBUUIDs.characteristicsDict[characteristic.uuid] != nil {
             NotificationCenter.default.post(name:NSNotification.Name(rawValue: CBUUIDs.characteristicsDict[characteristic.uuid]!), object: "\((characteristicASCIIValue as String))")
             }
+        updateStatDataObject(withString: ASCIIstring as String, statNamed: CBUUIDs.characteristicsDict[characteristic.uuid]!)
         }
 }

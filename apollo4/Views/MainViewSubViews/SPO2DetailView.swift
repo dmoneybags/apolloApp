@@ -19,7 +19,7 @@ struct SPO2DetailView: View {
                     .fontWeight(.bold)
                     .font(.title)
                     .padding()
-                Text("Oxygen Saturation is a measure of the bodys disolveed oxygen within the blood stream. Various factors such as energy and respiration affect saturation.")
+                Text("Oxygen Saturation is a measure of the bodys disolved oxygen within the blood stream. Various factors such as energy and respiration affect saturation.")
                     .padding(.horizontal)
                     .font(.footnote)
                 Option3(filename: SPO2Path, title: "", dailyData: getData(filename: SPO2Path, timeFrame: .day), monthlyData: getData(filename: SPO2Path, timeFrame: .month), yearlyData: getData(filename: SPO2Path, timeFrame: .year))
@@ -27,8 +27,10 @@ struct SPO2DetailView: View {
                     SPO2MiniBox(title: "SPO2", data: $mostRecentReading)
                     bpmReadingsBox(stat: "SPO2")
                 }
-                backBtn()
+                Divider()
+                BarChartView(data: ChartData(values: convertDateValuesToString(data: filterData(data: getData(filename: SPO2Path, timeFrame: .year), timeFrame: .hour, num: 1))), title: "Monthly Readings", style: Styles.barChartStyleNeonBlueDark, form: CGSize(width: 340, height: 350), dropShadow: false)
             }
+            backBtn()
         }
         .onReceive(SPO2Pub){reading in
             let value = (reading.object as! NSString).doubleValue

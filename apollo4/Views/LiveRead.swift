@@ -22,7 +22,7 @@ struct LiveRead: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
                 .foregroundColor(Color(UIColor.systemGray6))
-            LineGraph(data: $data, dataTime: .constant(nil), height: 280, width: 280, color: Color.red, heatGradient: true)
+            LineGraph(data: $data, dataTime: .constant(nil), height: 280, width: 280, color: Color.red, gradient: tempGradient)
             Text("Start")
                 .font(.title2)
                 .frame(width: 70, height: 70)

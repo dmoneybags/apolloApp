@@ -10,6 +10,8 @@ import SceneKit
 
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var stats: FetchedResults<StatDataObject>
     @StateObject var bleManager: BLEManager = BLEManager()
     @StateObject var user: UserData = .shared
     @State private var numBarsANIMATION: CGFloat = 1.25
@@ -60,7 +62,7 @@ struct ContentView: View {
                 }
                 ZStack {
                     if !pairing {
-                        if bleManager.connectedPeripheral != nil{
+                        if bleManager.connectedPeripheral == nil{
                             Button(action: {
                                 pairing = true
                                 bleManager.startScanning()
@@ -109,11 +111,18 @@ struct ContentView: View {
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)
+            .onAppear(){
+                if stats.isEmpty {
+                    let SPO2DataObject = StatDataObject(inputName: "SPO2", context: moc, empty: true)
+                    let HeartRateDataObject = StatDataObject(inputName: "HeartRate", context: moc, empty: true)
+                    let SystolicPressureDataObject = StatDataObject(inputName: "SystolicPressure", context: moc, empty: true)
+                    let DiastolicPressureDataObject = StatDataObject(inputName: "DiastolicPressure", context: moc, empty: true)
+                    try? moc.save()
+                }
+            }
         }
         .environmentObject(bleManager)
         .environmentObject(user)
-        //.animation(nil)
-        //.edgesIgnoringSafeArea([.top, .bottom])
     }
 }
 

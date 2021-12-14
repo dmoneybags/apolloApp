@@ -12,13 +12,14 @@ struct SPO2MiniBox: View {
     @State var title: String = "BPM"
     @State var imageName: String = "wind"
     @State var loaded: Bool = true
+    @State var stat: String = "SPO2"
     @Binding var data: Double
     var body: some View {
         VStack{
             Text(title)
                 .fontWeight(.bold)
             VStack {
-                RingChart(progress: .constant(getProgres(stat: "SPO2", reading: data) * 0.95), text: .constant(title), imageName: imageName, stat: "SPO2")
+                RingChart(progress: .constant(getProgress(stat: stat, reading: data) * 0.95), text: .constant(title), imageName: imageName, stat: stat)
             }
             .frame(width: 100, height: 100, alignment: .center)
             Text(String(data))

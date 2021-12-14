@@ -7,29 +7,42 @@
 
 import Foundation
 import SwiftUI
-func getProgres(stat: String, reading: Double) -> Double{
+func getMinMaxVals(stat: String) -> (Double, Double){
     var maxVal: Double
     var minVal: Double
-    var inverted = false
     switch stat {
         case "SPO2":
             maxVal = 100
-            minVal = 95
-            inverted = true
+            minVal = 90
         case "HeartRate":
             maxVal = 140
             minVal = 40
-        case "SystolicPressure":
-            maxVal = 110
-            minVal = 50
         case "DiastolicPressure":
-            maxVal = 190
-            minVal = 100
+            maxVal = 130
+            minVal = 50
+        case "SystolicPressure":
+            maxVal = 200
+            minVal = 90
+        case "PulsePressure":
+            maxVal = 100
+            minVal = 30
         default:
             maxVal = 200
             minVal = 100
     }
-    return (reading - minVal)/(maxVal - minVal)
+    return (minVal, maxVal)
+}
+func getStatRange(stat: String) -> Double {
+    var maxVal: Double
+    var minVal: Double
+    (minVal, maxVal) = getMinMaxVals(stat: stat)
+    return (maxVal - minVal)
+}
+func getProgress(stat: String, reading: Double) -> Double{
+    var maxVal: Double
+    var minVal: Double
+    (minVal, maxVal) = getMinMaxVals(stat: stat)
+    return (reading - minVal)/getStatRange(stat: stat)
 }
 func getColor(stat: String, progress: Double) -> Color{
     var inverted = false
@@ -88,13 +101,10 @@ func getTimeComponent(date: Date, timeFrame: Calendar.Component) -> String{
         }
     }
     let month: Int = Int(calendar.component(.month, from: date))
-    let day: Int = Int(component)
-    if timeFrame == .day{
+    let day: Int = Int(calendar.component(.day, from: date))
+    if timeFrame == .day || timeFrame == .month{
         let hour: String = getTimeComponent(date: date, timeFrame: .hour)
         return String(month) + "/" + String(day) + ", " + hour
-    }
-    if timeFrame == .month{
-        return String(month) + "/" + String(day)
     }
     return ""
 }
@@ -115,15 +125,25 @@ func getTimeRangeVal(dates: [Date]) -> Calendar.Component {
 func filterData(data: [(Double, Date)], timeFrame: Calendar.Component, num: Int) -> [(Double, Date)]{
     let dateList = data.map{$0.1}
     let calendar = Calendar.current
-    var minutes = calendar.component(timeFrame, from: dateList.first!)
-    var filteredData: [(Double, Date)] = []
+    var timeVal = calendar.component(timeFrame, from: dateList.first!)
+    var filteredData: [(Double, Date)] = [data[0]]
     for reading in data{
-        let difference = calendar.component(timeFrame, from: reading.1) - minutes
-        if difference > minutes || difference < 0{
-            minutes = calendar.component(timeFrame, from: reading.1)
+        let difference = calendar.component(timeFrame, from: reading.1) - timeVal
+        if (difference > timeVal || difference < 0) && reading.0 != 0{
+            timeVal = calendar.component(timeFrame, from: reading.1)
             filteredData.append(reading)
         }
     }
     print("Filtered data to \(filteredData)")
     return filteredData
+}
+func convertDateValuesToString(data: [(Double, Date)]) -> [(String, Double)] {
+    var newData: [(String, Double)] = []
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM-dd HH:mm"
+    for i in data{
+        let strDate: String = dateFormatter.string(from: i.1)
+        newData.append((strDate, i.0))
+    }
+    return newData
 }

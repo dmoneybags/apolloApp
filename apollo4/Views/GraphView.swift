@@ -27,7 +27,7 @@ func genXvalues(data: [Double], xSize: Double) -> [Double] {
     let dataLength = data.count
     var xPositions: [Double] = [Double]()
     for i in 0..<dataLength {
-        let newElement: Double = Double(i) * (xSize/Double(dataLength))
+        let newElement: Double = Double(i) * (xSize/Double(dataLength - 1))
         xPositions.append(newElement)
     }
     return xPositions
@@ -106,6 +106,7 @@ struct graphLines: View {
     var width: Double
     var height: Double
     var data: [(Double, Date)]
+    var forCapsule: Bool = false
     var body: some View {
         let numHorizontalLines: Int = Int(width/25.0)
         let numVerticalLines: Int = Int(height/25.0)
@@ -116,8 +117,10 @@ struct graphLines: View {
                 Line(start: CGPoint(x: 0, y: Double(i) * height/Double(numHorizontalLines)), end: CGPoint(x: width, y: Double(i) * height/Double(numHorizontalLines)))
                     .stroke(Color(UIColor.systemGray).opacity(i == 0 ? 1.0: 0.4), lineWidth: 0.5)
                 if i != 0{
-                    Text(getXlabel(min: min, range: range, i: Double(i), numHorizontalLines: Double(numHorizontalLines)))
+                    Text(getXlabel(min: min, range: range, i: Double(i), numHorizontalLines: Double(numHorizontalLines), forCapsule: forCapsule))
                         .font(.footnote)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                         .foregroundColor(Color(UIColor.systemGray))
                         .scaleEffect(CGSize(width: 1.0, height: -1.0))
                         .position(x: -15, y: Double(i) * height/Double(numHorizontalLines))
@@ -130,8 +133,12 @@ struct graphLines: View {
         }
         .frame(width: CGFloat(width), height: CGFloat(height))
     }
-    func getXlabel(min: Double, range: Double, i: Double, numHorizontalLines: Double) -> String{
-        return String(Int(min + Double(i) * (range/numHorizontalLines + 1)))
+    func getXlabel(min: Double, range: Double, i: Double, numHorizontalLines: Double, forCapsule: Bool) -> String{
+        if !forCapsule{
+            return String(Int(min + Double(i) * (range/numHorizontalLines + 1)))
+        } else {
+            return String(Int(min + Double(i + 1) * (range/numHorizontalLines)))
+        }
     }
 }
 struct LineGraph: View {
@@ -142,7 +149,6 @@ struct LineGraph: View {
     @State var color: Color?
     @State var gradient: Gradient?
     @State var backgroundColor: Color?
-    @State var heatGradient: Bool = false
     @State private var showingIndicators: Bool = false
     @State private var indexPosition: Int = 0
     @State private var IndicatorPointPosition: CGPoint = .zero
@@ -151,79 +157,84 @@ struct LineGraph: View {
         let yPositions = genYvalues(data: dataTime != nil ? dataTime!.map{$0.0}:data, ySize: height!, dataRange: nil, dataMin: nil)
         let fakeYPositions = getUnloadedYpositions(yPositions: yPositions)
         let xPositions = genXvalues(data: dataTime != nil ? dataTime!.map{$0.0}:data, xSize: width!)
-        VStack {
-            if dataTime != nil {
-                graphReading(indexPosition: $indexPosition
-                             , showingIndicators: $showingIndicators, dates: dataTime!.map{$0.1})
-            }
-            ZStack {
+        if dataTime?.map{$0.0}.count != 1 {
+            VStack {
+                if dataTime != nil {
+                    graphReading(indexPosition: $indexPosition
+                                 , showingIndicators: $showingIndicators, dates: dataTime!.map{$0.1})
+                }
                 ZStack {
-                    graphLines(width: width!, height: height!, data: dataTime!)
-                    ForEach(data.indices, id: \.self) {i in
-                        if heatGradient {
-                            Line(start: CGPoint(x: xPositions[i], y: loaded ? yPositions[i]: fakeYPositions[i]), end: CGPoint(x: getLeadingVal(Positions: xPositions, i: i), y: loaded ? getLeadingVal(Positions: yPositions, i: i) : getLeadingVal(Positions: fakeYPositions, i: i)))
-                                .stroke(LinearGradient(
-                                    gradient: tempGradient,
-                                    startPoint: UnitPoint(x: 0.0, y: 0.0),
-                                endPoint: UnitPoint(x: 0.0, y: 1.0)), lineWidth: 2)
-                        } else {
-                            if gradient == nil {
-                                Line(start: CGPoint(x: xPositions[i], y: yPositions[i]), end: CGPoint(x: getLeadingVal(Positions: xPositions, i: i), y: getLeadingVal(Positions: yPositions, i: i)))
-                                    .stroke(color!, lineWidth: 2)
-                            } else {
-                                Line(start: CGPoint(x: xPositions[i], y: yPositions[i]), end: CGPoint(x: getLeadingVal(Positions: xPositions, i: i), y: getLeadingVal(Positions: yPositions, i: i)))
-                                    .stroke(LinearGradient(
-                                        gradient: gradient!,
-                                        startPoint: UnitPoint(x: 0.0, y: 1.0),
-                                    endPoint: UnitPoint(x: 0.0, y: 0.0)), lineWidth: 2)
-                            }
-                        }
-                        if showingIndicators {
-                            withAnimation(){
-                                IndicatorPoint(index: $indexPosition, data: dataTime != nil ? dataTime!.map{$0.0} : data)
-                                                .position(x: IndicatorPointPosition.x, y: IndicatorPointPosition.y - 20)
+                    ZStack {
+                        graphLines(width: width!, height: height!, data: dataTime!)
+                        if dataTime![0].0 != 0 {
+                            ForEach(data.indices, id: \.self) {i in
+                                if gradient == nil {
+                                    Line(start: CGPoint(x: xPositions[i], y: loaded ? yPositions[i] : fakeYPositions[i]), end: CGPoint(x: getLeadingVal(Positions: xPositions, i: i), y: getLeadingVal(Positions: loaded ? yPositions : fakeYPositions, i: i)))
+                                        .stroke(color!, lineWidth: 2)
+                                } else {
+                                    Line(start: CGPoint(x: xPositions[i], y: loaded ? yPositions[i] : fakeYPositions[i]), end: CGPoint(x: getLeadingVal(Positions: xPositions, i: i), y: getLeadingVal(Positions: loaded ? yPositions : fakeYPositions, i: i)))
+                                        .stroke(LinearGradient(
+                                            gradient: gradient!,
+                                            startPoint: UnitPoint(x: 0.0, y: 1.0),
+                                        endPoint: UnitPoint(x: 0.0, y: 0.0)), lineWidth: 2)
+                                }
+                                
+                                if showingIndicators {
+                                    withAnimation(){
+                                        IndicatorPoint(index: $indexPosition, data: dataTime != nil ? dataTime!.map{$0.0} : data)
+                                                        .position(x: IndicatorPointPosition.x, y: IndicatorPointPosition.y - 20)
+                                    }
+                                }
                             }
                         }
                     }
+                    .frame(width: CGFloat(width!), height: CGFloat(height!))
+                    .padding([.leading, .trailing, .bottom], 15)
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(backgroundColor != nil ? backgroundColor! : Color.black.opacity(0.0), lineWidth: 4))
                 }
-                .frame(width: CGFloat(width!), height: CGFloat(height!))
-                .padding([.leading, .trailing, .bottom], 15)
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                .stroke(backgroundColor != nil ? backgroundColor! : Color.black.opacity(0.0), lineWidth: 4))
-            }
-            .onAppear(){
-                withAnimation(Animation.easeInOut(duration: 2.0)){
-                    loaded = true
+                .onAppear(){
+                    withAnimation(Animation.easeInOut(duration: 2.0)){
+                        loaded = true
+                    }
                 }
-            }
-            .scaleEffect(CGSize(width: 1.0, height: -1.0))
-            .contentShape(Rectangle())  // Control tappable area
-                    .gesture(
-                        LongPressGesture(minimumDuration: 0.2)
-                            .sequenced(before: DragGesture(minimumDistance: 0, coordinateSpace: .local))
-                            .onChanged({ value in  // Get value of the gesture
-                                switch value {
-                                case .second(true, let drag):
-                                    if let longPressLocation = drag?.location {
-                                        dragGesture(longPressLocation)
+                .scaleEffect(CGSize(width: 1.0, height: -1.0))
+                .contentShape(Rectangle())  // Control tappable area
+                        .gesture(
+                            LongPressGesture(minimumDuration: 0.2)
+                                .sequenced(before: DragGesture(minimumDistance: 0, coordinateSpace: .local))
+                                .onChanged({ value in  // Get value of the gesture
+                                    switch value {
+                                    case .second(true, let drag):
+                                        if let longPressLocation = drag?.location {
+                                            dragGesture(longPressLocation)
+                                        }
+                                    default:
+                                        break
                                     }
-                                default:
-                                    break
-                                }
-                            })
-                            // Hide indicator when finish
-                            .onEnded({ value in
-                                self.showingIndicators = false
-                            })
-                )
+                                })
+                                // Hide indicator when finish
+                                .onEnded({ value in
+                                    self.showingIndicators = false
+                                })
+                    )
+            }
+        } else {
+            Text("No Data")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(Color(UIColor.systemGray))
+                .frame(width: CGFloat(width!), height: CGFloat(height!))
         }
     }
     public func dragGesture(_ longPressLocation: CGPoint) {
             let (closestXPoint, closestYPoint, yPointIndex) = getClosestValueFrom(longPressLocation)
-            self.IndicatorPointPosition.x = closestXPoint
-            IndicatorPointPosition.y = closestYPoint
-            showingIndicators = true
-            indexPosition = yPointIndex
+            withAnimation(){
+                self.IndicatorPointPosition.x = closestXPoint
+                IndicatorPointPosition.y = closestYPoint
+                showingIndicators = true
+                indexPosition = yPointIndex
+            }
         }
     public func getClosestValueFrom(_ value: CGPoint) -> (CGFloat, CGFloat, Int){
             let touchPoint: (CGFloat, CGFloat) = (value.x, value.y)

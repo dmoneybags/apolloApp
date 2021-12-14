@@ -14,6 +14,7 @@ struct hashableReading:Hashable {
 }
 struct bpmReadingsBox: View {
     @State var selector = 1
+    var allowZero = false
     var stat: String
     var body: some View {
         let HeartRatePath = getDocumentsDirectory().appendingPathComponent(stat)
@@ -33,17 +34,24 @@ struct bpmReadingsBox: View {
                     .padding()
             } else {
                 ScrollView{
-                    ForEach(readings.map{hashableReading(data: $0.0, date: $0.1)}, id: \.self){reading in
-                        HStack {
-                            Text(String(getTimeComponent(date: reading.date, timeFrame: .hour)))
-                                .foregroundColor(Color(UIColor.systemGray))
-                                .padding()
-                            Spacer()
-                            Text(String(Int(reading.data)))
-                                .foregroundColor(Color(UIColor.systemGray))
-                                .padding()
+                    if readings[0].0 != 0 || allowZero {
+                        ForEach(readings.map{hashableReading(data: $0.0, date: $0.1)}, id: \.self){reading in
+                            HStack {
+                                Text(String(getTimeComponent(date: reading.date, timeFrame: .hour)))
+                                    .foregroundColor(Color(UIColor.systemGray))
+                                    .padding()
+                                Spacer()
+                                Text(String(Int(reading.data)))
+                                    .foregroundColor(Color(UIColor.systemGray))
+                                    .padding()
+                            }
+                            Divider()
                         }
-                        Divider()
+                    } else {
+                        Text("No Data")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color(UIColor.systemGray))
                     }
                 }
             }

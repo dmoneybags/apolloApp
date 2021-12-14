@@ -19,7 +19,7 @@ struct bloodPressureMinibox: View {
                 .fontWeight(.bold)
             Divider()
             HStack {
-                MultiLineGraph(data: $bpData, height: 100, width: 250, gradients: [Gradient(colors: [Color.pink, Color.purple]), Gradient(colors: [Color.blue, Color.purple])])
+                MultiLineGraph(data: $bpData, dataWithLabels: .constant(nil), height: 100, width: 250, gradients: [Gradient(colors: [Color.pink, Color.purple]), Gradient(colors: [Color.blue, Color.purple])])
                     .padding(.trailing, -20.0)
                 VStack{
                     Text(String(Int(bpData[0].last!)))

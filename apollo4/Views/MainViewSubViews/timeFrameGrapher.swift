@@ -38,7 +38,7 @@ struct timeFrameGrapher: View {
                     .onTapGesture {
                         timeFrame = .month
                         withAnimation(){
-                            data = filterData(data: getData(filename: getDocumentsDirectory().appendingPathComponent(stat), timeFrame: .month), timeFrame: .hour, num: 1)
+                            data = getData(filename: getDocumentsDirectory().appendingPathComponent(stat), timeFrame: .month)
                         }
                     }
                 Spacer()

@@ -15,32 +15,51 @@ struct RingChart: View {
     @State var stat: String = "SPO2"
     var body: some View {
         ZStack {
-            Circle()
-                .stroke(lineWidth: 20.0)
-                .opacity(0.3)
-                .foregroundColor(getColor(stat: stat, progress: progress))
-            Circle()
-                .trim(from: 0.0, to: CGFloat(min(loaded ? self.progress: 0.0, 1.0)))
-                .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
-                .foregroundColor(getColor(stat: stat, progress: progress))
-                .rotationEffect(Angle(degrees: 270.0))
-                .onAppear(){
-                    withAnimation(Animation.easeInOut(duration: 1)){
-                        loaded = true
+            GeometryReader{geo in
+                Circle()
+                    .stroke(lineWidth: 20.0)
+                    .opacity(0.3)
+                    .foregroundColor(getColor(stat: stat, progress: progress))
+                Circle()
+                    .trim(from: 0.0, to: CGFloat(min(loaded ? self.progress: 0.0, 1.0)))
+                    .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
+                    .foregroundColor(getColor(stat: stat, progress: progress))
+                    .rotationEffect(Angle(degrees: 270.0))
+                    .opacity(0.7)
+                    .onAppear(){
+                        withAnimation(Animation.easeInOut(duration: 1)){
+                            loaded = true
+                        }
                     }
+                if progress > 0 {
+                    Circle()
+                        .trim(from: 0.0, to: 0.001)
+                        .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
+                        .rotationEffect(Angle(degrees: 270 + (360 * progress)))
+                        .foregroundColor(getColor(stat: stat, progress: progress))
                 }
+            }
             if imageName != nil {
                 Image(systemName: imageName!)
                     .foregroundColor(Color.white)
             } else {
-                Text(text)
-                    .bold()
-                    .font(.system(size: 500))
-                    .minimumScaleFactor(0.001)
-                    .scaleEffect(0.5)
+                VStack {
+                    if text != "0" {
+                        Text(text)
+                            .bold()
+                            .font(.system(size: 500))
+                            .minimumScaleFactor(0.001)
+                            .scaleEffect(0.5)
+                    } else {
+                        Text("No Data")
+                            .bold()
+                            .font(.system(size: 500))
+                            .minimumScaleFactor(0.001)
+                            .scaleEffect(0.4)
+                    }
+                }
             }
         }
-        //.frame(width: 100, height: 100, alignment: .center)
     }
 }
 

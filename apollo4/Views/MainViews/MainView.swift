@@ -30,9 +30,9 @@ struct MainView: View {
                             NotificationCenter.default.post(name:NSNotification.Name(rawValue: "vitalView"), object: "BPM")
                         }
                     BPOption1(SPfileName: SPPath, DPfileName: DPPath, title: "Blood Pressure", SPdailyData: getData(filename: SPPath, timeFrame: .day), SPmonthlyData: getData(filename: SPPath, timeFrame: .month), DPdailyData: getData(filename: DPPath, timeFrame: .day), DPmonthlyData: getData(filename: DPPath, timeFrame: .year))
-                        .onTapGesture {
+                        .simultaneousGesture(TapGesture().onEnded( {
                             NotificationCenter.default.post(name:NSNotification.Name(rawValue: "vitalView"), object: "BP")
-                        }
+                        }))
                 }
             }
             .onReceive(detailPub){output in
@@ -50,7 +50,7 @@ struct MainView: View {
             .background(Color(UIColor.systemGray6))
             if inDetail {
                 containedView(stat: detailStat)
-                    .transition(AnyTransition.move(edge: .bottom).combined(with: .opacity).animation(.easeInOut(duration: 0.7)))
+                    .transition(AnyTransition .opacity.animation(.easeInOut(duration: 0.7)))
                     .zIndex(2)
             }
         }
@@ -59,6 +59,7 @@ struct MainView: View {
         switch stat {
         case "BPM": return AnyView(BPMDetailView())
         case "SPO2": return AnyView(SPO2DetailView())
+        case "BP": return AnyView(BPDetailView())
         default: return AnyView(EmptyView())
         }
     }

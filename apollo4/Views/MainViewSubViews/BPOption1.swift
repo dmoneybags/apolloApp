@@ -32,9 +32,9 @@ struct BPOption1: View {
                     VStack {
                         Text("Today")
                             .foregroundColor(Color(UIColor.systemGray))
-                        MultiLineGraph(data: .constant(graphData), height: 150, width: 180, gradients: [Gradient(colors: [Color.red, Color.purple]), Gradient(colors: [Color.pink, Color.blue])], backgroundColor: nil)
+                        MultiLineGraph(data: .constant(graphData), dataWithLabels: .constant(nil), height: 150, width: 180, gradients: [Gradient(colors: [Color.red, Color.purple]), Gradient(colors: [Color.purple, Color.blue])], backgroundColor: nil)
                     }
-                    CapsuleReader(range: getRange(data: DPdailyData!.map{$0.0}), min: DPdailyData!.map{$0.0}.min()!, reading: DPdailyData!.map{$0.0}.last!, height: 200)
+                    CapsuleReader(reading: SPdailyData!.map{$0.0}.last!, height: 200, stat: "SystolicPressure")
                 }
                 HStack {
                     VStack {
