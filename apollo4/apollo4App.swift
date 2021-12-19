@@ -18,6 +18,7 @@ fileprivate var DATACONTOLLER = DataController()
 @main
 struct apollo4App: App {
     @StateObject private var dataController = DATACONTOLLER
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -26,12 +27,14 @@ struct apollo4App: App {
     }
 }
 class AppDelegate: NSObject, UIApplicationDelegate {
+    static var originalAppDelegate:AppDelegate!
     
     let persistentContainer:NSPersistentContainer = DATACONTOLLER.container
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        AppDelegate.originalAppDelegate = self
         // initialize Amplify
+        print("LAUNCHING")
         let _ = Backend.initialize()
 
         return true

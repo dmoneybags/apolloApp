@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreBluetooth
+import SwiftUI
 
 struct Peripheral: Identifiable {
     let _CBPeripheral : CBPeripheral
@@ -152,7 +153,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         
         if CBUUIDs.characteristicsDict[characteristic.uuid] != nil {
             NotificationCenter.default.post(name:NSNotification.Name(rawValue: CBUUIDs.characteristicsDict[characteristic.uuid]!), object: "\((characteristicASCIIValue as String))")
+            withAnimation(){
+                updateStatDataObject(withString: ASCIIstring as String, statNamed: CBUUIDs.characteristicsDict[characteristic.uuid]!)
             }
-        updateStatDataObject(withString: ASCIIstring as String, statNamed: CBUUIDs.characteristicsDict[characteristic.uuid]!)
         }
+    }
 }

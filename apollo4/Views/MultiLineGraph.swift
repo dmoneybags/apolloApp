@@ -30,14 +30,15 @@ private func getMinimumValue(data: [[Double]]) -> Double {
     return min
 }
 struct dataBox: View {
-    var dataWithLabels: [[(Double, Date)]]
+    var data: [[Double]]
+    var dates: [[Date]]
     @Binding var indexPosition: Int
     var statNames: [String]
     var width: Double
     var gradients: [Gradient]
     var body: some View {
         VStack{
-            Text(getTimeComponent(date: dataWithLabels[0][indexPosition].1, timeFrame: getTimeRangeVal(dates: dataWithLabels[0].map{$0.1})))
+            Text(getTimeComponent(date: dates[0][indexPosition], timeFrame: getTimeRangeVal(dates: dates[0])))
                 .font(.footnote)
                 .foregroundColor(Color(UIColor.systemGray))
             Divider()
@@ -48,7 +49,7 @@ struct dataBox: View {
                             Circle()
                                 .frame(width: 20, height: 20, alignment: .center)
                                 .foregroundStyle(LinearGradient(gradient: gradients[indice], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 0.0)))
-                            Text(String(dataWithLabels[indice][indexPosition].0))
+                            Text(String(data[indice][indexPosition]))
                         }
                         Text(statNames[indice])
                             .font(.footnote)
@@ -63,7 +64,7 @@ struct dataBox: View {
 }
 struct MultiLineGraph: View {
     @Binding var data: [[Double]]
-    @Binding var dataWithLabels: [[(Double, Date)]]?
+    @Binding var dataWithLabels: [[Date]]?
     var height: Double?
     var width: Double?
     var gradients: [Gradient]?
@@ -76,11 +77,11 @@ struct MultiLineGraph: View {
         if data[0].count != 1 {
             VStack{
                 if showingIndicators && dataWithLabels != nil{
-                    dataBox(dataWithLabels: dataWithLabels!, indexPosition: $indexPosition, statNames: statNames!, width: width!, gradients: gradients!)
+                    dataBox(data: data, dates: dataWithLabels!, indexPosition: $indexPosition, statNames: statNames!, width: width!, gradients: gradients!)
                 }
                 ZStack{
                     if dataWithLabels != nil {
-                        graphLines(width: width!, height: height!, data: (dataWithLabels![0] + dataWithLabels![1]).sorted(by: { $0.1.compare($1.1) == .orderedAscending}))
+                        graphLines(width: width!, height: height!, data: addLists())
                     }
                     ForEach(data, id: \.self) { numbers in
                         let strokeColor = gradients![data.firstIndex(where: {$0 == numbers})!]
@@ -167,4 +168,11 @@ struct MultiLineGraph: View {
 
             return (closestXPoint.element, closestYPoint, yPointIndex)
         }
+    func addLists() -> [Double] {
+        var addedList : [Double] = []
+        for values in data {
+            addedList = addedList + values
+        }
+        return addedList
+    }
 }

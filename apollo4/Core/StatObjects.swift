@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 protocol Stat {
     var name: String {get}
     var url: URL {get}
@@ -14,6 +15,7 @@ protocol Stat {
     var maxVal: Int {get}
     func getLabel(reading: Double) -> String
     func getRange(label: String) -> (Double, Double)
+    func getColor(forLabel label: String) -> Color 
     //func getDescription(label: String) -> String
     //func getGoal()
 }
@@ -43,7 +45,20 @@ struct HeartRate: Stat {
         case "Good": return (70, 74)
         case "Average": return (75, 77)
         case "Below Average": return (78, 85)
-        default: return (86, 120)
+        case "Poor" : return (86, 120)
+        default: return (40, 120)
+        }
+    }
+    func getColor(forLabel label: String) -> Color {
+        switch label{
+        case "Optimal": return Color.purple
+        case "Excellent": return Color.blue
+        case "Great": return Color.teal
+        case "Good": return Color.green
+        case "Average": return Color.yellow
+        case "Below Average": return Color.orange
+        case "Poor" : return Color.red
+        default: return Color.red
         }
     }
 }
@@ -68,7 +83,16 @@ struct SPO2: Stat{
         case "Low": return (85, 89)
         case "Insufficent": return (90, 94)
         case "Optimal": return (95, 100)
-        default: return (100, 100)
+        default: return (75, 100)
+        }
+    }
+    func getColor(forLabel label: String) -> Color {
+        switch label{
+        case "Critcal": return Color.red
+        case "Low": return Color.yellow
+        case "Insufficent": return Color.green
+        case "Optimal": return Color.purple
+        default: return Color.red
         }
     }
 }
@@ -97,7 +121,18 @@ struct SystolicPressure: Stat{
         case "Grade 1 Hypertension" : return (140, 159)
         case "Grade 2 Hypertension" : return (160, 179)
         case "Grade 3 Hypertension" : return (180, 200)
-        default: return (0,0)
+        default: return (90,200)
+        }
+    }
+    func getColor(forLabel label: String) -> Color {
+        switch label {
+        case "Optimal" : return Color.purple
+        case "Normal"  : return Color.blue
+        case "High Normal" : return Color.green
+        case "Grade 1 Hypertension" : return Color.yellow
+        case "Grade 2 Hypertension" : return Color.orange
+        case "Grade 3 Hypertension" : return Color.red
+        default: return Color.red
         }
     }
 }
@@ -125,7 +160,18 @@ struct DiastolicPressure: Stat{
         case "Grade 1 Hypertension" : return (90, 99)
         case "Grade 2 Hypertension" : return (100, 109)
         case "Grade 3 Hypertension" : return (110, 130)
-        default: return (0,0)
+        default: return (50,130)
+        }
+    }
+    func getColor(forLabel label: String) -> Color {
+        switch label {
+        case "Optimal" : return Color.purple
+        case "Normal"  : return Color.blue
+        case "High Normal" : return Color.green
+        case "Grade 1 Hypertension" : return Color.yellow
+        case "Grade 2 Hypertension" : return Color.orange
+        case "Grade 3 Hypertension" : return Color.red
+        default: return Color.red
         }
     }
 }

@@ -31,6 +31,7 @@ struct DebugView: View {
                 }
             }
         }
+        .background(LinearGradient(gradient: Gradient(colors: [Color.pink, Color.black]), startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 1.0)))
     }
 }
 

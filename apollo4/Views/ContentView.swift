@@ -62,7 +62,7 @@ struct ContentView: View {
                 }
                 ZStack {
                     if !pairing {
-                        if bleManager.connectedPeripheral == nil{
+                        if bleManager.connectedPeripheral != nil{
                             Button(action: {
                                 pairing = true
                                 bleManager.startScanning()

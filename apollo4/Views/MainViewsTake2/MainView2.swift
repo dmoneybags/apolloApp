@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MainView2: View {
     @Environment(\.colorScheme) var colorScheme
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var stats: FetchedResults<StatDataObject>
     var colors: [Color] {
         let color1 = colorScheme == .dark ? Color.black : Color.white
         let color2 = colorScheme == .dark ? Color.pink : Color.blue
@@ -19,11 +17,11 @@ struct MainView2: View {
     var body: some View {
         ZStack (alignment: .top){
             TabView {
-                DebugView()
+                VitalView()
                     .tabItem {
                         Label("Vitals", systemImage: "heart.fill")
                 }
-                MainLiveRead()
+                FontView()
                     .tabItem {
                         Label("Live Read", systemImage: "waveform.path.ecg")
                 }
@@ -35,7 +33,6 @@ struct MainView2: View {
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         .edgesIgnoringSafeArea(.all)
-        .background(LinearGradient(gradient: Gradient(colors: colors), startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 1.0)))
     }
 }
 

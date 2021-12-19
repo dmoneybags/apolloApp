@@ -31,7 +31,7 @@ struct SegmentedChartViewCenter: View {
             Text(String(stat.getRange(label: keys[index]).0) + "-" + String(stat.getRange(label: keys[index]).1))
             Text(stat.measurement)
             GeometryReader{ geo in
-                HorizontalCapsuleReader(progress: computeProgress(), width: geo.frame(in: .local).maxX - 30, height: 15, gradient: Gradient(colors: [minColor, maxColor]))
+                HorizontalCapsuleReader(progress: computeProgress(), width: geo.frame(in: .local).maxX - 30, height: 15, gradient: Gradient(colors: [Color.green, Color.yellow, Color.red]))
                     .padding(.leading, 15)
                 
             }
@@ -50,6 +50,6 @@ struct SegmentedChartViewCenter: View {
         return Double(keyLen!)/Double(fullLen)
     }
     func computeProgress() -> Double {
-        return (averageData(data: sortedDict[keys[index]]!.map{$0.0}) - stat.getRange(label: keys[index]).0)/(stat.getRange(label: keys[index]).1 - stat.getRange(label: keys[index]).0)
+        return (averageData(data: sortedDict[keys[index]]!.map{$0.0}) - stat.getRange(label: "").0)/(stat.getRange(label: "").1 - stat.getRange(label: "").0)
     }
 }

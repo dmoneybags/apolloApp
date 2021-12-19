@@ -122,7 +122,7 @@ func getTimeRangeVal(dates: [Date]) -> Calendar.Component {
     }
     return .month
 }
-func filterData(data: [(Double, Date)], timeFrame: Calendar.Component, num: Int) -> [(Double, Date)]{
+func filterDataV1(data: [(Double, Date)], timeFrame: Calendar.Component, num: Int) -> [(Double, Date)]{
     let dateList = data.map{$0.1}
     let calendar = Calendar.current
     var timeVal = calendar.component(timeFrame, from: dateList.first!)

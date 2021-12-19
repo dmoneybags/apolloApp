@@ -72,50 +72,77 @@ public struct IndicatorPoint: View {
     @Binding var index: Int
     var data: [Double]
     public var body: some View {
-        VStack {
-            VStack{
-                Text(String(Int(data[index])))
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.black)
-                    .scaleEffect(CGSize(width: 1.0, height: -1.0))
-                    .font(.callout)
-            }
-            .frame(width: 30, height: 30, alignment: .center)
-            .background(Color.white)
-            .cornerRadius(5)
+        ZStack {
+            Circle()
+                .frame(width: 25, height: 25)
+                .foregroundColor(Color.white)
+                .shadow(color: Color.white, radius: 1, x: 0.0, y: 0.0)
+                .opacity(0.1)
             Circle()
                 .frame(width: 20, height: 20)
                 .foregroundColor(Color.blue)
         }
+        .padding(.top, 40)
     }
 }
 struct graphReading: View {
     @Binding var indexPosition: Int
     @Binding var showingIndicators: Bool
+    var width: Double
     var dates: [Date]
+    var doubles: [Double]
+    var title: String
     var body: some View {
         ZStack{
-            Text(showingIndicators ? getTimeComponent(date: dates[indexPosition], timeFrame: getTimeRangeVal(dates: dates)): "")
-                .foregroundColor(Color(UIColor.systemGray))
+            HStack{
+                if showingIndicators {
+                    Spacer()
+                    Text(getTimeComponent(date: dates[indexPosition], timeFrame: getTimeRangeVal(dates: dates)))
+                        .foregroundColor(Color(UIColor.systemGray))
+                        .padding(.leading, 70)
+                    Spacer()
+                } else {
+                    Text(title)
+                        .font(.title2)
+                        .foregroundColor(Color(UIColor.systemGray))
+                    Spacer()
+                }
+                VStack {
+                    Text(String(Int(showingIndicators ? doubles[indexPosition] : averageData(data: doubles))))
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundStyle(LinearGradient(colors: [Color.blue, Color.purple], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 0.0)))
+                        .frame(width: 70, height: 30)
+                        .animation(.none)
+                    if !showingIndicators{
+                        Divider()
+                        Text("Average")
+                            .font(.footnote)
+                            .foregroundColor(Color(UIColor.systemGray))
+                            .frame(height: 10)
+                    }
+                }
+                .frame(width: 80)
+            }
         }
-        .frame(width: 300, height: 15, alignment: .center)
-        .padding(.top, -6)
+        .frame(width: width, height: 30, alignment: .center)
     }
 }
 struct graphLines: View {
     var width: Double
     var height: Double
-    var data: [(Double, Date)]
+    var data: [Double]
     var forCapsule: Bool = false
     var body: some View {
         let numHorizontalLines: Int = Int(width/25.0)
         let numVerticalLines: Int = Int(height/25.0)
-        let range: Double = getRange(data: data.map{$0.0})
-        let min: Double = getMin(data: data.map{$0.0})
+        let range: Double = getRange(data: data)
+        let min: Double = getMin(data: data)
         ZStack{
             ForEach(0..<numHorizontalLines, id: \.self){i in
                 Line(start: CGPoint(x: 0, y: Double(i) * height/Double(numHorizontalLines)), end: CGPoint(x: width, y: Double(i) * height/Double(numHorizontalLines)))
                     .stroke(Color(UIColor.systemGray).opacity(i == 0 ? 1.0: 0.4), lineWidth: 0.5)
+                    .allowsHitTesting(false)
                 if i != 0{
                     Text(getXlabel(min: min, range: range, i: Double(i), numHorizontalLines: Double(numHorizontalLines), forCapsule: forCapsule))
                         .font(.footnote)
@@ -129,6 +156,7 @@ struct graphLines: View {
             ForEach(0..<numVerticalLines, id: \.self){i in
                 Line(start: CGPoint(x: Double(i) * width/Double(numVerticalLines), y: 0), end: CGPoint(x: Double(i) * width/Double(numVerticalLines), y: height))
                     .stroke(Color(UIColor.systemGray).opacity(i == 0 ? 1.0: 0.4), lineWidth: 0.5)
+                    .allowsHitTesting(false)
             }
         }
         .frame(width: CGFloat(width), height: CGFloat(height))
@@ -143,30 +171,31 @@ struct graphLines: View {
 }
 struct LineGraph: View {
     @Binding var data: [Double]
-    @Binding var dataTime: [(Double, Date)]? ///Maybe change this to a binding but its a fucking headache for now
+    @Binding var dataTime: [Date]? ///Maybe change this to a binding but its a fucking headache for now
     @State var height: Double?
     @State var width: Double?
     @State var color: Color?
     @State var gradient: Gradient?
     @State var backgroundColor: Color?
+    var title: String? = "Todays Readings"
     @State private var showingIndicators: Bool = false
     @State private var indexPosition: Int = 0
     @State private var IndicatorPointPosition: CGPoint = .zero
     @State private var loaded = false
     var body: some View {
-        let yPositions = genYvalues(data: dataTime != nil ? dataTime!.map{$0.0}:data, ySize: height!, dataRange: nil, dataMin: nil)
+        let yPositions = genYvalues(data: data, ySize: height!, dataRange: nil, dataMin: nil)
         let fakeYPositions = getUnloadedYpositions(yPositions: yPositions)
-        let xPositions = genXvalues(data: dataTime != nil ? dataTime!.map{$0.0}:data, xSize: width!)
-        if dataTime?.map{$0.0}.count != 1 {
+        let xPositions = genXvalues(data: data, xSize: width!)
+        if dataTime?.count != 1 {
             VStack {
                 if dataTime != nil {
                     graphReading(indexPosition: $indexPosition
-                                 , showingIndicators: $showingIndicators, dates: dataTime!.map{$0.1})
+                                 , showingIndicators: $showingIndicators, width: width!, dates: dataTime!, doubles: data, title: title!)
                 }
                 ZStack {
                     ZStack {
-                        graphLines(width: width!, height: height!, data: dataTime!)
-                        if dataTime![0].0 != 0 {
+                        graphLines(width: width!, height: height!, data: data)
+                        if data[0] != 0 {
                             ForEach(data.indices, id: \.self) {i in
                                 if gradient == nil {
                                     Line(start: CGPoint(x: xPositions[i], y: loaded ? yPositions[i] : fakeYPositions[i]), end: CGPoint(x: getLeadingVal(Positions: xPositions, i: i), y: getLeadingVal(Positions: loaded ? yPositions : fakeYPositions, i: i)))
@@ -181,7 +210,7 @@ struct LineGraph: View {
                                 
                                 if showingIndicators {
                                     withAnimation(){
-                                        IndicatorPoint(index: $indexPosition, data: dataTime != nil ? dataTime!.map{$0.0} : data)
+                                        IndicatorPoint(index: $indexPosition, data: data)
                                                         .position(x: IndicatorPointPosition.x, y: IndicatorPointPosition.y - 20)
                                     }
                                 }
@@ -199,24 +228,25 @@ struct LineGraph: View {
                     }
                 }
                 .scaleEffect(CGSize(width: 1.0, height: -1.0))
-                .contentShape(Rectangle())  // Control tappable area
-                        .gesture(
-                            LongPressGesture(minimumDuration: 0.2)
-                                .sequenced(before: DragGesture(minimumDistance: 0, coordinateSpace: .local))
-                                .onChanged({ value in  // Get value of the gesture
-                                    switch value {
-                                    case .second(true, let drag):
-                                        if let longPressLocation = drag?.location {
-                                            dragGesture(longPressLocation)
-                                        }
-                                    default:
-                                        break
-                                    }
-                                })
-                                // Hide indicator when finish
-                                .onEnded({ value in
-                                    self.showingIndicators = false
-                                })
+                
+                 // Control tappable area
+                .gesture(
+                    LongPressGesture(minimumDuration: 0.01)
+                        .sequenced(before: DragGesture(minimumDistance: 0, coordinateSpace: .local))
+                        .onChanged({ value in  // Get value of the gesture
+                            switch value {
+                            case .second(true, let drag):
+                                if let longPressLocation = drag?.location {
+                                    dragGesture(longPressLocation)
+                                }
+                            default:
+                                break
+                            }
+                        })
+                        // Hide indicator when finish
+                        .onEnded({ value in
+                            self.showingIndicators = false
+                        })
                     )
             }
         } else {

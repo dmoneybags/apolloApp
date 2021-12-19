@@ -23,6 +23,7 @@ struct HorizontalCapsuleReader: View {
                 .foregroundColor(Color.white)
         }
         .frame(width: width, height: height)
+        .scaleEffect(CGSize(width: -1.0, height: 1.0))
     }
 }
 

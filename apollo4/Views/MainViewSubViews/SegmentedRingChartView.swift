@@ -29,14 +29,29 @@ struct SegmentedRingChartView: View {
                 Circle()
                     .trim(from: 0.0, to: CGFloat(min(loaded ? getPercentOfRing(dict: sortedDict, key: keys[indice]): 0.0, 1.0)))
                     .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(getColor(stat: stat.name, progress: getProgress(stat: stat.name, reading: doubleList.min()!)))
+                    .foregroundColor(stat.getColor(forLabel: keys[indice]).opacity(0.9))
+                    .rotationEffect(Angle(degrees: getSectionDegrees(dict: sortedDict, key: keys[indice]) * 360 + 270))
+                    .scaleEffect(inFocus != indice ? 1.0 : scaleEffect)
+                    .zIndex(Double(10 - indice))
+                    .onTapGesture {
+                        withAnimation(Animation.easeInOut(duration: 1.0)){
+                            if inFocus != indice{
+                                inFocus = indice
+                            } 
+                            
+                        }
+                    }
+                Circle()
+                    .trim(from: 0.0, to: 0.001)
+                    .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
+                    .foregroundColor(stat.getColor(forLabel: keys[indice]).opacity(0.9))
                     .rotationEffect(Angle(degrees: getSectionDegrees(dict: sortedDict, key: keys[indice]) * 360 + 270))
                     .scaleEffect(inFocus != indice ? 1.0 : scaleEffect)
                     .onTapGesture {
                         withAnimation(Animation.easeInOut(duration: 1.0)){
                             if inFocus != indice{
                                 inFocus = indice
-                            } 
+                            }
                             
                         }
                     }
