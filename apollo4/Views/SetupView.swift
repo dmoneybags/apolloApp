@@ -17,9 +17,9 @@ struct SetupView: View {
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .edgesIgnoringSafeArea(.all)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         .background(LinearGradient(gradient: Gradient(colors: [Color.purple, Color.blue, Color.blue]), startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 0, y: 2)))
-        .edgesIgnoringSafeArea(.all)
     }
     func containedView() -> AnyView {
         switch self.user.stage {

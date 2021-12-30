@@ -92,6 +92,11 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         for characteristic in characteristics {
             peripheral.setNotifyValue(true, for: characteristic)
             peripheral.readValue(for: characteristic)
+            if peripheral == connectedPeripheral?._CBPeripheral && CBUUIDs.characteristicsDict[characteristic.uuid] != nil{
+                let characteristicName = CBUUIDs.characteristicsDict[characteristic.uuid]!
+                connectedPeripheral?.characteristics[characteristicName] = characteristic
+                print("added \(characteristicName) to peripherals dictionary")
+            }
             print(characteristic.uuid)
             if CBUUIDs.characteristicsDict[characteristic.uuid] != nil {
                 print("Set up characteristic: \(CBUUIDs.characteristicsDict[characteristic.uuid]!)")

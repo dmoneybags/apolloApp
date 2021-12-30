@@ -36,7 +36,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // initialize Amplify
         print("LAUNCHING")
         let _ = Backend.initialize()
-
+        print("BACKEND INITIALIZED")
         return true
     }
 }

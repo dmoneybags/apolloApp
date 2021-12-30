@@ -70,6 +70,7 @@ struct MultiLineGraph: View {
     var gradients: [Gradient]?
     var backgroundColor: Color?
     var statNames: [String]?
+    var title: String?
     @State private var showingIndicators: Bool = false
     @State private var indexPosition: Int = 0
     @State private var IndicatorPointPosition: CGPoint = .zero
@@ -78,6 +79,29 @@ struct MultiLineGraph: View {
             VStack{
                 if showingIndicators && dataWithLabels != nil{
                     dataBox(data: data, dates: dataWithLabels!, indexPosition: $indexPosition, statNames: statNames!, width: width!, gradients: gradients!)
+                } else if dataWithLabels != nil {
+                    HStack{
+                        Text(title ?? "Todays Readings")
+                            .font(.title2)
+                            .foregroundColor(Color(UIColor.systemGray))
+                            .padding(.horizontal)
+                            .padding(.leading, 25)
+                        Spacer()
+                        VStack{
+                            Text(String(format: "%.1f", averageData(data: data[0])) + " / " + String(format: "%.1f", averageData(data: data[1])))
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .foregroundStyle(LinearGradient(colors: [Color.blue, Color.purple], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1)))
+                                .animation(.none)
+                                .frame(height: 30, alignment: .center)
+                            Divider()
+                            Text("Average")
+                                .font(.footnote)
+                                .foregroundColor(Color(UIColor.systemGray))
+                                .frame(height: 10)
+                        }
+                        .frame(width: 170)
+                    }
                 }
                 ZStack{
                     if dataWithLabels != nil {
@@ -116,24 +140,23 @@ struct MultiLineGraph: View {
                 .overlay(RoundedRectangle(cornerRadius: 10)
                 .stroke(backgroundColor != nil ? backgroundColor! : Color.black.opacity(0.0), lineWidth: 4))
                 .scaleEffect(CGSize(width: 1.0, height: -1.0))
-                .contentShape(Rectangle())  // Control tappable area
-                        .gesture(
-                            LongPressGesture(minimumDuration: 0.5)
-                                .sequenced(before: DragGesture(minimumDistance: 0, coordinateSpace: .local))
-                                .onChanged({ value in  // Get value of the gesture
-                                    switch value {
-                                    case .second(true, let drag):
-                                        if let longPressLocation = drag?.location {
-                                            dragGesture(longPressLocation)
-                                        }
-                                    default:
-                                        break
-                                    }
-                                })
-                                // Hide indicator when finish
-                                .onEnded({ value in
-                                    self.showingIndicators = false
-                                })
+                .gesture(
+                    LongPressGesture(minimumDuration: 0.5)
+                        .sequenced(before: DragGesture(minimumDistance: 0, coordinateSpace: .local))
+                        .onChanged({ value in  // Get value of the gesture
+                            switch value {
+                            case .second(true, let drag):
+                                if let longPressLocation = drag?.location {
+                                    dragGesture(longPressLocation)
+                                }
+                            default:
+                                break
+                            }
+                        })
+                        // Hide indicator when finish
+                        .onEnded({ value in
+                            self.showingIndicators = false
+                        })
                     )
             }
         } else {

@@ -13,10 +13,11 @@ struct OffsetPreferenceKey: PreferenceKey {
 }
 
 struct MainUIBoxScroller<Content: View>: View {
+    //Which one are we on?
     @State private var selector = 0
     @State private var offsetX: CGFloat = 0
     var width: CGFloat
-    var statDataObject: StatDataObject
+    //Content passed from MainUIBox
     @ViewBuilder var content: Content
     var body: some View {
         VStack{
@@ -47,7 +48,7 @@ struct MainUIBoxScroller<Content: View>: View {
                         content
                     }
                 }
-                .frame(width: width, height: 300, alignment: .center)
+                .frame(width: width, alignment: .center)
                 .coordinateSpace(name: "scroll")
                 .onPreferenceChange(OffsetPreferenceKey.self) { value in
                     if abs(value - offsetX) >= 170{
@@ -66,6 +67,7 @@ struct MainUIBoxScroller<Content: View>: View {
         }
         .frame(width: width)
     }
+    //HardCoded for now, will be changed to use a proportion of width in the future
     private func getView() -> Int {
         switch offsetX{
         case -180 ..< 100: selector = 0; return 0

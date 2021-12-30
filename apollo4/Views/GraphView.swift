@@ -104,6 +104,8 @@ struct graphReading: View {
                 } else {
                     Text(title)
                         .font(.title2)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                         .foregroundColor(Color(UIColor.systemGray))
                     Spacer()
                 }
@@ -171,7 +173,9 @@ struct graphLines: View {
 }
 struct LineGraph: View {
     @Binding var data: [Double]
-    @Binding var dataTime: [Date]? ///Maybe change this to a binding but its a fucking headache for now
+    @Binding var dataTime: [Date]?
+    var dataMin: Double? = nil
+    var dataRange: Double? = nil
     @State var height: Double?
     @State var width: Double?
     @State var color: Color?
@@ -183,10 +187,10 @@ struct LineGraph: View {
     @State private var IndicatorPointPosition: CGPoint = .zero
     @State private var loaded = false
     var body: some View {
-        let yPositions = genYvalues(data: data, ySize: height!, dataRange: nil, dataMin: nil)
+        let yPositions = genYvalues(data: data, ySize: height!, dataRange: dataRange, dataMin: dataMin)
         let fakeYPositions = getUnloadedYpositions(yPositions: yPositions)
         let xPositions = genXvalues(data: data, xSize: width!)
-        if dataTime?.count != 1 {
+        if data.count > 1{
             VStack {
                 if dataTime != nil {
                     graphReading(indexPosition: $indexPosition
@@ -194,7 +198,7 @@ struct LineGraph: View {
                 }
                 ZStack {
                     ZStack {
-                        graphLines(width: width!, height: height!, data: data)
+                        graphLines(width: width!, height: height!, data: dataMin == nil ? data: data + [dataMin!, dataMin! + dataRange!])
                         if data[0] != 0 {
                             ForEach(data.indices, id: \.self) {i in
                                 if gradient == nil {
@@ -269,7 +273,7 @@ struct LineGraph: View {
     public func getClosestValueFrom(_ value: CGPoint) -> (CGFloat, CGFloat, Int){
             let touchPoint: (CGFloat, CGFloat) = (value.x, value.y)
             let xPositions = genXvalues(data: data, xSize: width!)
-            let yPositions = genYvalues(data: data, ySize: height!, dataRange: nil, dataMin: nil)
+            let yPositions = genYvalues(data: data, ySize: height!, dataRange: dataRange, dataMin: dataMin)
             // Closest X value
             let closestXPoint = xPositions.enumerated().min( by: { abs($0.1 - touchPoint.0) < abs($1.1 - touchPoint.0) } )!
             let closestYPointIndex = xPositions.firstIndex(of: closestXPoint.element)!

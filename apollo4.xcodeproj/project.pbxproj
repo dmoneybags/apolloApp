@@ -18,6 +18,8 @@
 		AD3EE4F42751CC43001A30A2 /* bloodPressureMinibox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4F32751CC43001A30A2 /* bloodPressureMinibox.swift */; };
 		AD3EE4F62751E1D7001A30A2 /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4F52751E1D7001A30A2 /* Gradients.swift */; };
 		AD3EE4F827521F76001A30A2 /* SPO2MiniBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4F727521F75001A30A2 /* SPO2MiniBox.swift */; };
+		AD48C98D2770FD3F003F1DCA /* BPMiniLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD48C98C2770FD3F003F1DCA /* BPMiniLevelView.swift */; };
+		AD48C98F27714591003F1DCA /* FullScreenStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD48C98E27714591003F1DCA /* FullScreenStatView.swift */; };
 		AD67BD7C2753079800341539 /* MultiLineGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD7B2753079800341539 /* MultiLineGraph.swift */; };
 		AD67BD86275420DC00341539 /* backBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD85275420DC00341539 /* backBtn.swift */; };
 		AD6EB58E275B4A6F000BD56F /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB58A275B4A6F000BD56F /* BarChartView.swift */; };
@@ -46,6 +48,9 @@
 		AD837D03276BB16000E0BDB9 /* VerticalLinePlotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837D02276BB16000E0BDB9 /* VerticalLinePlotter.swift */; };
 		ADA1ECA2274E1EE00079E6CE /* BPOption1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */; };
 		ADA1ECA4274E34B30079E6CE /* CapsuleReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */; };
+		ADAB7712277CDEC800196D25 /* LiveReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7711277CDEC800196D25 /* LiveReadView.swift */; };
+		ADAB7714277CE03E00196D25 /* LiveRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7713277CE03E00196D25 /* LiveRead.swift */; };
+		ADAB7716277CF67E00196D25 /* StopWatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7715277CF67E00196D25 /* StopWatchManager.swift */; };
 		ADB9B8F62748482200EB9227 /* Option3.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F52748482200EB9227 /* Option3.swift */; };
 		ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F7274857DD00EB9227 /* Logging.swift */; };
 		ADB9B8FF274CEBB000EB9227 /* DataRetrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */; };
@@ -57,7 +62,6 @@
 		ADF11A262745D4500099ADF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A252745D4500099ADF3 /* Assets.xcassets */; };
 		ADF11A382745D4670099ADF3 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A282745D4670099ADF3 /* SetupView.swift */; };
 		ADF11A392745D4670099ADF3 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A292745D4670099ADF3 /* GraphView.swift */; };
-		ADF11A3B2745D4670099ADF3 /* LiveRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A2B2745D4670099ADF3 /* LiveRead.swift */; };
 		ADF11A3C2745D4670099ADF3 /* PairingLoadScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A2C2745D4670099ADF3 /* PairingLoadScreen.swift */; };
 		ADF11A3D2745D4670099ADF3 /* nameSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A2D2745D4670099ADF3 /* nameSetup.swift */; };
 		ADF11A3E2745D4670099ADF3 /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A2E2745D4670099ADF3 /* PairingView.swift */; };
@@ -88,6 +92,7 @@
 		ADF11A7327478F0D0099ADF3 /* logowhttrans.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A7227478F0D0099ADF3 /* logowhttrans.png */; };
 		ADF11A78274795390099ADF3 /* RingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A77274795390099ADF3 /* RingChart.swift */; };
 		ADF11A7C2747AB050099ADF3 /* Option1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A7B2747AB050099ADF3 /* Option1.swift */; };
+		ADF7DF2F277ABDF3007953FC /* dateSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF7DF2E277ABDF3007953FC /* dateSwitcher.swift */; };
 		B947E94FEB56864267932FD3 /* Pods_apollo4_apollo4UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640E17A6646D270FD36F9D73 /* Pods_apollo4_apollo4UITests.framework */; };
 		C60B171744D888CA9DAA7377 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD0911A16987641E9C24AC /* AmplifyModels.swift */; };
 		F6818A389747A06AC13D3C31 /* Pods_apollo4Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05396547B94734C0AC72F675 /* Pods_apollo4Tests.framework */; };
@@ -129,6 +134,8 @@
 		AD3EE4F32751CC43001A30A2 /* bloodPressureMinibox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bloodPressureMinibox.swift; sourceTree = "<group>"; };
 		AD3EE4F52751E1D7001A30A2 /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
 		AD3EE4F727521F75001A30A2 /* SPO2MiniBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPO2MiniBox.swift; sourceTree = "<group>"; };
+		AD48C98C2770FD3F003F1DCA /* BPMiniLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMiniLevelView.swift; sourceTree = "<group>"; };
+		AD48C98E27714591003F1DCA /* FullScreenStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenStatView.swift; sourceTree = "<group>"; };
 		AD67BD7B2753079800341539 /* MultiLineGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineGraph.swift; sourceTree = "<group>"; };
 		AD67BD85275420DC00341539 /* backBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backBtn.swift; sourceTree = "<group>"; };
 		AD6EB58A275B4A6F000BD56F /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
@@ -158,6 +165,9 @@
 		AD837D02276BB16000E0BDB9 /* VerticalLinePlotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLinePlotter.swift; sourceTree = "<group>"; };
 		ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPOption1.swift; sourceTree = "<group>"; };
 		ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleReader.swift; sourceTree = "<group>"; };
+		ADAB7711277CDEC800196D25 /* LiveReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveReadView.swift; sourceTree = "<group>"; };
+		ADAB7713277CE03E00196D25 /* LiveRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiveRead.swift; path = ../../../../Desktop/LiveRead.swift; sourceTree = "<group>"; };
+		ADAB7715277CF67E00196D25 /* StopWatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchManager.swift; sourceTree = "<group>"; };
 		ADB9B8F52748482200EB9227 /* Option3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option3.swift; sourceTree = "<group>"; };
 		ADB9B8F7274857DD00EB9227 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRetrieval.swift; sourceTree = "<group>"; };
@@ -172,7 +182,6 @@
 		ADF11A252745D4500099ADF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "3D Objects/Assets.xcassets"; sourceTree = "<group>"; };
 		ADF11A282745D4670099ADF3 /* SetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
 		ADF11A292745D4670099ADF3 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
-		ADF11A2B2745D4670099ADF3 /* LiveRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveRead.swift; sourceTree = "<group>"; };
 		ADF11A2C2745D4670099ADF3 /* PairingLoadScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingLoadScreen.swift; sourceTree = "<group>"; };
 		ADF11A2D2745D4670099ADF3 /* nameSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameSetup.swift; sourceTree = "<group>"; };
 		ADF11A2E2745D4670099ADF3 /* PairingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
@@ -204,6 +213,7 @@
 		ADF11A7227478F0D0099ADF3 /* logowhttrans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logowhttrans.png; sourceTree = "<group>"; };
 		ADF11A77274795390099ADF3 /* RingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingChart.swift; sourceTree = "<group>"; };
 		ADF11A7B2747AB050099ADF3 /* Option1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option1.swift; sourceTree = "<group>"; };
+		ADF7DF2E277ABDF3007953FC /* dateSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateSwitcher.swift; sourceTree = "<group>"; };
 		DAC3772788A412A79844DAD0 /* Pods-apollo4-apollo4UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F1AA8673E4552EA4EBD5846C /* Pods-apollo4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4.release.xcconfig"; path = "Target Support Files/Pods-apollo4/Pods-apollo4.release.xcconfig"; sourceTree = "<group>"; };
 		F5947E8335BA29513666FAEE /* Pods_apollo4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -314,6 +324,9 @@
 				AD837CFC2769282B00E0BDB9 /* MainUIBox.swift */,
 				AD837CFE2769308800E0BDB9 /* MainUIBoxScroller.swift */,
 				AD837D00276AB01500E0BDB9 /* CardView.swift */,
+				AD48C98E27714591003F1DCA /* FullScreenStatView.swift */,
+				ADF7DF2E277ABDF3007953FC /* dateSwitcher.swift */,
+				ADAB7711277CDEC800196D25 /* LiveReadView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -408,10 +421,10 @@
 				ADF11A282745D4670099ADF3 /* SetupView.swift */,
 				ADF11A292745D4670099ADF3 /* GraphView.swift */,
 				AD67BD7B2753079800341539 /* MultiLineGraph.swift */,
-				ADF11A2B2745D4670099ADF3 /* LiveRead.swift */,
 				ADF11A2C2745D4670099ADF3 /* PairingLoadScreen.swift */,
 				ADF11A2D2745D4670099ADF3 /* nameSetup.swift */,
 				ADF11A2E2745D4670099ADF3 /* PairingView.swift */,
+				ADAB7713277CE03E00196D25 /* LiveRead.swift */,
 				ADF11A2F2745D4670099ADF3 /* userDataInputSetup.swift */,
 				ADF11A302745D4670099ADF3 /* swipeView.swift */,
 				ADF11A312745D4670099ADF3 /* finishedSetupView.swift */,
@@ -439,6 +452,7 @@
 				AD3EE4F52751E1D7001A30A2 /* Gradients.swift */,
 				AD6EB598275CBA80000BD56F /* HyperTensionStructs.swift */,
 				AD837C932760350500E0BDB9 /* StatObjects.swift */,
+				ADAB7715277CF67E00196D25 /* StopWatchManager.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -493,6 +507,7 @@
 		ADF11A74274790200099ADF3 /* MainViewSubViews */ = {
 			isa = PBXGroup;
 			children = (
+				AD48C98C2770FD3F003F1DCA /* BPMiniLevelView.swift */,
 				ADF11A77274795390099ADF3 /* RingChart.swift */,
 				ADF11A7B2747AB050099ADF3 /* Option1.swift */,
 				ADB9B8F52748482200EB9227 /* Option3.swift */,
@@ -801,6 +816,7 @@
 				AD837CE22765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift in Sources */,
 				ADF11A4D2745D4740099ADF3 /* Backend.swift in Sources */,
 				ADF11A4E2745D4740099ADF3 /* UserData.swift in Sources */,
+				ADAB7714277CE03E00196D25 /* LiveRead.swift in Sources */,
 				AD837C9727645F4400E0BDB9 /* MainView2.swift in Sources */,
 				ADF11A6E27470D6A0099ADF3 /* userDataModel.swift in Sources */,
 				ADA1ECA2274E1EE00079E6CE /* BPOption1.swift in Sources */,
@@ -814,8 +830,10 @@
 				ADF11A3F2745D4670099ADF3 /* userDataInputSetup.swift in Sources */,
 				ADF11A502745D4740099ADF3 /* KeyboardHelper.swift in Sources */,
 				AD67BD7C2753079800341539 /* MultiLineGraph.swift in Sources */,
+				ADAB7716277CF67E00196D25 /* StopWatchManager.swift in Sources */,
 				AD3EE4EE2750C1E5001A30A2 /* LiveGrapher.swift in Sources */,
 				ADF11A6F27470D6A0099ADF3 /* userDataModel+Schema.swift in Sources */,
+				AD48C98D2770FD3F003F1DCA /* BPMiniLevelView.swift in Sources */,
 				AD837D03276BB16000E0BDB9 /* VerticalLinePlotter.swift in Sources */,
 				ADF11A3D2745D4670099ADF3 /* nameSetup.swift in Sources */,
 				AD3EE4F827521F76001A30A2 /* SPO2MiniBox.swift in Sources */,
@@ -827,15 +845,16 @@
 				AD837C92276022A200E0BDB9 /* HorizontalCapsuleReader.swift in Sources */,
 				ADF11A3C2745D4670099ADF3 /* PairingLoadScreen.swift in Sources */,
 				ADA1ECA4274E34B30079E6CE /* CapsuleReader.swift in Sources */,
-				ADF11A3B2745D4670099ADF3 /* LiveRead.swift in Sources */,
 				AD6EB5A1275F2C99000BD56F /* SegmentedRingChartView.swift in Sources */,
 				AD6EB590275B4A6F000BD56F /* LabelView.swift in Sources */,
 				ADB9B8F62748482200EB9227 /* Option3.swift in Sources */,
 				ADB9B8FF274CEBB000EB9227 /* DataRetrieval.swift in Sources */,
 				AD6EB59D275D4EB3000BD56F /* TickMarkReader.swift in Sources */,
 				AD6EB58F275B4A6F000BD56F /* BarChartRow.swift in Sources */,
+				ADAB7712277CDEC800196D25 /* LiveReadView.swift in Sources */,
 				ADF11A402745D4670099ADF3 /* swipeView.swift in Sources */,
 				ADF11A7C2747AB050099ADF3 /* Option1.swift in Sources */,
+				AD48C98F27714591003F1DCA /* FullScreenStatView.swift in Sources */,
 				AD837CFA2769210B00E0BDB9 /* FontView.swift in Sources */,
 				AD6EB59F275DDDB3000BD56F /* HyperTensionBox.swift in Sources */,
 				ADF11A542745D47B0099ADF3 /* BLEManager.swift in Sources */,
@@ -852,6 +871,7 @@
 				ADF11A4F2745D4740099ADF3 /* TextLimiting.swift in Sources */,
 				AD837CE82766853D00E0BDB9 /* DebugView.swift in Sources */,
 				C60B171744D888CA9DAA7377 /* AmplifyModels.swift in Sources */,
+				ADF7DF2F277ABDF3007953FC /* dateSwitcher.swift in Sources */,
 				1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */,
 				AD837CF727691EB400E0BDB9 /* VitalView.swift in Sources */,
 				14AFEFA6EB492561108251D9 /* userDataModel.swift in Sources */,

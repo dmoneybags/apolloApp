@@ -20,7 +20,7 @@ func getDocumentsDirectory() -> URL {
     return paths[0]
 }
 func writeToCsv(filename: URL, data: String){
-    if data == "0"{
+    if data == "0" || data == "0.0" || data == "0.00"{
         print("Found 0, write failed")
         return
     }

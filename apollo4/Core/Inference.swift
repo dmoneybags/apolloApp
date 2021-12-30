@@ -106,7 +106,7 @@ func getTimeComponent(date: Date, timeFrame: Calendar.Component) -> String{
         let hour: String = getTimeComponent(date: date, timeFrame: .hour)
         return String(month) + "/" + String(day) + ", " + hour
     }
-    return ""
+    return String(month) + "/" + String(day)
 }
 func getTimeRangeVal(dates: [Date]) -> Calendar.Component {
     let calendar = Calendar.current
@@ -122,6 +122,7 @@ func getTimeRangeVal(dates: [Date]) -> Calendar.Component {
     }
     return .month
 }
+//DECREMENTED DO NOT USE
 func filterDataV1(data: [(Double, Date)], timeFrame: Calendar.Component, num: Int) -> [(Double, Date)]{
     let dateList = data.map{$0.1}
     let calendar = Calendar.current
