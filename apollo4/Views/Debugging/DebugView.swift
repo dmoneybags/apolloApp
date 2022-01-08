@@ -15,10 +15,10 @@ struct DebugView: View {
             if stats.isEmpty {
                 Text("No stats!")
                 Button("add stats"){
-                    let SPO2DataObject = StatDataObject(inputName: "SPO2", context: moc, empty: false)
-                    let HeartRateDataObject = StatDataObject(inputName: "HeartRate", context: moc, empty: false)
-                    let SystolicPressureDataObject = StatDataObject(inputName: "SystolicPressure", context: moc, empty: false)
-                    let DiastolicPressureDataObject = StatDataObject(inputName: "DiastolicPressure", context: moc, empty: false)
+                    let _ = StatDataObject(inputName: "SPO2", context: moc, empty: false)
+                    let _ = StatDataObject(inputName: "HeartRate", context: moc, empty: false)
+                    let _ = StatDataObject(inputName: "SystolicPressure", context: moc, empty: false)
+                    let _ = StatDataObject(inputName: "DiastolicPressure", context: moc, empty: false)
                     try? moc.save()
                 }
             } else {

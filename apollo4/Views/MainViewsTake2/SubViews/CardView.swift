@@ -8,11 +8,16 @@
 import SwiftUI
 //Very sparse template simply takes in a name and color, the content passed in
 //makes it very customizable
+//also gives the option to either pass statviewdata to initialize a full screen
+//stat view by passing the argument of statViewData or initialize allternate view
+//by passing the view as anyView
 struct CardView<Content: View>: View {
     var name: String
     var backgroundColor: Color
     //for now until we finish them all
     var fullscreenData: statViewData? = nil
+    var fullScreenView: AnyView? = nil
+    @State var showingCover: Bool = false
     @ViewBuilder var content: Content
     var body: some View {
         VStack {
@@ -29,7 +34,18 @@ struct CardView<Content: View>: View {
         .frame(width: 150, height: 200)
         .preferredColorScheme(.dark)
         .cornerRadius(20)
-        //.shadow(color: Color(UIColor.systemGray2), radius: 5, x: 0, y: 0)
+        .fullScreenCover(isPresented: $showingCover){
+            if fullscreenData != nil {
+                FullScreenStatView(name: fullscreenData!.name, statName: fullscreenData!.statName, tupleData: fullscreenData!.tupleData, dataRange: fullscreenData!.dataRange, dataMin: fullscreenData!.dataMin, gradient: fullscreenData!.gradient)
+            } else {
+                if fullScreenView != nil {
+                    fullScreenView
+                }
+            }
+        }
+        .onTapGesture() {
+            showingCover = true
+        }
     }
 }
 

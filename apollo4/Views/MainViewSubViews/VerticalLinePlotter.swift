@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct VerticalLinePlotter: View {
-    var data: [(Double, Date)]
+    @Binding var data: [(Double, Date)]
     var title: String
     var stat : Stat
     var width : Double

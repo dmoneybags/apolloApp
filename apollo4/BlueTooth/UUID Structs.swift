@@ -18,6 +18,7 @@ struct CBUUIDs {
                                   CBUUID(string: "E7568C31-FE31-A29B-A444-47E300C2D962"): "HeartRate",
                                   CBUUID(string: "DECF365D-17A6-43A7-ED47-BE1634730BA2"): "SPO2",
                                   CBUUID(string: "FB1295F4-9D89-B088-EC11-6367C4AF38EF"): "Raw",
-                                  CBUUID(string: "3EB819D7-0C8A-6686-EC11-C368440BFA7D"): "isRaw"
+                                  CBUUID(string: "3EB819D7-0C8A-6686-EC11-C368440BFA7D"): "isRaw",
+                                  CBUUID(string: "E5E305D7-8567-F795-8A42-347D342FF240"): "HrVar"
     ]
 }

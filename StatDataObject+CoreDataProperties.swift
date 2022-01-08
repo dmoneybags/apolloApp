@@ -75,6 +75,7 @@ extension StatDataObject {
     }
     //Method to slim tuples to a certain number by removing tuples with smallest interval
     //between them
+    //Change to use offset as well... I won't right now because Im high... shhh dont tell anyone
     func slimData(to num: Int, within timeFrame: Calendar.Component) -> [(Double, Date)]{
         //Grab tuples
         var filteredData: [(Double, Date)] = filterDataTuples(forData: generateTupleData(), in: timeFrame)
@@ -120,8 +121,6 @@ extension Date {
         if !didWork {
             print("couldn't convert \(self)")
         }
-        print(self)
-        print("Got start component of: \(startOfComponent)")
         return startOfComponent
     }
     func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
@@ -134,6 +133,7 @@ extension Date {
 }
 //filters a list already produced to get a specific object
 func getStatDataObject(stats: [StatDataObject], name: String) -> StatDataObject{
+    print("getting object for \(name)")
     return stats[stats.firstIndex(where: {$0.name == name})!]
 }
 //gets our stat data objects
@@ -204,9 +204,10 @@ func getNumDaysMonth(forMonth month: Int, forYear year: Int) -> Int {
     let range = calendar.range(of: .day, in: .month, for: date)!
     return range.count
 }
-//givn a timeframe and month and year number, returns number of seconds in the frame
-fileprivate func getNumSeconds(in timeframe: Calendar.Component, forMonth month: Int, forYear year: Int) -> Int {
+//given a timeframe and month and year number, returns number of seconds in the frame
+fileprivate func getNumSeconds(in timeframe: Calendar.Component, forMonth month: Int = 1, forYear year: Int = 2022) -> Int {
     switch timeframe {
+    case .minute: return 60
     case .hour: return 3600
     case .day: return 3600 * 24
     case .weekOfYear: return 3600 * 24 * 7
@@ -220,6 +221,7 @@ fileprivate func getFinishingDate(with start: TimeInterval, in timeFrame: Calend
     let startDate = Date(timeIntervalSince1970: start)
     return start + Double(getNumSeconds(in: timeFrame, forMonth: startDate.get(.month), forYear: startDate.get(.year)))
 }
+//OPTIMIZE
 //Takes in tuples, a timeFrame and an offset to return data values from that point
 func filterDataTuples(forData data: [(Double, Date)], in timeFrame: Calendar.Component, from start: TimeInterval? = nil, to finish: TimeInterval? = nil, withOffset offset: Int? = nil) -> [(Double, Date)]{
     var filteredData : [(Double, Date)] = []
@@ -236,8 +238,8 @@ func filterDataTuples(forData data: [(Double, Date)], in timeFrame: Calendar.Com
     return filteredData
 }
 //combines previous slimdata and filter all in one
-func slimDataTuples(forData data: [(Double, Date)], to num: Int, within timeFrame: Calendar.Component) -> [(Double, Date)]{
-    var filteredData: [(Double, Date)] = filterDataTuples(forData: data, in: timeFrame)
+func slimDataTuples(forData data: [(Double, Date)], to num: Int, within timeFrame: Calendar.Component, withOffset offset: Int? = nil) -> [(Double, Date)]{
+    var filteredData: [(Double, Date)] = filterDataTuples(forData: data, in: timeFrame, withOffset: offset)
     if filteredData.count > num{
         let dateList = filteredData.map{$0.1}
         //Seconds from previous time, Index
@@ -257,4 +259,48 @@ func slimDataTuples(forData data: [(Double, Date)], to num: Int, within timeFram
         }
     }
     return filteredData
+}
+//create moving average func
+func movingAverage(previousAverage: inout Double, count: inout Double, newValue: Double){
+    count += 1
+    previousAverage = ((previousAverage * (count - 1)) + newValue)/count
+}
+func getTemporallyPooledData(forData data: [(Double, Date)], within timeFrame: Calendar.Component, withOffset offset: Int? = nil, poolTimeFrame: Calendar.Component, num: Int) -> [(Double, Date)]{
+    let filteredData: [(Double, Date)] = filterDataTuples(forData: data, in: timeFrame, withOffset: offset)
+    let poolSeconds = getNumSeconds(in: poolTimeFrame) * num
+    print(poolSeconds)
+    var poolTimeFrameStart: Int = Int(filteredData[0].1.timeIntervalSince1970) - Int(filteredData[0].1.timeIntervalSince1970) % poolSeconds
+    var poolTimeFrameEnd: Int = Int(poolTimeFrameStart) + poolSeconds
+    var pooledData: [(Double, Date)] = []
+    var curlen: Double = 0
+    var previousMean: Double = 0
+    for tuple in filteredData {
+        let tupleTime: Int = Int(tuple.1.timeIntervalSince1970)
+        if (tupleTime > poolTimeFrameStart) && (tupleTime < poolTimeFrameEnd){
+            print("adding to moving average")
+            print(tuple.0)
+            print("count")
+            print(curlen)
+            print("newValue")
+            print(tuple.0)
+            print("PreviousMean")
+            print(previousMean)
+            movingAverage(previousAverage: &previousMean, count: &curlen, newValue: tuple.0)
+        } else {
+            print(previousMean)
+            pooledData.append((previousMean, Date(timeIntervalSince1970: TimeInterval(poolTimeFrameStart))))
+            print("tuple time ")
+            curlen = 0
+            previousMean = 0
+            print(Date(timeIntervalSince1970: TimeInterval(tupleTime)))
+            poolTimeFrameStart = tupleTime - (tupleTime % poolSeconds)
+            print(Date(timeIntervalSince1970: TimeInterval(poolTimeFrameStart)))
+            poolTimeFrameEnd = poolTimeFrameStart + poolSeconds
+            print(Date(timeIntervalSince1970: TimeInterval(poolTimeFrameEnd)))
+            movingAverage(previousAverage: &previousMean, count: &curlen, newValue: tuple.0)
+        }
+    }
+    //"Finally add the last one"
+    pooledData.append((previousMean, Date(timeIntervalSince1970: TimeInterval(poolTimeFrameStart))))
+    return pooledData
 }

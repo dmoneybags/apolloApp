@@ -110,7 +110,7 @@ struct SystolicPressure: Stat{
         case 140..<160: return "Grade 1 Hypertension"
         case 160..<180: return "Grade 2 Hypertension"
         case 180..<1000: return "Grade 3 Hypertension"
-        default: return ""
+        default: return "Optimal"
         }
     }
     func getRange(label: String) -> (Double, Double) {

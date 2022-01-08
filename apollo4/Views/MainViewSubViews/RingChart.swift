@@ -14,6 +14,7 @@ struct RingChart: View {
     @State var loaded: Bool = false
     @State var stat: String = "SPO2"
     @State var color: Color? = nil
+    @State var fontSize: CGFloat? = nil
     var body: some View {
         ZStack {
             GeometryReader{geo in
@@ -46,11 +47,17 @@ struct RingChart: View {
             } else {
                 VStack {
                     if text != "0" {
-                        Text(text)
-                            .bold()
-                            .font(.system(size: 500))
-                            .minimumScaleFactor(0.001)
-                            .scaleEffect(0.5)
+                        if fontSize == nil {
+                            Text(text)
+                                .bold()
+                                .font(.system(size: 500))
+                                .minimumScaleFactor(0.001)
+                                .scaleEffect(0.5)
+                        } else {
+                            Text(text)
+                                .bold()
+                                .font(.system(size: fontSize!))
+                        }
                     } else {
                         Text("No Data")
                             .bold()

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct BPMiniLevelView: View {
-    var sysData: [Double]
-    var diaData: [Double]
+    @Binding var sysData: [Double]
+    @Binding var diaData: [Double]
     var body: some View {
         VStack{
             HStack{
@@ -44,15 +44,5 @@ struct BPMiniLevelView: View {
     }
     private func pass(){
         print("")
-    }
-}
-
-struct BPMiniLevelView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            BPMiniLevelView(sysData: [120], diaData: [90])
-                .frame(width: 300, height: 300)
-               
-        }
     }
 }

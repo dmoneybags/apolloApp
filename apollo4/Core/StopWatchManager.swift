@@ -17,16 +17,23 @@ enum stopWatchMode {
 }
 
 class StopWatchManager: ObservableObject {
-    
+    init(timeLim: Double){
+        self.totalTime = timeLim
+    }
+    var totalTime : Double
     @Published var mode: stopWatchMode = .stopped
     @Published var secondsElapsed = 0.0
-    
+    @Published var progress = 0.0
     var timer = Timer()
     
     func start() {
         mode = .running
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             self.secondsElapsed = self.secondsElapsed + 0.1
+            self.progress = self.secondsElapsed/self.totalTime
+            if self.secondsElapsed >= self.totalTime{
+                self.stop()
+            }
         }
     }
     

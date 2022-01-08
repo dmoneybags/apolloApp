@@ -158,7 +158,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         
         if CBUUIDs.characteristicsDict[characteristic.uuid] != nil {
             NotificationCenter.default.post(name:NSNotification.Name(rawValue: CBUUIDs.characteristicsDict[characteristic.uuid]!), object: "\((characteristicASCIIValue as String))")
-            withAnimation(){
+            if CBUUIDs.characteristicsDict[characteristic.uuid] != "isRaw" && CBUUIDs.characteristicsDict[characteristic.uuid] != "Raw"{
                 updateStatDataObject(withString: ASCIIstring as String, statNamed: CBUUIDs.characteristicsDict[characteristic.uuid]!)
             }
         }

@@ -11,6 +11,7 @@
 		1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42585BD5408AF40BA7C9B8E0 /* userDataModel+Schema.swift */; };
 		4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F7919AE38F140D052F4F4FA /* awsconfiguration.json */; };
 		5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */; };
+		AD2DAAED2788A6C50073473A /* StatDataObjectListWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DAAEC2788A6C50073473A /* StatDataObjectListWrapper.swift */; };
 		AD3EE4E9274F5D4C001A30A2 /* Inference.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4E8274F5D4C001A30A2 /* Inference.swift */; };
 		AD3EE4EC27508E5B001A30A2 /* MainLiveRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4EB27508E5B001A30A2 /* MainLiveRead.swift */; };
 		AD3EE4EE2750C1E5001A30A2 /* LiveGrapher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4ED2750C1E5001A30A2 /* LiveGrapher.swift */; };
@@ -22,6 +23,8 @@
 		AD48C98F27714591003F1DCA /* FullScreenStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD48C98E27714591003F1DCA /* FullScreenStatView.swift */; };
 		AD67BD7C2753079800341539 /* MultiLineGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD7B2753079800341539 /* MultiLineGraph.swift */; };
 		AD67BD86275420DC00341539 /* backBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD67BD85275420DC00341539 /* backBtn.swift */; };
+		AD6BEFE527879063007AE569 /* GraphInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6BEFE427879063007AE569 /* GraphInference.swift */; };
+		AD6BEFE82787FD85007AE569 /* GraphInferenceMinimumGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6BEFE72787FD85007AE569 /* GraphInferenceMinimumGraphView.swift */; };
 		AD6EB58E275B4A6F000BD56F /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB58A275B4A6F000BD56F /* BarChartView.swift */; };
 		AD6EB58F275B4A6F000BD56F /* BarChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB58B275B4A6F000BD56F /* BarChartRow.swift */; };
 		AD6EB590275B4A6F000BD56F /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6EB58C275B4A6F000BD56F /* LabelView.swift */; };
@@ -51,9 +54,12 @@
 		ADAB7712277CDEC800196D25 /* LiveReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7711277CDEC800196D25 /* LiveReadView.swift */; };
 		ADAB7714277CE03E00196D25 /* LiveRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7713277CE03E00196D25 /* LiveRead.swift */; };
 		ADAB7716277CF67E00196D25 /* StopWatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7715277CF67E00196D25 /* StopWatchManager.swift */; };
+		ADAB77182784BD3300196D25 /* HrVarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB77172784BD3300196D25 /* HrVarView.swift */; };
+		ADAB771A2785727B00196D25 /* ECGAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB77192785727A00196D25 /* ECGAnimation.swift */; };
 		ADB9B8F62748482200EB9227 /* Option3.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F52748482200EB9227 /* Option3.swift */; };
 		ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F7274857DD00EB9227 /* Logging.swift */; };
 		ADB9B8FF274CEBB000EB9227 /* DataRetrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */; };
+		ADEE606E2785FBBB00E59A79 /* hrVarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEE606D2785FBBB00E59A79 /* hrVarImage.swift */; };
 		ADF119FB2745D0060099ADF3 /* apollo4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF119FA2745D0060099ADF3 /* apollo4App.swift */; };
 		ADF11A022745D0080099ADF3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A012745D0080099ADF3 /* Preview Assets.xcassets */; };
 		ADF11A0C2745D0080099ADF3 /* apollo4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A0B2745D0080099ADF3 /* apollo4Tests.swift */; };
@@ -127,6 +133,7 @@
 		988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F7919AE38F140D052F4F4FA /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.release.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.release.xcconfig"; sourceTree = "<group>"; };
+		AD2DAAEC2788A6C50073473A /* StatDataObjectListWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatDataObjectListWrapper.swift; sourceTree = "<group>"; };
 		AD3EE4E8274F5D4C001A30A2 /* Inference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inference.swift; sourceTree = "<group>"; };
 		AD3EE4EB27508E5B001A30A2 /* MainLiveRead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLiveRead.swift; sourceTree = "<group>"; };
 		AD3EE4ED2750C1E5001A30A2 /* LiveGrapher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGrapher.swift; sourceTree = "<group>"; };
@@ -138,6 +145,8 @@
 		AD48C98E27714591003F1DCA /* FullScreenStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenStatView.swift; sourceTree = "<group>"; };
 		AD67BD7B2753079800341539 /* MultiLineGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineGraph.swift; sourceTree = "<group>"; };
 		AD67BD85275420DC00341539 /* backBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backBtn.swift; sourceTree = "<group>"; };
+		AD6BEFE427879063007AE569 /* GraphInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphInference.swift; sourceTree = "<group>"; };
+		AD6BEFE72787FD85007AE569 /* GraphInferenceMinimumGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphInferenceMinimumGraphView.swift; sourceTree = "<group>"; };
 		AD6EB58A275B4A6F000BD56F /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		AD6EB58B275B4A6F000BD56F /* BarChartRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
 		AD6EB58C275B4A6F000BD56F /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
@@ -168,9 +177,12 @@
 		ADAB7711277CDEC800196D25 /* LiveReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveReadView.swift; sourceTree = "<group>"; };
 		ADAB7713277CE03E00196D25 /* LiveRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiveRead.swift; path = ../../../../Desktop/LiveRead.swift; sourceTree = "<group>"; };
 		ADAB7715277CF67E00196D25 /* StopWatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchManager.swift; sourceTree = "<group>"; };
+		ADAB77172784BD3300196D25 /* HrVarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HrVarView.swift; sourceTree = "<group>"; };
+		ADAB77192785727A00196D25 /* ECGAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGAnimation.swift; sourceTree = "<group>"; };
 		ADB9B8F52748482200EB9227 /* Option3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option3.swift; sourceTree = "<group>"; };
 		ADB9B8F7274857DD00EB9227 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRetrieval.swift; sourceTree = "<group>"; };
+		ADEE606D2785FBBB00E59A79 /* hrVarImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hrVarImage.swift; sourceTree = "<group>"; };
 		ADF119F72745D0060099ADF3 /* apollo4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apollo4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF119FA2745D0060099ADF3 /* apollo4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apollo4App.swift; sourceTree = "<group>"; };
 		ADF11A012745D0080099ADF3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -276,6 +288,15 @@
 			path = MainViews;
 			sourceTree = "<group>";
 		};
+		AD6BEFE62787FC89007AE569 /* Graph Inference */ = {
+			isa = PBXGroup;
+			children = (
+				AD6BEFE427879063007AE569 /* GraphInference.swift */,
+				AD6BEFE72787FD85007AE569 /* GraphInferenceMinimumGraphView.swift */,
+			);
+			path = "Graph Inference";
+			sourceTree = "<group>";
+		};
 		AD6EB589275B4A6F000BD56F /* BarChart */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +323,7 @@
 		AD837C98276461EB00E0BDB9 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
+				AD2DAAEC2788A6C50073473A /* StatDataObjectListWrapper.swift */,
 				AD837CE12765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift */,
 				AD837CE52766835400E0BDB9 /* DataController.swift */,
 				AD837CA027652B9900E0BDB9 /* StatData.xcdatamodeld */,
@@ -327,6 +349,7 @@
 				AD48C98E27714591003F1DCA /* FullScreenStatView.swift */,
 				ADF7DF2E277ABDF3007953FC /* dateSwitcher.swift */,
 				ADAB7711277CDEC800196D25 /* LiveReadView.swift */,
+				ADAB77172784BD3300196D25 /* HrVarView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -453,6 +476,7 @@
 				AD6EB598275CBA80000BD56F /* HyperTensionStructs.swift */,
 				AD837C932760350500E0BDB9 /* StatObjects.swift */,
 				ADAB7715277CF67E00196D25 /* StopWatchManager.swift */,
+				AD6BEFE62787FC89007AE569 /* Graph Inference */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -523,6 +547,8 @@
 				AD837C8F2760215600E0BDB9 /* SegmentedChartViewCenter.swift */,
 				AD837C91276022A200E0BDB9 /* HorizontalCapsuleReader.swift */,
 				AD837D02276BB16000E0BDB9 /* VerticalLinePlotter.swift */,
+				ADAB77192785727A00196D25 /* ECGAnimation.swift */,
+				ADEE606D2785FBBB00E59A79 /* hrVarImage.swift */,
 			);
 			path = MainViewSubViews;
 			sourceTree = "<group>";
@@ -811,6 +837,7 @@
 				ADF11A78274795390099ADF3 /* RingChart.swift in Sources */,
 				ADF11A382745D4670099ADF3 /* SetupView.swift in Sources */,
 				AD3EE4F42751CC43001A30A2 /* bloodPressureMinibox.swift in Sources */,
+				ADAB77182784BD3300196D25 /* HrVarView.swift in Sources */,
 				AD6EB591275B4A6F000BD56F /* BarChartCell.swift in Sources */,
 				ADF11A3E2745D4670099ADF3 /* PairingView.swift in Sources */,
 				AD837CE22765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift in Sources */,
@@ -828,6 +855,7 @@
 				ADF11A442745D4670099ADF3 /* RotatingRingView.swift in Sources */,
 				AD837CFD2769282B00E0BDB9 /* MainUIBox.swift in Sources */,
 				ADF11A3F2745D4670099ADF3 /* userDataInputSetup.swift in Sources */,
+				AD6BEFE527879063007AE569 /* GraphInference.swift in Sources */,
 				ADF11A502745D4740099ADF3 /* KeyboardHelper.swift in Sources */,
 				AD67BD7C2753079800341539 /* MultiLineGraph.swift in Sources */,
 				ADAB7716277CF67E00196D25 /* StopWatchManager.swift in Sources */,
@@ -850,6 +878,7 @@
 				ADB9B8F62748482200EB9227 /* Option3.swift in Sources */,
 				ADB9B8FF274CEBB000EB9227 /* DataRetrieval.swift in Sources */,
 				AD6EB59D275D4EB3000BD56F /* TickMarkReader.swift in Sources */,
+				AD6BEFE82787FD85007AE569 /* GraphInferenceMinimumGraphView.swift in Sources */,
 				AD6EB58F275B4A6F000BD56F /* BarChartRow.swift in Sources */,
 				ADAB7712277CDEC800196D25 /* LiveReadView.swift in Sources */,
 				ADF11A402745D4670099ADF3 /* swipeView.swift in Sources */,
@@ -866,7 +895,10 @@
 				AD3EE4E9274F5D4C001A30A2 /* Inference.swift in Sources */,
 				ADF11A412745D4670099ADF3 /* finishedSetupView.swift in Sources */,
 				ADF11A432745D4670099ADF3 /* HealthChoiceSetup.swift in Sources */,
+				AD2DAAED2788A6C50073473A /* StatDataObjectListWrapper.swift in Sources */,
+				ADAB771A2785727B00196D25 /* ECGAnimation.swift in Sources */,
 				ADF11A392745D4670099ADF3 /* GraphView.swift in Sources */,
+				ADEE606E2785FBBB00E59A79 /* hrVarImage.swift in Sources */,
 				ADF11A452745D4670099ADF3 /* healthSetupView.swift in Sources */,
 				ADF11A4F2745D4740099ADF3 /* TextLimiting.swift in Sources */,
 				AD837CE82766853D00E0BDB9 /* DebugView.swift in Sources */,

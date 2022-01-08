@@ -9,13 +9,19 @@ import SwiftUI
 //Date Switcher to switch day of data being looked at by initializing the view at the top level:
 //var dateSwitch = dateSwitcher()
 //let offset = dateSwitch.offset
-struct dateSwitcher: View {
+class Offset: ObservableObject {
+    @Published var num: Int
+    init(num: Int){
+        self.num = num
+    }
+}
+struct DateSwitcher: View {
+    @EnvironmentObject var offset : Offset
     @Environment(\.colorScheme) var colorScheme
     var dates : [Date]
     //Increment an offset which we will then use to get the data by calling the filterDataTuples function
-    @State var offset : Int = 0
     private var dateStr : String {
-        return getTimeComponent(date: Date(timeIntervalSince1970: getMostRecentDate(usingDates: dates, in: .day, withOffset: offset)), timeFrame: .year)
+        return getTimeComponent(date: Date(timeIntervalSince1970: getMostRecentDate(usingDates: dates, in: .day, withOffset: offset.num)), timeFrame: .year)
     }
     var body: some View {
         ZStack{
@@ -25,9 +31,8 @@ struct dateSwitcher: View {
                     .foregroundColor(Color.blue)
                     .padding(.horizontal, 5)
                     .onTapGesture {
-                        if offset < dates.count - 1{
-                            offset += 1
-                            print(offset)
+                        if offset.num < dates.count - 1{
+                            offset.num += 1
                         }
                     }
                 Spacer()
@@ -40,16 +45,13 @@ struct dateSwitcher: View {
                     .rotationEffect(Angle(degrees: 180))
                     .padding(.horizontal, 5)
                     .onTapGesture {
-                        if offset > 0 {
-                            offset -= 1
-                            print(offset)
+                        if offset.num > 0 {
+                            offset.num -= 1
                         }
                     }
             }
         }
         .frame(width: 150, height: 30)
     }
-    func getOffset() -> Int {
-        return offset
-    }
+    
 }

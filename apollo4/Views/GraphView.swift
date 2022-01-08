@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Line: Shape {
     var start, end: CGPoint
-
     func path(in rect: CGRect) -> Path {
         Path { p in
             p.move(to: start)
@@ -35,7 +34,7 @@ func genXvalues(data: [Double], xSize: Double) -> [Double] {
 func genYvalues(data: [Double], ySize: Double, dataRange: Double?, dataMin: Double?) -> [Double] {
     var usedRange: Double
     var subtractVal: Double
-    let UsedYSize = ySize - 20
+    let UsedYSize = ySize //- 20
     let dataLength = data.count
     if dataRange == nil {
         usedRange = data.max()! - data.min()!
@@ -63,7 +62,7 @@ func getLeadingVal(Positions: [Double], i: Int) ->  Double {
 }
 func getUnloadedYpositions(yPositions: [Double]) -> [Double]{
     var fakeYpositions: [Double] = []
-    for i in yPositions{
+    for _ in yPositions{
         fakeYpositions.append(10)
     }
     return fakeYpositions
@@ -134,6 +133,7 @@ struct graphLines: View {
     var width: Double
     var height: Double
     var data: [Double]
+    var dates: [Date]? = nil
     var forCapsule: Bool = false
     var body: some View {
         let numHorizontalLines: Int = Int(width/25.0)
@@ -155,37 +155,78 @@ struct graphLines: View {
                         .position(x: -15, y: Double(i) * height/Double(numHorizontalLines))
                 }
             }
-            ForEach(0..<numVerticalLines, id: \.self){i in
-                Line(start: CGPoint(x: Double(i) * width/Double(numVerticalLines), y: 0), end: CGPoint(x: Double(i) * width/Double(numVerticalLines), y: height))
-                    .stroke(Color(UIColor.systemGray).opacity(i == 0 ? 1.0: 0.4), lineWidth: 0.5)
-                    .allowsHitTesting(false)
+            if dates == nil {
+                ForEach(0..<numVerticalLines, id: \.self){i in
+                    Line(start: CGPoint(x: Double(i) * width/Double(numVerticalLines), y: 0), end: CGPoint(x: Double(i) * width/Double(numVerticalLines), y: height))
+                        .stroke(Color(UIColor.systemGray).opacity(i == 0 ? 1.0: 0.4), lineWidth: 0.5)
+                        .allowsHitTesting(false)
+                }
+            } else {
+                let dateLen = dates!.count - 1
+                ForEach(0..<dateLen, id: \.self){i in
+                    Line(start: CGPoint(x: Double(i) * width/Double(dateLen), y: 0), end: CGPoint(x: Double(i) * width/Double(dateLen), y: height))
+                        .stroke(Color(UIColor.systemGray).opacity(i == 0 ? 1.0: 0.4), lineWidth: 0.5)
+                        .allowsHitTesting(false)
+                    if Int(i) % (Int(dates!.count/4) > 1 ? Int(dates!.count/4) : 2) == 1 {
+                        Text(getTimeComponent(date: dates![i], timeFrame: getTimeRangeVal(dates: dates!)))
+                            .font(.footnote)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
+                            .foregroundColor(Color(UIColor.systemGray))
+                            .scaleEffect(CGSize(width: 1.0, height: -1.0))
+                            .position(x: Double(i) * width/Double(dateLen), y: -15)
+                    }
+                }
             }
         }
         .frame(width: CGFloat(width), height: CGFloat(height))
     }
     func getXlabel(min: Double, range: Double, i: Double, numHorizontalLines: Double, forCapsule: Bool) -> String{
         if !forCapsule{
-            return String(Int(min + Double(i) * (range/numHorizontalLines + 1)))
+            return String(Int(min + Double(i) * (range/numHorizontalLines)))
         } else {
             return String(Int(min + Double(i + 1) * (range/numHorizontalLines)))
         }
     }
 }
 struct LineGraph: View {
+    //Doubles to graph
     @Binding var data: [Double]
+    //Parallel list with double list of corresponding dates
     @Binding var dataTime: [Date]?
+    //if not specified then highest point in data will alwats be 100% of height and lowest will be
+    //0%
     var dataMin: Double? = nil
     var dataRange: Double? = nil
+    //height and width of graph
     @State var height: Double?
     @State var width: Double?
+    //Should the line have a color? IMPORTANT: color takes lower precedence than gradient,
+    //if both are specified only gradient will be rendered
     @State var color: Color?
+    //Should the line have a gradient color? (very pretty)
     @State var gradient: Gradient?
+    //Should the graph have a background color? if not background color is background of lower zIndex
+    //View
     @State var backgroundColor: Color?
+    //Title that will show up at the top
     var title: String? = "Todays Readings"
+    //Lines on the graph?
+    var useLines: Bool = true
+    //Is the data averaged by a timeFrame?
+    var pooledData: Bool = false
+    //Used for inferences, if no inferences are wanted, simply don't specify the argument
+    var aggregateInference: aggregateInferenceObject? = nil
     @State private var showingIndicators: Bool = false
     @State private var indexPosition: Int = 0
     @State private var IndicatorPointPosition: CGPoint = .zero
     @State private var loaded = false
+    //Messy, I know. In a perfect world I'll rewrite graphView to use a set of initializers for
+    //the circumstances we'd usually see: just doubles no times, doubles and times but no inferences,
+    //doubles, times, inferences, title (the whole deal). For now the logic on inferences revolves
+    //around passing an optional aggregateInferenceObject. If this object is left out of the argument
+    //list, absolutely NOTHING will happen related to inferences, as intended.
+    private let inferenceInFocusPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "InferenceInFocus"))
     var body: some View {
         let yPositions = genYvalues(data: data, ySize: height!, dataRange: dataRange, dataMin: dataMin)
         let fakeYPositions = getUnloadedYpositions(yPositions: yPositions)
@@ -198,7 +239,18 @@ struct LineGraph: View {
                 }
                 ZStack {
                     ZStack {
-                        graphLines(width: width!, height: height!, data: dataMin == nil ? data: data + [dataMin!, dataMin! + dataRange!])
+                        if useLines{
+                            graphLines(width: width!, height: height!, data: dataMin == nil ? data: data + [dataMin!, dataMin! + dataRange!], dates: pooledData ? dataTime: nil)
+                        }
+                        if aggregateInference != nil && aggregateInference!.objectInFocus != -1 {
+                            ForEach(aggregateInference!.objectsToImplement.indices, id: \.self){i in
+                                if i == aggregateInference!.objectInFocus {
+                                    aggregateInference!.objectsToImplement[i].getGraphView(width: width!, height: height!, graphData: data, dataRange: dataRange, dataMin: dataMin)
+                                        .position(x: 0, y: 0)
+                                        .zIndex(2)
+                                }
+                            }
+                        }
                         if data[0] != 0 {
                             ForEach(data.indices, id: \.self) {i in
                                 if gradient == nil {
@@ -227,7 +279,7 @@ struct LineGraph: View {
                     .stroke(backgroundColor != nil ? backgroundColor! : Color.black.opacity(0.0), lineWidth: 4))
                 }
                 .onAppear(){
-                    withAnimation(Animation.easeInOut(duration: 2.0)){
+                    withAnimation(Animation.easeIn(duration: 0.7)){
                         loaded = true
                     }
                 }
@@ -252,6 +304,18 @@ struct LineGraph: View {
                             self.showingIndicators = false
                         })
                     )
+            }
+            //Who is responsible for sending this message? its semi complex. The box associated with
+            //the inference is ALWAYS responsible for sending the intial message of a positive
+            //integer which represents its position within the foreach loop, this function of sending
+            //said value will NOT be coded into the box, and it is up to whoever implements the box
+            //that on tap of said box the info is sent. It is then up to the specific graph view to
+            //send the message that it should be destructed. It is best practice to specify in the
+            //constructor of the view the amount of seconds which it should be visible.
+            .onReceive(inferenceInFocusPub){message in
+                if aggregateInference != nil {
+                    aggregateInference!.objectInFocus = Int((message.object as! NSString).doubleValue)
+                }
             }
         } else {
             Text("No Data")

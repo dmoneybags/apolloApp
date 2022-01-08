@@ -11,6 +11,8 @@ struct MainUIBox<Content: View>: View {
     @Environment(\.colorScheme) private var colorScheme
     //Value which will be changed within a withAnimation framework to animate the heart (if heartRate)
     @State private var animatorVal : Double = 0.7
+    //Stats passed in for inference
+    @EnvironmentObject var statsWrapper: StatDataObjectListWrapper
     //String at top of box
     var title: String
     //Current value
@@ -25,6 +27,7 @@ struct MainUIBox<Content: View>: View {
     var cardFunc: (Int) -> AnyView
     //So we know how many cards we have to produce them in a for loop, cant len a function
     var numCards: Int
+    //Passed in for fullscreen statview cover
     var fullscreenData: statViewData
     @State private var showingData: Bool = false
     //Pass in content to show in scrollview, passed with a bracket
@@ -96,7 +99,8 @@ struct MainUIBox<Content: View>: View {
         }
         //Code for full screen graph
         .fullScreenCover(isPresented: $showingData){
-            FullScreenStatView(name: fullscreenData.name, tupleData: fullscreenData.tupleData, dataRange: fullscreenData.dataRange, dataMin: fullscreenData.dataMin, gradient: fullscreenData.gradient)   
+            FullScreenStatView(name: fullscreenData.name, statName: fullscreenData.statName, tupleData: fullscreenData.tupleData, dataRange: fullscreenData.dataRange, dataMin: fullscreenData.dataMin, gradient: fullscreenData.gradient)
+                .environmentObject(statsWrapper)
         }
         .frame(width: UIScreen.main.bounds.size.width - 20, alignment: .center)
         .background(colorScheme == .dark ? Color.black : Color.white)

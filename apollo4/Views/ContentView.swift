@@ -65,7 +65,7 @@ struct ContentView: View {
                         .frame(width: 350, height: 350)
                 }
                 ZStack {
-                    if bleManager.connectedPeripheral == nil {
+                    if bleManager.connectedPeripheral != nil {
                         Button(action: {
                             print("SCANNING")
                             _ = bleManager.startScanning()
@@ -109,6 +109,7 @@ struct ContentView: View {
                     _ = StatDataObject(inputName: "HeartRate", context: moc, empty: true)
                     _ = StatDataObject(inputName: "SystolicPressure", context: moc, empty: true)
                     _ = StatDataObject(inputName: "DiastolicPressure", context: moc, empty: true)
+                    _ = StatDataObject(inputName: "HrVar", context: moc, empty: true)
                     try? moc.save()
                 }
             }
