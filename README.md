@@ -1,6 +1,6 @@
 # apolloApp
 # A Swift 5 IOS App for reading data from a BLE oximeter ring communicating heart rate, SPO2, blood pressure, and other statistics
-
+#C code for ring can be found here: https://github.com/rebondy/Apollo-Ring
 
 
 https://user-images.githubusercontent.com/86892271/149026005-9d24595a-92bf-472c-af85-85c616755872.mov
