@@ -137,7 +137,7 @@ struct HrVarView: View {
     func startHrVar(){
         print("Changing to raw mode; sending requests")
         let on = withUnsafeBytes(of: 0x02) { Data($0) }
-        bleManager.connectedPeripheral!._CBPeripheral.writeValue(on, for: (bleManager.connectedPeripheral!.characteristics["isRaw"])!, type: .withoutResponse)
+        bleManager.connectedPeripheral?._CBPeripheral.writeValue(on, for: (bleManager.connectedPeripheral!.characteristics["isRaw"])!, type: .withoutResponse)
         print("Sent Requests")
         state = .reading
         stopWatchManager.start()

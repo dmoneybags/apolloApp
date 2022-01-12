@@ -99,8 +99,12 @@ struct MainUIBox<Content: View>: View {
         }
         //Code for full screen graph
         .fullScreenCover(isPresented: $showingData){
-            FullScreenStatView(name: fullscreenData.name, statName: fullscreenData.statName, tupleData: fullscreenData.tupleData, dataRange: fullscreenData.dataRange, dataMin: fullscreenData.dataMin, gradient: fullscreenData.gradient)
-                .environmentObject(statsWrapper)
+            if fullscreenData.multiTupleData == nil {
+                FullScreenStatView(name: fullscreenData.name, statName: fullscreenData.statName, tupleData: fullscreenData.tupleData, dataRange: fullscreenData.dataRange, dataMin: fullscreenData.dataMin, gradient: fullscreenData.gradient)
+                    .environmentObject(statsWrapper)
+            } else {
+                MultilineFullScreenStatView(name: fullscreenData.name, multiTupleData: fullscreenData.multiTupleData!)
+            }
         }
         .frame(width: UIScreen.main.bounds.size.width - 20, alignment: .center)
         .background(colorScheme == .dark ? Color.black : Color.white)

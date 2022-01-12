@@ -31,9 +31,7 @@ struct CapsuleReader: View {
                         }
                     }
             }
-            .frame(width: 100, height: height, alignment: .center)
-            Text(titles[getTitleIndex()])
-                .foregroundColor(Color(UIColor.systemGray))
+            .frame(height: height, alignment: .center)
         }
     }
     func getTitleIndex() -> Int{

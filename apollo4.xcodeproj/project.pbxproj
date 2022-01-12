@@ -12,6 +12,10 @@
 		4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F7919AE38F140D052F4F4FA /* awsconfiguration.json */; };
 		5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */; };
 		AD2DAAED2788A6C50073473A /* StatDataObjectListWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DAAEC2788A6C50073473A /* StatDataObjectListWrapper.swift */; };
+		AD2DAAEF278A2E870073473A /* GraphInferenceAverageGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DAAEE278A2E860073473A /* GraphInferenceAverageGraphView.swift */; };
+		AD2DAAF1278A3ECE0073473A /* LinearRegression.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DAAF0278A3ECE0073473A /* LinearRegression.swift */; };
+		AD2DAAF3278A9BB90073473A /* GraphInferenceTrendGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DAAF2278A9BB90073473A /* GraphInferenceTrendGraphView.swift */; };
+		AD2DAAF5278BCA580073473A /* MultilineFullScreenStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DAAF4278BCA580073473A /* MultilineFullScreenStatView.swift */; };
 		AD3EE4E9274F5D4C001A30A2 /* Inference.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4E8274F5D4C001A30A2 /* Inference.swift */; };
 		AD3EE4EC27508E5B001A30A2 /* MainLiveRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4EB27508E5B001A30A2 /* MainLiveRead.swift */; };
 		AD3EE4EE2750C1E5001A30A2 /* LiveGrapher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4ED2750C1E5001A30A2 /* LiveGrapher.swift */; };
@@ -59,6 +63,10 @@
 		ADB9B8F62748482200EB9227 /* Option3.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F52748482200EB9227 /* Option3.swift */; };
 		ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F7274857DD00EB9227 /* Logging.swift */; };
 		ADB9B8FF274CEBB000EB9227 /* DataRetrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */; };
+		ADC3D474278CD4B000348E0C /* MultilineMinimumGraphview.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3D473278CD4B000348E0C /* MultilineMinimumGraphview.swift */; };
+		ADC3D476278DE9F000348E0C /* InferenceInfoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3D475278DE9F000348E0C /* InferenceInfoBox.swift */; };
+		ADC3D478278E3EBE00348E0C /* InferenceMultiLineAverageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3D477278E3EBE00348E0C /* InferenceMultiLineAverageBox.swift */; };
+		ADC3D47A278EAA0E00348E0C /* MultilineAverageGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3D479278EAA0E00348E0C /* MultilineAverageGraphView.swift */; };
 		ADEE606E2785FBBB00E59A79 /* hrVarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEE606D2785FBBB00E59A79 /* hrVarImage.swift */; };
 		ADF119FB2745D0060099ADF3 /* apollo4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF119FA2745D0060099ADF3 /* apollo4App.swift */; };
 		ADF11A022745D0080099ADF3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A012745D0080099ADF3 /* Preview Assets.xcassets */; };
@@ -134,6 +142,10 @@
 		9F7919AE38F140D052F4F4FA /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.release.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AD2DAAEC2788A6C50073473A /* StatDataObjectListWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatDataObjectListWrapper.swift; sourceTree = "<group>"; };
+		AD2DAAEE278A2E860073473A /* GraphInferenceAverageGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphInferenceAverageGraphView.swift; sourceTree = "<group>"; };
+		AD2DAAF0278A3ECE0073473A /* LinearRegression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearRegression.swift; sourceTree = "<group>"; };
+		AD2DAAF2278A9BB90073473A /* GraphInferenceTrendGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphInferenceTrendGraphView.swift; sourceTree = "<group>"; };
+		AD2DAAF4278BCA580073473A /* MultilineFullScreenStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineFullScreenStatView.swift; sourceTree = "<group>"; };
 		AD3EE4E8274F5D4C001A30A2 /* Inference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inference.swift; sourceTree = "<group>"; };
 		AD3EE4EB27508E5B001A30A2 /* MainLiveRead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLiveRead.swift; sourceTree = "<group>"; };
 		AD3EE4ED2750C1E5001A30A2 /* LiveGrapher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGrapher.swift; sourceTree = "<group>"; };
@@ -182,6 +194,10 @@
 		ADB9B8F52748482200EB9227 /* Option3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option3.swift; sourceTree = "<group>"; };
 		ADB9B8F7274857DD00EB9227 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRetrieval.swift; sourceTree = "<group>"; };
+		ADC3D473278CD4B000348E0C /* MultilineMinimumGraphview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineMinimumGraphview.swift; sourceTree = "<group>"; };
+		ADC3D475278DE9F000348E0C /* InferenceInfoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceInfoBox.swift; sourceTree = "<group>"; };
+		ADC3D477278E3EBE00348E0C /* InferenceMultiLineAverageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceMultiLineAverageBox.swift; sourceTree = "<group>"; };
+		ADC3D479278EAA0E00348E0C /* MultilineAverageGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineAverageGraphView.swift; sourceTree = "<group>"; };
 		ADEE606D2785FBBB00E59A79 /* hrVarImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hrVarImage.swift; sourceTree = "<group>"; };
 		ADF119F72745D0060099ADF3 /* apollo4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apollo4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF119FA2745D0060099ADF3 /* apollo4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apollo4App.swift; sourceTree = "<group>"; };
@@ -293,6 +309,13 @@
 			children = (
 				AD6BEFE427879063007AE569 /* GraphInference.swift */,
 				AD6BEFE72787FD85007AE569 /* GraphInferenceMinimumGraphView.swift */,
+				AD2DAAEE278A2E860073473A /* GraphInferenceAverageGraphView.swift */,
+				AD2DAAF0278A3ECE0073473A /* LinearRegression.swift */,
+				AD2DAAF2278A9BB90073473A /* GraphInferenceTrendGraphView.swift */,
+				ADC3D473278CD4B000348E0C /* MultilineMinimumGraphview.swift */,
+				ADC3D475278DE9F000348E0C /* InferenceInfoBox.swift */,
+				ADC3D477278E3EBE00348E0C /* InferenceMultiLineAverageBox.swift */,
+				ADC3D479278EAA0E00348E0C /* MultilineAverageGraphView.swift */,
 			);
 			path = "Graph Inference";
 			sourceTree = "<group>";
@@ -346,6 +369,7 @@
 				AD837CFC2769282B00E0BDB9 /* MainUIBox.swift */,
 				AD837CFE2769308800E0BDB9 /* MainUIBoxScroller.swift */,
 				AD837D00276AB01500E0BDB9 /* CardView.swift */,
+				AD2DAAF4278BCA580073473A /* MultilineFullScreenStatView.swift */,
 				AD48C98E27714591003F1DCA /* FullScreenStatView.swift */,
 				ADF7DF2E277ABDF3007953FC /* dateSwitcher.swift */,
 				ADAB7711277CDEC800196D25 /* LiveReadView.swift */,
@@ -834,6 +858,8 @@
 				AD6EB593275B4A8C000BD56F /* Helpers.swift in Sources */,
 				AD837C942760350500E0BDB9 /* StatObjects.swift in Sources */,
 				AD837C902760215600E0BDB9 /* SegmentedChartViewCenter.swift in Sources */,
+				ADC3D478278E3EBE00348E0C /* InferenceMultiLineAverageBox.swift in Sources */,
+				ADC3D474278CD4B000348E0C /* MultilineMinimumGraphview.swift in Sources */,
 				ADF11A78274795390099ADF3 /* RingChart.swift in Sources */,
 				ADF11A382745D4670099ADF3 /* SetupView.swift in Sources */,
 				AD3EE4F42751CC43001A30A2 /* bloodPressureMinibox.swift in Sources */,
@@ -859,19 +885,24 @@
 				ADF11A502745D4740099ADF3 /* KeyboardHelper.swift in Sources */,
 				AD67BD7C2753079800341539 /* MultiLineGraph.swift in Sources */,
 				ADAB7716277CF67E00196D25 /* StopWatchManager.swift in Sources */,
+				AD2DAAEF278A2E870073473A /* GraphInferenceAverageGraphView.swift in Sources */,
+				AD2DAAF1278A3ECE0073473A /* LinearRegression.swift in Sources */,
 				AD3EE4EE2750C1E5001A30A2 /* LiveGrapher.swift in Sources */,
 				ADF11A6F27470D6A0099ADF3 /* userDataModel+Schema.swift in Sources */,
 				AD48C98D2770FD3F003F1DCA /* BPMiniLevelView.swift in Sources */,
+				ADC3D47A278EAA0E00348E0C /* MultilineAverageGraphView.swift in Sources */,
 				AD837D03276BB16000E0BDB9 /* VerticalLinePlotter.swift in Sources */,
 				ADF11A3D2745D4670099ADF3 /* nameSetup.swift in Sources */,
 				AD3EE4F827521F76001A30A2 /* SPO2MiniBox.swift in Sources */,
 				AD837CFF2769308800E0BDB9 /* MainUIBoxScroller.swift in Sources */,
+				AD2DAAF5278BCA580073473A /* MultilineFullScreenStatView.swift in Sources */,
 				AD6EB599275CBA80000BD56F /* HyperTensionStructs.swift in Sources */,
 				ADF11A422745D4670099ADF3 /* EmittingView.swift in Sources */,
 				AD3EE4EC27508E5B001A30A2 /* MainLiveRead.swift in Sources */,
 				AD837CE62766835400E0BDB9 /* DataController.swift in Sources */,
 				AD837C92276022A200E0BDB9 /* HorizontalCapsuleReader.swift in Sources */,
 				ADF11A3C2745D4670099ADF3 /* PairingLoadScreen.swift in Sources */,
+				ADC3D476278DE9F000348E0C /* InferenceInfoBox.swift in Sources */,
 				ADA1ECA4274E34B30079E6CE /* CapsuleReader.swift in Sources */,
 				AD6EB5A1275F2C99000BD56F /* SegmentedRingChartView.swift in Sources */,
 				AD6EB590275B4A6F000BD56F /* LabelView.swift in Sources */,
@@ -890,6 +921,7 @@
 				ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */,
 				ADF11A6D27470D6A0099ADF3 /* AmplifyModels.swift in Sources */,
 				AD3EE4F0275178AC001A30A2 /* bpmMiniBox.swift in Sources */,
+				AD2DAAF3278A9BB90073473A /* GraphInferenceTrendGraphView.swift in Sources */,
 				AD67BD86275420DC00341539 /* backBtn.swift in Sources */,
 				ADF119FB2745D0060099ADF3 /* apollo4App.swift in Sources */,
 				AD3EE4E9274F5D4C001A30A2 /* Inference.swift in Sources */,

@@ -267,8 +267,8 @@ func movingAverage(previousAverage: inout Double, count: inout Double, newValue:
 }
 func getTemporallyPooledData(forData data: [(Double, Date)], within timeFrame: Calendar.Component, withOffset offset: Int? = nil, poolTimeFrame: Calendar.Component, num: Int) -> [(Double, Date)]{
     let filteredData: [(Double, Date)] = filterDataTuples(forData: data, in: timeFrame, withOffset: offset)
+    print(filteredData)
     let poolSeconds = getNumSeconds(in: poolTimeFrame) * num
-    print(poolSeconds)
     var poolTimeFrameStart: Int = Int(filteredData[0].1.timeIntervalSince1970) - Int(filteredData[0].1.timeIntervalSince1970) % poolSeconds
     var poolTimeFrameEnd: Int = Int(poolTimeFrameStart) + poolSeconds
     var pooledData: [(Double, Date)] = []
@@ -277,30 +277,34 @@ func getTemporallyPooledData(forData data: [(Double, Date)], within timeFrame: C
     for tuple in filteredData {
         let tupleTime: Int = Int(tuple.1.timeIntervalSince1970)
         if (tupleTime > poolTimeFrameStart) && (tupleTime < poolTimeFrameEnd){
-            print("adding to moving average")
-            print(tuple.0)
-            print("count")
-            print(curlen)
-            print("newValue")
-            print(tuple.0)
-            print("PreviousMean")
-            print(previousMean)
             movingAverage(previousAverage: &previousMean, count: &curlen, newValue: tuple.0)
         } else {
-            print(previousMean)
             pooledData.append((previousMean, Date(timeIntervalSince1970: TimeInterval(poolTimeFrameStart))))
-            print("tuple time ")
             curlen = 0
             previousMean = 0
-            print(Date(timeIntervalSince1970: TimeInterval(tupleTime)))
             poolTimeFrameStart = tupleTime - (tupleTime % poolSeconds)
-            print(Date(timeIntervalSince1970: TimeInterval(poolTimeFrameStart)))
             poolTimeFrameEnd = poolTimeFrameStart + poolSeconds
-            print(Date(timeIntervalSince1970: TimeInterval(poolTimeFrameEnd)))
             movingAverage(previousAverage: &previousMean, count: &curlen, newValue: tuple.0)
         }
     }
     //"Finally add the last one"
     pooledData.append((previousMean, Date(timeIntervalSince1970: TimeInterval(poolTimeFrameStart))))
+    print("got pooled data of")
+    print(pooledData)
     return pooledData
+}
+func setPoolTimeFrame(data: [(Double, Date)], maxTimeFrame: inout Calendar.Component, maxNum: inout Int, within timeFrame: Calendar.Component, withOffset offset: Int? = nil){
+    let filteredData: [(Double, Date)] = filterDataTuples(forData: data, in: timeFrame, withOffset: offset)
+    let timeIntervalList : [(Calendar.Component, Int)] = [(.month, 1), (.day, 1), (.hour, 1), (.minute, 30), (.minute, 15), (.minute, 10), (.minute, 5), (.minute, 1), (.second, 10)]
+    let timeDifference = Int(filteredData.last!.1.timeIntervalSince1970 - filteredData[0].1.timeIntervalSince1970)
+    let appropriateTimeDiff = timeDifference/4
+    let preferredTimeDiff = getNumSeconds(in: maxTimeFrame)
+    for tuple in timeIntervalList {
+        if getNumSeconds(in: tuple.0) * tuple.1 < appropriateTimeDiff{
+            maxTimeFrame = tuple.0
+            maxNum = tuple.1
+            return
+        }
+    }
+    return
 }

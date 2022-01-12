@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private func getDataRange(data: [[Double]]) -> Double {
+func getDataRange(data: [[Double]]) -> Double {
     var min = Double(100000000000)
     var max = Double(0)
     for numbers in data {
@@ -20,7 +20,7 @@ private func getDataRange(data: [[Double]]) -> Double {
     }
     return max - min
 }
-private func getMinimumValue(data: [[Double]]) -> Double {
+func getMinimumValue(data: [[Double]]) -> Double {
     var min = Double(100000000000)
     for numbers in data {
         if numbers.min()! < min {
@@ -49,7 +49,7 @@ struct dataBox: View {
                             Circle()
                                 .frame(width: 20, height: 20, alignment: .center)
                                 .foregroundStyle(LinearGradient(gradient: gradients[indice], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 0.0)))
-                            Text(String(data[indice][indexPosition]))
+                            Text(String(format: "%.01f", data[indice][indexPosition]))
                         }
                         Text(statNames[indice])
                             .font(.footnote)
@@ -71,9 +71,14 @@ struct MultiLineGraph: View {
     var backgroundColor: Color?
     var statNames: [String]?
     var title: String?
+    var pooledData: Bool = false
+    //Used for inferences, if no inferences are wanted, simply don't specify the argument
+    var aggregateInference: aggregateInferenceObject? = nil
+    @State private var objectInFocus: Int = -1
     @State private var showingIndicators: Bool = false
     @State private var indexPosition: Int = 0
     @State private var IndicatorPointPosition: CGPoint = .zero
+    private let inferenceInFocusPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "InferenceInFocus"))
     var body: some View {
         if data[0].count != 1 {
             VStack{
@@ -105,7 +110,17 @@ struct MultiLineGraph: View {
                 }
                 ZStack{
                     if dataWithLabels != nil {
-                        graphLines(width: width!, height: height!, data: addLists())
+                        //use first set of dates
+                        graphLines(width: width!, height: height!, data: addLists(), dates: pooledData ? dataWithLabels![0]: nil)
+                    }
+                    if aggregateInference != nil && objectInFocus != -1 {
+                        ForEach(aggregateInference!.multiLineObjectsToImplement.indices, id: \.self){i in
+                            if i == objectInFocus {
+                                aggregateInference!.multiLineObjectsToImplement[i].getGraphView(width: width!, height: height!, graphData: data, dataRange: nil, dataMin: nil, gradients: gradients!)
+                                    .position(x: width!, y: 0)
+                                    .zIndex(2)
+                            }
+                        }
                     }
                     ForEach(data, id: \.self) { numbers in
                         let strokeColor = gradients![data.firstIndex(where: {$0 == numbers})!]
@@ -139,7 +154,7 @@ struct MultiLineGraph: View {
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10)
                 .stroke(backgroundColor != nil ? backgroundColor! : Color.black.opacity(0.0), lineWidth: 4))
-                .scaleEffect(CGSize(width: 1.0, height: -1.0))
+                //.scaleEffect(CGSize(width: 1.0, height: -1.0))
                 .gesture(
                     LongPressGesture(minimumDuration: 0.5)
                         .sequenced(before: DragGesture(minimumDistance: 0, coordinateSpace: .local))
@@ -158,6 +173,14 @@ struct MultiLineGraph: View {
                             self.showingIndicators = false
                         })
                     )
+            }
+            .onReceive(inferenceInFocusPub){message in
+                if aggregateInference != nil {
+                    print("GRAPHVIEW: recieved message")
+                    aggregateInference!.objectInFocus = Int((message.object as! NSString).doubleValue)
+                    objectInFocus = Int((message.object as! NSString).doubleValue)
+                    print(aggregateInference!.multiLineObjectsToImplement[objectInFocus])
+                }
             }
         } else {
             Text("No Data")

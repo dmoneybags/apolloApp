@@ -89,7 +89,7 @@ struct VitalView: View {
                         }
                         .environmentObject(statsWrapper)
                         MainUIBox(title: "Blood Pressure", dataVal: 1.0, dataValStr: String(SystolicPressureObject.data.last as! Int) + "/" + String(DiastolicPressureObject.data.last as! Int), imageName: "thermometer", foregroundColor: Color.white, cardFunc: BPCardSwitcher, numCards: 3, fullscreenData:
-                                    statViewData(name: "Heart Rate", tupleData: HeartRateObject.generateTupleData(), dataRange: HeartRate().getRange(label: "").1 - HeartRate().getRange(label: "").0, dataMin: HeartRate().getRange(label: "").0, gradient: Gradient(colors: [Color.orange, Color.pink]))){
+                                    statViewData(name: "Blood Pressure", multiTupleData: [SystolicPressureObject.generateTupleData(), DiastolicPressureObject.generateTupleData()])){
                             MultiLineGraph(data: $BPData, dataWithLabels: $BPTimes, height: 250, width: 290, gradients: [Gradient(colors: [Color.pink, Color.purple]), Gradient(colors: [Color.purple, Color.blue])], statNames: ["Systolic Pressure", "Diastolic Pressure"])
                                 .frame(width: UIScreen.main.bounds.size.width - 20, alignment: .center)
                                 .padding(.leading, -10)

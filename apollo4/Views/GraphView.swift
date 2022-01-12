@@ -49,7 +49,7 @@ func genYvalues(data: [Double], ySize: Double, dataRange: Double?, dataMin: Doub
     var yPositions: [Double] = [Double]()
     for i in 0..<dataLength {
         let newElement = UsedYSize * ((data[i] - subtractVal)/usedRange) //+ 10
-        yPositions.append(newElement)
+        yPositions.append(ySize - newElement)
     }
     return yPositions
 }
@@ -60,10 +60,10 @@ func getLeadingVal(Positions: [Double], i: Int) ->  Double {
         return Positions[i + 1]
     }
 }
-func getUnloadedYpositions(yPositions: [Double]) -> [Double]{
+func getUnloadedYpositions(yPositions: [Double], height: Double) -> [Double]{
     var fakeYpositions: [Double] = []
     for _ in yPositions{
-        fakeYpositions.append(10)
+        fakeYpositions.append(height)
     }
     return fakeYpositions
 }
@@ -141,17 +141,17 @@ struct graphLines: View {
         let range: Double = getRange(data: data)
         let min: Double = getMin(data: data)
         ZStack{
-            ForEach(0..<numHorizontalLines, id: \.self){i in
+            ForEach(1..<numHorizontalLines + 1, id: \.self){i in
                 Line(start: CGPoint(x: 0, y: Double(i) * height/Double(numHorizontalLines)), end: CGPoint(x: width, y: Double(i) * height/Double(numHorizontalLines)))
-                    .stroke(Color(UIColor.systemGray).opacity(i == 0 ? 1.0: 0.4), lineWidth: 0.5)
+                    .stroke(Color(UIColor.systemGray).opacity(i == numHorizontalLines ? 1.0: 0.4), lineWidth: 0.5)
                     .allowsHitTesting(false)
-                if i != 0{
+                if i != numHorizontalLines{
                     Text(getXlabel(min: min, range: range, i: Double(i), numHorizontalLines: Double(numHorizontalLines), forCapsule: forCapsule))
                         .font(.footnote)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
                         .foregroundColor(Color(UIColor.systemGray))
-                        .scaleEffect(CGSize(width: 1.0, height: -1.0))
+                        //.scaleEffect(CGSize(width: 1.0, height: -1.0))
                         .position(x: -15, y: Double(i) * height/Double(numHorizontalLines))
                 }
             }
@@ -173,8 +173,8 @@ struct graphLines: View {
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
                             .foregroundColor(Color(UIColor.systemGray))
-                            .scaleEffect(CGSize(width: 1.0, height: -1.0))
-                            .position(x: Double(i) * width/Double(dateLen), y: -15)
+                            //.scaleEffect(CGSize(width: 1.0, height: -1.0))
+                            .position(x: Double(i) * width/Double(dateLen), y: height + 15)
                     }
                 }
             }
@@ -183,7 +183,7 @@ struct graphLines: View {
     }
     func getXlabel(min: Double, range: Double, i: Double, numHorizontalLines: Double, forCapsule: Bool) -> String{
         if !forCapsule{
-            return String(Int(min + Double(i) * (range/numHorizontalLines)))
+            return String(Int(min + Double(numHorizontalLines - i) * (range/numHorizontalLines)))
         } else {
             return String(Int(min + Double(i + 1) * (range/numHorizontalLines)))
         }
@@ -217,6 +217,8 @@ struct LineGraph: View {
     var pooledData: Bool = false
     //Used for inferences, if no inferences are wanted, simply don't specify the argument
     var aggregateInference: aggregateInferenceObject? = nil
+    //need a state object for object in focus for automatic updating
+    @State private var objectInFocus: Int = -1
     @State private var showingIndicators: Bool = false
     @State private var indexPosition: Int = 0
     @State private var IndicatorPointPosition: CGPoint = .zero
@@ -229,7 +231,7 @@ struct LineGraph: View {
     private let inferenceInFocusPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "InferenceInFocus"))
     var body: some View {
         let yPositions = genYvalues(data: data, ySize: height!, dataRange: dataRange, dataMin: dataMin)
-        let fakeYPositions = getUnloadedYpositions(yPositions: yPositions)
+        let fakeYPositions = getUnloadedYpositions(yPositions: yPositions, height: height!)
         let xPositions = genXvalues(data: data, xSize: width!)
         if data.count > 1{
             VStack {
@@ -242,9 +244,9 @@ struct LineGraph: View {
                         if useLines{
                             graphLines(width: width!, height: height!, data: dataMin == nil ? data: data + [dataMin!, dataMin! + dataRange!], dates: pooledData ? dataTime: nil)
                         }
-                        if aggregateInference != nil && aggregateInference!.objectInFocus != -1 {
+                        if aggregateInference != nil && objectInFocus != -1 {
                             ForEach(aggregateInference!.objectsToImplement.indices, id: \.self){i in
-                                if i == aggregateInference!.objectInFocus {
+                                if i == objectInFocus {
                                     aggregateInference!.objectsToImplement[i].getGraphView(width: width!, height: height!, graphData: data, dataRange: dataRange, dataMin: dataMin)
                                         .position(x: 0, y: 0)
                                         .zIndex(2)
@@ -274,7 +276,7 @@ struct LineGraph: View {
                         }
                     }
                     .frame(width: CGFloat(width!), height: CGFloat(height!))
-                    .padding([.leading, .trailing, .bottom], 15)
+                    .padding([.leading, .trailing, .top], 15)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(backgroundColor != nil ? backgroundColor! : Color.black.opacity(0.0), lineWidth: 4))
                 }
@@ -283,7 +285,7 @@ struct LineGraph: View {
                         loaded = true
                     }
                 }
-                .scaleEffect(CGSize(width: 1.0, height: -1.0))
+                //.scaleEffect(CGSize(width: 1.0, height: -1.0))
                 
                  // Control tappable area
                 .gesture(
@@ -314,7 +316,9 @@ struct LineGraph: View {
             //constructor of the view the amount of seconds which it should be visible.
             .onReceive(inferenceInFocusPub){message in
                 if aggregateInference != nil {
+                    print("GRAPHVIEW: recieved message")
                     aggregateInference!.objectInFocus = Int((message.object as! NSString).doubleValue)
+                    objectInFocus = Int((message.object as! NSString).doubleValue)
                 }
             }
         } else {

@@ -1,52 +1,33 @@
 //
-//  FullScreenStatView.swift
+//  MultilineFullScreenStatView.swift
 //  apollo4
 //
-//  Created by Daniel DeMoney on 12/20/21.
+//  Created by Daniel DeMoney on 1/9/22.
 //
 
 import SwiftUI
-//Struct used to pass around arguments for stats fullscren views as JSON
-struct statViewData {
-    var name: String
-    //ALL data not just some, as [(Double, Date)]
-    //filtering will happen within the view
-    //Actual technical name
-    var statName: String?
-    var tupleData: [(Double, Date)] = []
-    var dataRange: Double = 0
-    var dataMin: Double = 0
-    var gradient: Gradient = Gradient(colors: [.blue, .purple])
-    var gradients: [Gradient]? = nil
-    var multiTupleData: [[(Double, Date)]]? = nil
-}
-struct FullScreenStatView: View {
-    //Grabs the context of the presentation
+
+struct MultilineFullScreenStatView: View {
     @Environment(\.presentationMode) var presentationMode
-    //Stats passed in for inference
-    @EnvironmentObject var statsWrapper: StatDataObjectListWrapper
     //Text at the top
     var name: String
     //Actual technical name
-    var statName: String?
-    //Next 3 values for graphing
-    var tupleData: [(Double, Date)]
-    var dataRange: Double
-    var dataMin: Double
-    var gradient: Gradient = Gradient(colors: [Color.yellow, Color.green])
-    //Start on week
+    var multiTupleData: [[(Double, Date)]]
     @State private var timeFrame: Calendar.Component = .weekOfYear
     @State private var poolTimeFrame: Calendar.Component = .hour
     @State private var poolNum: Int = 1
-    private var graphData: [(Double, Date)] {
-        //Computd variable which returns the data for the timeframe
-        return getTemporallyPooledData(forData: tupleData, within: timeFrame, poolTimeFrame: poolTimeFrame, num: poolNum)
+    private var graphData: ([[Double]], [[Date]]) {
+        var doubles: [[Double]] = []
+        var dates: [[Date]] = []
+        for graphData in multiTupleData{
+            let statData = getTemporallyPooledData(forData: graphData, within: timeFrame, poolTimeFrame: poolTimeFrame, num: poolNum)
+            doubles.append(statData.map{$0.0})
+            dates.append(statData.map{$0.1})
+        }
+        return (doubles, dates)
     }
-    //CHANGE CHANGE CHANGE CHANGE, taking name is temporary, and only to see if current implementation
-    //works, eventually fullscreenstatview will take an optional argument of the statobject, and access
-    //the string via stat object
-    private var inferenceObject : aggregateInferenceObject{
-        return aggregateInferenceObject(data: aggregateDataObject(stats: statsWrapper.stats, within: poolTimeFrame), forStat: statName, graphData: graphData)
+    private var inferenceObject: aggregateInferenceObject {
+        return aggregateInferenceObject(forStats: ["SystolicPressure", "DiastolicPressure"], graphData: reconstituteParralellTimeStampedData(doubles: graphData.0, dates: graphData.1))
     }
     var body: some View {
         VStack{
@@ -71,7 +52,8 @@ struct FullScreenStatView: View {
                             timeFrame = .day
                             poolTimeFrame = .minute
                             poolNum = 15
-                            setPoolTimeFrame(data: tupleData, maxTimeFrame: &poolTimeFrame, maxNum: &poolNum, within: timeFrame)
+                            //use first set in list to set pool timeFrame
+                            setPoolTimeFrame(data: multiTupleData[0], maxTimeFrame: &poolTimeFrame, maxNum: &poolNum, within: timeFrame)
                         }
                     }
                 Spacer()
@@ -85,7 +67,7 @@ struct FullScreenStatView: View {
                             timeFrame = .weekOfYear
                             poolTimeFrame = .hour
                             poolNum = 1
-                            setPoolTimeFrame(data: tupleData, maxTimeFrame: &poolTimeFrame, maxNum: &poolNum, within: timeFrame)
+                            setPoolTimeFrame(data: multiTupleData[0], maxTimeFrame: &poolTimeFrame, maxNum: &poolNum, within: timeFrame)
                         }
                     }
                 Spacer()
@@ -99,7 +81,7 @@ struct FullScreenStatView: View {
                             timeFrame = .month
                             poolTimeFrame = .day
                             poolNum = 1
-                            setPoolTimeFrame(data: tupleData, maxTimeFrame: &poolTimeFrame, maxNum: &poolNum, within: timeFrame)
+                            setPoolTimeFrame(data: multiTupleData[0], maxTimeFrame: &poolTimeFrame, maxNum: &poolNum, within: timeFrame)
                         }
                     }
                 Spacer()
@@ -113,7 +95,7 @@ struct FullScreenStatView: View {
                             timeFrame = .year
                             poolTimeFrame = .day
                             poolNum = 1
-                            setPoolTimeFrame(data: tupleData, maxTimeFrame: &poolTimeFrame, maxNum: &poolNum, within: timeFrame)
+                            setPoolTimeFrame(data: multiTupleData[0], maxTimeFrame: &poolTimeFrame, maxNum: &poolNum, within: timeFrame)
                         }
                     }
             }
@@ -121,15 +103,14 @@ struct FullScreenStatView: View {
             ScrollViewReader { proxy in
                 ScrollView{
                     LazyVStack{
-                        LineGraph(data: .constant(graphData.map{$0.0}), dataTime: .constant(graphData.map{$0.1}), dataMin: dataMin, dataRange: dataRange, height: 400, width: UIScreen.main.bounds.width - 60, gradient: gradient, title: "  " + getTimeComponent(date: graphData.map{$0.1}.first!, timeFrame: .day) + " - " + getTimeComponent(date: graphData.map{$0.1}.last!, timeFrame: timeFrame == .day ? .hour : .day), pooledData: true, aggregateInference: inferenceObject)
-                            .padding(.top, 15)
-                            .padding(.leading)
-                            .padding(.bottom, 30)
+                        MultiLineGraph(data: .constant(graphData.0), dataWithLabels: .constant(graphData.1), height: 400, width: UIScreen.main.bounds.width - 60, gradients: [Gradient(colors: [Color.pink, Color.purple]), Gradient(colors: [Color.purple, Color.blue])], statNames: ["Systolic Pressure", "Diastolic Pressure"], title: getTimeComponent(date: graphData.1[0].first!, timeFrame: .day) + "-" + getTimeComponent(date: graphData.1[0].last!, timeFrame: .day), pooledData: true, aggregateInference: inferenceObject)
                             .id(0)
+                            .padding()
+                            .padding(.bottom, 15)
                         //Filter out odd numbers so our for each can hop row to row
-                        ForEach(inferenceObject.objectsToImplement.indices.filter{ $0 % 2 == 0 }, id: \.self){indice in
+                        ForEach(inferenceObject.multiLineObjectsToImplement.indices.filter{ $0 % 2 == 0 }, id: \.self){indice in
                             HStack{
-                                inferenceObject.objectsToImplement[indice].box
+                                inferenceObject.multiLineObjectsToImplement[indice].box
                                     .onTapGesture {
                                         print("Sending notification to put \(indice) as object inFocus")
                                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "InferenceInFocus"), object: String(indice))
@@ -137,8 +118,8 @@ struct FullScreenStatView: View {
                                             proxy.scrollTo(0, anchor: .bottom)
                                         }
                                     }
-                                if indice + 1 < inferenceObject.objectsToImplement.count{
-                                    inferenceObject.objectsToImplement[indice + 1].box
+                                if indice + 1 < inferenceObject.multiLineObjectsToImplement.count{
+                                    inferenceObject.multiLineObjectsToImplement[indice + 1].box
                                         .onTapGesture {
                                             print("Sending notification to put \(indice + 1) as object inFocus")
                                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "InferenceInFocus"), object: String(indice + 1))
@@ -164,7 +145,25 @@ struct FullScreenStatView: View {
             }
         }
         .onAppear{
-            setPoolTimeFrame(data: tupleData, maxTimeFrame: &poolTimeFrame, maxNum: &poolNum, within: timeFrame)
+            setPoolTimeFrame(data: multiTupleData[0], maxTimeFrame: &poolTimeFrame, maxNum: &poolNum, within: timeFrame)
         }
     }
+}
+
+func reconstituteParralellTimeStampedData(doubles: [[Double]], dates: [[Date]]) -> [[(Double, Date)]]{
+    var tupleList: [[(Double, Date)]] = []
+    var iterator1 = 0
+    var iterator2 = 0
+    for listVal in doubles {
+        var singularTupleList: [(Double, Date)] = []
+        for dataVal in listVal {
+            singularTupleList.append((dataVal, dates[iterator1][iterator2]))
+            iterator2 += 1
+        }
+        tupleList.append(singularTupleList)
+        iterator2 = 0
+        iterator1 += 1
+    }
+    print("reconstituted data, generated \(tupleList)")
+    return tupleList
 }

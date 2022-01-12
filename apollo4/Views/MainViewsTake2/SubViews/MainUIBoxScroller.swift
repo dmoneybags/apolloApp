@@ -70,8 +70,8 @@ struct MainUIBoxScroller<Content: View>: View {
     //HardCoded for now, will be changed to use a proportion of width in the future
     private func getView() -> Int {
         switch offsetX{
-        case -180 ..< 100: selector = 0; return 0
-        case -540 ..< -181: selector = 1; return 1
+        case -width/2 ..< 100: selector = 0; return 0
+        case -width * 1.5 ..< -width/2 - 1: selector = 1; return 1
         default: selector = 1; return 1
         }
     }

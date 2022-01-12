@@ -12,6 +12,7 @@ struct TickMarkReader: View {
     var width: Double = 30
     var stat: String
     var reading: Double
+    var color: Color? = nil
     @State private var loaded = false
     private var progress: Double{
         return getProgress(stat: stat, reading: reading)
@@ -31,7 +32,7 @@ struct TickMarkReader: View {
                 Capsule()
                     .frame(width: width, height: loaded ? readingLength: 0, alignment: .center)
                     .position(x: geo.frame(in: .local).midX, y: loaded ? geo.frame(in: .local).maxY - readingLength/2 : geo.frame(in: .local).maxY)
-                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.clear, getColor(stat: stat, progress: progress)]), startPoint: UnitPoint(x: 0.0, y: 1.0), endPoint: UnitPoint(x: 0.0, y: 0.0)))
+                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.clear, (color != nil ? color!: getColor(stat: stat, progress: progress))]), startPoint: UnitPoint(x: 0.0, y: 1.0), endPoint: UnitPoint(x: 0.0, y: 0.0)))
                 HStack{
                     Text(String(Int(reading)))
                         .fontWeight(.bold)

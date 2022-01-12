@@ -19,17 +19,24 @@ enum stopWatchMode {
 class StopWatchManager: ObservableObject {
     init(timeLim: Double){
         self.totalTime = timeLim
+        self.lastUpdated = Date()
     }
     var totalTime : Double
     @Published var mode: stopWatchMode = .stopped
     @Published var secondsElapsed = 0.0
     @Published var progress = 0.0
+    private var lastUpdated: Date
     var timer = Timer()
     
     func start() {
         mode = .running
+        self.lastUpdated = Date()
+        print("Starting StopWatch at \(self.lastUpdated)")
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-            self.secondsElapsed = self.secondsElapsed + 0.1
+            let currentAccumulatedTime: Double = Date().timeIntervalSince(self.lastUpdated)
+            print(currentAccumulatedTime)
+            self.secondsElapsed = self.secondsElapsed + currentAccumulatedTime
+            self.lastUpdated = Date()
             self.progress = self.secondsElapsed/self.totalTime
             if self.secondsElapsed >= self.totalTime{
                 self.stop()
