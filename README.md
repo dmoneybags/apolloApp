@@ -1,7 +1,11 @@
 # apolloApp
 # A Swift 5 IOS App for reading data from a BLE oximeter ring communicating heart rate, SPO2, blood pressure, and other statistics
+C code for ring can be found here: https://github.com/rebondy/Apollo-Ring
 
-https://user-images.githubusercontent.com/86892271/147374638-6ad8d093-2f37-47c6-9701-04d2813a6edf.mp4
+
+https://user-images.githubusercontent.com/86892271/149026005-9d24595a-92bf-472c-af85-85c616755872.mov
+
+
 
 # Hardware
 The intended ring will use a [Maxim 32664](https://datasheets.maximintegrated.com/en/ds/MAX32664.pdf) oximeter with an algorithm chip to compute blood pressure, heart rate, and SPO2 based on red absorption and infared absorption. Raw data from the oximeter is also planned to be used within our own calculations, for heart rate variability, and cardiac output. The bluetooth chip is a Nordic NRF 52382, and runs on the bluefruit API.
