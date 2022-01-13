@@ -13,16 +13,17 @@ struct OffsetPreferenceKey: PreferenceKey {
 }
 
 struct MainUIBoxScroller<Content: View>: View {
-    //Which one are we on?
-    @State private var selector = 0
-    @State private var offsetX: CGFloat = 0
+    var numViews: Int
     var width: CGFloat
     //Content passed from MainUIBox
     @ViewBuilder var content: Content
+    //Which one are we on?
+    @State private var selector = 0
+    @State private var offsetX: CGFloat = 0
     var body: some View {
         VStack{
             HStack{
-                ForEach(0..<2, id: \.self){index in
+                ForEach(0..<numViews, id: \.self){index in
                     Circle()
                         .frame(width: 10, height: 10, alignment: .center)
                         .foregroundColor(selector == index ? Color.blue : Color(UIColor.systemGray3))
@@ -69,11 +70,9 @@ struct MainUIBoxScroller<Content: View>: View {
     }
     //HardCoded for now, will be changed to use a proportion of width in the future
     private func getView() -> Int {
-        switch offsetX{
-        case -width/2 ..< 100: selector = 0; return 0
-        case -width * 1.5 ..< -width/2 - 1: selector = 1; return 1
-        default: selector = 1; return 1
-        }
+        let viewNum = abs(Int((offsetX - width/2)/width))
+        selector = viewNum
+        return viewNum
     }
 }
 

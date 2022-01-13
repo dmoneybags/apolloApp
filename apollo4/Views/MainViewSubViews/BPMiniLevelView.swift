@@ -10,6 +10,7 @@ import SwiftUI
 struct BPMiniLevelView: View {
     @Binding var sysData: [Double]
     @Binding var diaData: [Double]
+    @State var showCover: Bool = false
     var body: some View {
         VStack{
             HStack{
@@ -37,9 +38,14 @@ struct BPMiniLevelView: View {
                         .padding(.bottom, 15)
                         .padding(.horizontal)
                     Divider()
-                    Button("Read More...", action: pass)
+                    Button("Read More..."){
+                        showCover = true
+                    }
                 }
             }
+        }
+        .fullScreenCover(isPresented: $showCover){
+            FullScreenStatInfo(readings: [averageData(data: sysData), averageData(data: diaData)], topText: "Blood Pressure Health Level", subText: "for today", stats: [SystolicPressure(), DiastolicPressure()], colors: [.pink, .purple])
         }
     }
     private func pass(){

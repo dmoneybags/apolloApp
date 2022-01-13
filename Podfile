@@ -11,6 +11,7 @@ target 'apollo4' do
 
   pod 'AmplifyPlugins/AWSCognitoAuthPlugin', '~> 1.0' # support for Cognito user authentication
   pod 'AmplifyPlugins/AWSAPIPlugin', '~> 1.0'
+  pod 'NotificationBannerSwift', '~> 3.0.0'
   target 'apollo4Tests' do
     inherit! :search_paths
     # Pods for testing

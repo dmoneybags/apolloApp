@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import NotificationBannerSwift
 extension AnyTransition {
     static var moveAndFade: AnyTransition {
         .asymmetric(
@@ -24,7 +24,8 @@ struct HrVarView: View {
     @State var liveRead: Bool = true
     @State private var state: LiveReadState = .preread
     @State private var hrVar: Double = 0.0
-    let varPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "HrVar"))
+    private let varPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "HrVar"))
+    private let errorNotification = NotificationBanner(title: "Error", subtitle: "Ring not connected", style: .danger)
     var body: some View {
         ZStack{
             if state == .finished {
@@ -135,12 +136,16 @@ struct HrVarView: View {
         }
     }
     func startHrVar(){
-        print("Changing to raw mode; sending requests")
-        let on = withUnsafeBytes(of: 0x02) { Data($0) }
-        bleManager.connectedPeripheral?._CBPeripheral.writeValue(on, for: (bleManager.connectedPeripheral!.characteristics["isRaw"])!, type: .withoutResponse)
-        print("Sent Requests")
-        state = .reading
-        stopWatchManager.start()
+        if bleManager.connectedPeripheral != nil {
+            print("Changing to raw mode; sending requests")
+            let on = withUnsafeBytes(of: 0x02) { Data($0) }
+            bleManager.connectedPeripheral!._CBPeripheral.writeValue(on, for: (bleManager.connectedPeripheral!.characteristics["isRaw"])!, type: .withoutResponse)
+            print("Sent Requests")
+            state = .reading
+            stopWatchManager.start()
+        } else {
+            errorNotification.show()
+        }
     }
     func reset(){
         hrVar = 0.0

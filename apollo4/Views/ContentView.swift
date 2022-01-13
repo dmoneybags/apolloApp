@@ -117,6 +117,7 @@ struct ContentView: View {
         .environmentObject(bleManager)
         //user object will most likely be replaced
         .environmentObject(user)
+        
     }
 }
 

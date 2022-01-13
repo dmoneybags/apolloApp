@@ -50,7 +50,7 @@ struct VitalView: View {
                     //MainUIBox for each main stat
                     //Lazy VStack so they dont all load at once
                     LazyVStack{
-                        MainUIBox(title: HeartRateObject.name!, dataVal: HeartRateObject.data.last as! Double, dataValStr: String(HeartRateObject.data.last as! Double), imageName: "heart.fill", foregroundColor: Color.red, cardFunc: HeartRateCardSwitcher, numCards: 4, fullscreenData:
+                        MainUIBox(title: HeartRateObject.name!, dataVal: HeartRateObject.data.last as! Double, dataValStr: String(HeartRateObject.data.last as! Double), imageName: "heart.fill", foregroundColor: Color.red, cardFunc: HeartRateCardSwitcher, numCards: 4, numScrollViews: 2, stats: [HeartRate()], fullscreenData:
                                     statViewData(name: "Heart Rate", statName: "HeartRate", tupleData: HeartRateObject.generateTupleData(), dataRange: HeartRate().getRange(label: "").1 - HeartRate().getRange(label: "").0, dataMin: HeartRate().getRange(label: "").0, gradient: Gradient(colors: [Color.orange, Color.pink]))){
                             LineGraph(data: $HeartRateGraphData, dataTime: $HeartRateGraphTimes, dataMin: 50, dataRange: 150, height: 250, width: 290, gradient: Gradient(colors: [Color.pink, Color.orange, Color.red]))
                                 .frame(width: UIScreen.main.bounds.size.width - 20, height: 330, alignment: .center)
@@ -70,7 +70,7 @@ struct VitalView: View {
                         }
                         .environmentObject(statsWrapper)
                         .padding(.top, 40)
-                        MainUIBox(title: SPO2Object.name!, dataVal: SPO2Object.data.last as! Double, dataValStr: String(SPO2Object.data.last as! Double), imageName: "wind", foregroundColor: Color.white, cardFunc: SPO2CardSwitcher, numCards: 3, fullscreenData:
+                        MainUIBox(title: SPO2Object.name!, dataVal: SPO2Object.data.last as! Double, dataValStr: String(SPO2Object.data.last as! Double), imageName: "wind", foregroundColor: Color.white, cardFunc: SPO2CardSwitcher, numCards: 3, numScrollViews: 2, stats: [SPO2()], fullscreenData:
                                     statViewData(name: "SPO2", statName: "SPO2", tupleData: SPO2Object.generateTupleData(), dataRange: 25, dataMin: 75, gradient: Gradient(colors: [Color.blue, Color.purple]))){
                             VerticalLinePlotter(data: $SPO2Tuples, title: "Todays Readings", stat: SPO2(), width: UIScreen.main.bounds.size.width - 60, height: 300)
                                 .padding()
@@ -88,7 +88,7 @@ struct VitalView: View {
                             .id(1)
                         }
                         .environmentObject(statsWrapper)
-                        MainUIBox(title: "Blood Pressure", dataVal: 1.0, dataValStr: String(SystolicPressureObject.data.last as! Int) + "/" + String(DiastolicPressureObject.data.last as! Int), imageName: "thermometer", foregroundColor: Color.white, cardFunc: BPCardSwitcher, numCards: 3, fullscreenData:
+                        MainUIBox(title: "Blood Pressure", dataVal: 1.0, dataValStr: String(SystolicPressureObject.data.last as! Int) + "/" + String(DiastolicPressureObject.data.last as! Int), imageName: "thermometer", foregroundColor: Color.white, cardFunc: BPCardSwitcher, numCards: 3, numScrollViews: 2, stats: [SystolicPressure(), DiastolicPressure()], fullscreenData:
                                     statViewData(name: "Blood Pressure", multiTupleData: [SystolicPressureObject.generateTupleData(), DiastolicPressureObject.generateTupleData()])){
                             MultiLineGraph(data: $BPData, dataWithLabels: $BPTimes, height: 250, width: 290, gradients: [Gradient(colors: [Color.pink, Color.purple]), Gradient(colors: [Color.purple, Color.blue])], statNames: ["Systolic Pressure", "Diastolic Pressure"])
                                 .frame(width: UIScreen.main.bounds.size.width - 20, alignment: .center)
@@ -179,7 +179,7 @@ struct VitalView: View {
                 .resizable()
                 .padding()
         })
-        case 1: return AnyView(CardView(name: "Resting Heart Rate", backgroundColor: Color.blue){
+        case 1: return AnyView(CardView(name: "Resting Heart Rate", backgroundColor: Color.blue, fullScreenView: AnyView(FullScreenStatInfo(tupleData: [getRestingHR(hrData: HeartRateObject.generateTupleData())], topText: "Resting Heart Rate", subText: "Resting heart rate is the hearts rate when not under abnormal stress or exertion", stats: [HeartRate()], colors: [.blue]))){
             Image(systemName: "bed.double")
                 .resizable()
                 .padding()
@@ -226,7 +226,7 @@ struct VitalView: View {
                 .resizable()
                 .padding()
         })
-        case 1: return AnyView(CardView(name: "Pulse Pressure", backgroundColor: Color.green){
+        case 1: return AnyView(CardView(name: "Pulse Pressure", backgroundColor: Color.green, fullScreenView: AnyView(FullScreenStatInfo(tupleData: [getPulsePressure(sysData: SystolicPressureObject.generateTupleData(), diaData: DiastolicPressureObject.generateTupleData())], topText: "Pulse Pressure", subText: "A measure of the difference between systolic and diastolic pressure", stats: [PulsePressure()], colors: [.green]))){
             Image(systemName: "dial.min")
                 .resizable()
                 .aspectRatio(1.0, contentMode: .fit)

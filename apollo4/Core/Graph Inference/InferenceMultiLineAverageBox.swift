@@ -10,6 +10,7 @@ import SwiftUI
 struct InferenceMultiLineAverageBox: View {
     var gradients: [Gradient]
     var names: [String]
+    @State private var scaleEffect: Bool = false
     var body: some View {
         VStack(spacing: 5){
             Text("Averages")
@@ -37,6 +38,13 @@ struct InferenceMultiLineAverageBox: View {
         .frame(width: 180, height: 30 + CGFloat(gradients.count) * 30)
         .background(.white)
         .cornerRadius(20)
+        .scaleEffect(scaleEffect ? 1.5: 1.0)
+        .offset(x: scaleEffect ? -20: 0, y: 0)
+        .onTapGesture {
+            withAnimation(){
+                scaleEffect.toggle()
+            }
+        }
     }
 }
 

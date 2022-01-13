@@ -34,7 +34,6 @@ class StopWatchManager: ObservableObject {
         print("Starting StopWatch at \(self.lastUpdated)")
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             let currentAccumulatedTime: Double = Date().timeIntervalSince(self.lastUpdated)
-            print(currentAccumulatedTime)
             self.secondsElapsed = self.secondsElapsed + currentAccumulatedTime
             self.lastUpdated = Date()
             self.progress = self.secondsElapsed/self.totalTime

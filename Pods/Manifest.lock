@@ -1,36 +1,42 @@
 PODS:
-  - Amplify (1.15.6):
-    - Amplify/Default (= 1.15.6)
-  - Amplify/Default (1.15.6)
-  - Amplify/Tools (1.15.6)
-  - AmplifyPlugins/AWSAPIPlugin (1.15.6):
+  - Amplify (1.18.1):
+    - Amplify/Default (= 1.18.1)
+  - Amplify/Default (1.18.1)
+  - Amplify/Tools (1.18.1)
+  - AmplifyPlugins/AWSAPIPlugin (1.18.1):
     - AppSyncRealTimeClient (~> 1.4)
-    - AWSCore (~> 2.26.1)
-    - AWSPluginsCore (= 1.15.6)
-  - AmplifyPlugins/AWSCognitoAuthPlugin (1.15.6):
-    - AWSAuthCore (~> 2.26.1)
-    - AWSCognitoIdentityProvider (~> 2.26.1)
-    - AWSCognitoIdentityProviderASF (~> 2.26.1)
-    - AWSCore (~> 2.26.1)
-    - AWSMobileClient (~> 2.26.1)
-    - AWSPluginsCore (= 1.15.6)
+    - AWSCore (~> 2.26.6)
+    - AWSPluginsCore (= 1.18.1)
+  - AmplifyPlugins/AWSCognitoAuthPlugin (1.18.1):
+    - AWSAuthCore (~> 2.26.6)
+    - AWSCognitoIdentityProvider (~> 2.26.6)
+    - AWSCognitoIdentityProviderASF (~> 2.26.6)
+    - AWSCore (~> 2.26.6)
+    - AWSMobileClient (~> 2.26.6)
+    - AWSPluginsCore (= 1.18.1)
   - AppSyncRealTimeClient (1.6.0):
     - Starscream (~> 3.1.1)
-  - AWSAuthCore (2.26.4):
-    - AWSCore (= 2.26.4)
-  - AWSCognitoIdentityProvider (2.26.4):
-    - AWSCognitoIdentityProviderASF (= 2.26.4)
-    - AWSCore (= 2.26.4)
-  - AWSCognitoIdentityProviderASF (2.26.4)
-  - AWSCore (2.26.4)
-  - AWSMobileClient (2.26.4):
-    - AWSAuthCore (= 2.26.4)
-    - AWSCognitoIdentityProvider (= 2.26.4)
-    - AWSCognitoIdentityProviderASF (= 2.26.4)
-    - AWSCore (= 2.26.4)
-  - AWSPluginsCore (1.15.6):
-    - Amplify (= 1.15.6)
-    - AWSCore (~> 2.26.1)
+  - AWSAuthCore (2.26.7):
+    - AWSCore (= 2.26.7)
+  - AWSCognitoIdentityProvider (2.26.7):
+    - AWSCognitoIdentityProviderASF (= 2.26.7)
+    - AWSCore (= 2.26.7)
+  - AWSCognitoIdentityProviderASF (2.26.7):
+    - AWSCore (= 2.26.7)
+  - AWSCore (2.26.7)
+  - AWSMobileClient (2.26.7):
+    - AWSAuthCore (= 2.26.7)
+    - AWSCognitoIdentityProvider (= 2.26.7)
+    - AWSCognitoIdentityProviderASF (= 2.26.7)
+    - AWSCore (= 2.26.7)
+  - AWSPluginsCore (1.18.1):
+    - Amplify (= 1.18.1)
+    - AWSCore (~> 2.26.6)
+  - MarqueeLabel (4.0.5)
+  - NotificationBannerSwift (3.0.6):
+    - MarqueeLabel (~> 4.0.5)
+    - SnapKit (~> 5.0.1)
+  - SnapKit (5.0.1)
   - Starscream (3.1.1)
 
 DEPENDENCIES:
@@ -38,6 +44,7 @@ DEPENDENCIES:
   - Amplify/Tools (~> 1.0)
   - AmplifyPlugins/AWSAPIPlugin (~> 1.0)
   - AmplifyPlugins/AWSCognitoAuthPlugin (~> 1.0)
+  - NotificationBannerSwift (~> 3.0.0)
 
 SPEC REPOS:
   trunk:
@@ -50,20 +57,26 @@ SPEC REPOS:
     - AWSCore
     - AWSMobileClient
     - AWSPluginsCore
+    - MarqueeLabel
+    - NotificationBannerSwift
+    - SnapKit
     - Starscream
 
 SPEC CHECKSUMS:
-  Amplify: d6ec04316dd74852f6a968d89c0f8cab9947d4d5
-  AmplifyPlugins: 7cfe5a34e97c6091855c10d83ccda538fb371cd1
+  Amplify: 515c6993bfba7c26a29c39aa8ee79bf695d87e1e
+  AmplifyPlugins: 89c4639364e956195f8f6b89d2035b54faf13cd8
   AppSyncRealTimeClient: 8b5ec94085b8ee9bb6fb9d9d76a157beb538ec6f
-  AWSAuthCore: 10fdd6eccf789389d32fc00790e605627e359e8f
-  AWSCognitoIdentityProvider: 677c7fdd1554d1ac66ebcd515047f626883cf2f9
-  AWSCognitoIdentityProviderASF: 2f1f5aa9f69244a88839f128ced10782b19b2717
-  AWSCore: ee7217d84a3ec7f6748462e7f765a794d47f23c6
-  AWSMobileClient: f1ad9a17ff292fbb673689c3442b72fce5467b86
-  AWSPluginsCore: 46b75ee57b0a1f10d64f4fa6b3b4153f5900dd4f
+  AWSAuthCore: e987fce9ad13ef8ac7d39d82305af21a63c590cf
+  AWSCognitoIdentityProvider: 94cb0197e41662e3d29ee0feeb0cfa10d2242302
+  AWSCognitoIdentityProviderASF: 306610c6b2df9a0449243911a67d44b49d0a708f
+  AWSCore: e7fc9a005c527f2623b699a3ff8595fc45c24bd9
+  AWSMobileClient: 318f7388a20424d2fe47fc946e3ba9b722b040b8
+  AWSPluginsCore: 1fe76c21a9e011d434be35ea646dddcd249d624f
+  MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
+  NotificationBannerSwift: 7021be2338f8f29cf424b0aca43da462bf9e2a1a
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: f3934cd59f38b7dc962fc54796e516412d474d8d
+PODFILE CHECKSUM: 0f4510f0a079a39c078965af54c31eb9d7a3b00b
 
 COCOAPODS: 1.11.0

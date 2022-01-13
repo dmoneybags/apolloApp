@@ -12,6 +12,7 @@ struct MainUIBox<Content: View>: View {
     //Value which will be changed within a withAnimation framework to animate the heart (if heartRate)
     @State private var animatorVal : Double = 0.7
     //Stats passed in for inference
+    //Most
     @EnvironmentObject var statsWrapper: StatDataObjectListWrapper
     //String at top of box
     var title: String
@@ -27,9 +28,12 @@ struct MainUIBox<Content: View>: View {
     var cardFunc: (Int) -> AnyView
     //So we know how many cards we have to produce them in a for loop, cant len a function
     var numCards: Int
+    var numScrollViews: Int
     //Passed in for fullscreen statview cover
+    var stats: [Stat]
     var fullscreenData: statViewData
     @State private var showingData: Bool = false
+    @State private var showInfo: Bool = false
     //Pass in content to show in scrollview, passed with a bracket
     //Same way you would add content to a VStack
     @ViewBuilder var content: Content
@@ -41,6 +45,18 @@ struct MainUIBox<Content: View>: View {
                     .fontWeight(.bold)
                     .padding(.top)
                     .padding(.horizontal)
+                Image(systemName: "info.circle")
+                    .resizable()
+                    .frame(width: 15, height: 15)
+                    .padding(.bottom, 5)
+                    .offset(x: -10, y: 0.0)
+                    .foregroundColor(Color(UIColor.systemGray))
+                    .onTapGesture {
+                        showInfo = true
+                    }
+                    .fullScreenCover(isPresented: $showInfo){
+                        WhatIsStatName(stats: stats)
+                    }
                 Spacer()
                 Image(systemName: imageName)
                     .resizable()
@@ -66,7 +82,7 @@ struct MainUIBox<Content: View>: View {
                 .padding(.horizontal)
                 .padding(.top,  -10)
             //ScrollView for main views
-            MainUIBoxScroller(width: UIScreen.main.bounds.size.width - 20){
+            MainUIBoxScroller(numViews: numScrollViews, width: UIScreen.main.bounds.size.width - 20){
                 //content we passed in using brackets
                 content
             }

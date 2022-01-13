@@ -15,28 +15,29 @@ struct RingChart: View {
     @State var stat: String = "SPO2"
     @State var color: Color? = nil
     @State var fontSize: CGFloat? = nil
+    @State var lineWidth: Double? = nil
     var body: some View {
         ZStack {
             GeometryReader{geo in
                 Circle()
-                    .stroke(lineWidth: 20.0)
+                    .stroke(lineWidth: lineWidth ?? 20.0)
                     .opacity(0.3)
                     .foregroundColor(color != nil ? color : getColor(stat: stat, progress: progress))
                 Circle()
                     .trim(from: 0.0, to: CGFloat(min(loaded ? self.progress: 0.0, 1.0)))
-                    .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
+                    .stroke(style: StrokeStyle(lineWidth: lineWidth ?? 20.0, lineCap: .round, lineJoin: .round))
                     .foregroundColor(color != nil ? color : getColor(stat: stat, progress: progress))
                     .rotationEffect(Angle(degrees: 270.0))
                     .opacity(0.7)
                     .onAppear(){
-                        withAnimation(Animation.easeInOut(duration: 1)){
+                        withAnimation(Animation.easeInOut(duration: 2)){
                             loaded = true
                         }
                     }
                 if progress > 0 {
                     Circle()
                         .trim(from: 0.0, to: 0.001)
-                        .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
+                        .stroke(style: StrokeStyle(lineWidth: lineWidth ?? 20.0, lineCap: .round, lineJoin: .round))
                         .rotationEffect(Angle(degrees: 270 + (360 * progress)))
                         .foregroundColor(color != nil ? color : getColor(stat: stat, progress: progress))
                 }

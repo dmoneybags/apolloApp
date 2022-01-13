@@ -45,10 +45,23 @@ struct MultilineMinMaxGraphview: View {
                 if boxInFocus == indice {
                     let percent = (graphData[indice][minIndex] - averageData(data: graphData[indice]))/averageData(data: graphData[indice])
                     InferenceInfoBox(doubleVal: graphData[indice][minIndex], percent: abs(percent), isHigher: percent > 0, gradient: gradients[indice])
-                        .position(x: minXPosition > width/2 ? -(width/2 - minXPosition) - 80 : -(width/2 - minXPosition) + 80, y: minYPositions[indice])
+                        .position(x: minXPosition > width/2 ? -(width/2 - minXPosition) - 80 : -(width/2 - minXPosition) + 80, y: getBoxPosition(yPosition: minYPositions[indice]))
+                        .onAppear{
+                            print(minYPositions[indice])
+                            print(height)
+                        }
                 }
             }
         }
         .frame(width: width, height: height)
+    }
+    private func getBoxPosition(yPosition: Double) -> Double{
+        if yPosition < height/2 + 60{
+            return height/2 + 60
+        }
+        if yPosition > 3/2 * height - 60{
+            return 3/2 * height - 60
+        }
+        return yPosition
     }
 }

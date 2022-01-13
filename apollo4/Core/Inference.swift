@@ -13,7 +13,7 @@ func getMinMaxVals(stat: String) -> (Double, Double){
     switch stat {
         case "SPO2":
             maxVal = 100
-            minVal = 90
+            minVal = 75
         case "HeartRate":
             maxVal = 140
             minVal = 40

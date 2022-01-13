@@ -5,26 +5,46 @@
 //  Created by Daniel DeMoney on 12/7/21.
 //
 
+//These objects hold the concrete data for each stat, think of them as existing statically,
+//however they need to be initialized to be held by the statDataobject as an attribute
+//They also now hold info for the WhatIsStatName view
 import Foundation
 import SwiftUI
 protocol Stat {
+    //How the code has agreed to refer to the stat, Ex: "HeartRate"
     var name: String {get}
+    //How the user should see the name, Ex: "Heart Rate"
+    var displayName: String {get}
+    //For WhatIsview
+    var infoTitle: String {get}
+    //Sticky header for WhatIsView
+    var imageName: String {get}
+    var mainColor: Color {get}
+    //Legacy down below, you can set it to just an empty url
     var url: URL {get}
     var measurement: String {get}
     var minVal: Int {get}
     var maxVal: Int {get}
+    var labels: [String] {get}
     func getLabel(reading: Double) -> String
     func getRange(label: String) -> (Double, Double)
-    func getColor(forLabel label: String) -> Color 
-    //func getDescription(label: String) -> String
-    //func getGoal()
+    func getColor(forLabel label: String) -> Color
+}
+func getStatInfoObject(named name: String) -> Stat? {
+    let statObjects: [Stat] = [HeartRate(), SPO2(), DiastolicPressure(), SystolicPressure()]
+    return statObjects.first(where: {$0.name == name})
 }
 struct HeartRate: Stat {
     let name = "HeartRate"
+    let displayName = "Heart Rate"
+    let infoTitle = "Whats a Good Heart Rate?"
+    let imageName = "HeartRate"
+    let mainColor = Color.pink
     let url = getDocumentsDirectory().appendingPathComponent("HeartRate")
     let measurement = "BPM"
     let minVal = 40
     let maxVal = 220
+    let labels = ["Optimal", "Excellent", "Great",  "Good", "Average", "Below Average",  "Poor"]
     func getLabel(reading: Double) -> String {
         //Add age
         switch reading{
@@ -64,10 +84,15 @@ struct HeartRate: Stat {
 }
 struct SPO2: Stat{
     let name = "SPO2"
+    let displayName = "SPO2"
+    let infoTitle = "What is SPO2?"
+    let imageName = "SPO2"
+    let mainColor = Color.purple
     let url = getDocumentsDirectory().appendingPathComponent("SPO2")
     let measurement = "%"
     let minVal = 85
     let maxVal = 100
+    let labels = ["Optimal", "Insufficient", "Low", "Critical"]
     func getLabel(reading: Double) -> String {
         switch reading{
         case 0..<85: return "Critical"
@@ -79,9 +104,9 @@ struct SPO2: Stat{
     }
     func getRange(label: String) -> (Double, Double) {
         switch label{
-        case "Critcal": return (75, 84)
+        case "Critical": return (75, 84)
         case "Low": return (85, 89)
-        case "Insufficent": return (90, 94)
+        case "Insufficient": return (90, 94)
         case "Optimal": return (95, 100)
         default: return (75, 100)
         }
@@ -89,8 +114,8 @@ struct SPO2: Stat{
     func getColor(forLabel label: String) -> Color {
         switch label{
         case "Critcal": return Color.red
-        case "Low": return Color.yellow
-        case "Insufficent": return Color.green
+        case "Low": return Color.orange
+        case "Insufficient": return Color.yellow
         case "Optimal": return Color.purple
         default: return Color.red
         }
@@ -98,10 +123,15 @@ struct SPO2: Stat{
 }
 struct SystolicPressure: Stat{
     let name = "SystolicPressure"
+    let displayName = "Systolic Pressure"
+    let infoTitle = "Whats the importance of Blood Pressure?"
+    let imageName = "BloodPressure"
+    let mainColor = Color.green
     let url = getDocumentsDirectory().appendingPathComponent("SystolicPressure")
-    let measurement: String = "mmHg"
+    let measurement = "mmHg"
     let minVal = 100
     let maxVal = 200
+    let labels = ["Optimal", "Normal", "High Normal", "Grade 1 Hypertension", "Grade 2 Hypertension",  "Grade 3 Hypertension"]
     func getLabel(reading: Double) -> String {
         switch reading {
         case 100..<121: return "Optimal"
@@ -138,10 +168,15 @@ struct SystolicPressure: Stat{
 }
 struct DiastolicPressure: Stat{
     let name = "DiastolicPressure"
+    let displayName = "Diastolic Pressure"
+    let infoTitle = "Whats the importance of Blood Pressure?"
+    let imageName = "BloodPressure"
+    let mainColor = Color.green
     let url = getDocumentsDirectory().appendingPathComponent("DiastolicPressure")
-    let measurement: String = "mmHg"
+    let measurement = "mmHg"
     let minVal = 50
     let maxVal = 160
+    let labels = ["Optimal", "Normal", "High Normal", "Grade 1 Hypertension", "Grade 2 Hypertension",  "Grade 3 Hypertension"]
     func getLabel(reading: Double) -> String {
         switch reading {
         case 81..<85: return "Normal"
@@ -171,6 +206,44 @@ struct DiastolicPressure: Stat{
         case "Grade 1 Hypertension" : return Color.yellow
         case "Grade 2 Hypertension" : return Color.orange
         case "Grade 3 Hypertension" : return Color.red
+        default: return Color.red
+        }
+    }
+}
+
+struct PulsePressure: Stat {
+    let name = "PulsePressure"
+    let displayName = "Pulse Pressure"
+    let infoTitle = "What is Pulse Pressure"
+    let imageName = "PulsePressure"
+    let mainColor = Color(UIColor.systemGray6)
+    let url = getDocumentsDirectory().appendingPathComponent("DiastolicPressure")
+    let measurement = "mmHg"
+    let minVal = 0
+    let maxVal = 100
+    let labels = ["Optimal", "Sub-Optimal", "Unhealthy", "Severely unhealthy"]
+    func getLabel(reading: Double) -> String {
+        switch reading {
+        case 0..<50: return "Optimal"
+        case 51..<70: return "Sub-Optimal"
+        case 71..<90: return "Unhealthy"
+        default: return "Severely unhealthy"
+        }
+    }
+    func getRange(label: String) -> (Double, Double) {
+        switch label {
+        case "Optimal": return (0.0, 50.0)
+        case "Sub-Optimal": return (51.0, 70.0)
+        case "Unhealthy": return (71.0, 90.0)
+        default: return (90.0, 200.0)
+        }
+    }
+    func getColor(forLabel label: String) -> Color {
+        switch label{
+        case "Optimal": return Color.green
+        case "Sub-Optimal": return Color.yellow
+        case "Unhealthy": return Color.orange
+        case "Severely unhealthy": return Color.red
         default: return Color.red
         }
     }

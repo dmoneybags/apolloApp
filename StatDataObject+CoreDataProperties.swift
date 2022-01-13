@@ -33,6 +33,9 @@ extension StatDataObject {
     @NSManaged public var name: String?
     @NSManaged public var data: [NSNumber]
     @NSManaged public var dates: [NSDate]
+    var statInfo: Stat? {
+        return getStatInfoObject(named: name ?? "nil")
+    }
     //will return the last time we got data
     var lastUpdated: Date {
         let dataList = data as? [(Double, Date)]
