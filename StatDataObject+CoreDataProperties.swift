@@ -157,6 +157,7 @@ func fetchStatDataObjects() -> [StatDataObject]{
 //Grabs a specific stat object by calling a fetch request for all them and then filtering
 //expensive, not really used
 func fetchSpecificStatDataObject(named name: String) -> StatDataObject{
+    print("Doing fetch request for \(name)")
     let objects = fetchStatDataObjects()
     let filteredObject = getStatDataObject(stats: objects, name: name)
     return filteredObject

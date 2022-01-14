@@ -27,6 +27,7 @@ struct FullScreenStatInfo: View {
     private var multipleData: Bool
     private var colors: [Color]
     @State private var timeFrame: Calendar.Component = .weekOfYear
+    @State private var showInfo: Bool = false
     private var filteredData: [[(Double, Date)]]{
         var data: [[(Double, Date)]] = []
         for tuples in tupleData {
@@ -70,6 +71,18 @@ struct FullScreenStatInfo: View {
                     .fontWeight(.bold)
                     .padding(.horizontal)
                     .font(.title)
+                Image(systemName: "info.circle")
+                    .resizable()
+                    .frame(width: 15, height: 15)
+                    .padding(.bottom, 5)
+                    .offset(x: -10, y: 0.0)
+                    .foregroundColor(Color(UIColor.systemGray))
+                    .onTapGesture {
+                        showInfo = true
+                    }
+                    .fullScreenCover(isPresented: $showInfo){
+                        WhatIsStatName(stats: statInfo)
+                    }
                 Spacer()
             }
             .padding()

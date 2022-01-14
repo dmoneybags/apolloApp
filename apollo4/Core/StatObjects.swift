@@ -31,7 +31,8 @@ protocol Stat {
     func getColor(forLabel label: String) -> Color
 }
 func getStatInfoObject(named name: String) -> Stat? {
-    let statObjects: [Stat] = [HeartRate(), SPO2(), DiastolicPressure(), SystolicPressure()]
+    //HAVE TO ADD NEW STAT OBJECTS TO THIS LIST
+    let statObjects: [Stat] = [HeartRate(), SPO2(), DiastolicPressure(), SystolicPressure(), PulsePressure(), VO2Max()]
     return statObjects.first(where: {$0.name == name})
 }
 struct HeartRate: Stat {
@@ -54,7 +55,7 @@ struct HeartRate: Stat {
         case 70..<74: return "Good"
         case 74..<78: return "Average"
         case 78..<85: return "Below Average"
-        default: return "Poor"
+        default: return "High"
         }
     }
     func getRange(label: String) -> (Double, Double) {
@@ -98,7 +99,7 @@ struct SPO2: Stat{
         case 0..<85: return "Critical"
         case 85..<90: return "Low"
         case 90..<95: return "Insufficient"
-        case 95..<100: return "Optimal"
+        case 95..<101: return "Optimal"
         default: return ""
         }
     }
@@ -216,17 +217,17 @@ struct PulsePressure: Stat {
     let displayName = "Pulse Pressure"
     let infoTitle = "What is Pulse Pressure"
     let imageName = "PulsePressure"
-    let mainColor = Color(UIColor.systemGray6)
+    let mainColor = Color(UIColor.systemGray)
     let url = getDocumentsDirectory().appendingPathComponent("DiastolicPressure")
     let measurement = "mmHg"
     let minVal = 0
-    let maxVal = 100
+    let maxVal = 140
     let labels = ["Optimal", "Sub-Optimal", "Unhealthy", "Severely unhealthy"]
     func getLabel(reading: Double) -> String {
         switch reading {
         case 0..<50: return "Optimal"
         case 51..<70: return "Sub-Optimal"
-        case 71..<90: return "Unhealthy"
+        case 70..<90: return "Unhealthy"
         default: return "Severely unhealthy"
         }
     }
@@ -235,6 +236,7 @@ struct PulsePressure: Stat {
         case "Optimal": return (0.0, 50.0)
         case "Sub-Optimal": return (51.0, 70.0)
         case "Unhealthy": return (71.0, 90.0)
+        case "Severely unhealthy": return (91, 140)
         default: return (90.0, 200.0)
         }
     }
@@ -245,6 +247,48 @@ struct PulsePressure: Stat {
         case "Unhealthy": return Color.orange
         case "Severely unhealthy": return Color.red
         default: return Color.red
+        }
+    }
+}
+
+struct VO2Max: Stat{
+    let name = "VO2Max"
+    let displayName = "VO2 Max"
+    let infoTitle = "What is VO2 Max?"
+    let imageName = "VO2Max"
+    let mainColor = Color.blue
+    let url = getDocumentsDirectory().appendingPathComponent("DiastolicPressure")
+    let measurement = ""
+    let minVal = 0
+    let maxVal = 80
+    let labels = ["Superior", "Excellent", "Good", "Fair", "Sub-Optimal", "Very Poor"]
+    func getLabel(reading: Double) -> String {
+        switch reading {
+        case 0..<35: return "Very Poor"
+        case 35..<39: return "Sub-Optimal"
+        case 39..<45: return "Fair"
+        case 45..<50: return "Good"
+        case 50..<55: return "Excellent"
+        default: return "Superior"
+        }
+    }
+    func getRange(label: String) -> (Double, Double) {
+        switch label {
+        case "Very Poor": return (0, 35)
+        case "Sub-Optimal": return (35, 39)
+        case "Fair": return (39, 45)
+        case "Good": return (45, 50)
+        case "Excellent": return (50, 55)
+        default: return (55, 80)
+        }
+    }
+    func getColor(forLabel label: String) -> Color {
+        switch label{
+        case "Good": return Color.green
+        case "Fair": return Color.yellow
+        case "Sub-Optimal": return Color.orange
+        case "Very Poor": return Color.red
+        default: return Color.purple
         }
     }
 }

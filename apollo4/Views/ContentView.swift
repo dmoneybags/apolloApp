@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var numBarsANIMATION: CGFloat = 1.25
     @State private var opacityANIMATION: CGFloat = 0.0
     @State private var repeated = Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true)
+    @State private var loadSetup = false
     var body: some View {
         //Main top level view for whole app
         NavigationView {
@@ -86,12 +87,7 @@ struct ContentView: View {
                             }
                     } else {
                         //Will be changed later to true set up
-                        NavigationLink(destination: MainView2()
-                            .navigationBarHidden(true)
-                            .navigationBarTitle("", displayMode: .inline)
-                            .navigationBarBackButtonHidden(true)
-                            .edgesIgnoringSafeArea([.top, .bottom])
-                        ){
+                        Button(action: load){
                             Text("Setup ring")
                                 .font(.title3)
                                 .foregroundColor(Color.white)
@@ -117,7 +113,13 @@ struct ContentView: View {
         .environmentObject(bleManager)
         //user object will most likely be replaced
         .environmentObject(user)
+        .fullScreenCover(isPresented: $loadSetup){
+            MainView2()
+        }
         
+    }
+    private func load(){
+        loadSetup = true
     }
 }
 

@@ -13,6 +13,7 @@ import SwiftUI
 //by passing the view as anyView
 struct CardView<Content: View>: View {
     var name: String
+    //Text color
     var backgroundColor: Color
     //for now until we finish them all
     var fullscreenData: statViewData? = nil

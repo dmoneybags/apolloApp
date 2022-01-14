@@ -53,6 +53,7 @@
 		AD837CFF2769308800E0BDB9 /* MainUIBoxScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837CFE2769308800E0BDB9 /* MainUIBoxScroller.swift */; };
 		AD837D01276AB01500E0BDB9 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837D00276AB01500E0BDB9 /* CardView.swift */; };
 		AD837D03276BB16000E0BDB9 /* VerticalLinePlotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837D02276BB16000E0BDB9 /* VerticalLinePlotter.swift */; };
+		AD8F6B30279220FA004A37A0 /* VO2Max.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8F6B2F279220FA004A37A0 /* VO2Max.png */; };
 		ADA1ECA2274E1EE00079E6CE /* BPOption1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */; };
 		ADA1ECA4274E34B30079E6CE /* CapsuleReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */; };
 		ADAB7712277CDEC800196D25 /* LiveReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7711277CDEC800196D25 /* LiveReadView.swift */; };
@@ -71,6 +72,8 @@
 		ADB3DBD9279091BC00827E3A /* StickyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3DBD8279091BC00827E3A /* StickyHeader.swift */; };
 		ADB3DBDB2790A81B00827E3A /* RangeScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3DBDA2790A81B00827E3A /* RangeScroller.swift */; };
 		ADB3DBDD2790C66900827E3A /* RingPowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3DBDC2790C66900827E3A /* RingPowerView.swift */; };
+		ADB3DBE12791471900827E3A /* SPO2LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3DBE02791471900827E3A /* SPO2LevelView.swift */; };
+		ADB3DBE32791D6B300827E3A /* VO2Max.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3DBE22791D6B300827E3A /* VO2Max.swift */; };
 		ADB9B8F62748482200EB9227 /* Option3.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F52748482200EB9227 /* Option3.swift */; };
 		ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8F7274857DD00EB9227 /* Logging.swift */; };
 		ADB9B8FF274CEBB000EB9227 /* DataRetrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */; };
@@ -196,6 +199,7 @@
 		AD837CFE2769308800E0BDB9 /* MainUIBoxScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUIBoxScroller.swift; sourceTree = "<group>"; };
 		AD837D00276AB01500E0BDB9 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		AD837D02276BB16000E0BDB9 /* VerticalLinePlotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLinePlotter.swift; sourceTree = "<group>"; };
+		AD8F6B2F279220FA004A37A0 /* VO2Max.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VO2Max.png; sourceTree = "<group>"; };
 		ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPOption1.swift; sourceTree = "<group>"; };
 		ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleReader.swift; sourceTree = "<group>"; };
 		ADAB7711277CDEC800196D25 /* LiveReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveReadView.swift; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 		ADB3DBD8279091BC00827E3A /* StickyHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeader.swift; sourceTree = "<group>"; };
 		ADB3DBDA2790A81B00827E3A /* RangeScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeScroller.swift; sourceTree = "<group>"; };
 		ADB3DBDC2790C66900827E3A /* RingPowerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingPowerView.swift; sourceTree = "<group>"; };
+		ADB3DBE02791471900827E3A /* SPO2LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPO2LevelView.swift; sourceTree = "<group>"; };
+		ADB3DBE22791D6B300827E3A /* VO2Max.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VO2Max.swift; sourceTree = "<group>"; };
 		ADB9B8F52748482200EB9227 /* Option3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option3.swift; sourceTree = "<group>"; };
 		ADB9B8F7274857DD00EB9227 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRetrieval.swift; sourceTree = "<group>"; };
@@ -343,6 +349,7 @@
 				ADC3D479278EAA0E00348E0C /* MultilineAverageGraphView.swift */,
 				ADB3DBC8278FC32000827E3A /* RestingHR.swift */,
 				ADB3DBCA2790026C00827E3A /* PulsePressure.swift */,
+				ADB3DBE22791D6B300827E3A /* VO2Max.swift */,
 			);
 			path = "Graph Inference";
 			sourceTree = "<group>";
@@ -556,6 +563,7 @@
 				ADB3DBCE279080CF00827E3A /* HrVar.png */,
 				ADB3DBCD279080CF00827E3A /* PulsePressure.png */,
 				ADB3DBCF279080D000827E3A /* SPO2.png */,
+				AD8F6B2F279220FA004A37A0 /* VO2Max.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -591,6 +599,7 @@
 		ADF11A74274790200099ADF3 /* MainViewSubViews */ = {
 			isa = PBXGroup;
 			children = (
+				ADB3DBE02791471900827E3A /* SPO2LevelView.swift */,
 				AD48C98C2770FD3F003F1DCA /* BPMiniLevelView.swift */,
 				ADF11A77274795390099ADF3 /* RingChart.swift */,
 				ADF11A7B2747AB050099ADF3 /* Option1.swift */,
@@ -756,6 +765,7 @@
 				ADB3DBD3279080D000827E3A /* HrVar.png in Resources */,
 				ADB3DBD2279080D000827E3A /* PulsePressure.png in Resources */,
 				ADF11A7327478F0D0099ADF3 /* logowhttrans.png in Resources */,
+				AD8F6B30279220FA004A37A0 /* VO2Max.png in Resources */,
 				ADF11A622745E3180099ADF3 /* nameImage.jpeg in Resources */,
 				ADF11A642745E35B0099ADF3 /* healthImage.png in Resources */,
 				ADF11A662745E4280099ADF3 /* Apollo 1 Ring.obj in Resources */,
@@ -907,6 +917,7 @@
 				ADF11A6E27470D6A0099ADF3 /* userDataModel.swift in Sources */,
 				ADB3DBDB2790A81B00827E3A /* RangeScroller.swift in Sources */,
 				ADA1ECA2274E1EE00079E6CE /* BPOption1.swift in Sources */,
+				ADB3DBE32791D6B300827E3A /* VO2Max.swift in Sources */,
 				ADF11A472745D4670099ADF3 /* EmitterView.swift in Sources */,
 				ADF11A552745D47B0099ADF3 /* UUID Structs.swift in Sources */,
 				ADF11A462745D4670099ADF3 /* ContentView.swift in Sources */,
@@ -921,6 +932,7 @@
 				ADAB7716277CF67E00196D25 /* StopWatchManager.swift in Sources */,
 				AD2DAAEF278A2E870073473A /* GraphInferenceAverageGraphView.swift in Sources */,
 				AD2DAAF1278A3ECE0073473A /* LinearRegression.swift in Sources */,
+				ADB3DBE12791471900827E3A /* SPO2LevelView.swift in Sources */,
 				ADB3DBCB2790026C00827E3A /* PulsePressure.swift in Sources */,
 				AD3EE4EE2750C1E5001A30A2 /* LiveGrapher.swift in Sources */,
 				ADF11A6F27470D6A0099ADF3 /* userDataModel+Schema.swift in Sources */,

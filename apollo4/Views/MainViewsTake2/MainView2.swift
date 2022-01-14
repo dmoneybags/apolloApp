@@ -7,10 +7,17 @@
 
 import SwiftUI
 
+class observableBool: ObservableObject {
+    @Published var value: Bool
+    init(value: Bool){
+        self.value = value
+    }
+}
+
 struct MainView2: View {
     @Environment(\.colorScheme) var colorScheme
     //Colors for light and dark mode, however app may be forced to dark mode because I just like it
-    @State private var changingRingSettings: Bool = false
+    @StateObject private var changingRingSettings: observableBool = observableBool(value: false)
     var colors: [Color] {
         let color1 = colorScheme == .dark ? Color.black : Color.white
         let color2 = colorScheme == .dark ? Color.pink : Color.blue
@@ -58,16 +65,20 @@ struct MainView2: View {
                         .foregroundColor(.black)
                     RingChart(progress: .constant(0.85), text: .constant(""), lineWidth: 5)
                         .frame(width: 35, height: 35)
+                    if changingRingSettings.value{
+                        ZStack{
+                            RingPowerView(batteryPercent: 0.85)
+                                .environmentObject(changingRingSettings)
+                                .position(x: -UIScreen.main.bounds.width/2 + 62.5, y: UIScreen.main.bounds.height/2 - 50)
+                        }
+                    }
                 }
                 .zIndex(3)
                 .offset(x: -30, y: 30)
                 .frame(width: 30, height: 30)
-                .fullScreenCover(isPresented: $changingRingSettings){
-                    RingPowerView(batteryPercent: 0.85)
-                }
                 .onTapGesture {
                     print("Showing battery level view")
-                    changingRingSettings = true
+                    changingRingSettings.value = true
                 }
             }
         }

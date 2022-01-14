@@ -14,7 +14,8 @@ struct CapsuleReader: View {
     var stat: String
     let titles = ["Low", "Medium", "High"]
     var body: some View {
-        let (min, _) = getMinMaxVals(stat: stat)
+        let statInfoObject = getStatInfoObject(named: stat)!
+        let min = statInfoObject.minVal
         let progressVal = getProgress(stat: stat, reading: reading)
         VStack {
             ZStack {
@@ -24,7 +25,7 @@ struct CapsuleReader: View {
                 Capsule()
                     .frame(width: 10, height: loaded ? progressVal * height : 0, alignment: .center)
                     .foregroundColor(getColor(stat: stat, progress: progressVal))
-                    .padding(.top, height - ((reading - min)/(getStatRange(stat: stat)) * height))
+                    .padding(.top, height - ((reading - Double(min))/Double(statInfoObject.maxVal - min) * height))
                     .onAppear(){
                         withAnimation(){
                             loaded = true

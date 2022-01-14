@@ -55,7 +55,6 @@ struct MainUIBoxScroller<Content: View>: View {
                     if abs(value - offsetX) >= 170{
                         offsetX = value
                     }
-                    print(offsetX)
                 }
                 .onChange(of: offsetX) { _ in
                     print("Scrolling to \(getView())")

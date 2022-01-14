@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainUIBox<Content: View>: View {
+struct MainUIBox<Content: View, Content2: View>: View {
     @Environment(\.colorScheme) private var colorScheme
     //Value which will be changed within a withAnimation framework to animate the heart (if heartRate)
     @State private var animatorVal : Double = 0.7
@@ -24,10 +24,6 @@ struct MainUIBox<Content: View>: View {
     var imageName: String
     //Color of image
     var foregroundColor: Color?
-    //Function to generate carousel below
-    var cardFunc: (Int) -> AnyView
-    //So we know how many cards we have to produce them in a for loop, cant len a function
-    var numCards: Int
     var numScrollViews: Int
     //Passed in for fullscreen statview cover
     var stats: [Stat]
@@ -36,7 +32,8 @@ struct MainUIBox<Content: View>: View {
     @State private var showInfo: Bool = false
     //Pass in content to show in scrollview, passed with a bracket
     //Same way you would add content to a VStack
-    @ViewBuilder var content: Content
+    @ViewBuilder var cardContent: Content
+    @ViewBuilder var content: Content2
     var body: some View {
         VStack{
             HStack{
@@ -89,17 +86,7 @@ struct MainUIBox<Content: View>: View {
             Divider()
             ScrollView(.horizontal){
                 HStack{
-                    //Generating below carousel
-                    ForEach(0...numCards, id: \.self){Card in
-                        GeometryReader {geometry in
-                            //The function we passed in as an argument
-                            cardFunc(Card)
-                                .padding()
-                            //Adds a nice effect when scrolling
-                                .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minX) - 40) / -20, axis: (x: 0, y: 10.0, z: 0))
-                        }
-                        .frame(width: 150)
-                    }
+                    cardContent
                 }
             }
             .frame(width: UIScreen.main.bounds.size.width - 60, height: 250, alignment: .center)

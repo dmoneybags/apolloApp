@@ -41,15 +41,16 @@ func getStatRange(stat: String) -> Double {
 func getProgress(stat: String, reading: Double) -> Double{
     var maxVal: Double
     var minVal: Double
-    (minVal, maxVal) = getMinMaxVals(stat: stat)
-    return (reading - minVal)/getStatRange(stat: stat)
+    let statInfo = getStatInfoObject(named: stat)!
+    (minVal, maxVal) = (Double(statInfo.minVal), Double(statInfo.maxVal))
+    return (reading - minVal)/(maxVal - minVal)
 }
 func getColor(stat: String, progress: Double) -> Color{
     var inverted = false
     var red: Int
     var green: Int
     let blue = 66
-    if stat == "SPO2"{
+    if stat == "SPO2" || stat == "VO2Max"{
         inverted = true
     }
     var colorPoints = Int(progress * 358)
