@@ -6,6 +6,14 @@ target 'apollo4' do
   use_frameworks!
 
   # Pods for apollo4
+  pod 'AWSMobileClient', '~> 2.26.6'      # Required dependency
+  pod 'AWSAuthUI'          	        # Optional dependency required to use drop-in UI
+  pod 'AWSUserPoolsSignIn', '~> 2.26.6'   # Optional dependency required to use drop-in UI
+  # Login with FB and Amplify/Cognito
+  pod 'AWSFacebookSignIn', '~> 2.26.6'
+  # Login with Google and Amplify/Cognito
+  pod 'AWSGoogleSignIn', '~> 2.26.6'
+  pod 'GoogleSignIn', '~> 4.0'
   pod 'Amplify', '~> 1.0'                             # required amplify dependency
   pod 'Amplify/Tools', '~> 1.0'                       # allows to call amplify CLI from within Xcode
 

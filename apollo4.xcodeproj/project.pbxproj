@@ -11,11 +11,20 @@
 		1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42585BD5408AF40BA7C9B8E0 /* userDataModel+Schema.swift */; };
 		4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F7919AE38F140D052F4F4FA /* awsconfiguration.json */; };
 		5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */; };
+		AD27EA7327967F4300B4BD49 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD27EA7227967F4300B4BD49 /* SignInView.swift */; };
+		AD27EA7527971F9600B4BD49 /* googleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD27EA7427971F9600B4BD49 /* googleLogo.png */; };
+		AD27EA77279726A600B4BD49 /* facebookLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD27EA76279726A600B4BD49 /* facebookLogo.png */; };
+		AD27EA7927972B1500B4BD49 /* 3rdPartySignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD27EA7827972B1500B4BD49 /* 3rdPartySignIn.swift */; };
+		AD27EA7B2797327A00B4BD49 /* AggregateSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD27EA7A2797327A00B4BD49 /* AggregateSetupView.swift */; };
 		AD2DAAED2788A6C50073473A /* StatDataObjectListWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DAAEC2788A6C50073473A /* StatDataObjectListWrapper.swift */; };
 		AD2DAAEF278A2E870073473A /* GraphInferenceAverageGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DAAEE278A2E860073473A /* GraphInferenceAverageGraphView.swift */; };
 		AD2DAAF1278A3ECE0073473A /* LinearRegression.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DAAF0278A3ECE0073473A /* LinearRegression.swift */; };
 		AD2DAAF3278A9BB90073473A /* GraphInferenceTrendGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DAAF2278A9BB90073473A /* GraphInferenceTrendGraphView.swift */; };
 		AD2DAAF5278BCA580073473A /* MultilineFullScreenStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2DAAF4278BCA580073473A /* MultilineFullScreenStatView.swift */; };
+		AD3ABDAC2794E4C900D95016 /* HalfRingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3ABDAB2794E4C900D95016 /* HalfRingChart.swift */; };
+		AD3ABDAE2795FD9200D95016 /* BasicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3ABDAD2795FD9200D95016 /* BasicsView.swift */; };
+		AD3ABDB0279607BB00D95016 /* BasicInfoContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3ABDAF279607BB00D95016 /* BasicInfoContent.swift */; };
+		AD3ABDB6279666F300D95016 /* BPInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3ABDB5279666F300D95016 /* BPInfo.swift */; };
 		AD3EE4E9274F5D4C001A30A2 /* Inference.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4E8274F5D4C001A30A2 /* Inference.swift */; };
 		AD3EE4EC27508E5B001A30A2 /* MainLiveRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4EB27508E5B001A30A2 /* MainLiveRead.swift */; };
 		AD3EE4EE2750C1E5001A30A2 /* LiveGrapher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE4ED2750C1E5001A30A2 /* LiveGrapher.swift */; };
@@ -156,11 +165,20 @@
 		988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F7919AE38F140D052F4F4FA /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.release.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.release.xcconfig"; sourceTree = "<group>"; };
+		AD27EA7227967F4300B4BD49 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		AD27EA7427971F9600B4BD49 /* googleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = googleLogo.png; sourceTree = "<group>"; };
+		AD27EA76279726A600B4BD49 /* facebookLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookLogo.png; sourceTree = "<group>"; };
+		AD27EA7827972B1500B4BD49 /* 3rdPartySignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3rdPartySignIn.swift; sourceTree = "<group>"; };
+		AD27EA7A2797327A00B4BD49 /* AggregateSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregateSetupView.swift; sourceTree = "<group>"; };
 		AD2DAAEC2788A6C50073473A /* StatDataObjectListWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatDataObjectListWrapper.swift; sourceTree = "<group>"; };
 		AD2DAAEE278A2E860073473A /* GraphInferenceAverageGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphInferenceAverageGraphView.swift; sourceTree = "<group>"; };
 		AD2DAAF0278A3ECE0073473A /* LinearRegression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearRegression.swift; sourceTree = "<group>"; };
 		AD2DAAF2278A9BB90073473A /* GraphInferenceTrendGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphInferenceTrendGraphView.swift; sourceTree = "<group>"; };
 		AD2DAAF4278BCA580073473A /* MultilineFullScreenStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineFullScreenStatView.swift; sourceTree = "<group>"; };
+		AD3ABDAB2794E4C900D95016 /* HalfRingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfRingChart.swift; sourceTree = "<group>"; };
+		AD3ABDAD2795FD9200D95016 /* BasicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicsView.swift; sourceTree = "<group>"; };
+		AD3ABDAF279607BB00D95016 /* BasicInfoContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoContent.swift; sourceTree = "<group>"; };
+		AD3ABDB5279666F300D95016 /* BPInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPInfo.swift; sourceTree = "<group>"; };
 		AD3EE4E8274F5D4C001A30A2 /* Inference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inference.swift; sourceTree = "<group>"; };
 		AD3EE4EB27508E5B001A30A2 /* MainLiveRead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLiveRead.swift; sourceTree = "<group>"; };
 		AD3EE4ED2750C1E5001A30A2 /* LiveGrapher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGrapher.swift; sourceTree = "<group>"; };
@@ -367,6 +385,18 @@
 			path = "../../../../Downloads/ChartView-master/Sources/SwiftUICharts/BarChart";
 			sourceTree = "<group>";
 		};
+		AD7F4A942794BAF200B2658D /* SetupViews */ = {
+			isa = PBXGroup;
+			children = (
+				AD3ABDAD2795FD9200D95016 /* BasicsView.swift */,
+				AD3ABDAF279607BB00D95016 /* BasicInfoContent.swift */,
+				AD3ABDB5279666F300D95016 /* BPInfo.swift */,
+				AD27EA7227967F4300B4BD49 /* SignInView.swift */,
+				AD27EA7A2797327A00B4BD49 /* AggregateSetupView.swift */,
+			);
+			path = SetupViews;
+			sourceTree = "<group>";
+		};
 		AD837C9527645ED800E0BDB9 /* MainViewsTake2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +533,7 @@
 				AD3EE4EA275081AD001A30A2 /* MainViews */,
 				AD837C9527645ED800E0BDB9 /* MainViewsTake2 */,
 				ADF11A74274790200099ADF3 /* MainViewSubViews */,
+				AD7F4A942794BAF200B2658D /* SetupViews */,
 				ADF11A282745D4670099ADF3 /* SetupView.swift */,
 				ADF11A292745D4670099ADF3 /* GraphView.swift */,
 				AD67BD7B2753079800341539 /* MultiLineGraph.swift */,
@@ -529,6 +560,7 @@
 			children = (
 				ADF11A492745D4740099ADF3 /* Backend.swift */,
 				ADF11A4A2745D4740099ADF3 /* UserData.swift */,
+				AD27EA7827972B1500B4BD49 /* 3rdPartySignIn.swift */,
 				ADF11A4B2745D4740099ADF3 /* TextLimiting.swift */,
 				ADF11A4C2745D4740099ADF3 /* KeyboardHelper.swift */,
 				ADB9B8F7274857DD00EB9227 /* Logging.swift */,
@@ -564,6 +596,8 @@
 				ADB3DBCD279080CF00827E3A /* PulsePressure.png */,
 				ADB3DBCF279080D000827E3A /* SPO2.png */,
 				AD8F6B2F279220FA004A37A0 /* VO2Max.png */,
+				AD27EA7427971F9600B4BD49 /* googleLogo.png */,
+				AD27EA76279726A600B4BD49 /* facebookLogo.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -601,6 +635,7 @@
 			children = (
 				ADB3DBE02791471900827E3A /* SPO2LevelView.swift */,
 				AD48C98C2770FD3F003F1DCA /* BPMiniLevelView.swift */,
+				AD3ABDAB2794E4C900D95016 /* HalfRingChart.swift */,
 				ADF11A77274795390099ADF3 /* RingChart.swift */,
 				ADF11A7B2747AB050099ADF3 /* Option1.swift */,
 				ADB9B8F52748482200EB9227 /* Option3.swift */,
@@ -656,6 +691,7 @@
 				ADF119F42745D0060099ADF3 /* Frameworks */,
 				ADF119F52745D0060099ADF3 /* Resources */,
 				E112ED2076DE2C92F985FD2A /* [CP] Embed Pods Frameworks */,
+				200C8570DA224CFB73B99728 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -694,6 +730,7 @@
 				ADF11A0E2745D0080099ADF3 /* Frameworks */,
 				ADF11A0F2745D0080099ADF3 /* Resources */,
 				91C9DD2B60A7BEE1261373C3 /* [CP] Embed Pods Frameworks */,
+				76ECAFBBD6C63C4111E120BF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -760,6 +797,7 @@
 				4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */,
 				ADF11A5B2745D5300099ADF3 /* awsconfiguration.json in Resources */,
 				ADF11A5A2745D5300099ADF3 /* amplifyconfiguration.json in Resources */,
+				AD27EA7527971F9600B4BD49 /* googleLogo.png in Resources */,
 				ADB3DBD1279080D000827E3A /* HeartRate.png in Resources */,
 				ADF11A262745D4500099ADF3 /* Assets.xcassets in Resources */,
 				ADB3DBD3279080D000827E3A /* HrVar.png in Resources */,
@@ -768,6 +806,7 @@
 				AD8F6B30279220FA004A37A0 /* VO2Max.png in Resources */,
 				ADF11A622745E3180099ADF3 /* nameImage.jpeg in Resources */,
 				ADF11A642745E35B0099ADF3 /* healthImage.png in Resources */,
+				AD27EA77279726A600B4BD49 /* facebookLogo.png in Resources */,
 				ADF11A662745E4280099ADF3 /* Apollo 1 Ring.obj in Resources */,
 				5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */,
 				ADB3DBD4279080D000827E3A /* SPO2.png in Resources */,
@@ -791,6 +830,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		200C8570DA224CFB73B99728 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		462C87E2D5257F63B656856D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -857,6 +913,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		76ECAFBBD6C63C4111E120BF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		91C9DD2B60A7BEE1261373C3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -909,6 +982,7 @@
 				ADAB77182784BD3300196D25 /* HrVarView.swift in Sources */,
 				AD6EB591275B4A6F000BD56F /* BarChartCell.swift in Sources */,
 				ADF11A3E2745D4670099ADF3 /* PairingView.swift in Sources */,
+				AD3ABDAC2794E4C900D95016 /* HalfRingChart.swift in Sources */,
 				AD837CE22765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift in Sources */,
 				ADF11A4D2745D4740099ADF3 /* Backend.swift in Sources */,
 				ADF11A4E2745D4740099ADF3 /* UserData.swift in Sources */,
@@ -929,8 +1003,10 @@
 				AD6BEFE527879063007AE569 /* GraphInference.swift in Sources */,
 				ADF11A502745D4740099ADF3 /* KeyboardHelper.swift in Sources */,
 				AD67BD7C2753079800341539 /* MultiLineGraph.swift in Sources */,
+				AD27EA7B2797327A00B4BD49 /* AggregateSetupView.swift in Sources */,
 				ADAB7716277CF67E00196D25 /* StopWatchManager.swift in Sources */,
 				AD2DAAEF278A2E870073473A /* GraphInferenceAverageGraphView.swift in Sources */,
+				AD27EA7327967F4300B4BD49 /* SignInView.swift in Sources */,
 				AD2DAAF1278A3ECE0073473A /* LinearRegression.swift in Sources */,
 				ADB3DBE12791471900827E3A /* SPO2LevelView.swift in Sources */,
 				ADB3DBCB2790026C00827E3A /* PulsePressure.swift in Sources */,
@@ -945,6 +1021,8 @@
 				AD2DAAF5278BCA580073473A /* MultilineFullScreenStatView.swift in Sources */,
 				AD6EB599275CBA80000BD56F /* HyperTensionStructs.swift in Sources */,
 				ADF11A422745D4670099ADF3 /* EmittingView.swift in Sources */,
+				AD3ABDB6279666F300D95016 /* BPInfo.swift in Sources */,
+				AD3ABDB0279607BB00D95016 /* BasicInfoContent.swift in Sources */,
 				ADB3DBDD2790C66900827E3A /* RingPowerView.swift in Sources */,
 				AD3EE4EC27508E5B001A30A2 /* MainLiveRead.swift in Sources */,
 				AD837CE62766835400E0BDB9 /* DataController.swift in Sources */,
@@ -963,6 +1041,7 @@
 				ADF11A402745D4670099ADF3 /* swipeView.swift in Sources */,
 				ADF11A7C2747AB050099ADF3 /* Option1.swift in Sources */,
 				ADB3DBD727908F1000827E3A /* WhatIsStatName.swift in Sources */,
+				AD27EA7927972B1500B4BD49 /* 3rdPartySignIn.swift in Sources */,
 				AD48C98F27714591003F1DCA /* FullScreenStatView.swift in Sources */,
 				AD837CFA2769210B00E0BDB9 /* FontView.swift in Sources */,
 				ADB3DBD9279091BC00827E3A /* StickyHeader.swift in Sources */,
@@ -980,6 +1059,7 @@
 				ADC3D47C278F6CFF00348E0C /* FullScreenStatInfo.swift in Sources */,
 				ADF11A432745D4670099ADF3 /* HealthChoiceSetup.swift in Sources */,
 				AD2DAAED2788A6C50073473A /* StatDataObjectListWrapper.swift in Sources */,
+				AD3ABDAE2795FD9200D95016 /* BasicsView.swift in Sources */,
 				ADAB771A2785727B00196D25 /* ECGAnimation.swift in Sources */,
 				ADF11A392745D4670099ADF3 /* GraphView.swift in Sources */,
 				ADEE606E2785FBBB00E59A79 /* hrVarImage.swift in Sources */,
@@ -1161,6 +1241,7 @@
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Communicates health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1193,6 +1274,7 @@
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Communicates health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

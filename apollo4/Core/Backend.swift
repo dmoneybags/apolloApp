@@ -9,8 +9,10 @@ import Foundation
 import UIKit
 import Amplify
 import AmplifyPlugins
+import AWSMobileClient
 class Backend {
     static let shared = Backend()
+    
     static func initialize() -> Backend {
         return .shared
     }
@@ -20,6 +22,7 @@ class Backend {
         try Amplify.add(plugin: AWSCognitoAuthPlugin())
         try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: AmplifyModels()))
         try Amplify.configure()
+        initializeAWSMobileClient()
         print("Initialized Amplify");
       } catch {
         print("Could not initialize Amplify: \(error)")
@@ -59,6 +62,15 @@ class Backend {
             }
         }    
     }
+    func initializeAWSMobileClient(){
+        AWSMobileClient.default().initialize { (userState, error) in
+            if let error = error {
+                print("Error initializing AWSMobileClient: \(error.localizedDescription)")
+            } else if let userState = userState {
+                print("AWSMobileClient initialized. Current UserState: \(userState.rawValue)")
+            }
+        }
+     }
     public func signIn() {
 
         _ = Amplify.Auth.signInWithWebUI(presentationAnchor: UIApplication.shared.windows.first!) { result in

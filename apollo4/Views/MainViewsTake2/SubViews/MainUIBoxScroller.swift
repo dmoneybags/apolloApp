@@ -67,7 +67,6 @@ struct MainUIBoxScroller<Content: View>: View {
         }
         .frame(width: width)
     }
-    //HardCoded for now, will be changed to use a proportion of width in the future
     private func getView() -> Int {
         let viewNum = abs(Int((offsetX - width/2)/width))
         selector = viewNum

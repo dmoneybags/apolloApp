@@ -114,7 +114,7 @@ struct ContentView: View {
         //user object will most likely be replaced
         .environmentObject(user)
         .fullScreenCover(isPresented: $loadSetup){
-            MainView2()
+            AggregateSetupView()
         }
         
     }
