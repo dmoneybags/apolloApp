@@ -11,6 +11,7 @@
 		1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42585BD5408AF40BA7C9B8E0 /* userDataModel+Schema.swift */; };
 		4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F7919AE38F140D052F4F4FA /* awsconfiguration.json */; };
 		5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */; };
+		AD2214572798B421006DEA9B /* SetupViewTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2214562798B421006DEA9B /* SetupViewTutorial.swift */; };
 		AD27EA7327967F4300B4BD49 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD27EA7227967F4300B4BD49 /* SignInView.swift */; };
 		AD27EA7527971F9600B4BD49 /* googleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD27EA7427971F9600B4BD49 /* googleLogo.png */; };
 		AD27EA77279726A600B4BD49 /* facebookLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD27EA76279726A600B4BD49 /* facebookLogo.png */; };
@@ -124,9 +125,9 @@
 		ADF11A622745E3180099ADF3 /* nameImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A612745E3180099ADF3 /* nameImage.jpeg */; };
 		ADF11A642745E35B0099ADF3 /* healthImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A632745E35B0099ADF3 /* healthImage.png */; };
 		ADF11A662745E4280099ADF3 /* Apollo 1 Ring.obj in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A652745E4280099ADF3 /* Apollo 1 Ring.obj */; };
-		ADF11A6D27470D6A0099ADF3 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6A27470D6A0099ADF3 /* AmplifyModels.swift */; };
-		ADF11A6E27470D6A0099ADF3 /* userDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6B27470D6A0099ADF3 /* userDataModel.swift */; };
-		ADF11A6F27470D6A0099ADF3 /* userDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6C27470D6A0099ADF3 /* userDataModel+Schema.swift */; };
+		ADF11A6D27470D6A0099ADF3 /* amplify/generated/models/AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6A27470D6A0099ADF3 /* amplify/generated/models/AmplifyModels.swift */; };
+		ADF11A6E27470D6A0099ADF3 /* amplify/generated/models/userDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6B27470D6A0099ADF3 /* amplify/generated/models/userDataModel.swift */; };
+		ADF11A6F27470D6A0099ADF3 /* amplify/generated/models/userDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6C27470D6A0099ADF3 /* amplify/generated/models/userDataModel+Schema.swift */; };
 		ADF11A7327478F0D0099ADF3 /* logowhttrans.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A7227478F0D0099ADF3 /* logowhttrans.png */; };
 		ADF11A78274795390099ADF3 /* RingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A77274795390099ADF3 /* RingChart.swift */; };
 		ADF11A7C2747AB050099ADF3 /* Option1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A7B2747AB050099ADF3 /* Option1.swift */; };
@@ -165,6 +166,7 @@
 		988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F7919AE38F140D052F4F4FA /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.release.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.release.xcconfig"; sourceTree = "<group>"; };
+		AD2214562798B421006DEA9B /* SetupViewTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewTutorial.swift; sourceTree = "<group>"; };
 		AD27EA7227967F4300B4BD49 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		AD27EA7427971F9600B4BD49 /* googleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = googleLogo.png; sourceTree = "<group>"; };
 		AD27EA76279726A600B4BD49 /* facebookLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookLogo.png; sourceTree = "<group>"; };
@@ -283,9 +285,9 @@
 		ADF11A632745E35B0099ADF3 /* healthImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = healthImage.png; sourceTree = "<group>"; };
 		ADF11A652745E4280099ADF3 /* Apollo 1 Ring.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apollo 1 Ring.obj"; sourceTree = "<group>"; };
 		ADF11A672746F4B90099ADF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		ADF11A6A27470D6A0099ADF3 /* AmplifyModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplifyModels.swift; sourceTree = "<group>"; };
-		ADF11A6B27470D6A0099ADF3 /* userDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userDataModel.swift; sourceTree = "<group>"; };
-		ADF11A6C27470D6A0099ADF3 /* userDataModel+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "userDataModel+Schema.swift"; sourceTree = "<group>"; };
+		ADF11A6A27470D6A0099ADF3 /* amplify/generated/models/AmplifyModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
+		ADF11A6B27470D6A0099ADF3 /* amplify/generated/models/userDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = amplify/generated/models/userDataModel.swift; sourceTree = "<group>"; };
+		ADF11A6C27470D6A0099ADF3 /* amplify/generated/models/userDataModel+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "amplify/generated/models/userDataModel+Schema.swift"; sourceTree = "<group>"; };
 		ADF11A7227478F0D0099ADF3 /* logowhttrans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logowhttrans.png; sourceTree = "<group>"; };
 		ADF11A77274795390099ADF3 /* RingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingChart.swift; sourceTree = "<group>"; };
 		ADF11A7B2747AB050099ADF3 /* Option1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option1.swift; sourceTree = "<group>"; };
@@ -330,8 +332,12 @@
 				1DCD0911A16987641E9C24AC /* AmplifyModels.swift */,
 				42585BD5408AF40BA7C9B8E0 /* userDataModel+Schema.swift */,
 				24A861524A27F32C496805D4 /* userDataModel.swift */,
+				ADF11A6A27470D6A0099ADF3 /* amplify/generated/models/AmplifyModels.swift */,
+				ADF11A6C27470D6A0099ADF3 /* amplify/generated/models/userDataModel+Schema.swift */,
+				ADF11A6B27470D6A0099ADF3 /* amplify/generated/models/userDataModel.swift */,
 			);
 			name = AmplifyModels;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		81A13C1350C1AD080F4232EC /* Frameworks */ = {
@@ -393,6 +399,7 @@
 				AD3ABDB5279666F300D95016 /* BPInfo.swift */,
 				AD27EA7227967F4300B4BD49 /* SignInView.swift */,
 				AD27EA7A2797327A00B4BD49 /* AggregateSetupView.swift */,
+				AD2214562798B421006DEA9B /* SetupViewTutorial.swift */,
 			);
 			path = SetupViews;
 			sourceTree = "<group>";
@@ -410,7 +417,9 @@
 		AD837C98276461EB00E0BDB9 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
+				18B445935B70D148DD512589 /* AmplifyModels */,
 				AD2DAAEC2788A6C50073473A /* StatDataObjectListWrapper.swift */,
+				ADF11A4A2745D4740099ADF3 /* UserData.swift */,
 				AD837CE12765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift */,
 				AD837CE52766835400E0BDB9 /* DataController.swift */,
 				AD837CA027652B9900E0BDB9 /* StatData.xcdatamodeld */,
@@ -459,7 +468,6 @@
 				ED0BBA9A262AD514B1293357 /* AmplifyConfig */,
 				D104061A2C519A815099CDAE /* Pods */,
 				81A13C1350C1AD080F4232EC /* Frameworks */,
-				18B445935B70D148DD512589 /* AmplifyModels */,
 			);
 			sourceTree = "<group>";
 		};
@@ -559,7 +567,6 @@
 			isa = PBXGroup;
 			children = (
 				ADF11A492745D4740099ADF3 /* Backend.swift */,
-				ADF11A4A2745D4740099ADF3 /* UserData.swift */,
 				AD27EA7827972B1500B4BD49 /* 3rdPartySignIn.swift */,
 				ADF11A4B2745D4740099ADF3 /* TextLimiting.swift */,
 				ADF11A4C2745D4740099ADF3 /* KeyboardHelper.swift */,
@@ -623,9 +630,6 @@
 		ADF11A6927470D6A0099ADF3 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				ADF11A6A27470D6A0099ADF3 /* AmplifyModels.swift */,
-				ADF11A6B27470D6A0099ADF3 /* userDataModel.swift */,
-				ADF11A6C27470D6A0099ADF3 /* userDataModel+Schema.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -838,9 +842,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -921,9 +929,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -938,9 +950,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -955,9 +971,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -975,6 +995,7 @@
 				AD837C942760350500E0BDB9 /* StatObjects.swift in Sources */,
 				AD837C902760215600E0BDB9 /* SegmentedChartViewCenter.swift in Sources */,
 				ADC3D478278E3EBE00348E0C /* InferenceMultiLineAverageBox.swift in Sources */,
+				AD2214572798B421006DEA9B /* SetupViewTutorial.swift in Sources */,
 				ADC3D474278CD4B000348E0C /* MultilineMinimumGraphview.swift in Sources */,
 				ADF11A78274795390099ADF3 /* RingChart.swift in Sources */,
 				ADF11A382745D4670099ADF3 /* SetupView.swift in Sources */,
@@ -988,7 +1009,7 @@
 				ADF11A4E2745D4740099ADF3 /* UserData.swift in Sources */,
 				ADAB7714277CE03E00196D25 /* LiveRead.swift in Sources */,
 				AD837C9727645F4400E0BDB9 /* MainView2.swift in Sources */,
-				ADF11A6E27470D6A0099ADF3 /* userDataModel.swift in Sources */,
+				ADF11A6E27470D6A0099ADF3 /* amplify/generated/models/userDataModel.swift in Sources */,
 				ADB3DBDB2790A81B00827E3A /* RangeScroller.swift in Sources */,
 				ADA1ECA2274E1EE00079E6CE /* BPOption1.swift in Sources */,
 				ADB3DBE32791D6B300827E3A /* VO2Max.swift in Sources */,
@@ -1011,7 +1032,7 @@
 				ADB3DBE12791471900827E3A /* SPO2LevelView.swift in Sources */,
 				ADB3DBCB2790026C00827E3A /* PulsePressure.swift in Sources */,
 				AD3EE4EE2750C1E5001A30A2 /* LiveGrapher.swift in Sources */,
-				ADF11A6F27470D6A0099ADF3 /* userDataModel+Schema.swift in Sources */,
+				ADF11A6F27470D6A0099ADF3 /* amplify/generated/models/userDataModel+Schema.swift in Sources */,
 				AD48C98D2770FD3F003F1DCA /* BPMiniLevelView.swift in Sources */,
 				ADC3D47A278EAA0E00348E0C /* MultilineAverageGraphView.swift in Sources */,
 				AD837D03276BB16000E0BDB9 /* VerticalLinePlotter.swift in Sources */,
@@ -1049,7 +1070,7 @@
 				ADF11A542745D47B0099ADF3 /* BLEManager.swift in Sources */,
 				ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */,
 				ADB3DBC9278FC32000827E3A /* RestingHR.swift in Sources */,
-				ADF11A6D27470D6A0099ADF3 /* AmplifyModels.swift in Sources */,
+				ADF11A6D27470D6A0099ADF3 /* amplify/generated/models/AmplifyModels.swift in Sources */,
 				AD3EE4F0275178AC001A30A2 /* bpmMiniBox.swift in Sources */,
 				AD2DAAF3278A9BB90073473A /* GraphInferenceTrendGraphView.swift in Sources */,
 				AD67BD86275420DC00341539 /* backBtn.swift in Sources */,

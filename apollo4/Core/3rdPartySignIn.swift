@@ -43,7 +43,8 @@ func socialSignInWithWebUI(for provider: AuthProvider) -> AnyCancellable {
                 print("Sign in failed \(authError)")
             }
         }
-        receiveValue: { _ in
+        receiveValue: { userData in
+            print(userData)
             print("Sign in succeeded")
         }
 }

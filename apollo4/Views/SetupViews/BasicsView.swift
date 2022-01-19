@@ -9,25 +9,24 @@ import SwiftUI
 
 struct BasicSetupView<Content: View>: View {
     @ObservedObject var userData: UserData
+    
     var title: String
     var color: Color
+    var showSwipe: Bool = true
     @ViewBuilder var content: Content
     var body: some View {
-        VStack{
+        LazyVStack{
             HStack{
                 Text(title)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding()
-                    .padding(.bottom, -10)
+                    .padding(.bottom, -20)
                 Spacer()
             }
             .padding(.bottom)
             VStack{
                 content
-                Spacer()
-                Text("Swipe right to continue")
-                    .padding()
             }
             .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height * 0.8)
             .background(.black).opacity(0.7)

@@ -7,7 +7,7 @@
 
 import Foundation
 class UserData:  ObservableObject {
-    private init() {}
+    init() {}
     init(id: String) {
         self.id = id
         self.name = ""
@@ -22,9 +22,12 @@ class UserData:  ObservableObject {
     private var birthday: Date?
     private var email: String?
     private var phoneNumber: String?
+    var systolicCalibData: Int?
+    var diastolicCalibData: Int?
     var notify: Bool = true
     @Published var stage: Int!
     @Published var isSignedIn : Bool = false
+    public var description: String {return "\(Date()) Userdata object {\n id: \(String(describing: id)) \n name: \(name) \n firstName: \(firstName) \n lastName: \(lastName) \n birthday: \(birthday) \n email: \(email) \n phoneNumber: \(phoneNumber) \n systolic: \(systolicCalibData) \n diastolic: \(diastolicCalibData) \n isSignedIn: \(isSignedIn) \n  }"}
     func getId() -> String {
         return self.id
     }

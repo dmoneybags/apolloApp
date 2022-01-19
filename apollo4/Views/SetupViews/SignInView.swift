@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NotificationBannerSwift
 
 struct SignInButton: View {
     var body: some View {
@@ -117,6 +118,9 @@ struct FbSignInButton: View {
 }
 struct SignInView: View {
     @ObservedObject var userData: UserData
+    @ObservedObject var basicDone: observableBool
+    @ObservedObject var bpDone: observableBool
+    private let errorNotification = NotificationBanner(title: "Failed", subtitle: "Error, some info isn't filled out, swipe left and check that all fields are filled.", style: .danger)
     var body: some View {
         Text("A method of authentification is needed to associate you with your data in the case that you switch phones or get a new ring. We recommend signing in with a third party provider (Apple, Facebook, Google). However you can sign up directly with us.")
             .font(.footnote)
@@ -132,5 +136,17 @@ struct SignInView: View {
             .padding(5)
         FbSignInButton()
             .padding(5)
+        Spacer()
+        if userData.isSignedIn{
+            Text("Sign in suceeded")
+            Divider()
+            Button("Continue", action: {
+                if bpDone.value && basicDone.value{
+                    print("Success")
+                } else {
+                    errorNotification.show()
+                }
+            })
+        }
     }
 }

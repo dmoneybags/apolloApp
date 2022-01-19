@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Amplify
 import CoreData
 
 // basically, we intialize one controller object that can only be seen within this file and put it
@@ -37,6 +37,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         print("LAUNCHING")
         let _ = Backend.initialize()
         print("BACKEND INITIALIZED")
+        print("CURRENT USER: \(String(describing: Amplify.Auth.getCurrentUser()))")
         return true
     }
 }

@@ -31,11 +31,7 @@ struct swipeView: View {
             .onAppear {
                 self.shouldAnimate = true
             }
-            Text("Swipe")
-                .foregroundColor(Color.white)
         }
-        .padding()
-        .background(Capsule().fill(Color.blue).frame(width: 200, height: 70))
     }
 }
 

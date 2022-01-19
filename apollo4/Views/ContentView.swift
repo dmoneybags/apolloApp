@@ -15,7 +15,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var stats: FetchedResults<StatDataObject>
     @StateObject var bleManager: BLEManager = BLEManager()
-    @StateObject var user: UserData = .shared
+    @ObservedObject var user: UserData = .shared
     @State private var numBarsANIMATION: CGFloat = 1.25
     @State private var opacityANIMATION: CGFloat = 0.0
     @State private var repeated = Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true)
@@ -100,7 +100,9 @@ struct ContentView: View {
                 .frame(width: 400, height: 80)
             }
             .onAppear(){
+                print(user.description)
                 if stats.isEmpty {
+                    print("GENERATING STATS")
                     _ = StatDataObject(inputName: "SPO2", context: moc, empty: true)
                     _ = StatDataObject(inputName: "HeartRate", context: moc, empty: true)
                     _ = StatDataObject(inputName: "SystolicPressure", context: moc, empty: true)
@@ -111,10 +113,8 @@ struct ContentView: View {
             }
         }
         .environmentObject(bleManager)
-        //user object will most likely be replaced
-        .environmentObject(user)
         .fullScreenCover(isPresented: $loadSetup){
-            AggregateSetupView()
+            AggregateSetupView(userData: user)
         }
         
     }
