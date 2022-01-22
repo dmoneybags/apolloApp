@@ -9,12 +9,15 @@ import Foundation
 import CoreBluetooth
 import SwiftUI
 
-struct Peripheral: Identifiable {
+struct Peripheral: Identifiable, Equatable {
     let _CBPeripheral : CBPeripheral
     let id: Int
     let name: String
     let rssi: Int
     public var characteristics: [String: CBCharacteristic] = [:]
+    static func ==(lhs: Peripheral, rhs: Peripheral) -> Bool{
+        return lhs.id == rhs.id
+    }
 }
 
 class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -31,6 +34,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         myCentral.delegate = self
     }
     func startScanning() -> Int {
+        print(#function)
         print("startScanning")
         myCentral.scanForPeripherals(withServices: [CBUUIDs.deviceUUID], options: nil)
         if self.connectedPeripheral == nil {
@@ -43,14 +47,20 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             print("stopScanning")
             myCentral.stopScan()
         }
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?){
+        print(#function)
+        startScanning()
+    }
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         let peripheralName: String?
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
-                    peripheralName = name
-                }
-                else {
-                    peripheralName = "Unknown"
-                }
+            peripheralName = name
+        } else {
+            peripheralName = "Unknown"
+        }
+        if let serialNumber = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
+            print("serial number: \(serialNumber)")
+        }
         let newPeripheral = Peripheral(_CBPeripheral: peripheral, id:peripherals.count, name: peripheralName!, rssi: RSSI.intValue)
         //if connectedPeripheral == nil && peripheral.name == "Feather nRF52832"{
         myCentral.connect(newPeripheral._CBPeripheral, options: nil)
@@ -68,10 +78,11 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
             stopScanning()
         connectedPeripheral!._CBPeripheral.discoverServices(nil)
-          }
+    }
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
             isSwitchedOn = true
+            startScanning()
         }
         else {
             isSwitchedOn = false

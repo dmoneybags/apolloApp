@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14AFEFA6EB492561108251D9 /* userDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A861524A27F32C496805D4 /* userDataModel.swift */; };
-		1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42585BD5408AF40BA7C9B8E0 /* userDataModel+Schema.swift */; };
+		1283BD720246F89C6C88A12D /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E73FC4C3FB55437DE0D5B /* UserDataModel.swift */; };
+		4D5F968FE0963F1F9A933B72 /* UserDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C99D8D51B24BE029D86E4E /* UserDataModel+Schema.swift */; };
 		4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F7919AE38F140D052F4F4FA /* awsconfiguration.json */; };
 		5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */; };
 		AD2214572798B421006DEA9B /* SetupViewTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2214562798B421006DEA9B /* SetupViewTutorial.swift */; };
@@ -66,6 +66,9 @@
 		AD8F6B30279220FA004A37A0 /* VO2Max.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8F6B2F279220FA004A37A0 /* VO2Max.png */; };
 		ADA1ECA2274E1EE00079E6CE /* BPOption1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */; };
 		ADA1ECA4274E34B30079E6CE /* CapsuleReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */; };
+		ADAB5621279A738A00C027B1 /* RingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB5620279A738A00C027B1 /* RingSetup.swift */; };
+		ADAB5623279B56A300C027B1 /* RingPowerView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB5622279B56A300C027B1 /* RingPowerView2.swift */; };
+		ADAB5625279BC66C00C027B1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB5624279BC66C00C027B1 /* SettingsView.swift */; };
 		ADAB7712277CDEC800196D25 /* LiveReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7711277CDEC800196D25 /* LiveReadView.swift */; };
 		ADAB7714277CE03E00196D25 /* LiveRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7713277CE03E00196D25 /* LiveRead.swift */; };
 		ADAB7716277CF67E00196D25 /* StopWatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7715277CF67E00196D25 /* StopWatchManager.swift */; };
@@ -92,6 +95,9 @@
 		ADC3D478278E3EBE00348E0C /* InferenceMultiLineAverageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3D477278E3EBE00348E0C /* InferenceMultiLineAverageBox.swift */; };
 		ADC3D47A278EAA0E00348E0C /* MultilineAverageGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3D479278EAA0E00348E0C /* MultilineAverageGraphView.swift */; };
 		ADC3D47C278F6CFF00348E0C /* FullScreenStatInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3D47B278F6CFF00348E0C /* FullScreenStatInfo.swift */; };
+		ADE73860279C581E0031D0C5 /* SettingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE7385F279C581E0031D0C5 /* SettingRow.swift */; };
+		ADE73864279C7C8D0031D0C5 /* BasicSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE73863279C7C8D0031D0C5 /* BasicSettingView.swift */; };
+		ADE73866279CA0200031D0C5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE73865279CA0200031D0C5 /* ProfileView.swift */; };
 		ADEE606E2785FBBB00E59A79 /* hrVarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEE606D2785FBBB00E59A79 /* hrVarImage.swift */; };
 		ADF119FB2745D0060099ADF3 /* apollo4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF119FA2745D0060099ADF3 /* apollo4App.swift */; };
 		ADF11A022745D0080099ADF3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A012745D0080099ADF3 /* Preview Assets.xcassets */; };
@@ -125,9 +131,6 @@
 		ADF11A622745E3180099ADF3 /* nameImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A612745E3180099ADF3 /* nameImage.jpeg */; };
 		ADF11A642745E35B0099ADF3 /* healthImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A632745E35B0099ADF3 /* healthImage.png */; };
 		ADF11A662745E4280099ADF3 /* Apollo 1 Ring.obj in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A652745E4280099ADF3 /* Apollo 1 Ring.obj */; };
-		ADF11A6D27470D6A0099ADF3 /* amplify/generated/models/AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6A27470D6A0099ADF3 /* amplify/generated/models/AmplifyModels.swift */; };
-		ADF11A6E27470D6A0099ADF3 /* amplify/generated/models/userDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6B27470D6A0099ADF3 /* amplify/generated/models/userDataModel.swift */; };
-		ADF11A6F27470D6A0099ADF3 /* amplify/generated/models/userDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A6C27470D6A0099ADF3 /* amplify/generated/models/userDataModel+Schema.swift */; };
 		ADF11A7327478F0D0099ADF3 /* logowhttrans.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF11A7227478F0D0099ADF3 /* logowhttrans.png */; };
 		ADF11A78274795390099ADF3 /* RingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A77274795390099ADF3 /* RingChart.swift */; };
 		ADF11A7C2747AB050099ADF3 /* Option1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A7B2747AB050099ADF3 /* Option1.swift */; };
@@ -159,8 +162,7 @@
 		05396547B94734C0AC72F675 /* Pods_apollo4Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		1DCD0911A16987641E9C24AC /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
-		24A861524A27F32C496805D4 /* userDataModel.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = userDataModel.swift; path = amplify/generated/models/userDataModel.swift; sourceTree = "<group>"; };
-		42585BD5408AF40BA7C9B8E0 /* userDataModel+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "userDataModel+Schema.swift"; path = "amplify/generated/models/userDataModel+Schema.swift"; sourceTree = "<group>"; };
+		403E73FC4C3FB55437DE0D5B /* UserDataModel.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = UserDataModel.swift; path = amplify/generated/models/UserDataModel.swift; sourceTree = "<group>"; };
 		640E17A6646D270FD36F9D73 /* Pods_apollo4_apollo4UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4_apollo4UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964BF2CC7483627E5B10912F /* Pods-apollo4-apollo4UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.release.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.release.xcconfig"; sourceTree = "<group>"; };
 		988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -222,6 +224,9 @@
 		AD8F6B2F279220FA004A37A0 /* VO2Max.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VO2Max.png; sourceTree = "<group>"; };
 		ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPOption1.swift; sourceTree = "<group>"; };
 		ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleReader.swift; sourceTree = "<group>"; };
+		ADAB5620279A738A00C027B1 /* RingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingSetup.swift; sourceTree = "<group>"; };
+		ADAB5622279B56A300C027B1 /* RingPowerView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingPowerView2.swift; sourceTree = "<group>"; };
+		ADAB5624279BC66C00C027B1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ADAB7711277CDEC800196D25 /* LiveReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveReadView.swift; sourceTree = "<group>"; };
 		ADAB7713277CE03E00196D25 /* LiveRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiveRead.swift; path = ../../../../Desktop/LiveRead.swift; sourceTree = "<group>"; };
 		ADAB7715277CF67E00196D25 /* StopWatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchManager.swift; sourceTree = "<group>"; };
@@ -248,6 +253,9 @@
 		ADC3D477278E3EBE00348E0C /* InferenceMultiLineAverageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceMultiLineAverageBox.swift; sourceTree = "<group>"; };
 		ADC3D479278EAA0E00348E0C /* MultilineAverageGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineAverageGraphView.swift; sourceTree = "<group>"; };
 		ADC3D47B278F6CFF00348E0C /* FullScreenStatInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenStatInfo.swift; sourceTree = "<group>"; };
+		ADE7385F279C581E0031D0C5 /* SettingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRow.swift; sourceTree = "<group>"; };
+		ADE73863279C7C8D0031D0C5 /* BasicSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSettingView.swift; sourceTree = "<group>"; };
+		ADE73865279CA0200031D0C5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		ADEE606D2785FBBB00E59A79 /* hrVarImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hrVarImage.swift; sourceTree = "<group>"; };
 		ADF119F72745D0060099ADF3 /* apollo4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apollo4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF119FA2745D0060099ADF3 /* apollo4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apollo4App.swift; sourceTree = "<group>"; };
@@ -285,13 +293,11 @@
 		ADF11A632745E35B0099ADF3 /* healthImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = healthImage.png; sourceTree = "<group>"; };
 		ADF11A652745E4280099ADF3 /* Apollo 1 Ring.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apollo 1 Ring.obj"; sourceTree = "<group>"; };
 		ADF11A672746F4B90099ADF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		ADF11A6A27470D6A0099ADF3 /* amplify/generated/models/AmplifyModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
-		ADF11A6B27470D6A0099ADF3 /* amplify/generated/models/userDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = amplify/generated/models/userDataModel.swift; sourceTree = "<group>"; };
-		ADF11A6C27470D6A0099ADF3 /* amplify/generated/models/userDataModel+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "amplify/generated/models/userDataModel+Schema.swift"; sourceTree = "<group>"; };
 		ADF11A7227478F0D0099ADF3 /* logowhttrans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logowhttrans.png; sourceTree = "<group>"; };
 		ADF11A77274795390099ADF3 /* RingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingChart.swift; sourceTree = "<group>"; };
 		ADF11A7B2747AB050099ADF3 /* Option1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option1.swift; sourceTree = "<group>"; };
 		ADF7DF2E277ABDF3007953FC /* dateSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateSwitcher.swift; sourceTree = "<group>"; };
+		B4C99D8D51B24BE029D86E4E /* UserDataModel+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "UserDataModel+Schema.swift"; path = "amplify/generated/models/UserDataModel+Schema.swift"; sourceTree = "<group>"; };
 		DAC3772788A412A79844DAD0 /* Pods-apollo4-apollo4UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F1AA8673E4552EA4EBD5846C /* Pods-apollo4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4.release.xcconfig"; path = "Target Support Files/Pods-apollo4/Pods-apollo4.release.xcconfig"; sourceTree = "<group>"; };
 		F5947E8335BA29513666FAEE /* Pods_apollo4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,14 +336,10 @@
 			isa = PBXGroup;
 			children = (
 				1DCD0911A16987641E9C24AC /* AmplifyModels.swift */,
-				42585BD5408AF40BA7C9B8E0 /* userDataModel+Schema.swift */,
-				24A861524A27F32C496805D4 /* userDataModel.swift */,
-				ADF11A6A27470D6A0099ADF3 /* amplify/generated/models/AmplifyModels.swift */,
-				ADF11A6C27470D6A0099ADF3 /* amplify/generated/models/userDataModel+Schema.swift */,
-				ADF11A6B27470D6A0099ADF3 /* amplify/generated/models/userDataModel.swift */,
+				B4C99D8D51B24BE029D86E4E /* UserDataModel+Schema.swift */,
+				403E73FC4C3FB55437DE0D5B /* UserDataModel.swift */,
 			);
 			name = AmplifyModels;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		81A13C1350C1AD080F4232EC /* Frameworks */ = {
@@ -400,6 +402,7 @@
 				AD27EA7227967F4300B4BD49 /* SignInView.swift */,
 				AD27EA7A2797327A00B4BD49 /* AggregateSetupView.swift */,
 				AD2214562798B421006DEA9B /* SetupViewTutorial.swift */,
+				ADAB5620279A738A00C027B1 /* RingSetup.swift */,
 			);
 			path = SetupViews;
 			sourceTree = "<group>";
@@ -417,7 +420,6 @@
 		AD837C98276461EB00E0BDB9 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				18B445935B70D148DD512589 /* AmplifyModels */,
 				AD2DAAEC2788A6C50073473A /* StatDataObjectListWrapper.swift */,
 				ADF11A4A2745D4740099ADF3 /* UserData.swift */,
 				AD837CE12765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift */,
@@ -439,6 +441,7 @@
 		AD837CFB276927FC00E0BDB9 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				ADE73862279C799D0031D0C5 /* SettingsView */,
 				AD837CFC2769282B00E0BDB9 /* MainUIBox.swift */,
 				AD837CFE2769308800E0BDB9 /* MainUIBoxScroller.swift */,
 				AD837D00276AB01500E0BDB9 /* CardView.swift */,
@@ -451,8 +454,20 @@
 				ADB3DBD627908F1000827E3A /* WhatIsStatName.swift */,
 				ADB3DBDA2790A81B00827E3A /* RangeScroller.swift */,
 				ADB3DBDC2790C66900827E3A /* RingPowerView.swift */,
+				ADAB5622279B56A300C027B1 /* RingPowerView2.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		ADE73862279C799D0031D0C5 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				ADAB5624279BC66C00C027B1 /* SettingsView.swift */,
+				ADE7385F279C581E0031D0C5 /* SettingRow.swift */,
+				ADE73863279C7C8D0031D0C5 /* BasicSettingView.swift */,
+				ADE73865279CA0200031D0C5 /* ProfileView.swift */,
+			);
+			path = SettingsView;
 			sourceTree = "<group>";
 		};
 		ADF119EE2745D0060099ADF3 = {
@@ -468,6 +483,7 @@
 				ED0BBA9A262AD514B1293357 /* AmplifyConfig */,
 				D104061A2C519A815099CDAE /* Pods */,
 				81A13C1350C1AD080F4232EC /* Frameworks */,
+				18B445935B70D148DD512589 /* AmplifyModels */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1001,6 +1017,7 @@
 				ADF11A382745D4670099ADF3 /* SetupView.swift in Sources */,
 				AD3EE4F42751CC43001A30A2 /* bloodPressureMinibox.swift in Sources */,
 				ADAB77182784BD3300196D25 /* HrVarView.swift in Sources */,
+				ADE73866279CA0200031D0C5 /* ProfileView.swift in Sources */,
 				AD6EB591275B4A6F000BD56F /* BarChartCell.swift in Sources */,
 				ADF11A3E2745D4670099ADF3 /* PairingView.swift in Sources */,
 				AD3ABDAC2794E4C900D95016 /* HalfRingChart.swift in Sources */,
@@ -1008,8 +1025,8 @@
 				ADF11A4D2745D4740099ADF3 /* Backend.swift in Sources */,
 				ADF11A4E2745D4740099ADF3 /* UserData.swift in Sources */,
 				ADAB7714277CE03E00196D25 /* LiveRead.swift in Sources */,
+				ADE73860279C581E0031D0C5 /* SettingRow.swift in Sources */,
 				AD837C9727645F4400E0BDB9 /* MainView2.swift in Sources */,
-				ADF11A6E27470D6A0099ADF3 /* amplify/generated/models/userDataModel.swift in Sources */,
 				ADB3DBDB2790A81B00827E3A /* RangeScroller.swift in Sources */,
 				ADA1ECA2274E1EE00079E6CE /* BPOption1.swift in Sources */,
 				ADB3DBE32791D6B300827E3A /* VO2Max.swift in Sources */,
@@ -1032,7 +1049,6 @@
 				ADB3DBE12791471900827E3A /* SPO2LevelView.swift in Sources */,
 				ADB3DBCB2790026C00827E3A /* PulsePressure.swift in Sources */,
 				AD3EE4EE2750C1E5001A30A2 /* LiveGrapher.swift in Sources */,
-				ADF11A6F27470D6A0099ADF3 /* amplify/generated/models/userDataModel+Schema.swift in Sources */,
 				AD48C98D2770FD3F003F1DCA /* BPMiniLevelView.swift in Sources */,
 				ADC3D47A278EAA0E00348E0C /* MultilineAverageGraphView.swift in Sources */,
 				AD837D03276BB16000E0BDB9 /* VerticalLinePlotter.swift in Sources */,
@@ -1056,6 +1072,7 @@
 				ADB9B8F62748482200EB9227 /* Option3.swift in Sources */,
 				ADB9B8FF274CEBB000EB9227 /* DataRetrieval.swift in Sources */,
 				AD6EB59D275D4EB3000BD56F /* TickMarkReader.swift in Sources */,
+				ADAB5623279B56A300C027B1 /* RingPowerView2.swift in Sources */,
 				AD6BEFE82787FD85007AE569 /* GraphInferenceMinimumGraphView.swift in Sources */,
 				AD6EB58F275B4A6F000BD56F /* BarChartRow.swift in Sources */,
 				ADAB7712277CDEC800196D25 /* LiveReadView.swift in Sources */,
@@ -1070,11 +1087,12 @@
 				ADF11A542745D47B0099ADF3 /* BLEManager.swift in Sources */,
 				ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */,
 				ADB3DBC9278FC32000827E3A /* RestingHR.swift in Sources */,
-				ADF11A6D27470D6A0099ADF3 /* amplify/generated/models/AmplifyModels.swift in Sources */,
 				AD3EE4F0275178AC001A30A2 /* bpmMiniBox.swift in Sources */,
 				AD2DAAF3278A9BB90073473A /* GraphInferenceTrendGraphView.swift in Sources */,
 				AD67BD86275420DC00341539 /* backBtn.swift in Sources */,
+				ADE73864279C7C8D0031D0C5 /* BasicSettingView.swift in Sources */,
 				ADF119FB2745D0060099ADF3 /* apollo4App.swift in Sources */,
+				ADAB5621279A738A00C027B1 /* RingSetup.swift in Sources */,
 				AD3EE4E9274F5D4C001A30A2 /* Inference.swift in Sources */,
 				ADF11A412745D4670099ADF3 /* finishedSetupView.swift in Sources */,
 				ADC3D47C278F6CFF00348E0C /* FullScreenStatInfo.swift in Sources */,
@@ -1087,13 +1105,14 @@
 				ADF11A452745D4670099ADF3 /* healthSetupView.swift in Sources */,
 				ADF11A4F2745D4740099ADF3 /* TextLimiting.swift in Sources */,
 				AD837CE82766853D00E0BDB9 /* DebugView.swift in Sources */,
-				C60B171744D888CA9DAA7377 /* AmplifyModels.swift in Sources */,
 				ADF7DF2F277ABDF3007953FC /* dateSwitcher.swift in Sources */,
-				1B8EA29AE61EE3D18418CF80 /* userDataModel+Schema.swift in Sources */,
 				AD837CF727691EB400E0BDB9 /* VitalView.swift in Sources */,
-				14AFEFA6EB492561108251D9 /* userDataModel.swift in Sources */,
+				ADAB5625279BC66C00C027B1 /* SettingsView.swift in Sources */,
 				AD837D01276AB01500E0BDB9 /* CardView.swift in Sources */,
 				AD837CA227652B9900E0BDB9 /* StatData.xcdatamodeld in Sources */,
+				C60B171744D888CA9DAA7377 /* AmplifyModels.swift in Sources */,
+				4D5F968FE0963F1F9A933B72 /* UserDataModel+Schema.swift in Sources */,
+				1283BD720246F89C6C88A12D /* UserDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

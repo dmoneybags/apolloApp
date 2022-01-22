@@ -14,7 +14,18 @@ class UserData:  ObservableObject {
         self.stage = 0
         self.isSignedIn = false
     }
-    static let shared = UserData()
+    init(userDataModel: Userdatamodel){
+        self.id = userDataModel.id
+        self.firstName = userDataModel.firstName
+        self.lastName = userDataModel.lastName
+        self.birthday = Date(timeIntervalSince1970: TimeInterval(userDataModel.birthday!))
+        self.email = userDataModel.email
+        self.phoneNumber = userDataModel.phoneNumber
+        self.systolicCalibData = userDataModel.systolic
+        self.diastolicCalibData = userDataModel.diastolic
+        self.isSignedIn = userDataModel.isSignedIn ?? true
+    }
+    static var shared = UserData()
     private var id: String!
     private var name: String?
     private var firstName: String?
@@ -27,8 +38,8 @@ class UserData:  ObservableObject {
     var notify: Bool = true
     @Published var stage: Int!
     @Published var isSignedIn : Bool = false
-    public var description: String {return "\(Date()) Userdata object {\n id: \(String(describing: id)) \n name: \(name) \n firstName: \(firstName) \n lastName: \(lastName) \n birthday: \(birthday) \n email: \(email) \n phoneNumber: \(phoneNumber) \n systolic: \(systolicCalibData) \n diastolic: \(diastolicCalibData) \n isSignedIn: \(isSignedIn) \n  }"}
-    func getId() -> String {
+    public var description: String {return "\(Date()) Userdata object {\n id: \(String(describing: id)) \n name: \(String(describing: name)) \n firstName: \(String(describing: firstName)) \n lastName: \(lastName) \n birthday: \(birthday) \n email: \(email) \n phoneNumber: \(phoneNumber) \n systolic: \(systolicCalibData) \n diastolic: \(String(describing: diastolicCalibData)) \n isSignedIn: \(isSignedIn) \n  }"}
+    func getId() -> String? {
         return self.id
     }
     func getName() -> String? {

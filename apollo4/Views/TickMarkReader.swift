@@ -13,6 +13,7 @@ struct TickMarkReader: View {
     var stat: String
     var reading: Double
     var color: Color? = nil
+    var showNum: Bool = true
     @State private var loaded = false
     private var progress: Double{
         return getProgress(stat: stat, reading: reading)
@@ -33,14 +34,16 @@ struct TickMarkReader: View {
                     .frame(width: width, height: loaded ? readingLength: 0, alignment: .center)
                     .position(x: geo.frame(in: .local).midX, y: loaded ? geo.frame(in: .local).maxY - readingLength/2 : geo.frame(in: .local).maxY)
                     .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.clear, (color != nil ? color!: getColor(stat: stat, progress: progress))]), startPoint: UnitPoint(x: 0.0, y: 1.0), endPoint: UnitPoint(x: 0.0, y: 0.0)))
-                HStack{
-                    Text(String(Int(reading)))
-                        .fontWeight(.bold)
-                        .font(.title2)
-                    Image(systemName: "play")
+                if showNum {
+                    HStack{
+                        Text(String(Int(reading)))
+                            .fontWeight(.bold)
+                            .font(.title2)
+                        Image(systemName: "play")
+                    }
+                    .frame(width: 80, height: 30, alignment: .center)
+                    .position(x: geo.frame(in: .local).minX - 40, y: geo.frame(in: .local).maxY - readingLength)
                 }
-                .frame(width: 80, height: 30, alignment: .center)
-                .position(x: geo.frame(in: .local).minX - 40, y: geo.frame(in: .local).maxY - readingLength)
             }
         }
         .onAppear(){

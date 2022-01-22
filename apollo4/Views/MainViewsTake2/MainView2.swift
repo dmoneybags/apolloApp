@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import NotificationBannerSwift
 class observableBool: ObservableObject {
     @Published var value: Bool
     init(value: Bool){
@@ -18,11 +18,14 @@ struct MainView2: View {
     @Environment(\.colorScheme) var colorScheme
     //Colors for light and dark mode, however app may be forced to dark mode because I just like it
     @StateObject private var changingRingSettings: observableBool = observableBool(value: false)
+    @EnvironmentObject var bleManager: BLEManager
+    var showSuccess = false
     var colors: [Color] {
         let color1 = colorScheme == .dark ? Color.black : Color.white
         let color2 = colorScheme == .dark ? Color.pink : Color.blue
         return [color1, color2]
     }
+    private let successBanner = NotificationBanner(title: "Sucess!",  subtitle: "Ring set up!", style: .success)
     var body: some View {
         //ZStack so logo is always on top
         ZStack (alignment: .top){
@@ -39,17 +42,10 @@ struct MainView2: View {
                 }
             }
             HStack{
-                ZStack{
-                    Circle()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.white)
-                    Image(systemName: "gearshape.fill")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                        .foregroundColor(Color(UIColor.systemGray6))
-                }
-                .offset(x: 30, y: 30)
-                .frame(width: 30, height: 30)
+                SettingsView()
+                    .offset(x: 30, y: 30)
+                    .frame(width: 30, height: 30)
+                    .zIndex(4)
                 Spacer()
                 Image(colorScheme == .dark ? "logowhttrans": "logo_white_background")
                     .resizable()
@@ -59,16 +55,15 @@ struct MainView2: View {
                 ZStack{
                     Circle()
                         .frame(width: 30, height: 30)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                     Image(systemName: "bolt.fill")
                         .frame(width: 25, height: 25)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                     RingChart(progress: .constant(0.85), text: .constant(""), lineWidth: 5)
                         .frame(width: 35, height: 35)
                     if changingRingSettings.value{
                         ZStack{
-                            RingPowerView(batteryPercent: 0.85)
-                                .environmentObject(changingRingSettings)
+                            RingPowerView2(changingRingSettings: changingRingSettings)
                                 .position(x: -UIScreen.main.bounds.width/2 + 62.5, y: UIScreen.main.bounds.height/2 - 50)
                         }
                     }
@@ -80,6 +75,11 @@ struct MainView2: View {
                     print("Showing battery level view")
                     changingRingSettings.value = true
                 }
+            }
+        }
+        .onAppear{
+            if showSuccess{
+                successBanner.show()
             }
         }
         .ignoresSafeArea(.all)

@@ -58,7 +58,7 @@ extension StatDataObject {
             dates.append(Date(timeIntervalSince1970: (components[1] as NSString).doubleValue) as NSDate)
         } else {
             //append the double to data and current date to dates
-            print("\(#function) adding \(data) to \(String(describing: self.name)) at \(Date())")
+            print("\(#function) adding \(dataStr) to \(String(describing: self.name)) at \(Date())")
             data.append(NSNumber(value: dataNSstr.doubleValue))
             dates.append(Date() as NSDate)
         }
@@ -210,6 +210,8 @@ func getNumDaysMonth(forMonth month: Int, forYear year: Int) -> Int {
 }
 //given a timeframe and month and year number, returns number of seconds in the frame
 fileprivate func getNumSeconds(in timeframe: Calendar.Component, forMonth month: Int = 1, forYear year: Int = 2022) -> Int {
+    print(#function)
+    print(timeframe)
     switch timeframe {
     case .minute: return 60
     case .hour: return 3600

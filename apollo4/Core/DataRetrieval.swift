@@ -4,7 +4,7 @@
 //
 //  Created by Daniel DeMoney on 11/23/21.
 //
-//UNUSED DECREMENTED DO NOT USE
+//UNUSED DEPRECATED DO NOT USE
 import Foundation
 func getData(filename: URL, timeFrame: Calendar.Component) -> [(Double, Date)] {
         var data: [(Double, Date)] = []

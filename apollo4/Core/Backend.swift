@@ -63,16 +63,17 @@ class Backend {
         }    
     }
     func initializeAWSMobileClient(){
+        let appDelegate = AppDelegate.originalAppDelegate
         AWSMobileClient.default().initialize { (userState, error) in
             if let error = error {
                 print("Error initializing AWSMobileClient: \(error.localizedDescription)")
             } else if let userState = userState {
                 print("AWSMobileClient initialized. Current UserState: \(userState.rawValue)")
+                appDelegate!.loadMain = userState.rawValue == "signedIn"
             }
         }
      }
     public func signIn() {
-
         _ = Amplify.Auth.signInWithWebUI(presentationAnchor: UIApplication.shared.windows.first!) { result in
             switch result {
             case .success(_):
@@ -113,7 +114,15 @@ class Backend {
         }
     }
     func createUser(user: UserData) {
-        let userDataModelInstance : userDataModel = userDataModel(name: user.getName() != nil ? user.getName()! : "Apollo")
+        let userDataModelInstance : Userdatamodel = Userdatamodel(id: UUID().uuidString,
+                                                                  firstName: user.getFirstName()!,
+                                                                  lastName: user.getLastName()!,
+                                                                  birthday: Int(user.getBirthday()!.timeIntervalSince1970),
+                                                                  email: user.getEmail()!,
+                                                                  phoneNumber: user.getPhoneNumber()!,
+                                                                  systolic: user.systolicCalibData!,
+                                                                  diastolic: user.diastolicCalibData!,
+                                                                  isSignedIn: user.isSignedIn)
         print(userDataModelInstance)
         _ = Amplify.API.mutate(request: .create(userDataModelInstance)) { event in
             switch event {
@@ -129,4 +138,29 @@ class Backend {
             }
         }
     }
+    func setUser(){
+        var userPlaceHolder: UserData = UserData()
+        let userContactGrp = DispatchGroup()
+        _ = Amplify.API.query(request: .list(Userdatamodel.self)) { event in
+                switch event {
+                case .success(let result):
+                    switch result {
+                    case .success(let userDataModel):
+                        print("Successfully retrieved User")
+                        userPlaceHolder = UserData(userDataModel: userDataModel[0])
+                        print("Setting User Object")
+                        print(userPlaceHolder.description)
+                        UserData.shared = userPlaceHolder
+                        print(UserData.shared.description)
+                        NotificationCenter.default.post(name: Notification.Name("Auth"), object: 0)
+                    case .failure(let error):
+                        NotificationCenter.default.post(name: Notification.Name("Auth"), object: 1)
+                        print("Can not retrieve result : error  \(error.errorDescription)")
+                    }
+                case .failure(let error):
+                    NotificationCenter.default.post(name: Notification.Name("Auth"), object: 2)
+                    print("Can not retrieve Notes : error \(error)")
+                }
+            }
+        }
 }

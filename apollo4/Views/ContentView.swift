@@ -13,12 +13,13 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     //for loading stats
     @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject var bleManager: BLEManager
     @FetchRequest(sortDescriptors: []) var stats: FetchedResults<StatDataObject>
-    @StateObject var bleManager: BLEManager = BLEManager()
     @ObservedObject var user: UserData = .shared
     @State private var numBarsANIMATION: CGFloat = 1.25
     @State private var opacityANIMATION: CGFloat = 0.0
     @State private var repeated = Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true)
+    @State private var loadAccount = false
     @State private var loadSetup = false
     var body: some View {
         //Main top level view for whole app
@@ -46,7 +47,7 @@ struct ContentView: View {
                         .foregroundColor(Color.gray)
                         .opacity(opacityANIMATION)
                         .onAppear {
-                            print("Print ring paired")
+                            print("ring paired")
                             DispatchQueue.main.async {
                                 withAnimation(repeated){
                                     opacityANIMATION = 1.0
@@ -86,21 +87,30 @@ struct ContentView: View {
                                 }
                             }
                     } else {
-                        //Will be changed later to true set up
-                        Button(action: load){
-                            Text("Setup ring")
-                                .font(.title3)
-                                .foregroundColor(Color.white)
-                                .padding()
-                                .background(RoundedRectangle(cornerRadius: 20).fill(Color.black))
-                                .transition(.opacity)
-                            }
+                        if user.isSignedIn {
+                            Button(action: loadSetupView){
+                                Text("Setup ring")
+                                    .font(.title3)
+                                    .foregroundColor(Color.white)
+                                    .padding()
+                                    .background(RoundedRectangle(cornerRadius: 20).fill(Color.black))
+                                    .transition(.opacity)
+                                }
+                        } else {
+                            Button(action: loadAccountView){
+                                Text("Sign In")
+                                    .font(.title3)
+                                    .foregroundColor(Color.white)
+                                    .padding()
+                                    .background(RoundedRectangle(cornerRadius: 20).fill(Color.black))
+                                    .transition(.opacity)
+                                }
+                        }
                     }
                 }
                 .frame(width: 400, height: 80)
             }
-            .onAppear(){
-                print(user.description)
+            .onAppear{
                 if stats.isEmpty {
                     print("GENERATING STATS")
                     _ = StatDataObject(inputName: "SPO2", context: moc, empty: true)
@@ -113,13 +123,19 @@ struct ContentView: View {
             }
         }
         .environmentObject(bleManager)
-        .fullScreenCover(isPresented: $loadSetup){
+        .fullScreenCover(isPresented: $loadAccount){
             AggregateSetupView(userData: user)
         }
-        
+        .fullScreenCover(isPresented: $loadSetup){
+            RingSetup()
+                .environmentObject(bleManager)
+        }
     }
-    private func load(){
+    private func loadSetupView(){
         loadSetup = true
+    }
+    private func loadAccountView(){
+        loadAccount = true
     }
 }
 

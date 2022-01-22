@@ -83,6 +83,14 @@ struct MainUIBox<Content: View, Content2: View>: View {
                 //content we passed in using brackets
                 content
             }
+            HStack {
+                //Opens full screen graph view
+                Button("See more data..."){
+                    showingData.toggle()
+                }
+                .padding(.horizontal)
+                Spacer()
+            }
             Divider()
             ScrollView(.horizontal){
                 HStack{
@@ -90,15 +98,6 @@ struct MainUIBox<Content: View, Content2: View>: View {
                 }
             }
             .frame(width: UIScreen.main.bounds.size.width - 60, height: 250, alignment: .center)
-            Divider()
-            HStack {
-                //Opens full screen graph view
-                Button("See more general data..."){
-                    showingData.toggle()
-                }
-                .padding()
-                Spacer()
-            }
         }
         //Code for full screen graph
         .fullScreenCover(isPresented: $showingData){
