@@ -210,8 +210,6 @@ func getNumDaysMonth(forMonth month: Int, forYear year: Int) -> Int {
 }
 //given a timeframe and month and year number, returns number of seconds in the frame
 fileprivate func getNumSeconds(in timeframe: Calendar.Component, forMonth month: Int = 1, forYear year: Int = 2022) -> Int {
-    print(#function)
-    print(timeframe)
     switch timeframe {
     case .minute: return 60
     case .hour: return 3600
@@ -219,7 +217,7 @@ fileprivate func getNumSeconds(in timeframe: Calendar.Component, forMonth month:
     case .weekOfYear: return 3600 * 24 * 7
     case .month: return getNumDaysMonth(forMonth: month, forYear: year) * 3600 * 24
     case .year: return 3600 * 24 * 7 * 52
-    default: return 0
+    default: return 1
     }
 }
 //Combines our starting time with our timeframe to return the finishing time

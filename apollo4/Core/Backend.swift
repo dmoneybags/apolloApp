@@ -139,18 +139,15 @@ class Backend {
         }
     }
     func setUser(){
-        var userPlaceHolder: UserData = UserData()
-        let userContactGrp = DispatchGroup()
         _ = Amplify.API.query(request: .list(Userdatamodel.self)) { event in
                 switch event {
                 case .success(let result):
                     switch result {
                     case .success(let userDataModel):
                         print("Successfully retrieved User")
-                        userPlaceHolder = UserData(userDataModel: userDataModel[0])
+                        let userPlaceHolder = UserData(userDataModel: userDataModel[0])
                         print("Setting User Object")
-                        print(userPlaceHolder.description)
-                        UserData.shared = userPlaceHolder
+                        UserData.shared.copyToSelf(from: userPlaceHolder)
                         print(UserData.shared.description)
                         NotificationCenter.default.post(name: Notification.Name("Auth"), object: 0)
                     case .failure(let error):

@@ -20,14 +20,17 @@ struct VerifiedTextField: View{
     var title: String
     var inputText: String? = nil
     var regEx: String? = nil
+    var showTitle: Bool = true
     @State private var touched: Bool = false
     @State private var passed: Bool = true
     var body: some View{
-        HStack{
-            Text(title + ":")
-                .padding()
-                .font(.title2)
-            Spacer()
+        if showTitle {
+            HStack{
+                Text(title + ":")
+                    .padding()
+                    .font(.title2)
+                Spacer()
+            }
         }
         TextField(
             inputText ?? "Enter your " + title,

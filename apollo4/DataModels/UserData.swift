@@ -25,7 +25,7 @@ class UserData:  ObservableObject {
         self.diastolicCalibData = userDataModel.diastolic
         self.isSignedIn = userDataModel.isSignedIn ?? true
     }
-    static var shared = UserData()
+    static var shared = UserData(id: "default")
     private var id: String!
     private var name: String?
     private var firstName: String?
@@ -39,6 +39,17 @@ class UserData:  ObservableObject {
     @Published var stage: Int!
     @Published var isSignedIn : Bool = false
     public var description: String {return "\(Date()) Userdata object {\n id: \(String(describing: id)) \n name: \(String(describing: name)) \n firstName: \(String(describing: firstName)) \n lastName: \(lastName) \n birthday: \(birthday) \n email: \(email) \n phoneNumber: \(phoneNumber) \n systolic: \(systolicCalibData) \n diastolic: \(String(describing: diastolicCalibData)) \n isSignedIn: \(isSignedIn) \n  }"}
+    func copyToSelf(from loadedUser: UserData){
+        id = loadedUser.getId()
+        firstName = loadedUser.getFirstName()
+        lastName = loadedUser.getLastName()
+        birthday = loadedUser.getBirthday()
+        email = loadedUser.getEmail()
+        phoneNumber = loadedUser.getPhoneNumber()
+        systolicCalibData = loadedUser.systolicCalibData
+        diastolicCalibData = loadedUser.diastolicCalibData
+        isSignedIn = loadedUser.isSignedIn
+    }
     func getId() -> String? {
         return self.id
     }
@@ -55,6 +66,8 @@ class UserData:  ObservableObject {
         self.firstName = inputName
     }
     func getFirstName() -> String? {
+        print(#function)
+        print(self.firstName)
         return self.firstName
     }
     func setLastName(inputName: String){

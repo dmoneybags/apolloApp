@@ -1276,6 +1276,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"apollo4/Preview Content\"";
 				DEVELOPMENT_TEAM = 4N3P6YU29S;
 				ENABLE_PREVIEWS = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = apollo4/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Communicates health data";
@@ -1309,6 +1310,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"apollo4/Preview Content\"";
 				DEVELOPMENT_TEAM = 4N3P6YU29S;
 				ENABLE_PREVIEWS = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = apollo4/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Communicates health data";

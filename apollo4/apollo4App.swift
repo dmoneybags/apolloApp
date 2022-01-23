@@ -45,9 +45,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         print("IN SIMULATOR")
         #else
         let _ = Backend.initialize()
-        Backend.shared.setUser()
         print("BACKEND INITIALIZED")
         print("CURRENT USER: \(String(describing: Amplify.Auth.getCurrentUser()))")
+        Backend.shared.setUser()
         #endif
         LOADMAIN = loadMain
         return true
