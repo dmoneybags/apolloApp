@@ -13,14 +13,15 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     //for loading stats
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject var bleManager: BLEManager
     @FetchRequest(sortDescriptors: []) var stats: FetchedResults<StatDataObject>
+    @ObservedObject var bleManager: BLEManager = .shared
     @ObservedObject var user: UserData = .shared
     @State private var numBarsANIMATION: CGFloat = 1.25
     @State private var opacityANIMATION: CGFloat = 0.0
     @State private var repeated = Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true)
     @State private var loadAccount = false
     @State private var loadSetup = false
+    @State private var loadLogin = false
     var body: some View {
         //Main top level view for whole app
         NavigationView {
@@ -97,14 +98,24 @@ struct ContentView: View {
                                     .transition(.opacity)
                                 }
                         } else {
-                            Button(action: loadAccountView){
-                                Text("Sign In")
-                                    .font(.title3)
-                                    .foregroundColor(Color.white)
-                                    .padding()
-                                    .background(RoundedRectangle(cornerRadius: 20).fill(Color.black))
-                                    .transition(.opacity)
-                                }
+                            VStack{
+                                Button(action: loadAccountView){
+                                    Text("Create Account")
+                                        .font(.title3)
+                                        .foregroundColor(Color.white)
+                                        .padding()
+                                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.black))
+                                        .transition(.opacity)
+                                    }
+                                Button(action: loadLoginView){
+                                    Text("Log In")
+                                        .font(.title3)
+                                        .foregroundColor(Color.white)
+                                        .padding()
+                                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.black))
+                                        .transition(.opacity)
+                                    }
+                            }
                         }
                     }
                 }
@@ -130,12 +141,20 @@ struct ContentView: View {
             RingSetup()
                 .environmentObject(bleManager)
         }
+        .fullScreenCover(isPresented: $loadLogin){
+            BasicSetupView(userData: UserData.shared, title: "Log in", color: .purple){
+                SignInView(userData: UserData.shared, basicDone: observableBool(value: true), bpDone: observableBool(value: true), isLogin: true)
+            }
+        }
     }
     private func loadSetupView(){
         loadSetup = true
     }
     private func loadAccountView(){
         loadAccount = true
+    }
+    private func loadLoginView(){
+        loadLogin = true
     }
 }
 

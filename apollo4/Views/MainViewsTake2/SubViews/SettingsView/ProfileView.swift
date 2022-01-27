@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import NotificationBannerSwift
 
 struct ProfileView: View {
-    @ObservedObject var userData: UserData = .shared
-    @State  var firstName = ObservableString(value: "")
-    @State  var lastName = ObservableString(value: "")
-    @State  var birthday = Date()
-    @State  var email = ObservableString(value: "")
-    @State  var phoneNumber = ObservableString(value: "")
+    @ObservedObject private var userData: UserData = .shared
+    @State private var birthday = Date()
+    @State private var email = ObservableString(value: "")
+    @State private var phoneNumber = ObservableString(value: "")
+    @State private var changed = false
+    private let errorNotification = NotificationBanner(title: "Error", subtitle: "One or more fields is invalid", style: .danger)
+    private let successNotification = NotificationBanner(title: "Success!", subtitle: "Data updated", style: .success)
     var body: some View {
         ScrollView {
             VStack{
@@ -24,7 +26,7 @@ struct ProfileView: View {
                     Spacer()
                 }
                 HStack{
-                    VerifiedTextField(string: firstName, title: "First Name", showTitle: false)
+                    Text(UserData.shared.getFirstName() ?? "Unknown")
                         .font(.title)
                         .foregroundColor(.white)
                         .padding(.leading)
@@ -38,7 +40,7 @@ struct ProfileView: View {
                     Spacer()
                 }
                 HStack{
-                    VerifiedTextField(string: lastName, title: "Last Name", showTitle: false)
+                    Text(UserData.shared.getLastName() ?? "Unknown")
                         .font(.title)
                         .foregroundColor(.white)
                         .padding(.leading)
@@ -54,6 +56,7 @@ struct ProfileView: View {
                 HStack{
                     DatePicker("", selection: $birthday, displayedComponents: .date)
                         .labelsHidden()
+                        .allowsHitTesting(false)
                         //.datePickerStyle(GraphicalDatePickerStyle())
                     Spacer()
                 }
@@ -69,6 +72,9 @@ struct ProfileView: View {
                         .font(.title2)
                         .foregroundColor(.white)
                         .padding(.leading)
+                        .onTapGesture{
+                            changed = true
+                        }
                     Spacer()
                 }
                 .padding(10)
@@ -83,6 +89,9 @@ struct ProfileView: View {
                         .font(.title)
                         .foregroundColor(.white)
                         .padding(.leading)
+                        .onTapGesture{
+                            changed = true
+                        }
                     Spacer()
                 }
                 .padding(10)
@@ -91,14 +100,25 @@ struct ProfileView: View {
             .onAppear{
                 print("Showing account info for \(userData.description)")
             }
+            if changed {
+                Button {
+                    if phoneNumber.valid && email.valid {
+                        Backend.shared.updateUser(withNumber: phoneNumber.str, withEmail: email.str)
+                        successNotification.show()
+                    } else {
+                        errorNotification.show()
+                    }
+                } label: {
+                    Text("Save")
+                }
+            }
         }
         .onAppear{
-            firstName = ObservableString(value: UserData.shared.getFirstName() ?? "Unknown")
-            lastName = ObservableString(value: UserData.shared.getLastName() ?? "Unknown")
             birthday = UserData.shared.getBirthday() ?? Date()
             email = ObservableString(value: UserData.shared.getEmail() ?? "Unknown")
             phoneNumber = ObservableString(value: UserData.shared.getPhoneNumber() ?? "Unknown")
         }
+
     }
     func getBirthdayStr() -> String?{
         let dateFormatter = DateFormatter()

@@ -141,9 +141,6 @@ struct healthSetupView: View {
             .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
             .shadow(radius: 5)
             if showLive {
-                LiveRead()
-                    .animation(.easeInOut)
-                    .transition(AnyTransition.move(edge: .bottom).combined(with: .opacity).animation(.easeInOut(duration: 0.7)))
                 Image(systemName: "xmark.circle")
                     .resizable()
                     .frame(width: 30, height: 30)

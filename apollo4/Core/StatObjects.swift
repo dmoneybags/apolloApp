@@ -32,10 +32,11 @@ protocol Stat {
 }
 func getStatInfoObject(named name: String) -> Stat? {
     //HAVE TO ADD NEW STAT OBJECTS TO THIS LIST
-    let statObjects: [Stat] = [HeartRate(), SPO2(), DiastolicPressure(), SystolicPressure(), PulsePressure(), VO2Max()]
+    let statObjects: [Stat] = [HeartRate.shared, SPO2.shared, DiastolicPressure.shared, SystolicPressure.shared, PulsePressure.shared, VO2Max.shared]
     return statObjects.first(where: {$0.name == name})
 }
 struct HeartRate: Stat {
+    static let shared = HeartRate()
     let name = "HeartRate"
     let displayName = "Heart Rate"
     let infoTitle = "Whats a Good Heart Rate?"
@@ -84,6 +85,7 @@ struct HeartRate: Stat {
     }
 }
 struct SPO2: Stat{
+    static let shared = SPO2()
     let name = "SPO2"
     let displayName = "SPO2"
     let infoTitle = "What is SPO2?"
@@ -123,6 +125,7 @@ struct SPO2: Stat{
     }
 }
 struct SystolicPressure: Stat{
+    static let shared = SystolicPressure()
     let name = "SystolicPressure"
     let displayName = "Systolic Pressure"
     let infoTitle = "Whats the importance of Blood Pressure?"
@@ -168,6 +171,7 @@ struct SystolicPressure: Stat{
     }
 }
 struct DiastolicPressure: Stat{
+    static let shared = DiastolicPressure()
     let name = "DiastolicPressure"
     let displayName = "Diastolic Pressure"
     let infoTitle = "Whats the importance of Blood Pressure?"
@@ -213,6 +217,7 @@ struct DiastolicPressure: Stat{
 }
 
 struct PulsePressure: Stat {
+    static let shared = PulsePressure()
     let name = "PulsePressure"
     let displayName = "Pulse Pressure"
     let infoTitle = "What is Pulse Pressure"
@@ -252,6 +257,7 @@ struct PulsePressure: Stat {
 }
 
 struct VO2Max: Stat{
+    static let shared = VO2Max()
     let name = "VO2Max"
     let displayName = "VO2 Max"
     let infoTitle = "What is VO2 Max?"

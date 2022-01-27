@@ -11,6 +11,7 @@
 		4D5F968FE0963F1F9A933B72 /* UserDataModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C99D8D51B24BE029D86E4E /* UserDataModel+Schema.swift */; };
 		4ECC0A4C131BBCE8AC48E2DA /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F7919AE38F140D052F4F4FA /* awsconfiguration.json */; };
 		5E34C0AA102049DF957D482A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */; };
+		8B567C5E616102FD5B245330 /* Pods_apollo4_apollo4UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13AB9B8DB2BA033864884307 /* Pods_apollo4_apollo4UITests.framework */; };
 		AD2214572798B421006DEA9B /* SetupViewTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2214562798B421006DEA9B /* SetupViewTutorial.swift */; };
 		AD27EA7327967F4300B4BD49 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD27EA7227967F4300B4BD49 /* SignInView.swift */; };
 		AD27EA7527971F9600B4BD49 /* googleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD27EA7427971F9600B4BD49 /* googleLogo.png */; };
@@ -63,6 +64,13 @@
 		AD837CFF2769308800E0BDB9 /* MainUIBoxScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837CFE2769308800E0BDB9 /* MainUIBoxScroller.swift */; };
 		AD837D01276AB01500E0BDB9 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837D00276AB01500E0BDB9 /* CardView.swift */; };
 		AD837D03276BB16000E0BDB9 /* VerticalLinePlotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837D02276BB16000E0BDB9 /* VerticalLinePlotter.swift */; };
+		AD86718F279F6DCA002A95BF /* SigningOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD86718E279F6DCA002A95BF /* SigningOutView.swift */; };
+		AD867191279F8F2A002A95BF /* SendMyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD867190279F8F2A002A95BF /* SendMyDataView.swift */; };
+		AD86719327A04B2A002A95BF /* DataFileCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD86719227A04B29002A95BF /* DataFileCreation.swift */; };
+		AD86719527A0846A002A95BF /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD86719427A0846A002A95BF /* ShareSheet.swift */; };
+		AD86719727A0A9F8002A95BF /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD86719627A0A9F8002A95BF /* AppearanceSettings.swift */; };
+		AD86719B27A0CB80002A95BF /* MailClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD86719A27A0CB80002A95BF /* MailClient.swift */; };
+		AD86719D27A0E804002A95BF /* AlertMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD86719C27A0E803002A95BF /* AlertMeView.swift */; };
 		AD8F6B30279220FA004A37A0 /* VO2Max.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8F6B2F279220FA004A37A0 /* VO2Max.png */; };
 		ADA1ECA2274E1EE00079E6CE /* BPOption1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */; };
 		ADA1ECA4274E34B30079E6CE /* CapsuleReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */; };
@@ -70,7 +78,6 @@
 		ADAB5623279B56A300C027B1 /* RingPowerView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB5622279B56A300C027B1 /* RingPowerView2.swift */; };
 		ADAB5625279BC66C00C027B1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB5624279BC66C00C027B1 /* SettingsView.swift */; };
 		ADAB7712277CDEC800196D25 /* LiveReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7711277CDEC800196D25 /* LiveReadView.swift */; };
-		ADAB7714277CE03E00196D25 /* LiveRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7713277CE03E00196D25 /* LiveRead.swift */; };
 		ADAB7716277CF67E00196D25 /* StopWatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB7715277CF67E00196D25 /* StopWatchManager.swift */; };
 		ADAB77182784BD3300196D25 /* HrVarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB77172784BD3300196D25 /* HrVarView.swift */; };
 		ADAB771A2785727B00196D25 /* ECGAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAB77192785727A00196D25 /* ECGAnimation.swift */; };
@@ -135,10 +142,10 @@
 		ADF11A78274795390099ADF3 /* RingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A77274795390099ADF3 /* RingChart.swift */; };
 		ADF11A7C2747AB050099ADF3 /* Option1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF11A7B2747AB050099ADF3 /* Option1.swift */; };
 		ADF7DF2F277ABDF3007953FC /* dateSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF7DF2E277ABDF3007953FC /* dateSwitcher.swift */; };
-		B947E94FEB56864267932FD3 /* Pods_apollo4_apollo4UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640E17A6646D270FD36F9D73 /* Pods_apollo4_apollo4UITests.framework */; };
+		ADFCD21427A21AD800AAE1F5 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCD21327A21AD800AAE1F5 /* Notifications.swift */; };
 		C60B171744D888CA9DAA7377 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD0911A16987641E9C24AC /* AmplifyModels.swift */; };
-		F6818A389747A06AC13D3C31 /* Pods_apollo4Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05396547B94734C0AC72F675 /* Pods_apollo4Tests.framework */; };
-		FABB7A9EED2AF48405D4911E /* Pods_apollo4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5947E8335BA29513666FAEE /* Pods_apollo4.framework */; };
+		E0C441736C1D08267F1F7A5E /* Pods_apollo4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9904CCF76940A3C4F5A30852 /* Pods_apollo4.framework */; };
+		FF59CC7B5F40E4AEA241EC1C /* Pods_apollo4Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BB4BBD533218A801DDAF77 /* Pods_apollo4Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,15 +166,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05396547B94734C0AC72F675 /* Pods_apollo4Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1239A28E38A9542D6F1D6FDD /* Pods-apollo4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.release.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.release.xcconfig"; sourceTree = "<group>"; };
+		13AB9B8DB2BA033864884307 /* Pods_apollo4_apollo4UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4_apollo4UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19EBBDF56AF487B35B5D98A6 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		1DCD0911A16987641E9C24AC /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 		403E73FC4C3FB55437DE0D5B /* UserDataModel.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = UserDataModel.swift; path = amplify/generated/models/UserDataModel.swift; sourceTree = "<group>"; };
-		640E17A6646D270FD36F9D73 /* Pods_apollo4_apollo4UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4_apollo4UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		964BF2CC7483627E5B10912F /* Pods-apollo4-apollo4UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.release.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.release.xcconfig"; sourceTree = "<group>"; };
-		988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		848B5032E9523404DD37F037 /* Pods-apollo4-apollo4UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.release.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.release.xcconfig"; sourceTree = "<group>"; };
+		9904CCF76940A3C4F5A30852 /* Pods_apollo4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F7919AE38F140D052F4F4FA /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
-		AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.release.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AD2214562798B421006DEA9B /* SetupViewTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewTutorial.swift; sourceTree = "<group>"; };
 		AD27EA7227967F4300B4BD49 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		AD27EA7427971F9600B4BD49 /* googleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = googleLogo.png; sourceTree = "<group>"; };
@@ -221,6 +227,13 @@
 		AD837CFE2769308800E0BDB9 /* MainUIBoxScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUIBoxScroller.swift; sourceTree = "<group>"; };
 		AD837D00276AB01500E0BDB9 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		AD837D02276BB16000E0BDB9 /* VerticalLinePlotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLinePlotter.swift; sourceTree = "<group>"; };
+		AD86718E279F6DCA002A95BF /* SigningOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningOutView.swift; sourceTree = "<group>"; };
+		AD867190279F8F2A002A95BF /* SendMyDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMyDataView.swift; sourceTree = "<group>"; };
+		AD86719227A04B29002A95BF /* DataFileCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFileCreation.swift; sourceTree = "<group>"; };
+		AD86719427A0846A002A95BF /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		AD86719627A0A9F8002A95BF /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
+		AD86719A27A0CB80002A95BF /* MailClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailClient.swift; sourceTree = "<group>"; };
+		AD86719C27A0E803002A95BF /* AlertMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMeView.swift; sourceTree = "<group>"; };
 		AD8F6B2F279220FA004A37A0 /* VO2Max.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VO2Max.png; sourceTree = "<group>"; };
 		ADA1ECA1274E1EE00079E6CE /* BPOption1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPOption1.swift; sourceTree = "<group>"; };
 		ADA1ECA3274E34B30079E6CE /* CapsuleReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleReader.swift; sourceTree = "<group>"; };
@@ -228,7 +241,6 @@
 		ADAB5622279B56A300C027B1 /* RingPowerView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingPowerView2.swift; sourceTree = "<group>"; };
 		ADAB5624279BC66C00C027B1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ADAB7711277CDEC800196D25 /* LiveReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveReadView.swift; sourceTree = "<group>"; };
-		ADAB7713277CE03E00196D25 /* LiveRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiveRead.swift; path = ../../../../Desktop/LiveRead.swift; sourceTree = "<group>"; };
 		ADAB7715277CF67E00196D25 /* StopWatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchManager.swift; sourceTree = "<group>"; };
 		ADAB77172784BD3300196D25 /* HrVarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HrVarView.swift; sourceTree = "<group>"; };
 		ADAB77192785727A00196D25 /* ECGAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGAnimation.swift; sourceTree = "<group>"; };
@@ -297,11 +309,13 @@
 		ADF11A77274795390099ADF3 /* RingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingChart.swift; sourceTree = "<group>"; };
 		ADF11A7B2747AB050099ADF3 /* Option1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option1.swift; sourceTree = "<group>"; };
 		ADF7DF2E277ABDF3007953FC /* dateSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateSwitcher.swift; sourceTree = "<group>"; };
+		ADFCD21327A21AD800AAE1F5 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		B08D23CA93D5CCC3E20149FD /* Pods-apollo4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4.debug.xcconfig"; path = "Target Support Files/Pods-apollo4/Pods-apollo4.debug.xcconfig"; sourceTree = "<group>"; };
 		B4C99D8D51B24BE029D86E4E /* UserDataModel+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "UserDataModel+Schema.swift"; path = "amplify/generated/models/UserDataModel+Schema.swift"; sourceTree = "<group>"; };
-		DAC3772788A412A79844DAD0 /* Pods-apollo4-apollo4UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F1AA8673E4552EA4EBD5846C /* Pods-apollo4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4.release.xcconfig"; path = "Target Support Files/Pods-apollo4/Pods-apollo4.release.xcconfig"; sourceTree = "<group>"; };
-		F5947E8335BA29513666FAEE /* Pods_apollo4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F60A642BB7A23EA544249217 /* Pods-apollo4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4.debug.xcconfig"; path = "Target Support Files/Pods-apollo4/Pods-apollo4.debug.xcconfig"; sourceTree = "<group>"; };
+		BB6A7CA19E9987AE0F803908 /* Pods-apollo4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4Tests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4Tests/Pods-apollo4Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		C1E498D22991F1EE439A2FD9 /* Pods-apollo4-apollo4UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4-apollo4UITests.debug.xcconfig"; path = "Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E4BB4BBD533218A801DDAF77 /* Pods_apollo4Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_apollo4Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA6B788D8C933ACBD9B94BDF /* Pods-apollo4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apollo4.release.xcconfig"; path = "Target Support Files/Pods-apollo4/Pods-apollo4.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,7 +323,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FABB7A9EED2AF48405D4911E /* Pods_apollo4.framework in Frameworks */,
+				E0C441736C1D08267F1F7A5E /* Pods_apollo4.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6818A389747A06AC13D3C31 /* Pods_apollo4Tests.framework in Frameworks */,
+				FF59CC7B5F40E4AEA241EC1C /* Pods_apollo4Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +339,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B947E94FEB56864267932FD3 /* Pods_apollo4_apollo4UITests.framework in Frameworks */,
+				8B567C5E616102FD5B245330 /* Pods_apollo4_apollo4UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,12 +356,12 @@
 			name = AmplifyModels;
 			sourceTree = "<group>";
 		};
-		81A13C1350C1AD080F4232EC /* Frameworks */ = {
+		59F0029C2F5DF0B83043865B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F5947E8335BA29513666FAEE /* Pods_apollo4.framework */,
-				640E17A6646D270FD36F9D73 /* Pods_apollo4_apollo4UITests.framework */,
-				05396547B94734C0AC72F675 /* Pods_apollo4Tests.framework */,
+				9904CCF76940A3C4F5A30852 /* Pods_apollo4.framework */,
+				13AB9B8DB2BA033864884307 /* Pods_apollo4_apollo4UITests.framework */,
+				E4BB4BBD533218A801DDAF77 /* Pods_apollo4Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -466,6 +480,9 @@
 				ADE7385F279C581E0031D0C5 /* SettingRow.swift */,
 				ADE73863279C7C8D0031D0C5 /* BasicSettingView.swift */,
 				ADE73865279CA0200031D0C5 /* ProfileView.swift */,
+				AD86718E279F6DCA002A95BF /* SigningOutView.swift */,
+				AD867190279F8F2A002A95BF /* SendMyDataView.swift */,
+				AD86719627A0A9F8002A95BF /* AppearanceSettings.swift */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -482,8 +499,8 @@
 				ADF119F82745D0060099ADF3 /* Products */,
 				ED0BBA9A262AD514B1293357 /* AmplifyConfig */,
 				D104061A2C519A815099CDAE /* Pods */,
-				81A13C1350C1AD080F4232EC /* Frameworks */,
 				18B445935B70D148DD512589 /* AmplifyModels */,
+				59F0029C2F5DF0B83043865B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -564,7 +581,6 @@
 				ADF11A2C2745D4670099ADF3 /* PairingLoadScreen.swift */,
 				ADF11A2D2745D4670099ADF3 /* nameSetup.swift */,
 				ADF11A2E2745D4670099ADF3 /* PairingView.swift */,
-				ADAB7713277CE03E00196D25 /* LiveRead.swift */,
 				ADF11A2F2745D4670099ADF3 /* userDataInputSetup.swift */,
 				ADF11A302745D4670099ADF3 /* swipeView.swift */,
 				ADF11A312745D4670099ADF3 /* finishedSetupView.swift */,
@@ -575,6 +591,7 @@
 				ADF11A362745D4670099ADF3 /* ContentView.swift */,
 				ADF11A372745D4670099ADF3 /* EmitterView.swift */,
 				AD6EB59C275D4EB3000BD56F /* TickMarkReader.swift */,
+				AD86719C27A0E803002A95BF /* AlertMeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -584,8 +601,12 @@
 			children = (
 				ADF11A492745D4740099ADF3 /* Backend.swift */,
 				AD27EA7827972B1500B4BD49 /* 3rdPartySignIn.swift */,
+				AD86719227A04B29002A95BF /* DataFileCreation.swift */,
+				AD86719427A0846A002A95BF /* ShareSheet.swift */,
 				ADF11A4B2745D4740099ADF3 /* TextLimiting.swift */,
 				ADF11A4C2745D4740099ADF3 /* KeyboardHelper.swift */,
+				ADFCD21327A21AD800AAE1F5 /* Notifications.swift */,
+				AD86719A27A0CB80002A95BF /* MailClient.swift */,
 				ADB9B8F7274857DD00EB9227 /* Logging.swift */,
 				ADB9B8FE274CEBB000EB9227 /* DataRetrieval.swift */,
 				AD3EE4E8274F5D4C001A30A2 /* Inference.swift */,
@@ -680,12 +701,12 @@
 		D104061A2C519A815099CDAE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F60A642BB7A23EA544249217 /* Pods-apollo4.debug.xcconfig */,
-				F1AA8673E4552EA4EBD5846C /* Pods-apollo4.release.xcconfig */,
-				DAC3772788A412A79844DAD0 /* Pods-apollo4-apollo4UITests.debug.xcconfig */,
-				964BF2CC7483627E5B10912F /* Pods-apollo4-apollo4UITests.release.xcconfig */,
-				988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */,
-				AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */,
+				B08D23CA93D5CCC3E20149FD /* Pods-apollo4.debug.xcconfig */,
+				FA6B788D8C933ACBD9B94BDF /* Pods-apollo4.release.xcconfig */,
+				C1E498D22991F1EE439A2FD9 /* Pods-apollo4-apollo4UITests.debug.xcconfig */,
+				848B5032E9523404DD37F037 /* Pods-apollo4-apollo4UITests.release.xcconfig */,
+				BB6A7CA19E9987AE0F803908 /* Pods-apollo4Tests.debug.xcconfig */,
+				1239A28E38A9542D6F1D6FDD /* Pods-apollo4Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -706,12 +727,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ADF11A1B2745D0080099ADF3 /* Build configuration list for PBXNativeTarget "apollo4" */;
 			buildPhases = (
-				462C87E2D5257F63B656856D /* [CP] Check Pods Manifest.lock */,
+				C3C5A94FA05705898DDFFA9D /* [CP] Check Pods Manifest.lock */,
 				ADF119F32745D0060099ADF3 /* Sources */,
 				ADF119F42745D0060099ADF3 /* Frameworks */,
 				ADF119F52745D0060099ADF3 /* Resources */,
-				E112ED2076DE2C92F985FD2A /* [CP] Embed Pods Frameworks */,
-				200C8570DA224CFB73B99728 /* [CP] Copy Pods Resources */,
+				1993B0ACA1F406824A9BE178 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -726,7 +746,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ADF11A1E2745D0080099ADF3 /* Build configuration list for PBXNativeTarget "apollo4Tests" */;
 			buildPhases = (
-				5AC1D9B7B455BC2467006519 /* [CP] Check Pods Manifest.lock */,
+				7914A39410D3CFD4ED4A0DF4 /* [CP] Check Pods Manifest.lock */,
 				ADF11A032745D0080099ADF3 /* Sources */,
 				ADF11A042745D0080099ADF3 /* Frameworks */,
 				ADF11A052745D0080099ADF3 /* Resources */,
@@ -745,12 +765,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ADF11A212745D0080099ADF3 /* Build configuration list for PBXNativeTarget "apollo4UITests" */;
 			buildPhases = (
-				747AA84E82C37BCE0FE63551 /* [CP] Check Pods Manifest.lock */,
+				0CE336C7143F397A5C2223AA /* [CP] Check Pods Manifest.lock */,
 				ADF11A0D2745D0080099ADF3 /* Sources */,
 				ADF11A0E2745D0080099ADF3 /* Frameworks */,
 				ADF11A0F2745D0080099ADF3 /* Resources */,
-				91C9DD2B60A7BEE1261373C3 /* [CP] Embed Pods Frameworks */,
-				76ECAFBBD6C63C4111E120BF /* [CP] Copy Pods Resources */,
+				65123CE6C8A54B08B8C2C594 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -850,72 +869,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		200C8570DA224CFB73B99728 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		462C87E2D5257F63B656856D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-apollo4-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5AC1D9B7B455BC2467006519 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-apollo4Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		747AA84E82C37BCE0FE63551 /* [CP] Check Pods Manifest.lock */ = {
+		0CE336C7143F397A5C2223AA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -937,49 +891,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		76ECAFBBD6C63C4111E120BF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		91C9DD2B60A7BEE1261373C3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E112ED2076DE2C92F985FD2A /* [CP] Embed Pods Frameworks */ = {
+		1993B0ACA1F406824A9BE178 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -987,17 +899,74 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			outputPaths = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apollo4/Pods-apollo4-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65123CE6C8A54B08B8C2C594 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apollo4-apollo4UITests/Pods-apollo4-apollo4UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7914A39410D3CFD4ED4A0DF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-apollo4Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3C5A94FA05705898DDFFA9D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-apollo4-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1008,6 +977,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD6EB593275B4A8C000BD56F /* Helpers.swift in Sources */,
+				AD867191279F8F2A002A95BF /* SendMyDataView.swift in Sources */,
 				AD837C942760350500E0BDB9 /* StatObjects.swift in Sources */,
 				AD837C902760215600E0BDB9 /* SegmentedChartViewCenter.swift in Sources */,
 				ADC3D478278E3EBE00348E0C /* InferenceMultiLineAverageBox.swift in Sources */,
@@ -1023,8 +993,8 @@
 				AD3ABDAC2794E4C900D95016 /* HalfRingChart.swift in Sources */,
 				AD837CE22765465200E0BDB9 /* StatDataObject+CoreDataProperties.swift in Sources */,
 				ADF11A4D2745D4740099ADF3 /* Backend.swift in Sources */,
+				ADFCD21427A21AD800AAE1F5 /* Notifications.swift in Sources */,
 				ADF11A4E2745D4740099ADF3 /* UserData.swift in Sources */,
-				ADAB7714277CE03E00196D25 /* LiveRead.swift in Sources */,
 				ADE73860279C581E0031D0C5 /* SettingRow.swift in Sources */,
 				AD837C9727645F4400E0BDB9 /* MainView2.swift in Sources */,
 				ADB3DBDB2790A81B00827E3A /* RangeScroller.swift in Sources */,
@@ -1043,6 +1013,7 @@
 				AD67BD7C2753079800341539 /* MultiLineGraph.swift in Sources */,
 				AD27EA7B2797327A00B4BD49 /* AggregateSetupView.swift in Sources */,
 				ADAB7716277CF67E00196D25 /* StopWatchManager.swift in Sources */,
+				AD86719327A04B2A002A95BF /* DataFileCreation.swift in Sources */,
 				AD2DAAEF278A2E870073473A /* GraphInferenceAverageGraphView.swift in Sources */,
 				AD27EA7327967F4300B4BD49 /* SignInView.swift in Sources */,
 				AD2DAAF1278A3ECE0073473A /* LinearRegression.swift in Sources */,
@@ -1053,10 +1024,13 @@
 				ADC3D47A278EAA0E00348E0C /* MultilineAverageGraphView.swift in Sources */,
 				AD837D03276BB16000E0BDB9 /* VerticalLinePlotter.swift in Sources */,
 				ADF11A3D2745D4670099ADF3 /* nameSetup.swift in Sources */,
+				AD86719B27A0CB80002A95BF /* MailClient.swift in Sources */,
 				AD3EE4F827521F76001A30A2 /* SPO2MiniBox.swift in Sources */,
 				AD837CFF2769308800E0BDB9 /* MainUIBoxScroller.swift in Sources */,
 				AD2DAAF5278BCA580073473A /* MultilineFullScreenStatView.swift in Sources */,
+				AD86719727A0A9F8002A95BF /* AppearanceSettings.swift in Sources */,
 				AD6EB599275CBA80000BD56F /* HyperTensionStructs.swift in Sources */,
+				AD86718F279F6DCA002A95BF /* SigningOutView.swift in Sources */,
 				ADF11A422745D4670099ADF3 /* EmittingView.swift in Sources */,
 				AD3ABDB6279666F300D95016 /* BPInfo.swift in Sources */,
 				AD3ABDB0279607BB00D95016 /* BasicInfoContent.swift in Sources */,
@@ -1067,6 +1041,7 @@
 				ADF11A3C2745D4670099ADF3 /* PairingLoadScreen.swift in Sources */,
 				ADC3D476278DE9F000348E0C /* InferenceInfoBox.swift in Sources */,
 				ADA1ECA4274E34B30079E6CE /* CapsuleReader.swift in Sources */,
+				AD86719527A0846A002A95BF /* ShareSheet.swift in Sources */,
 				AD6EB5A1275F2C99000BD56F /* SegmentedRingChartView.swift in Sources */,
 				AD6EB590275B4A6F000BD56F /* LabelView.swift in Sources */,
 				ADB9B8F62748482200EB9227 /* Option3.swift in Sources */,
@@ -1083,6 +1058,7 @@
 				AD48C98F27714591003F1DCA /* FullScreenStatView.swift in Sources */,
 				AD837CFA2769210B00E0BDB9 /* FontView.swift in Sources */,
 				ADB3DBD9279091BC00827E3A /* StickyHeader.swift in Sources */,
+				AD86719D27A0E804002A95BF /* AlertMeView.swift in Sources */,
 				AD6EB59F275DDDB3000BD56F /* HyperTensionBox.swift in Sources */,
 				ADF11A542745D47B0099ADF3 /* BLEManager.swift in Sources */,
 				ADB9B8F8274857DD00EB9227 /* Logging.swift in Sources */,
@@ -1267,10 +1243,11 @@
 		};
 		ADF11A1C2745D0080099ADF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F60A642BB7A23EA544249217 /* Pods-apollo4.debug.xcconfig */;
+			baseConfigurationReference = B08D23CA93D5CCC3E20149FD /* Pods-apollo4.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"apollo4/Preview Content\"";
@@ -1280,31 +1257,32 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = apollo4/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Communicates health data";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "This app uses blluetooth to talk to the sensor";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.111;
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-Xfrontend -warn-long-expression-type-checking=400";
 				PRODUCT_BUNDLE_IDENTIFIER = SMD.apollo4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		ADF11A1D2745D0080099ADF3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1AA8673E4552EA4EBD5846C /* Pods-apollo4.release.xcconfig */;
+			baseConfigurationReference = FA6B788D8C933ACBD9B94BDF /* Pods-apollo4.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"apollo4/Preview Content\"";
@@ -1314,27 +1292,27 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = apollo4/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Communicates health data";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "This app uses blluetooth to talk to the sensor";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.111;
 				PRODUCT_BUNDLE_IDENTIFIER = SMD.apollo4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		ADF11A1F2745D0080099ADF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 988C167B06C05666DC20EB94 /* Pods-apollo4Tests.debug.xcconfig */;
+			baseConfigurationReference = BB6A7CA19E9987AE0F803908 /* Pods-apollo4Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1360,7 +1338,7 @@
 		};
 		ADF11A202745D0080099ADF3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC3E8DA912BF8239E75E672D /* Pods-apollo4Tests.release.xcconfig */;
+			baseConfigurationReference = 1239A28E38A9542D6F1D6FDD /* Pods-apollo4Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1386,7 +1364,7 @@
 		};
 		ADF11A222745D0080099ADF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAC3772788A412A79844DAD0 /* Pods-apollo4-apollo4UITests.debug.xcconfig */;
+			baseConfigurationReference = C1E498D22991F1EE439A2FD9 /* Pods-apollo4-apollo4UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1410,7 +1388,7 @@
 		};
 		ADF11A232745D0080099ADF3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 964BF2CC7483627E5B10912F /* Pods-apollo4-apollo4UITests.release.xcconfig */;
+			baseConfigurationReference = 848B5032E9523404DD37F037 /* Pods-apollo4-apollo4UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -18,7 +18,7 @@ struct MainView2: View {
     @Environment(\.colorScheme) var colorScheme
     //Colors for light and dark mode, however app may be forced to dark mode because I just like it
     @StateObject private var changingRingSettings: observableBool = observableBool(value: false)
-    @EnvironmentObject var bleManager: BLEManager
+    @ObservedObject var bleManager: BLEManager = .shared
     var showSuccess = false
     var colors: [Color] {
         let color1 = colorScheme == .dark ? Color.black : Color.white
@@ -72,7 +72,7 @@ struct MainView2: View {
                 .offset(x: -30, y: 30)
                 .frame(width: 30, height: 30)
                 .onTapGesture {
-                    print("Showing battery level view")
+                    print("MAINVIEW2::Showing battery level view")
                     changingRingSettings.value = true
                 }
             }
@@ -80,6 +80,14 @@ struct MainView2: View {
         .onAppear{
             if showSuccess{
                 successBanner.show()
+            }
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (allowed, error) in
+                 //This callback does not trigger on main loop be careful
+                if allowed {
+                  print("MAINVIEW2::ALLOWED NOTIFICATIONS")
+                } else {
+                    print("MAINVIEW2::DID NOT ALLOW NOTIFICATIONS")
+                }
             }
         }
         .ignoresSafeArea(.all)

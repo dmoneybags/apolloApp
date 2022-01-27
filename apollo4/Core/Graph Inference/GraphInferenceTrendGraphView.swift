@@ -40,3 +40,6 @@ struct GraphInferenceTrendGraphView: View {
         return genYvalues(data: startEnd, ySize: height, dataRange: dataRange, dataMin: dataMin)
     }
 }
+func getTrendPercent(dataFirst: Double, dataLen: Int, slope: Double, yIntercept: Double) -> Int{
+    return Int(100 * (((slope * Double(dataLen)) + yIntercept) - dataFirst)/((slope * Double(dataLen)) + yIntercept))
+}

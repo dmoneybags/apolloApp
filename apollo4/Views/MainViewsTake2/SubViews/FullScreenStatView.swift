@@ -34,6 +34,7 @@ struct FullScreenStatView: View {
     var dataRange: Double
     var dataMin: Double
     var gradient: Gradient = Gradient(colors: [Color.yellow, Color.green])
+    var showTitle: Bool = true
     //Start on week
     @State private var timeFrame: Calendar.Component = .weekOfYear
     @State private var poolTimeFrame: Calendar.Component = .hour
@@ -50,15 +51,17 @@ struct FullScreenStatView: View {
     }
     var body: some View {
         VStack{
-            HStack{
-                Text(name)
-                    .fontWeight(.bold)
-                    .padding(.horizontal)
-                    .font(.title)
-                Spacer()
+            if showTitle{
+                HStack{
+                    Text(name)
+                        .fontWeight(.bold)
+                        .padding(.horizontal)
+                        .font(.title)
+                    Spacer()
+                }
+                .padding()
+                Divider()
             }
-            .padding()
-            Divider()
             //Timeframe switcher
             HStack{
                 Text("Day")

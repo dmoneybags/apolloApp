@@ -69,7 +69,7 @@ extension StatDataObject {
         var index = 0
         for value in data{
             //If the time is reasonable and the value is reasonable put it in the tuple list
-            if Int(truncating: value) > 0 && dates[index].timeIntervalSince1970 > 10000{
+            if Int(truncating: value) > 0 && dates[index].timeIntervalSince1970 > 10000 && Int(truncating: value) < 1000{
                 tupleData.append((value as! Double, dates[index] as Date))
             }
             index += 1
@@ -209,7 +209,7 @@ func getNumDaysMonth(forMonth month: Int, forYear year: Int) -> Int {
     return range.count
 }
 //given a timeframe and month and year number, returns number of seconds in the frame
-fileprivate func getNumSeconds(in timeframe: Calendar.Component, forMonth month: Int = 1, forYear year: Int = 2022) -> Int {
+func getNumSeconds(in timeframe: Calendar.Component, forMonth month: Int = 1, forYear year: Int = 2022) -> Int {
     switch timeframe {
     case .minute: return 60
     case .hour: return 3600

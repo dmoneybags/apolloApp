@@ -17,9 +17,10 @@ extension AnyTransition {
 }
 
 struct HrVarView: View {
-    @EnvironmentObject var bleManager: BLEManager
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var statsWrapper: StatDataObjectListWrapper
     //because we don't know how long it will exactly take, we assume 150 seconds
+    @ObservedObject var bleManager: BLEManager = .shared
     @ObservedObject var stopWatchManager = StopWatchManager(timeLim: 150)
     @State var liveRead: Bool = true
     @State private var state: LiveReadState = .preread
@@ -31,7 +32,7 @@ struct HrVarView: View {
             if state == .finished {
                 VStack{
                     HStack{
-                        Text("Your heart rate variance:")
+                        Text("Your heart rate variability:")
                             .fontWeight(.bold)
                             .foregroundColor(Color.black)
                             .multilineTextAlignment(.leading)
@@ -64,17 +65,12 @@ struct HrVarView: View {
             }
             VStack{
                 HStack {
-                    Text("Heart Rate Variance")
+                    Text("Heart Rate Variability")
                         .font(.title)
                     .fontWeight(.bold)
                     .padding(.horizontal)
                     Spacer()
                 }
-                Divider()
-                    .padding(.horizontal)
-                Text("Heart Rate Variance is a measure of the average differences between heart beats. A high heart rate variabilty indicates that the nervous system is adequately maintaining the heart rate.")
-                    .font(.caption)
-                    .padding(.horizontal)
                 Divider()
                 HStack{
                     Spacer()
@@ -104,30 +100,36 @@ struct HrVarView: View {
                     Spacer()
                 }
                 Divider()
-                ZStack{
-                    RingChart(progress: .constant(stopWatchManager.progress), text: .constant(""), color: Color.pink)
+                if liveRead{
+                    Spacer()
+                    ZStack{
+                        RingChart(progress: .constant(stopWatchManager.progress), text: .constant(""), color: Color.pink)
+                            .padding()
+                        ECGAnimation()
+                            .padding(.all, 60)
+                    }
+                    .frame(height: 300)
+                    Spacer()
+                    if (state ==  .preread || state == .finished){
+                        Button(action: startHrVar){
+                            Text("Start")
+                                .font(.title2)
+                        }
                         .padding()
-                    ECGAnimation()
-                        .padding(.all, 60)
-                }
-                .frame(height: 300)
-                Spacer()
-                if (state ==  .preread || state == .finished){
-                    Button(action: startHrVar){
-                        Text("Start")
-                            .font(.title2)
+                        .buttonStyle(.bordered)
+                        Button("Exit", role: .destructive){
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                        .padding()
+                    } else {
+                        //Notification when done
+                        Text("Readings usually take about 3 minutes. You can use other apps during the reading or put your phone in sleep mode, and then return.")
                     }
-                    .padding()
-                    .buttonStyle(.bordered)
-                    Button("Exit", role: .destructive){
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                    .padding()
+                    Spacer()
                 } else {
-                    //Notification when done
-                    Text("Readings usually take about 3 minutes. You can use other apps during the reading or put your phone in sleep mode, and then return.")
+                    FullScreenStatView(name: "Heart Rate Variability", tupleData: fetchSpecificStatDataObject(named: "HrVar").generateTupleData(), dataRange: 200, dataMin: 0, gradient: Gradient(colors: [.purple, .pink]),  showTitle: false)
+                        .environmentObject(statsWrapper)
                 }
-                Spacer()
             }
             .onReceive(varPub){object in
                 hrVar = (object.object as! NSString).doubleValue

@@ -21,14 +21,14 @@ struct Peripheral: Identifiable, Equatable {
 }
 
 class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
-
+    static let shared = BLEManager()
     var myCentral: CBCentralManager!
     var _ID: CBUUID?
     @Published var isSwitchedOn = false
     @Published var peripherals = [Peripheral]()
     @Published var connectedPeripheral: Peripheral?
     //@Published var managerCharacteristics: [String: CBCharacteristic] = [:]
-    override init() {
+    override private init() {
         super.init()
         myCentral = CBCentralManager(delegate: self, queue: nil)
         myCentral.delegate = self
@@ -167,10 +167,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         characteristicASCIIValue = ASCIIstring
           print("Value Recieved: \((characteristicASCIIValue as String)) for characteristic: \(characteristic)")
         
-        if CBUUIDs.characteristicsDict[characteristic.uuid] != nil {
-            NotificationCenter.default.post(name:NSNotification.Name(rawValue: CBUUIDs.characteristicsDict[characteristic.uuid]!), object: "\((characteristicASCIIValue as String))")
-            if CBUUIDs.characteristicsDict[characteristic.uuid] != "isRaw" && CBUUIDs.characteristicsDict[characteristic.uuid] != "Raw"{
-                updateStatDataObject(withString: ASCIIstring as String, statNamed: CBUUIDs.characteristicsDict[characteristic.uuid]!)
+        let nameStr: String? = CBUUIDs.characteristicsDict[characteristic.uuid]
+        
+        if nameStr != nil {
+            NotificationCenter.default.post(name:NSNotification.Name(rawValue: nameStr!), object: "\((characteristicASCIIValue as String))")
+            if nameStr != "isRaw" && nameStr != "Raw"{
+                updateStatDataObject(withString: ASCIIstring as String, statNamed: nameStr!)
+                CheckAndSendNotification(stat: nameStr!, value: (ASCIIstring as NSString).doubleValue)
             }
         }
     }

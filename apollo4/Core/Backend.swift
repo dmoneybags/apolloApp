@@ -87,7 +87,7 @@ class Backend {
     }
 
     // signout
-    public func signOut() {
+    public func cognitoSignOut() {
         _ = Amplify.Auth.signOut() { (result) in
             switch result {
             case .success:
@@ -99,9 +99,9 @@ class Backend {
             }
         }
     }
-    public func reauth() {
-        signOut()
-        signIn()
+    public func signOut() {
+        Amplify.Auth.signOut()
+        UserData.shared = UserData()
     }
     public func getUser() -> String? {
         return Amplify.Auth.getCurrentUser()?.userId
@@ -145,6 +145,7 @@ class Backend {
                     switch result {
                     case .success(let userDataModel):
                         print("Successfully retrieved User")
+                        print(userDataModel)
                         let userPlaceHolder = UserData(userDataModel: userDataModel[0])
                         print("Setting User Object")
                         UserData.shared.copyToSelf(from: userPlaceHolder)
@@ -160,4 +161,42 @@ class Backend {
                 }
             }
         }
+    func updateUser(withNumber phoneNumber: String? = nil, withEmail email: String? = nil){
+        Amplify.API.query(request: .get(Userdatamodel.self, byId: UserData.shared.getId()!)) { event in
+                    switch event {
+                    case .success(let result):
+                        switch result {
+                        case .success(var userFound):
+                            
+                            if phoneNumber != nil {
+                                userFound?.phoneNumber = phoneNumber
+                            }
+                            if email != nil {
+                                userFound?.email = email
+                            }
+                            Amplify.API.mutate(request: .update(userFound!)) { event in
+                                switch event {
+                                case .success(let result):
+                                    switch result {
+                                    case .success(let newUser):
+                                        
+                                        print("Updated user")
+                                        print(newUser)
+                                    
+                                    case .failure(let graphQLError):
+                                        print("Failed to create graphql \(graphQLError)")
+                                    }
+                                case .failure(let apiError):
+                                    print("Failed to create a user", apiError)
+                                }
+                            }
+                            
+                        case .failure(let error):
+                            print("Got failed result with \(error.errorDescription)")
+                        }
+                    case .failure(let error):
+                        print("Got failed event with error \(error)")
+                    }
+                }
+    }
 }

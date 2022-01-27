@@ -7,7 +7,15 @@
 
 import SwiftUI
 
+class ObservableDouble: ObservableObject{
+    @Published var value: Double
+    init(val: Double){
+        self.value = val
+    }
+}
+
 struct HalfRingChart: View {
+    @ObservedObject var twoWayProgress: ObservableDouble
     @Binding var allowsMovement: Bool
     @State var progress: Double = 0.0
     var minVal: Double
@@ -17,16 +25,26 @@ struct HalfRingChart: View {
     }
     var color: Color? = nil
     var stat: Stat? = nil
-    init(statVal: Stat, reading: Double, moving: Binding<Bool>){
+    init(statVal: Stat, reading: Double, moving: Binding<Bool>, twoWayProgressVal: ObservableDouble? = nil){
         self.minVal = Double(statVal.minVal)
         self.range = Double(statVal.maxVal - statVal.minVal)
+        if twoWayProgressVal != nil {
+            self.twoWayProgress = twoWayProgressVal!
+        } else {
+            self.twoWayProgress = ObservableDouble(val: (reading - minVal)/range)
+        }
         self._allowsMovement = moving
         self._progress = State(initialValue: (reading - minVal)/range)
         self.stat = statVal
     }
-    init(minimum: Double, rangeVal: Double, reading: Double, colorVal: Color?, moving: Binding<Bool>){
+    init(minimum: Double, rangeVal: Double, reading: Double, colorVal: Color?, moving: Binding<Bool>, twoWayProgressVal: ObservableDouble? = nil){
         self.minVal = minimum
         self.range = rangeVal
+        if twoWayProgressVal != nil {
+            self.twoWayProgress = twoWayProgressVal!
+        } else {
+            self.twoWayProgress = ObservableDouble(val: (reading - minVal)/range)
+        }
         self._allowsMovement = moving
         self._progress = State(initialValue: (reading - minVal)/range)
         self.color = colorVal
@@ -38,6 +56,9 @@ struct HalfRingChart: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
+                if stat != nil {
+                    Text(stat!.measurement)
+                }
             }
             GeometryReader{geo in
                 Circle()
@@ -66,9 +87,9 @@ struct HalfRingChart: View {
                                             let minimum = geo.frame(in: .local).minX
                                             let maximum = geo.frame(in: .local).maxX
                                             progress = min(abs((longPressLocation.x - minimum)/(minimum - maximum)), 1.0)
+                                            twoWayProgress.value = progress
                                         }
                                     default:
-                                        
                                         break
                                     }
                                 }
@@ -76,14 +97,12 @@ struct HalfRingChart: View {
                         )
             }
         }
+        .onAppear{
+            twoWayProgress.value = progress
+        }
+    }
+    static func getReading(progressVal: Double, rangeVal: Double, min: Double) -> Double {
+        return  (rangeVal * progressVal) + min
     }
 }
 
-struct HalfRingChart_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack{
-            HalfRingChart(statVal: HeartRate(), reading: 98.0, moving: .constant(true)).preferredColorScheme(.dark)
-                .frame(width: 200, height: 200)
-        }
-    }
-}

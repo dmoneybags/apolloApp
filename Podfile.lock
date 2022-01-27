@@ -1,52 +1,57 @@
 PODS:
-  - Amplify (1.18.1):
-    - Amplify/Default (= 1.18.1)
-  - Amplify/Default (1.18.1)
-  - Amplify/Tools (1.18.1)
-  - AmplifyPlugins/AWSAPIPlugin (1.18.1):
+  - Amplify (1.19.0):
+    - Amplify/Default (= 1.19.0)
+  - Amplify/Default (1.19.0)
+  - Amplify/Tools (1.19.0)
+  - AmplifyPlugins/AWSAPIPlugin (1.19.0):
     - AppSyncRealTimeClient (~> 1.4)
-    - AWSCore (~> 2.26.6)
-    - AWSPluginsCore (= 1.18.1)
-  - AmplifyPlugins/AWSCognitoAuthPlugin (1.18.1):
-    - AWSAuthCore (~> 2.26.6)
-    - AWSCognitoIdentityProvider (~> 2.26.6)
-    - AWSCognitoIdentityProviderASF (~> 2.26.6)
-    - AWSCore (~> 2.26.6)
-    - AWSMobileClient (~> 2.26.6)
-    - AWSPluginsCore (= 1.18.1)
+    - AWSCore (~> 2.27.0)
+    - AWSPluginsCore (= 1.19.0)
+  - AmplifyPlugins/AWSCognitoAuthPlugin (1.19.0):
+    - AWSAuthCore (~> 2.27.0)
+    - AWSCognitoIdentityProvider (~> 2.27.0)
+    - AWSCognitoIdentityProviderASF (~> 2.27.0)
+    - AWSCore (~> 2.27.0)
+    - AWSMobileClient (~> 2.27.0)
+    - AWSPluginsCore (= 1.19.0)
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
   - AppSyncRealTimeClient (1.6.0):
     - Starscream (~> 3.1.1)
-  - AWSAuthCore (2.26.7):
-    - AWSCore (= 2.26.7)
-  - AWSAuthUI (2.26.7):
-    - AWSAuthCore (= 2.26.7)
-    - AWSCore (= 2.26.7)
-  - AWSCognitoIdentityProvider (2.26.7):
-    - AWSCognitoIdentityProviderASF (= 2.26.7)
-    - AWSCore (= 2.26.7)
-  - AWSCognitoIdentityProviderASF (2.26.7):
-    - AWSCore (= 2.26.7)
-  - AWSCore (2.26.7)
-  - AWSFacebookSignIn (2.26.7):
-    - AWSAuthCore (= 2.26.7)
-    - AWSCore (= 2.26.7)
+  - AWSAuthCore (2.27.0):
+    - AWSCore (= 2.27.0)
+  - AWSAuthUI (2.27.0):
+    - AWSAuthCore (= 2.27.0)
+    - AWSCore (= 2.27.0)
+  - AWSCognitoIdentityProvider (2.27.0):
+    - AWSCognitoIdentityProviderASF (= 2.27.0)
+    - AWSCore (= 2.27.0)
+  - AWSCognitoIdentityProviderASF (2.27.0):
+    - AWSCore (= 2.27.0)
+  - AWSCore (2.27.0)
+  - AWSFacebookSignIn (2.27.0):
+    - AWSAuthCore (= 2.27.0)
+    - AWSCore (= 2.27.0)
     - FBSDKCoreKit (= 9.0)
     - FBSDKLoginKit (= 9.0)
-  - AWSGoogleSignIn (2.26.7):
-    - AWSAuthCore (= 2.26.7)
-    - AWSCore (= 2.26.7)
-  - AWSMobileClient (2.26.7):
-    - AWSAuthCore (= 2.26.7)
-    - AWSCognitoIdentityProvider (= 2.26.7)
-    - AWSCognitoIdentityProviderASF (= 2.26.7)
-    - AWSCore (= 2.26.7)
-  - AWSPluginsCore (1.18.1):
-    - Amplify (= 1.18.1)
-    - AWSCore (~> 2.26.6)
-  - AWSUserPoolsSignIn (2.26.7):
-    - AWSAuthCore (= 2.26.7)
-    - AWSCognitoIdentityProvider (= 2.26.7)
-    - AWSCore (= 2.26.7)
+  - AWSGoogleSignIn (2.27.0):
+    - AWSAuthCore (= 2.27.0)
+    - AWSCore (= 2.27.0)
+  - AWSMobileClient (2.27.0):
+    - AWSAuthCore (= 2.27.0)
+    - AWSCognitoIdentityProvider (= 2.27.0)
+    - AWSCognitoIdentityProviderASF (= 2.27.0)
+    - AWSCore (= 2.27.0)
+  - AWSPluginsCore (1.19.0):
+    - Amplify (= 1.19.0)
+    - AWSCore (~> 2.27.0)
+  - AWSUserPoolsSignIn (2.27.0):
+    - AWSAuthCore (= 2.27.0)
+    - AWSCognitoIdentityProvider (= 2.27.0)
+    - AWSCore (= 2.27.0)
   - FBSDKCoreKit (9.0.0):
     - FBSDKCoreKit/Basics (= 9.0.0)
     - FBSDKCoreKit/Core (= 9.0.0)
@@ -57,18 +62,13 @@ PODS:
     - FBSDKLoginKit/Login (= 9.0.0)
   - FBSDKLoginKit/Login (9.0.0):
     - FBSDKCoreKit (~> 9.0.0)
-  - GoogleSignIn (4.4.0):
-    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
-    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
+  - GoogleSignIn (6.1.0):
+    - AppAuth (~> 1.4)
+    - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleToolboxForMac/DebugUtils (2.3.2):
-    - GoogleToolboxForMac/Defines (= 2.3.2)
-  - GoogleToolboxForMac/Defines (2.3.2)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.2)":
-    - GoogleToolboxForMac/DebugUtils (= 2.3.2)
-    - GoogleToolboxForMac/Defines (= 2.3.2)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.2)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.3.2)"
+  - GTMAppAuth (1.2.2):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.0)
   - MarqueeLabel (4.0.5)
   - NotificationBannerSwift (3.0.6):
@@ -78,22 +78,23 @@ PODS:
   - Starscream (3.1.1)
 
 DEPENDENCIES:
-  - Amplify (~> 1.0)
-  - Amplify/Tools (~> 1.0)
-  - AmplifyPlugins/AWSAPIPlugin (~> 1.0)
-  - AmplifyPlugins/AWSCognitoAuthPlugin (~> 1.0)
+  - Amplify
+  - Amplify/Tools
+  - AmplifyPlugins/AWSAPIPlugin
+  - AmplifyPlugins/AWSCognitoAuthPlugin
   - AWSAuthUI
-  - AWSFacebookSignIn (~> 2.26.6)
-  - AWSGoogleSignIn (~> 2.26.6)
-  - AWSMobileClient (~> 2.26.6)
-  - AWSUserPoolsSignIn (~> 2.26.6)
-  - GoogleSignIn (~> 4.0)
-  - NotificationBannerSwift (~> 3.0.0)
+  - AWSFacebookSignIn
+  - AWSGoogleSignIn
+  - AWSMobileClient
+  - AWSUserPoolsSignIn
+  - GoogleSignIn
+  - NotificationBannerSwift
 
 SPEC REPOS:
   trunk:
     - Amplify
     - AmplifyPlugins
+    - AppAuth
     - AppSyncRealTimeClient
     - AWSAuthCore
     - AWSAuthUI
@@ -108,7 +109,7 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKLoginKit
     - GoogleSignIn
-    - GoogleToolboxForMac
+    - GTMAppAuth
     - GTMSessionFetcher
     - MarqueeLabel
     - NotificationBannerSwift
@@ -116,29 +117,30 @@ SPEC REPOS:
     - Starscream
 
 SPEC CHECKSUMS:
-  Amplify: 515c6993bfba7c26a29c39aa8ee79bf695d87e1e
-  AmplifyPlugins: 89c4639364e956195f8f6b89d2035b54faf13cd8
+  Amplify: 7906ce8bc77c2c9a97545581024eb90ec6f2e03a
+  AmplifyPlugins: 3f43645652234700ee62aba927a67ff4eebacf46
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   AppSyncRealTimeClient: 8b5ec94085b8ee9bb6fb9d9d76a157beb538ec6f
-  AWSAuthCore: e987fce9ad13ef8ac7d39d82305af21a63c590cf
-  AWSAuthUI: 4733631e76a21c5711ab7f2af0f45ad52152fae3
-  AWSCognitoIdentityProvider: 94cb0197e41662e3d29ee0feeb0cfa10d2242302
-  AWSCognitoIdentityProviderASF: 306610c6b2df9a0449243911a67d44b49d0a708f
-  AWSCore: e7fc9a005c527f2623b699a3ff8595fc45c24bd9
-  AWSFacebookSignIn: b1d891b5b6a1723db8f28e6a27259e684fc05a74
-  AWSGoogleSignIn: df96222e4dd05c11e792b9a15ffb03805f1b3f3c
-  AWSMobileClient: 318f7388a20424d2fe47fc946e3ba9b722b040b8
-  AWSPluginsCore: 1fe76c21a9e011d434be35ea646dddcd249d624f
-  AWSUserPoolsSignIn: e2b0f7fe741ac5fcb98a13cdbcd8cfc0dc2d8964
+  AWSAuthCore: e030e0d0c6102b5bf4e117601572ac3112b44ffe
+  AWSAuthUI: 244067ceff6fe6889df89c09f02154391cfad86c
+  AWSCognitoIdentityProvider: b62f4c11ccc03e4dec804f84820b94235271e103
+  AWSCognitoIdentityProviderASF: 0f0b7dfc43977225be9ae809bcc1ac46df217551
+  AWSCore: d605449939e5b40704f11ff9f91f905f7d978589
+  AWSFacebookSignIn: 7c5db8eafbae795b6708c15ecbebeda22aaa6d2c
+  AWSGoogleSignIn: b19c6526bb2a56057c20022fafe5152dd320781c
+  AWSMobileClient: a408fa2b5e04807de0a4dcd173153edb7ed05958
+  AWSPluginsCore: a74522db575247a0156f97d868713627099f3297
+  AWSUserPoolsSignIn: 57d4cb478a73d11863e0ec8da4f71434237ed3a6
   FBSDKCoreKit: ac6cc500b8e104bb9a4dd20b1527b5d199123c2e
   FBSDKLoginKit: e9b6542fdee322333502ab497f628b011dce7d78
-  GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
-  GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
+  GoogleSignIn: c90b5bec45e780f54c6a8e1e3c182a86e3dda69d
+  GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   NotificationBannerSwift: 7021be2338f8f29cf424b0aca43da462bf9e2a1a
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: 99e892db80680c8709a0a941d8cb26c3a01a805b
+PODFILE CHECKSUM: 3573119b9a596c35288fc5068222e9c7db628789
 
 COCOAPODS: 1.11.0

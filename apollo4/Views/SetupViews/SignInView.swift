@@ -17,7 +17,7 @@ struct SignInButton: View {
                     .frame(width: 15, height: 15)
                     .padding(.trailing,5)
                 Spacer()
-                Text("Create Account")
+                Text("Use Amazon Cognito")
                     .font(.footnote)
                     .padding(.trailing, 20)
                 Spacer()
@@ -117,9 +117,10 @@ struct FbSignInButton: View {
     }
 }
 struct SignInView: View {
-    @ObservedObject var userData: UserData
+    @ObservedObject var userData: UserData = .shared
     @ObservedObject var basicDone: observableBool
     @ObservedObject var bpDone: observableBool
+    @State var isLogin = false
     @State private var loadSetup = false
     private let errorNotification = NotificationBanner(title: "Failed", subtitle: "Error, some info isn't filled out, swipe left and check that all fields are filled.", style: .danger)
     var body: some View {
@@ -139,11 +140,17 @@ struct SignInView: View {
             .padding(5)
         Spacer()
         if userData.isSignedIn{
-            Text("Sign in suceeded")
+            if isLogin{
+                Text("Logged in!")
+            } else {
+                Text("Sign in suceeded")
+            }
             Divider()
             Button("Continue", action: {
                 if bpDone.value && basicDone.value{
-                    Backend.shared.createUser(user: userData)
+                    if !isLogin {
+                        Backend.shared.createUser(user: userData)
+                    }
                     print("Success")
                     loadSetup = true
                 } else {
@@ -151,7 +158,11 @@ struct SignInView: View {
                 }
             })
             .fullScreenCover(isPresented: $loadSetup){
-                RingSetup()
+                if isLogin{
+                    MainView2(showSuccess: true)
+                } else {
+                    RingSetup()
+                }
             }
         }
     }

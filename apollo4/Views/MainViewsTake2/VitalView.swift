@@ -11,7 +11,7 @@ struct VitalView: View {
     @EnvironmentObject var bleManager: BLEManager
     //Data saved for stats
     @StateObject var statsWrapper: StatDataObjectListWrapper = StatDataObjectListWrapper()
-    //Offset for date picker
+    @AppStorage("APPEARANCE:MAINBACKGROUND") var bgColor: Color = .purple
     @StateObject private var offset: Offset = Offset(num: 0)
     @State private var HeartRateGraphData: [Double] = [Double](repeating: 60, count: 50)
     @State private var SPO2GraphData: [Double] = [Double](repeating: 0, count: 30)
@@ -66,6 +66,16 @@ struct VitalView: View {
                                         .padding()
                                         .foregroundStyle(LinearGradient(colors: [Color.pink, Color.orange], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
                                 }
+                            CardView(name: "Set an Alert", backgroundColor: Color.pink, fullScreenView: AnyView(
+                                BasicSettingView(title: "Heart Rate Notifications"){
+                                    AlertMeView(stats: [HeartRate.shared])
+                                    }
+                            )){
+                                    Image(systemName: "exclamationmark.bubble")
+                                        .resizable()
+                                        .padding()
+                                        .foregroundStyle(LinearGradient(colors: [Color.red, Color.purple], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
+                                }
                             }, content: {
                             LineGraph(data: $HeartRateGraphData, dataTime: $HeartRateGraphTimes, dataMin: 50, dataRange: 150, height: 250, width: 290, gradient: Gradient(colors: [Color.pink, Color.orange, Color.red]))
                                 .frame(width: UIScreen.main.bounds.size.width - 20, height: 330, alignment: .center)
@@ -103,6 +113,16 @@ struct VitalView: View {
                                         .padding()
                                         .foregroundStyle(LinearGradient(colors: [Color.pink, Color.orange], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
                                 }
+                                CardView(name: "Set an Alert", backgroundColor: Color.pink, fullScreenView: AnyView(
+                                    BasicSettingView(title: "SPO2 Notifications"){
+                                        AlertMeView(stats: [SPO2.shared])
+                                        }
+                                )){
+                                    Image(systemName: "exclamationmark.bubble")
+                                        .resizable()
+                                        .padding()
+                                        .foregroundStyle(LinearGradient(colors: [Color.red, Color.purple], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
+                                }
                         }, content: {
                             VerticalLinePlotter(data: $SPO2Tuples, title: "Todays Readings", stat: SPO2(), width: UIScreen.main.bounds.size.width - 60, height: 300)
                                 .padding()
@@ -127,6 +147,16 @@ struct VitalView: View {
                                     .padding()
                                     .foregroundStyle(LinearGradient(colors: [Color.pink, Color.orange], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
                             }
+                            CardView(name: "Set an Alert", backgroundColor: Color.pink, fullScreenView: AnyView(
+                                BasicSettingView(title: "Blood Pressure Notifications"){
+                                    AlertMeView(stats: [SystolicPressure.shared, DiastolicPressure.shared])
+                                    }
+                            )){
+                                Image(systemName: "exclamationmark.bubble")
+                                    .resizable()
+                                    .padding()
+                                    .foregroundStyle(LinearGradient(colors: [Color.red, Color.purple], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
+                            }
                         }, content: {
                             MultiLineGraph(data: $BPData, dataWithLabels: $BPTimes, height: 250, width: 290, gradients: [Gradient(colors: [Color.pink, Color.purple]), Gradient(colors: [Color.purple, Color.blue])], statNames: ["Systolic Pressure", "Diastolic Pressure"])
                                 .frame(width: UIScreen.main.bounds.size.width - 20, alignment: .center)
@@ -145,7 +175,7 @@ struct VitalView: View {
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .padding(.bottom, 0.3)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.purple.opacity(0.5), Color.black]), startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 1.0)))
+            .background(LinearGradient(gradient: Gradient(colors: [bgColor.opacity(0.5), Color.black]), startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 1.0)))
             .onAppear(){
                 withAnimation(){
                     print("Loading offset")

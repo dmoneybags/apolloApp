@@ -16,8 +16,8 @@ enum LiveReadState {
 }
 
 struct LiveReadView: View {
-    @EnvironmentObject var bleManager: BLEManager
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var bleManager: BLEManager = .shared
     @ObservedObject var stopWatchManager = StopWatchManager(timeLim: 20.0)
     @State var data: [Double] = []
     @State private var readingAnimator = 0.2
