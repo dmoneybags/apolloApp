@@ -45,10 +45,10 @@ extension StatDataObject {
     func updateData(dataStr: String){
         //don't write 0s, ideally this is caught on the C side, but can never be too safe
         if dataStr == "0" || dataStr == "0.0" || dataStr == "0.00"{
-            print("Found 0, write failed")
+            print("STATDATAOBJECT::Found 0, write failed")
             return
         }
-        print("----------writing-----------")
+        print("STATDATAOBJECT::----------writing-----------")
         let dataNSstr = dataStr as NSString
         //Not currently used but if theres a comma this means theres a timestamp being sent
         //with it and we should use that time as the timestamp
@@ -58,7 +58,7 @@ extension StatDataObject {
             dates.append(Date(timeIntervalSince1970: (components[1] as NSString).doubleValue) as NSDate)
         } else {
             //append the double to data and current date to dates
-            print("\(#function) adding \(dataStr) to \(String(describing: self.name)) at \(Date())")
+            print("STATDATAOBJECT::\(#function) adding \(dataStr) to \(String(describing: self.name)) at \(Date())")
             data.append(NSNumber(value: dataNSstr.doubleValue))
             dates.append(Date() as NSDate)
         }
@@ -105,7 +105,7 @@ extension StatDataObject {
                 filteredData.remove(at: tupleVal.1)
             }
         }
-        print("\(#function) returning tuples of \(filteredData)")
+        print("STATDATAOBJECT::\(#function) returning tuples of \(filteredData)")
         return filteredData
     }
 }
@@ -122,7 +122,7 @@ extension Date {
         var timeInterval : TimeInterval = 0.0
         var didWork = calendar.dateInterval(of: dateComponent, start: &startOfComponent, interval: &timeInterval, for: self)
         if !didWork {
-            print("couldn't convert \(self)")
+            print("STATDATAOBJECT::couldn't convert \(self)")
         }
         return startOfComponent
     }
@@ -136,7 +136,7 @@ extension Date {
 }
 //filters a list already produced to get a specific object
 func getStatDataObject(stats: [StatDataObject], name: String) -> StatDataObject{
-    print("getting object for \(name)")
+    print("STATDATAOBJECT::getting object for \(name)")
     return stats[stats.firstIndex(where: {$0.name == name})!]
 }
 //gets our stat data objects
@@ -146,18 +146,18 @@ func fetchStatDataObjects() -> [StatDataObject]{
     let fetchRequest: NSFetchRequest<StatDataObject> = StatDataObject.fetchRequest()
     do {
         let StatDataObjects = try managedObjectContext.fetch(fetchRequest)
-        print("Got stat objects")
+        print("STATDATAOBJECT::Got stat objects")
         return StatDataObjects
     } catch {
-        print("Error fetching StatDataObjects: \(error.localizedDescription)")
+        print("STATDATAOBJECT::Error fetching StatDataObjects: \(error.localizedDescription)")
     }
-    print("Couldnt grab stat objects, returning empty list")
+    print("STATDATAOBJECT::Couldnt grab stat objects, returning empty list")
     return [StatDataObject]()
 }
 //Grabs a specific stat object by calling a fetch request for all them and then filtering
 //expensive, not really used
 func fetchSpecificStatDataObject(named name: String) -> StatDataObject{
-    print("Doing fetch request for \(name)")
+    print("STATDATAOBJECT::Doing fetch request for \(name)")
     let objects = fetchStatDataObjects()
     let filteredObject = getStatDataObject(stats: objects, name: name)
     return filteredObject
@@ -197,7 +197,7 @@ func getMostRecentDate(usingDates dates: [Date], in timeFrame: Calendar.Componen
             return dateValue.timeIntervalSince1970
         }
     }
-    print("Returning from getMost recent Date with \(dateValue)")
+    print("STATDATAOBJECT::Returning from getMost recent Date with \(dateValue)")
     return dateValue.timeIntervalSince1970
 }
 //Gets the number of dates in month for getNumSeconds method
@@ -293,7 +293,7 @@ func getTemporallyPooledData(forData data: [(Double, Date)], within timeFrame: C
     }
     //"Finally add the last one"
     pooledData.append((previousMean, Date(timeIntervalSince1970: TimeInterval(poolTimeFrameStart))))
-    print("got pooled data of")
+    print("STATDATAOBJECT::got pooled data of")
     print(pooledData)
     return pooledData
 }

@@ -48,5 +48,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         LOADMAIN = loadMain
         return true
     }
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        setBGtasks()
+        registerBGTasks()
+        return true
+    }
 }
 

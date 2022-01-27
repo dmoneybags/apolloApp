@@ -79,14 +79,7 @@ struct AlertMeView: View {
                     notificationSettings.append(NotificationSetting(stat: stats[indice].name, value:  HalfRingChart.getReading(progressVal: indice == 0 ? progress.value : secondProgress.value, rangeVal: Double(stats[indice].maxVal - stats[indice].minVal), min: Double(stats[indice].minVal)), above: aboveOrBelow[indice], usesAverage: usesAverage[indice], averageTimeFrame: getNumSeconds(in: timeFrame[indice]), on: true))
                 }
                 for setting in notificationSettings {
-                    let key = setting.stat + "_NOTIFICATION_SETTING"
-                    let encoder = JSONEncoder()
-                    do {
-                        UserDefaults.standard.set(try encoder.encode(setting), forKey: key)
-                        print("AlertMeView::ENCODING SUCCEEDED")
-                    } catch {
-                        print("AlertMeView::ENCODING FAILED")
-                    }
+                    setNotificationInUserDefaults(setting: setting)
                 }
             } label: {
                 HStack{

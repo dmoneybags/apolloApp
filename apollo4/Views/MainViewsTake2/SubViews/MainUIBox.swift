@@ -64,7 +64,7 @@ struct MainUIBox<Content: View, Content2: View>: View {
                     .padding(.horizontal)
                     .scaleEffect(imageName == "heart.fill" ? animatorVal : 1.0)
                     .onAppear(){
-                        print("MainUIbox loaded for \(title)")
+                        print("MAINUIBOX::MainUIbox loaded for \(title)")
                         withAnimation(Animation.easeInOut(duration: 60.0/dataVal).repeatForever()){
                             animatorVal = 1.0
                         }

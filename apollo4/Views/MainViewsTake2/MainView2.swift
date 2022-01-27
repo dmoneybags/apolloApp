@@ -51,6 +51,9 @@ struct MainView2: View {
                     .resizable()
                     .frame(width: 100, height: 50, alignment: .center)
                     .padding(.top, 30)
+                    .onTapGesture{
+                        sendNotification(title: "A notificiation!", subtitle: "Wow!")
+                    }
                 Spacer()
                 ZStack{
                     Circle()
