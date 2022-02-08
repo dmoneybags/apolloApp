@@ -7,14 +7,14 @@
 
 import Foundation
 
+typealias CompletionHandler = (_ success:Bool) -> Void
+
 class StatDataObjectListWrapper : ObservableObject {
-    var stats: [StatDataObject]
-    init(){
-        print("Initializing stat wrapper")
-        stats = fetchStatDataObjects()
-    }
-    func update(){
+    static var stats: [StatDataObject] = fetchStatDataObjects()
+    static func update(completionHandler: CompletionHandler){
         print("Updating stat wrapper")
         stats = fetchStatDataObjects()
+        let flag = true
+        completionHandler(flag)
     }
 }

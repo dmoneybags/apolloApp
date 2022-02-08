@@ -19,7 +19,7 @@ struct HorizontalCapsuleReader: View {
                 .foregroundStyle(LinearGradient(gradient: gradient, startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 0.0)))
             Circle()
                 .frame(width: height, height: height)
-                .position(x: (width) * progress - 7.5, y: height/2)
+                .position(x: max((width) * progress - 7.5, 7.5), y: height/2)
                 .foregroundColor(Color.white)
         }
         .frame(width: width, height: height)

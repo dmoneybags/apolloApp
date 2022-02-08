@@ -68,48 +68,56 @@ struct VerticalLinePlotter: View {
                 }
             }
             .frame(width: width, height: height/4, alignment: .center)
-            HStack{
-                ForEach(data.indices, id: \.self){indice in
-                    let value = data[indice]
-                    let capsuleHeight = height/2 * abs(value.0 - min)/range + 2
-                    let paddingTop = (height/2 - (1 * capsuleHeight)) - 10
-                    Capsule()
-                        .frame(width: 1, height: capsuleHeight)
-                        .foregroundStyle(LinearGradient(colors: [Color.pink, Color.purple], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 0, y: 1)))
-                        .padding(.top, paddingTop)
-                        .scaleEffect((indice == indexPosition && showingIndicators) ? 1.2 : 1.0)
-                    Spacer()
-                }
-            }
-            .frame(width: width, height: height/2, alignment: .center)
-            .gesture(
-                LongPressGesture(minimumDuration: 0.01)
-                    .sequenced(before: DragGesture(minimumDistance: 0, coordinateSpace: .local))
-                    .onChanged({ value in  // Get value of the gesture
-                        switch value {
-                        case .second(true, let drag):
-                            if let longPressLocation = drag?.location {
-                                dragGesture(longPressLocation)
-                            }
-                        default:
-                            break
-                        }
-                    })
-                    // Hide indicator when finish
-                    .onEnded({ value in
-                        self.showingIndicators = false
-                    })
-                )
-            VStack{
-                HStack {
-                    if dateVal != nil {
-                        Text(getTimeComponent(date: dateVal!, timeFrame: getTimeRangeVal(dates: data.map{$0.1})))
-                            .foregroundColor(Color(UIColor.systemGray))
+            if data.map{$0.0}.count > 1 {
+                HStack{
+                    ForEach(data.indices, id: \.self){indice in
+                        let value = data[indice]
+                        let capsuleHeight = height/2 * abs(value.0 - min)/range + 2
+                        let paddingTop = (height/2 - (1 * capsuleHeight)) - 10
+                        Capsule()
+                            .frame(width: 1, height: capsuleHeight)
+                            .foregroundStyle(LinearGradient(colors: [Color.pink, Color.purple], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 0, y: 1)))
+                            .padding(.top, paddingTop)
+                            .scaleEffect((indice == indexPosition && showingIndicators) ? 1.2 : 1.0)
+                        Spacer()
                     }
                 }
-            HorizontalCapsuleReader(progress: (dataVal - min)/range, width: width - 20, height: 15, gradient: Gradient(colors: [Color.pink, Color.purple, Color.blue]))
+                .frame(width: width, height: height/2, alignment: .center)
+                .gesture(
+                    LongPressGesture(minimumDuration: 0.01)
+                        .sequenced(before: DragGesture(minimumDistance: 0, coordinateSpace: .local))
+                        .onChanged({ value in  // Get value of the gesture
+                            switch value {
+                            case .second(true, let drag):
+                                if let longPressLocation = drag?.location {
+                                    dragGesture(longPressLocation)
+                                }
+                            default:
+                                break
+                            }
+                        })
+                        // Hide indicator when finish
+                        .onEnded({ value in
+                            self.showingIndicators = false
+                        })
+                    )
+                VStack{
+                    HStack {
+                        if dateVal != nil {
+                            Text(getTimeComponent(date: dateVal!, timeFrame: getTimeRangeVal(dates: data.map{$0.1})))
+                                .foregroundColor(Color(UIColor.systemGray))
+                        }
+                    }
+                HorizontalCapsuleReader(progress: (dataVal - min)/range, width: width - 20, height: 15, gradient: Gradient(colors: [Color.pink, Color.purple, Color.blue]))
+                }
+                .frame(width: width, height: height/4, alignment: .center)
+            } else {
+                Text("No Data")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color(UIColor.systemGray))
+                    .frame(width: width, height: 1.5 * height/2)
             }
-            .frame(width: width, height: height/4, alignment: .center)
         }
     }
     public func dragGesture(_ longPressLocation: CGPoint) {

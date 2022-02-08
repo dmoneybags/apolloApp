@@ -29,7 +29,6 @@ extension StatDataObject {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<StatDataObject> {
         return NSFetchRequest<StatDataObject>(entityName: "StatDataObject")
     }
-
     @NSManaged public var name: String?
     @NSManaged public var data: [NSNumber]
     @NSManaged public var dates: [NSDate]
@@ -62,18 +61,12 @@ extension StatDataObject {
             data.append(NSNumber(value: dataNSstr.doubleValue))
             dates.append(Date() as NSDate)
         }
+        MostRecentValues.valueDict[name!] = dataNSstr.doubleValue
+        MostRecentValues.timeDict[name!] = Int(Date().timeIntervalSince1970)
     }
     //Changes the data representation from 2 separated lists to one
     func generateTupleData() -> [(Double, Date)]{
-        var tupleData : [(Double, Date)] = []
-        var index = 0
-        for value in data{
-            //If the time is reasonable and the value is reasonable put it in the tuple list
-            if Int(truncating: value) > 0 && dates[index].timeIntervalSince1970 > 10000 && Int(truncating: value) < 1000{
-                tupleData.append((value as! Double, dates[index] as Date))
-            }
-            index += 1
-        }
+        let tupleData : [(Double, Date)] = zip(data, dates).map{($0 as! Double, $1 as Date)}
         return tupleData
     }
     //Method to slim tuples to a certain number by removing tuples with smallest interval
@@ -137,7 +130,11 @@ extension Date {
 //filters a list already produced to get a specific object
 func getStatDataObject(stats: [StatDataObject], name: String) -> StatDataObject{
     print("STATDATAOBJECT::getting object for \(name)")
-    return stats[stats.firstIndex(where: {$0.name == name})!]
+    let managedObjectContext = AppDelegate.originalAppDelegate.persistentContainer.viewContext
+    if stats.first(where: {$0.name == name}) == nil {
+        print("STATDATAOBJECT::couldn't find \(name)")
+    }
+    return stats.first(where: {$0.name == name}) ?? StatDataObject(inputName: name, context: managedObjectContext, empty: true)
 }
 //gets our stat data objects
 func fetchStatDataObjects() -> [StatDataObject]{
@@ -147,6 +144,9 @@ func fetchStatDataObjects() -> [StatDataObject]{
     do {
         let StatDataObjects = try managedObjectContext.fetch(fetchRequest)
         print("STATDATAOBJECT::Got stat objects")
+        for i in StatDataObjects{
+            print(i.name)
+        }
         return StatDataObjects
     } catch {
         print("STATDATAOBJECT::Error fetching StatDataObjects: \(error.localizedDescription)")
@@ -158,7 +158,7 @@ func fetchStatDataObjects() -> [StatDataObject]{
 //expensive, not really used
 func fetchSpecificStatDataObject(named name: String) -> StatDataObject{
     print("STATDATAOBJECT::Doing fetch request for \(name)")
-    let objects = fetchStatDataObjects()
+    let objects = StatDataObjectListWrapper.stats
     let filteredObject = getStatDataObject(stats: objects, name: name)
     return filteredObject
 }
@@ -229,6 +229,9 @@ fileprivate func getFinishingDate(with start: TimeInterval, in timeFrame: Calend
 //Takes in tuples, a timeFrame and an offset to return data values from that point
 func filterDataTuples(forData data: [(Double, Date)], in timeFrame: Calendar.Component, from start: TimeInterval? = nil, to finish: TimeInterval? = nil, withOffset offset: Int? = nil) -> [(Double, Date)]{
     var filteredData : [(Double, Date)] = []
+    if data.isEmpty{
+        return data
+    }
     while filteredData.isEmpty {
         let componentStart = start ?? getMostRecentDate(usingDates: data.map{$0.1}, in: timeFrame, withOffset: offset)
         let componentFinish = finish ?? getFinishingDate(with: componentStart, in: timeFrame)
@@ -270,8 +273,13 @@ func movingAverage(previousAverage: inout Double, count: inout Double, newValue:
     previousAverage = ((previousAverage * (count - 1)) + newValue)/count
 }
 func getTemporallyPooledData(forData data: [(Double, Date)], within timeFrame: Calendar.Component, withOffset offset: Int? = nil, poolTimeFrame: Calendar.Component, num: Int) -> [(Double, Date)]{
+    if data.isEmpty{
+        return []
+    }
+    if data.count < 5 {
+        return data
+    }
     let filteredData: [(Double, Date)] = filterDataTuples(forData: data, in: timeFrame, withOffset: offset)
-    print(filteredData)
     let poolSeconds = getNumSeconds(in: poolTimeFrame) * num
     var poolTimeFrameStart: Int = Int(filteredData[0].1.timeIntervalSince1970) - Int(filteredData[0].1.timeIntervalSince1970) % poolSeconds
     var poolTimeFrameEnd: Int = Int(poolTimeFrameStart) + poolSeconds
@@ -293,11 +301,13 @@ func getTemporallyPooledData(forData data: [(Double, Date)], within timeFrame: C
     }
     //"Finally add the last one"
     pooledData.append((previousMean, Date(timeIntervalSince1970: TimeInterval(poolTimeFrameStart))))
-    print("STATDATAOBJECT::got pooled data of")
-    print(pooledData)
+    print("STATDATAOBJECT::got pooled data")
     return pooledData
 }
 func setPoolTimeFrame(data: [(Double, Date)], maxTimeFrame: inout Calendar.Component, maxNum: inout Int, within timeFrame: Calendar.Component, withOffset offset: Int? = nil){
+    if data.isEmpty{
+        return
+    }
     let filteredData: [(Double, Date)] = filterDataTuples(forData: data, in: timeFrame, withOffset: offset)
     let timeIntervalList : [(Calendar.Component, Int)] = [(.month, 1), (.day, 1), (.hour, 1), (.minute, 30), (.minute, 15), (.minute, 10), (.minute, 5), (.minute, 1), (.second, 10)]
     let timeDifference = Int(filteredData.last!.1.timeIntervalSince1970 - filteredData[0].1.timeIntervalSince1970)

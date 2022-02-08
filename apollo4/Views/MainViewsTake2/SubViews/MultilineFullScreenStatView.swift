@@ -102,7 +102,7 @@ struct MultilineFullScreenStatView: View {
             .padding(.horizontal)
             ScrollViewReader { proxy in
                 ScrollView{
-                    LazyVStack{
+                    VStack{
                         MultiLineGraph(data: .constant(graphData.0), dataWithLabels: .constant(graphData.1), height: 400, width: UIScreen.main.bounds.width - 60, gradients: [Gradient(colors: [Color.pink, Color.purple]), Gradient(colors: [Color.purple, Color.blue])], statNames: ["Systolic Pressure", "Diastolic Pressure"], title: getTimeComponent(date: graphData.1[0].first!, timeFrame: .day) + "-" + getTimeComponent(date: graphData.1[0].last!, timeFrame: .day), pooledData: true, aggregateInference: inferenceObject)
                             .id(0)
                             .padding()

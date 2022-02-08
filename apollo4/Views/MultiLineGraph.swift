@@ -11,6 +11,9 @@ func getDataRange(data: [[Double]]) -> Double {
     var min = Double(100000000000)
     var max = Double(0)
     for numbers in data {
+        if numbers.isEmpty{
+            continue
+        }
         if numbers.min()! < min {
             min = numbers.min()!
         }
@@ -23,6 +26,9 @@ func getDataRange(data: [[Double]]) -> Double {
 func getMinimumValue(data: [[Double]]) -> Double {
     var min = Double(100000000000)
     for numbers in data {
+        if numbers.isEmpty{
+            continue
+        }
         if numbers.min()! < min {
             min = numbers.min()!
         }
@@ -72,6 +78,7 @@ struct MultiLineGraph: View {
     var statNames: [String]?
     var title: String?
     var pooledData: Bool = false
+    var useLines: Bool = true
     //Used for inferences, if no inferences are wanted, simply don't specify the argument
     var aggregateInference: aggregateInferenceObject? = nil
     @State private var objectInFocus: Int = -1
@@ -80,20 +87,20 @@ struct MultiLineGraph: View {
     @State private var IndicatorPointPosition: CGPoint = .zero
     private let inferenceInFocusPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "InferenceInFocus"))
     var body: some View {
-        if data[0].count != 1 {
+        if data[0].count > 3 {
             VStack{
                 if showingIndicators && dataWithLabels != nil{
                     dataBox(data: data, dates: dataWithLabels!, indexPosition: $indexPosition, statNames: statNames!, width: width!, gradients: gradients!)
                 } else if dataWithLabels != nil {
                     HStack{
-                        Text(title ?? "Todays Readings")
+                        Text(title ?? "Day's Readings")
                             .font(.title2)
                             .foregroundColor(Color(UIColor.systemGray))
                             .padding(.horizontal)
                             .padding(.leading, 25)
                         Spacer()
                         VStack{
-                            Text(String(format: "%.1f", averageData(data: data[0])) + " / " + String(format: "%.1f", averageData(data: data[1])))
+                            Text(String(format: "%.1f", averageData(data: data[0])) + " / " + String(Int(averageData(data: data[1]))))
                                 .font(.title)
                                 .fontWeight(.bold)
                                 .foregroundStyle(LinearGradient(colors: [Color.blue, Color.purple], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1)))
@@ -109,7 +116,7 @@ struct MultiLineGraph: View {
                     }
                 }
                 ZStack{
-                    if dataWithLabels != nil {
+                    if dataWithLabels != nil && useLines{
                         //use first set of dates
                         graphLines(width: width!, height: height!, data: addLists(), dates: pooledData ? dataWithLabels![0]: nil)
                     }

@@ -34,7 +34,6 @@ func genXvalues(data: [Double], xSize: Double) -> [Double] {
 func genYvalues(data: [Double], ySize: Double, dataRange: Double?, dataMin: Double?) -> [Double] {
     var usedRange: Double
     var subtractVal: Double
-    let UsedYSize = ySize //- 20
     let dataLength = data.count
     if dataRange == nil {
         usedRange = data.max()! - data.min()!
@@ -48,7 +47,7 @@ func genYvalues(data: [Double], ySize: Double, dataRange: Double?, dataMin: Doub
     }
     var yPositions: [Double] = [Double]()
     for i in 0..<dataLength {
-        let newElement = UsedYSize * ((data[i] - subtractVal)/usedRange) //+ 10
+        let newElement = ySize * ((data[i] - subtractVal)/usedRange) //+ 10
         yPositions.append(ySize - newElement)
     }
     return yPositions
@@ -152,7 +151,7 @@ struct graphLines: View {
                         .minimumScaleFactor(0.5)
                         .foregroundColor(Color(UIColor.systemGray))
                         //.scaleEffect(CGSize(width: 1.0, height: -1.0))
-                        .position(x: -15, y: Double(i) * height/Double(numHorizontalLines))
+                        .position(x: -15, y: Double(i) * height/max(Double(numHorizontalLines), 1))
                 }
             }
             if dates == nil {
@@ -164,10 +163,10 @@ struct graphLines: View {
             } else {
                 let dateLen = dates!.count - 1
                 ForEach(0..<dateLen, id: \.self){i in
-                    Line(start: CGPoint(x: Double(i) * width/Double(dateLen), y: 0), end: CGPoint(x: Double(i) * width/Double(dateLen), y: height))
-                        .stroke(Color(UIColor.systemGray).opacity(i == 0 ? 1.0: 0.4), lineWidth: 0.5)
-                        .allowsHitTesting(false)
-                    if Int(i) % (Int(dates!.count/4) > 1 ? Int(dates!.count/4) : 2) == 1 {
+                    if Int(i) % (Int(dates!.count/4) > 1 ? Int(dates!.count/3) : 2) == 1 {
+                        Line(start: CGPoint(x: Double(i) * width/max(Double(dateLen), 1), y: 0), end: CGPoint(x: Double(i) * width/max(Double(dateLen), 1), y: height))
+                            .stroke(Color(UIColor.systemGray).opacity(i == 0 ? 1.0: 0.4), lineWidth: 0.5)
+                            .allowsHitTesting(false)
                         Text(getTimeComponent(date: dates![i], timeFrame: getTimeRangeVal(dates: dates!)))
                             .font(.footnote)
                             .lineLimit(1)
@@ -199,18 +198,18 @@ struct LineGraph: View {
     var dataMin: Double? = nil
     var dataRange: Double? = nil
     //height and width of graph
-    @State var height: Double?
-    @State var width: Double?
+    var height: Double
+    var width: Double
     //Should the line have a color? IMPORTANT: color takes lower precedence than gradient,
     //if both are specified only gradient will be rendered
-    @State var color: Color?
+    var color: Color?
     //Should the line have a gradient color? (very pretty)
-    @State var gradient: Gradient?
+    var gradient: Gradient
     //Should the graph have a background color? if not background color is background of lower zIndex
     //View
-    @State var backgroundColor: Color?
+    var backgroundColor: Color?
     //Title that will show up at the top
-    var title: String? = "Todays Readings"
+    var title: String? = "Day's Readings"
     //Lines on the graph?
     var useLines: Bool = true
     //Is the data averaged by a timeFrame?
@@ -218,6 +217,26 @@ struct LineGraph: View {
     //Used for inferences, if no inferences are wanted, simply don't specify the argument
     var aggregateInference: aggregateInferenceObject? = nil
     //need a state object for object in focus for automatic updating
+    init(data: Binding<[Double]>, dataTime: Binding<[Date]?>, dataMin: Double? = nil, dataRange: Double? = nil, height: Double, width: Double, color: Color? = nil, gradient: Gradient, backgroundColor: Color? = nil, title: String?  = "Day's Readings", useLines: Bool = true, pooledData: Bool = false, aggregateInference: aggregateInferenceObject? =  nil){
+        self._data = data
+        self._dataTime = dataTime
+        if dataMin != nil {
+            self.dataMin = min(dataMin!, data.wrappedValue.min() ?? 10000000.0)
+        }
+        if dataRange != nil{
+            let maxVal = max(data.wrappedValue.max() ?? 0, self.dataMin! + dataRange!)
+            self.dataRange = maxVal - self.dataMin!
+        }
+        self.height = height
+        self.width = width
+        self.color = color
+        self.gradient = gradient
+        self.backgroundColor = backgroundColor
+        self.title = title
+        self.useLines = useLines
+        self.pooledData = pooledData
+        self.aggregateInference = aggregateInference
+    }
     @State private var objectInFocus: Int = -1
     @State private var showingIndicators: Bool = false
     @State private var indexPosition: Int = 0
@@ -230,24 +249,24 @@ struct LineGraph: View {
     //list, absolutely NOTHING will happen related to inferences, as intended.
     private let inferenceInFocusPub = NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "InferenceInFocus"))
     var body: some View {
-        let yPositions = genYvalues(data: data, ySize: height!, dataRange: dataRange, dataMin: dataMin)
-        let fakeYPositions = getUnloadedYpositions(yPositions: yPositions, height: height!)
-        let xPositions = genXvalues(data: data, xSize: width!)
+        let yPositions = genYvalues(data: data, ySize: height, dataRange: dataRange, dataMin: dataMin)
+        let fakeYPositions = getUnloadedYpositions(yPositions: yPositions, height: height)
+        let xPositions = genXvalues(data: data, xSize: width)
         if data.count > 1{
             VStack {
                 if dataTime != nil {
                     graphReading(indexPosition: $indexPosition
-                                 , showingIndicators: $showingIndicators, width: width!, dates: dataTime!, doubles: data, title: title!)
+                                 , showingIndicators: $showingIndicators, width: width, dates: dataTime!, doubles: data, title: title!)
                 }
                 ZStack {
                     ZStack {
                         if useLines{
-                            graphLines(width: width!, height: height!, data: dataMin == nil ? data: data + [dataMin!, dataMin! + dataRange!], dates: pooledData ? dataTime: nil)
+                            graphLines(width: width, height: height, data: dataMin == nil ? data: data + [dataMin!, dataMin! + dataRange!], dates: pooledData ? dataTime: nil)
                         }
                         if aggregateInference != nil && objectInFocus != -1 {
                             ForEach(aggregateInference!.objectsToImplement.indices, id: \.self){i in
                                 if i == objectInFocus {
-                                    aggregateInference!.objectsToImplement[i].getGraphView(width: width!, height: height!, graphData: data, dataRange: dataRange, dataMin: dataMin)
+                                    aggregateInference!.objectsToImplement[i].getGraphView(width: width, height: height, graphData: data, dataRange: dataRange, dataMin: dataMin)
                                         .position(x: 0, y: 0)
                                         .zIndex(2)
                                 }
@@ -257,11 +276,11 @@ struct LineGraph: View {
                             ForEach(data.indices, id: \.self) {i in
                                 if gradient == nil {
                                     Line(start: CGPoint(x: xPositions[i], y: loaded ? yPositions[i] : fakeYPositions[i]), end: CGPoint(x: getLeadingVal(Positions: xPositions, i: i), y: getLeadingVal(Positions: loaded ? yPositions : fakeYPositions, i: i)))
-                                        .stroke(color!, lineWidth: 2)
+                                        .stroke(color ?? .blue, lineWidth: 2)
                                 } else {
                                     Line(start: CGPoint(x: xPositions[i], y: loaded ? yPositions[i] : fakeYPositions[i]), end: CGPoint(x: getLeadingVal(Positions: xPositions, i: i), y: getLeadingVal(Positions: loaded ? yPositions : fakeYPositions, i: i)))
                                         .stroke(LinearGradient(
-                                            gradient: gradient!,
+                                            gradient: gradient,
                                             startPoint: UnitPoint(x: 0.0, y: 1.0),
                                         endPoint: UnitPoint(x: 0.0, y: 0.0)), lineWidth: 2)
                                 }
@@ -275,7 +294,7 @@ struct LineGraph: View {
                             }
                         }
                     }
-                    .frame(width: CGFloat(width!), height: CGFloat(height!))
+                    .frame(width: CGFloat(width), height: CGFloat(height))
                     .padding([.leading, .trailing, .top], 15)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(backgroundColor != nil ? backgroundColor! : Color.black.opacity(0.0), lineWidth: 4))
@@ -326,7 +345,7 @@ struct LineGraph: View {
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(Color(UIColor.systemGray))
-                .frame(width: CGFloat(width!), height: CGFloat(height!))
+                .frame(width: CGFloat(width), height: CGFloat(height))
         }
     }
     public func dragGesture(_ longPressLocation: CGPoint) {
@@ -340,8 +359,8 @@ struct LineGraph: View {
         }
     public func getClosestValueFrom(_ value: CGPoint) -> (CGFloat, CGFloat, Int){
             let touchPoint: (CGFloat, CGFloat) = (value.x, value.y)
-            let xPositions = genXvalues(data: data, xSize: width!)
-            let yPositions = genYvalues(data: data, ySize: height!, dataRange: dataRange, dataMin: dataMin)
+            let xPositions = genXvalues(data: data, xSize: width)
+            let yPositions = genYvalues(data: data, ySize: height, dataRange: dataRange, dataMin: dataMin)
             // Closest X value
             let closestXPoint = xPositions.enumerated().min( by: { abs($0.1 - touchPoint.0) < abs($1.1 - touchPoint.0) } )!
             let closestYPointIndex = xPositions.firstIndex(of: closestXPoint.element)!

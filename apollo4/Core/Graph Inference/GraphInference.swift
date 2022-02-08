@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 //Everytime a new inference is created it must be added to this list of it will not be checked
-fileprivate let objectsToCheck: [InferenceObjectBase] = [Minimum(), Maximum(), Average(), Trend()]
+fileprivate let objectsToCheck: [InferenceObjectBase] = [Minimum(), Maximum(), Average(), Trend(), GoalBox(), AlertBox()]
 fileprivate let multiLineObjectsToCheck: [MultiLineInferenceObjectBase] = [MultilineMinimum(), MultilineMaximum(), MultiLineAverage()]
 //Object to hold multiple sets of data
 struct aggregateDataObject {
@@ -20,7 +20,7 @@ struct aggregateDataObject {
         timeFrame = givenTimeFrame
         statData = [:]
         for stat in stats {
-            print("Adding \(stat.name!) to statData")
+            print("GRAPHINFERENCE::Adding \(stat.name!) to statData")
             statData[stat.name!] = filterDataTuples(forData: stat.generateTupleData(), in: timeFrame, withOffset: offset)
         }
     }
@@ -117,7 +117,7 @@ struct InferenceBox<Content: View>: View {
             Divider()
             content
         }
-        .background(Color(UIColor.black.withAlphaComponent(0.4)))
+        .background(Color(UIColor.black.withAlphaComponent(0.3)))
         .frame(width: UIScreen.main.bounds.size.width/2 - 30, height: 200)
         .cornerRadius(20)
     }
@@ -154,7 +154,7 @@ fileprivate class Minimum : InferenceObjectBase {
     //fix the logic which causes the view to appear and disappear, probably a binding to lineGraph, of
     //the inferece object
     func populate(aggregateData: aggregateDataObject, mainStat: String?, timeFrame: Calendar.Component, graphData: [(Double, Date)]?) {
-        print("Populating minimum with data for \(mainStat!)")
+        print("GRAPHINFERENCE::Populating minimum with data for \(mainStat!)")
         let mainData = aggregateData.statData[mainStat!]
         data = graphData!.map{$0.0}
         minimum = data.min()!
@@ -206,7 +206,7 @@ fileprivate class Maximum: InferenceObjectBase {
         return (mainStat != nil)
     }
     func populate(aggregateData: aggregateDataObject, mainStat: String?, timeFrame: Calendar.Component, graphData: [(Double, Date)]?) {
-        print("Populating maximum with data for \(mainStat!)")
+        print("GRAPHINFERENCE::Populating maximum with data for \(mainStat!)")
         let mainData = aggregateData.statData[mainStat!]
         data = graphData!.map{$0.0}
         maximum = data.max()!
@@ -256,7 +256,7 @@ fileprivate class Average: InferenceObjectBase {
         return (mainStat != nil)
     }
     func populate(aggregateData: aggregateDataObject, mainStat: String?, timeFrame: Calendar.Component, graphData: [(Double, Date)]?) {
-        print("Populating average with data for \(mainStat!)")
+        print("GRAPHINFERENCE::Populating average with data for \(mainStat!)")
         let mainData = aggregateData.statData[mainStat!]
         data = graphData!.map{$0.0}
         average = averageData(data: mainData!.map{$0.0})
@@ -299,7 +299,7 @@ fileprivate class Trend: InferenceObjectBase {
         return (mainStat != nil)
     }
     func populate(aggregateData: aggregateDataObject, mainStat: String?, timeFrame: Calendar.Component, graphData: [(Double, Date)]?) {
-        print("Populating average with data for \(mainStat!)")
+        print("GRAPHINFERENCE::Populating average with data for \(mainStat!)")
         let mainData = aggregateData.statData[mainStat!]
         data = graphData!.map{$0.0}
         slope = calcLinearReg(data: data).0
@@ -345,6 +345,141 @@ fileprivate class Trend: InferenceObjectBase {
         )
     }
 }
+fileprivate class GoalBox: InferenceObjectBase {
+    var title: String
+    var subTitle: String
+    var box: AnyView
+    var data: [Double]
+    var goalSetting: GoalSetting?
+    required init() {
+        self.title = ""
+        self.subTitle = ""
+        self.box = AnyView(EmptyView())
+        self.data = []
+        self.goalSetting = nil
+    }
+    func getGraphView(width: Double, height: Double, graphData: [Double], dataRange: Double?, dataMin: Double?) -> AnyView {
+        return AnyView(GraphInferenceGoalBoxView(value: self.goalSetting!.value, above: self.goalSetting!.above, didHitGoal: getPercentOfTimeOnGoal() > 0.49, dataRange: dataRange, dataMin: dataMin, width: width, height: height))
+    }
+    func isValid(aggregateData: aggregateDataObject, mainStat: String?) -> Bool {
+        let goalSetting = getGoalSetting(for: mainStat ?? "NOSTAT")
+        return goalSetting != nil
+    }
+    func getPercentOfTimeOnGoal() -> Double{
+        if self.goalSetting != nil {
+            var numGoal: Double =  0
+            for double in data{
+                if (goalSetting!.above ? double > goalSetting!.value :  double < goalSetting!.value){
+                    numGoal += 1
+                }
+            }
+            return numGoal/Double(data.count)
+        } else {
+            return 0.0
+        }
+    }
+    func populate(aggregateData: aggregateDataObject, mainStat: String?, timeFrame: Calendar.Component, graphData: [(Double, Date)]?) {
+        print("GRAPHINFERENCE::Populating GoalBox data for \(title)")
+        self.title = "Goal Progress"
+        self.data = graphData!.map({$0.0})
+        self.goalSetting = getGoalSetting(for: mainStat ?? "NOSTAT")
+        self.box = AnyView(
+            InferenceBox(title: self.title, subTitle: self.subTitle, color: .orange, imageName: "checkmark.seal"){
+                Text(String(format: "%.01f", getPercentOfTimeOnGoal() * 100) + "%")
+                    .bold()
+                    .font(.largeTitle)
+                    .foregroundStyle(LinearGradient(colors: [Color.pink, Color.orange], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
+                Spacer()
+                Text("of the time you are hitting your most recent goal.")
+                    .font(.footnote)
+                    .foregroundColor(Color(UIColor.systemGray3))
+                    .scaleEffect(0.7)
+            }
+        )
+    }
+}
+fileprivate class AlertBox: InferenceObjectBase {
+    var title: String
+    var subTitle: String
+    var stat: String
+    var box: AnyView
+    var data: [Double]
+    var times: [Date]
+    var tupleData: [(Double, Date)]
+    var alerts: [(Double, Date)]
+    var timeFrame: Calendar.Component
+    var notification: NotificationSetting?
+    required init() {
+        self.title = ""
+        self.subTitle = ""
+        self.stat = ""
+        self.box = AnyView(EmptyView())
+        self.data = []
+        self.times = []
+        self.tupleData = []
+        self.alerts = []
+        self.timeFrame = .day
+        self.notification = nil
+    }
+    func getGraphView(width: Double, height: Double, graphData: [Double], dataRange: Double?, dataMin: Double?) -> AnyView {
+        return AnyView(GraphInferenceAlertGraphView(value: notification!.value, graphData: self.tupleData, alerts: self.alerts, pooledAlerts: getAlerts(timeFrame: self.timeFrame, stat: self.stat, aggregateTupleData: self.tupleData), above: notification!.above, dataRange: dataRange!, dataMin: dataMin!, width: width, height: height))
+    }
+    func isValid(aggregateData: aggregateDataObject, mainStat: String?) -> Bool {
+        let notificationSetting = getNotificationSetting(for: mainStat ?? "NOSTAT")
+        return notificationSetting != nil
+    }
+    func getAlerts(timeFrame: Calendar.Component, stat: String, aggregateTupleData: [(Double, Date)]? = nil) -> [(Double, Date)]{
+        var usedTupleData: [(Double, Date)] = []
+        if aggregateTupleData != nil {
+            usedTupleData = aggregateTupleData!
+        } else{
+            usedTupleData = filterDataTuples(forData: fetchSpecificStatDataObject(named: stat).generateTupleData(), in: timeFrame)
+        }
+        var alerts: [(Double, Date)] = []
+        var inAlertZone = false
+        var prevTime = TimeInterval(0)
+        for tuple in usedTupleData{
+            if (notification!.above ? tuple.0 > notification!.value : tuple.0 < notification!.value) && !inAlertZone{
+                alerts.append(tuple)
+                inAlertZone = true
+                prevTime = tuple.1.timeIntervalSince1970
+            } else {
+                if (notification!.above ? tuple.0 < notification!.value : tuple.0 > notification!.value){
+                    inAlertZone = false
+                }
+            }
+        }
+        print("GRAPHINFERENCE::FOUND ALERTS OF \(alerts)")
+        return alerts
+    }
+    func populate(aggregateData: aggregateDataObject, mainStat: String?, timeFrame: Calendar.Component, graphData: [(Double, Date)]?) {
+        print("GRAPHINFERENCE::Populating AlertBox data for \(title)")
+        self.title = "Alerts Triggered"
+        self.subTitle = ""
+        self.stat = mainStat!
+        self.data = graphData!.map{$0.0}
+        self.times = graphData!.map{$0.1}
+        self.tupleData = graphData!
+        self.notification = getNotificationSetting(for: mainStat!)
+        self.timeFrame = timeFrame
+        self.alerts = getAlerts(timeFrame: self.timeFrame, stat: self.stat)
+        print("GRAPHINFERENCE::notification timeframe \(timeFrame)")
+        self.box = AnyView(
+            InferenceBox(title: self.title, subTitle: self.subTitle, color: .red, imageName: "exclamationmark.circle"){
+                Spacer()
+                HalfRingChart(minimum: 0, rangeVal: 20, reading: Double(self.alerts.count), colorVal: nil, gradient: Gradient(colors: [.clear, .red]), moving: .constant(false))
+                    .scaleEffect(0.8)
+                    .onAppear(){
+                        print("GRAPHINFERENCE:: on appear number of alers is \(self.alerts.count)")
+                    }
+                Text("Over the \(GoalView.getDateStr(timeFrame: timeFrame))")
+                    .font(.footnote)
+                    .foregroundColor(Color(UIColor.systemGray3))
+                    .padding(.top, -30)
+            }
+        )
+    }
+}
 fileprivate class MultilineMinimum: MultiLineInferenceObjectBase {
     var title: String
     var subTitle: String
@@ -369,7 +504,7 @@ fileprivate class MultilineMinimum: MultiLineInferenceObjectBase {
         timeMin = Date()
     }
     func getGraphView(width: Double, height: Double, graphData: [[Double]], dataRange: Double?, dataMin: Double?, gradients: [Gradient]) -> AnyView {
-        print("Retrieving multiLine minimum view")
+        print("GRAPHINFERENCE::Retrieving multiLine minimum view")
         return AnyView(MultilineMinMaxGraphview(width: width, height: height, graphData: graphData, aggregateMin: aggregateMinimum, minIndex: minIndex, gradients: gradients))
     }
     func isValid(forStats stats: [String]?) -> Bool {
@@ -380,7 +515,7 @@ fileprivate class MultilineMinimum: MultiLineInferenceObjectBase {
             subTitle = "Blood Pressure"
         }
         setMinValues(graphData: graphData)
-        print("Populating multiline data for \(title)")
+        print("GRAPHINFERENCE::Populating multiline data for \(title)")
         box =
         AnyView(
             InferenceBox(title: title, subTitle: "", color: .purple, imageName: "square.and.arrow.down.fill"){
@@ -454,7 +589,7 @@ fileprivate class MultilineMinimum: MultiLineInferenceObjectBase {
         aggregateMinimum = []
         var minValue: Double = 100000
         var numStats = graphData.count
-        print("numStats \(numStats)")
+        print("GRAPHINFERENCE::numStats \(numStats)")
         var mins = [Double](repeating: 100000, count: numStats)
         for i in 0..<graphData[0].count{
             var testVal: Double = 0
@@ -501,7 +636,7 @@ fileprivate class MultilineMaximum: MultiLineInferenceObjectBase {
         timeMax = Date()
     }
     func getGraphView(width: Double, height: Double, graphData: [[Double]], dataRange: Double?, dataMin: Double?, gradients: [Gradient]) -> AnyView {
-        print("Retrieving multiLine minimum view")
+        print("GRAPHINFERENCE::Retrieving multiLine minimum view")
         return AnyView(MultilineMinMaxGraphview(width: width, height: height, graphData: graphData, aggregateMin: aggregateMaximums, minIndex: maxIndex, gradients: gradients))
     }
     func isValid(forStats stats: [String]?) -> Bool {
@@ -512,7 +647,7 @@ fileprivate class MultilineMaximum: MultiLineInferenceObjectBase {
             subTitle = "Blood Pressure"
         }
         setMaxValues(graphData: graphData)
-        print("Populating multiline data for \(title)")
+        print("GRAPHINFERENCE::Populating multiline data for \(title)")
         box =
         AnyView(
             InferenceBox(title: title, subTitle: "", color: .yellow, imageName: "square.and.arrow.up.fill"){
@@ -586,7 +721,7 @@ fileprivate class MultilineMaximum: MultiLineInferenceObjectBase {
         aggregateMaximums = []
         var maxValue: Double = -1
         var numStats = graphData.count
-        print("numStats \(numStats)")
+        print("GRAPHINFERENCE::numStats \(numStats)")
         var maxs = [Double](repeating: -1, count: numStats)
         for i in 0..<graphData[0].count{
             var testVal: Double = 0
@@ -659,7 +794,7 @@ fileprivate class MultiLineAverage: MultiLineInferenceObjectBase {
                                 .font(.title)
                                 .foregroundColor(.blue)
                         Spacer()
-                        CapsuleReader(reading: self.averages[i], height: 40, stat: self.stats[i])
+                        TickMarkReader(length: 40, width: 8, stat: self.stats[i], reading: self.averages[i], showNum: false)
                             .padding(.trailing, 15)
                     }
                 }

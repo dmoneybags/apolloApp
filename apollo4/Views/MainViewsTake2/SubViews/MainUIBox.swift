@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainUIBox<Content: View, Content2: View>: View {
+struct MainUIBox<Content: View>: View {
     @Environment(\.colorScheme) private var colorScheme
     //Value which will be changed within a withAnimation framework to animate the heart (if heartRate)
     @State private var animatorVal : Double = 0.7
@@ -28,12 +28,13 @@ struct MainUIBox<Content: View, Content2: View>: View {
     //Passed in for fullscreen statview cover
     var stats: [Stat]
     var fullscreenData: statViewData
+    var cardData: [CardData]
     @State private var showingData: Bool = false
     @State private var showInfo: Bool = false
+    @State private var showMore: Bool = false
     //Pass in content to show in scrollview, passed with a bracket
     //Same way you would add content to a VStack
-    @ViewBuilder var cardContent: Content
-    @ViewBuilder var content: Content2
+    @ViewBuilder var content: Content
     var body: some View {
         VStack{
             HStack{
@@ -42,6 +43,9 @@ struct MainUIBox<Content: View, Content2: View>: View {
                     .fontWeight(.bold)
                     .padding(.top)
                     .padding(.horizontal)
+                    .font(.system(size: 500))
+                    .minimumScaleFactor(0.001)
+                    .lineLimit(1)
                 Image(systemName: "info.circle")
                     .resizable()
                     .frame(width: 15, height: 15)
@@ -55,25 +59,11 @@ struct MainUIBox<Content: View, Content2: View>: View {
                         WhatIsStatName(stats: stats)
                     }
                 Spacer()
-                Image(systemName: imageName)
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                    .aspectRatio(1.0, contentMode: .fit)
-                    .foregroundColor(foregroundColor ?? Color.white)
-                    .padding(.top)
-                    .padding(.horizontal)
-                    .scaleEffect(imageName == "heart.fill" ? animatorVal : 1.0)
-                    .onAppear(){
-                        print("MAINUIBOX::MainUIbox loaded for \(title)")
-                        withAnimation(Animation.easeInOut(duration: 60.0/dataVal).repeatForever()){
-                            animatorVal = 1.0
-                        }
-                    }
-                Text(dataValStr)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding(.top)
-                    .padding(.trailing)
+                CurrentBtnView(dataValStr: dataValStr, currentView:
+                                fullscreenData.statName != nil ?
+                               AnyView(CurrentStatView(stat: fullscreenData.statName ?? "Blood Pressure", gradient: fullscreenData.gradient)):
+                                AnyView(CurrentBPView())
+                )
             }
             Divider()
                 .padding(.horizontal)
@@ -83,35 +73,56 @@ struct MainUIBox<Content: View, Content2: View>: View {
                 //content we passed in using brackets
                 content
             }
-            HStack {
-                //Opens full screen graph view
-                Button("See more data..."){
-                    showingData.toggle()
+            if fullscreenData.tupleData.count > 2 || fullscreenData.multiTupleData?[0].count ?? 0 > 2{
+                HStack {
+                    //Opens full screen graph view
+                    Button("See more data..."){
+                        showingData.toggle()
+                    }
+                    .padding(.horizontal)
+                    Spacer()
                 }
-                .padding(.horizontal)
-                Spacer()
             }
             Divider()
-            ScrollView(.horizontal){
-                HStack{
-                    cardContent
+            Button{
+                withAnimation{
+                    showMore.toggle()
                 }
+            } label: {
+                HStack{
+                    Text("More")
+                    Spacer()
+                    Image(systemName: "chevron.backward")
+                        .rotationEffect(Angle(degrees: showMore ? 270.0 : 180.0))
+                }
+                .frame(width: UIScreen.main.bounds.width - 50)
             }
-            .frame(width: UIScreen.main.bounds.size.width - 60, height: 250, alignment: .center)
+            .padding(.bottom)
+            if showMore {
+                Divider()
+                ScrollView{
+                    VStack(spacing: 10.0){
+                        ForEach(cardData.indices, id: \.self){indice in
+                            AlternateCardView(cardData: cardData[indice])
+                        }
+                    }
+                }
+                .padding(.bottom)
+            }
         }
         //Code for full screen graph
         .fullScreenCover(isPresented: $showingData){
             if fullscreenData.multiTupleData == nil {
                 FullScreenStatView(name: fullscreenData.name, statName: fullscreenData.statName, tupleData: fullscreenData.tupleData, dataRange: fullscreenData.dataRange, dataMin: fullscreenData.dataMin, gradient: fullscreenData.gradient)
-                    .environmentObject(statsWrapper)
+                    .background(LinearGradient(colors: [stats[0].mainColor.opacity(0.4), .clear], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1)))
             } else {
                 MultilineFullScreenStatView(name: fullscreenData.name, multiTupleData: fullscreenData.multiTupleData!)
+                    .background(LinearGradient(colors: [.blue.opacity(0.4), .clear], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1)))
             }
         }
         .frame(width: UIScreen.main.bounds.size.width - 20, alignment: .center)
         .background(colorScheme == .dark ? Color.black : Color.white)
         .cornerRadius(15.0)
-        .padding(.leading, 10.0)
     }
     private func pass(){
         print("")

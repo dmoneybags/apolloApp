@@ -22,6 +22,7 @@ struct ContentView: View {
     @State private var loadAccount = false
     @State private var loadSetup = false
     @State private var loadLogin = false
+    @State private var loadDemo = false
     var body: some View {
         //Main top level view for whole app
         NavigationView {
@@ -65,28 +66,34 @@ struct ContentView: View {
                         }(),
                         options: [.autoenablesDefaultLighting,.allowsCameraControl])
                         .scaleEffect(0.6)
-                        .frame(width: 350, height: 350)
+                        .frame(width: UIScreen.main.bounds.height/2.5, height: UIScreen.main.bounds.height/2.5)
                 }
                 ZStack {
-                    if bleManager.connectedPeripheral != nil {
-                        Button(action: {
-                            print("SCANNING")
-                            _ = bleManager.startScanning()
-                            //set id
-                            }){
-                            Image(systemName: "wifi")
-                                .foregroundColor(Color.white)
-                                .padding()
-                                .scaleEffect(numBarsANIMATION)
-                            }
-                            .background(RoundedRectangle(cornerRadius: 20).fill(Color.black))
-                            .onAppear {
-                                DispatchQueue.main.async {
-                                    withAnimation(repeated){
-                                        numBarsANIMATION = 1.5
+                    if bleManager.connectedPeripheral == nil {
+                        VStack{
+                            Button(action: {
+                                print("SCANNING")
+                                _ = bleManager.startScanning()
+                                //set id
+                                }){
+                                Image(systemName: "wifi")
+                                    .foregroundColor(Color.white)
+                                    .padding()
+                                    .scaleEffect(numBarsANIMATION)
+                                }
+                                .background(RoundedRectangle(cornerRadius: 20).fill(Color.black))
+                                .onAppear {
+                                    DispatchQueue.main.async {
+                                        withAnimation(repeated){
+                                            numBarsANIMATION = 1.5
+                                        }
                                     }
                                 }
+                            Button(action: loadDemoView){
+                                Text("Demo")
+                                    .transition(.opacity)
                             }
+                        }
                     } else {
                         if user.isSignedIn {
                             Button(action: loadSetupView){
@@ -98,21 +105,13 @@ struct ContentView: View {
                                     .transition(.opacity)
                                 }
                         } else {
-                            VStack{
-                                Button(action: loadAccountView){
-                                    Text("Create Account")
-                                        .font(.title3)
-                                        .foregroundColor(Color.white)
-                                        .padding()
-                                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.black))
-                                        .transition(.opacity)
-                                    }
+                            VStack(spacing: 10){
                                 Button(action: loadLoginView){
                                     Text("Log In")
-                                        .font(.title3)
-                                        .foregroundColor(Color.white)
-                                        .padding()
-                                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.black))
+                                        .transition(.opacity)
+                                    }
+                                Button(action: loadAccountView){
+                                    Text("Create Account")
                                         .transition(.opacity)
                                     }
                             }
@@ -146,6 +145,9 @@ struct ContentView: View {
                 SignInView(userData: UserData.shared, basicDone: observableBool(value: true), bpDone: observableBool(value: true), isLogin: true)
             }
         }
+        .fullScreenCover(isPresented: $loadDemo){
+            MainView2()
+        }
     }
     private func loadSetupView(){
         loadSetup = true
@@ -155,6 +157,10 @@ struct ContentView: View {
     }
     private func loadLoginView(){
         loadLogin = true
+    }
+    private func loadDemoView(){
+        writeAllStats(num: 2000)
+        loadDemo = true
     }
 }
 

@@ -89,7 +89,6 @@ struct FullScreenStatInfo: View {
             Text(subtitle)
                 .fontWeight(.bold)
                 .padding(.horizontal)
-                .foregroundColor(Color(UIColor.systemGray3))
             Divider()
             //Timeframe switcher
             if multipleData {
@@ -194,6 +193,7 @@ struct FullScreenStatInfo: View {
                 presentationMode.wrappedValue.dismiss()
             }
         }
+        .background(LinearGradient(colors: [colors[0].opacity(0.4), .clear], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1)))
     }
     private func getAggregateProgress() -> Double {
         //YOU MUST PASS AN EQUAL NUM OF STATS AS POINTS

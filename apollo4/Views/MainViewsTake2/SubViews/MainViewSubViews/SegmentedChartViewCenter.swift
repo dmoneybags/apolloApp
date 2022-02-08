@@ -33,6 +33,7 @@ struct SegmentedChartViewCenter: View {
             GeometryReader{ geo in
                 HorizontalCapsuleReader(progress: computeProgress(), width: geo.frame(in: .local).maxX - 30, height: 15, gradient: Gradient(colors: [Color.green, Color.yellow, Color.red]))
                     .padding(.leading, 15)
+                    .scaleEffect(0.7)
                 
             }
             .frame(height: 15)

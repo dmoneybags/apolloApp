@@ -128,7 +128,6 @@ struct HrVarView: View {
                     Spacer()
                 } else {
                     FullScreenStatView(name: "Heart Rate Variability", tupleData: fetchSpecificStatDataObject(named: "HrVar").generateTupleData(), dataRange: 200, dataMin: 0, gradient: Gradient(colors: [.purple, .pink]),  showTitle: false)
-                        .environmentObject(statsWrapper)
                 }
             }
             .onReceive(varPub){object in

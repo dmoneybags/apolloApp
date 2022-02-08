@@ -9,8 +9,6 @@ import SwiftUI
 struct VitalView: View {
     //Our bluetooth manager, only needed for writes, notifications are caught by the manager on its own
     @EnvironmentObject var bleManager: BLEManager
-    //Data saved for stats
-    @StateObject var statsWrapper: StatDataObjectListWrapper = StatDataObjectListWrapper()
     @AppStorage("APPEARANCE:MAINBACKGROUND") var bgColor: Color = .purple
     @StateObject private var offset: Offset = Offset(num: 0)
     @State private var HeartRateGraphData: [Double] = [Double](repeating: 60, count: 50)
@@ -27,138 +25,44 @@ struct VitalView: View {
     @State private var DiaTuples: [(Double, Date)] = [(1.0, Date(timeIntervalSince1970: 1000)), (1.0, Date())]
     @State private var BPData: [[Double]] = [[0.0, 1.0], [0.0, 1.0]]
     @State private var BPTimes: [[Date]]? = [[Date(timeIntervalSince1970: 1000), Date()], [Date(timeIntervalSince1970: 1000), Date()]]
-    private var HeartRateObject: StatDataObject = fetchSpecificStatDataObject(named: "HeartRate")
-    private var SPO2Object: StatDataObject = fetchSpecificStatDataObject(named: "SPO2")
-    private var SystolicPressureObject: StatDataObject = fetchSpecificStatDataObject(named: "SystolicPressure")
-    private var DiastolicPressureObject: StatDataObject = fetchSpecificStatDataObject(named: "DiastolicPressure")
+    @State private var refreshing: Bool = false
+    @State private var finishedRefresh: Bool = true
+    @State private var HeartRateObject: StatDataObject = getStatDataObject(stats: StatDataObjectListWrapper.stats, name: "HeartRate")
+    @State private var SPO2Object: StatDataObject = getStatDataObject(stats: StatDataObjectListWrapper.stats, name: "SPO2")
+    @State private var SystolicPressureObject: StatDataObject = getStatDataObject(stats: StatDataObjectListWrapper.stats, name: "SystolicPressure")
+    @State private var DiastolicPressureObject: StatDataObject = getStatDataObject(stats: StatDataObjectListWrapper.stats, name: "DiastolicPressure")
     var body: some View {
         ZStack(alignment: .top){
             //Not implemented yet but will be used to switch day of data being looked at
-            DateSwitcher(dates: HeartRateObject.generateTupleData().map{$0.1})
-                .environmentObject(offset)
-                .zIndex(3)
-                .offset(x: 0, y: 40)
+            if HeartRateObject.generateTupleData().map{$0.1}.count > 2 {
+                DateSwitcher(dates: HeartRateObject.generateTupleData().map{$0.1})
+                    .environmentObject(offset)
+                    .zIndex(3)
+                    .offset(x: 0, y: 55)
+            }
             VStack{
                 ScrollView{
-                    //MainUIBox for each main stat
-                    //Lazy VStack so they dont all load at once
+                    Text("")
+                    //best solution we could get was to just cancel out width with neegative padding
+                        .frame(width: 10)
+                        .padding(.trailing, -10)
+                        .background(
+                            GeometryReader { proxy in
+                                Color.red
+                                    .preference(
+                                        key: OffsetPreferenceKey.self,
+                                        value: proxy.frame(in: .named("VITALVIEW")).minY
+                                    )
+                            })
                     LazyVStack{
-                        MainUIBox(title: HeartRateObject.name!, dataVal: HeartRateObject.data.last as! Double, dataValStr: String(HeartRateObject.data.last as! Double), imageName: "heart.fill", foregroundColor: Color.red, numScrollViews: 2, stats: [HeartRate()], fullscreenData:
-                                    statViewData(name: "Heart Rate", statName: "HeartRate", tupleData: HeartRateObject.generateTupleData(), dataRange: HeartRate().getRange(label: "").1 - HeartRate().getRange(label: "").0, dataMin: HeartRate().getRange(label: "").0, gradient: Gradient(colors: [Color.orange, Color.pink])), cardContent: {
-                                CardView(name: "Heart Rate Variability", backgroundColor: Color.pink, fullScreenView: AnyView(HrVarView())){
-                                    Image(systemName: "waveform.path.ecg")
-                                        .resizable()
-                                        .padding()
-                                }
-                                CardView(name: "Resting Heart Rate", backgroundColor: Color.blue, fullScreenView: AnyView(FullScreenStatInfo(tupleData: [getRestingHR(hrData: HeartRateObject.generateTupleData())], topText: "Resting Heart Rate", subText: "Resting heart rate is the hearts rate when not under abnormal stress or exertion", stats: [HeartRate()], colors: [.blue]))){
-                                    Image(systemName: "bed.double")
-                                        .resizable()
-                                        .padding()
-                                }
-                                CardView(name: "Live Read", backgroundColor: Color.green, fullScreenView: AnyView(LiveReadView())){
-                                    Image(systemName: "bolt.heart")
-                                        .resizable()
-                                        .padding()
-                                }
-                                CardView(name: "Set a Goal", backgroundColor: Color.purple){
-                                    Image(systemName: "checkmark.seal")
-                                        .resizable()
-                                        .padding()
-                                        .foregroundStyle(LinearGradient(colors: [Color.pink, Color.orange], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
-                                }
-                            CardView(name: "Set an Alert", backgroundColor: Color.pink, fullScreenView: AnyView(
-                                BasicSettingView(title: "Heart Rate Notifications"){
-                                    AlertMeView(stats: [HeartRate.shared])
-                                    }
-                            )){
-                                    Image(systemName: "exclamationmark.bubble")
-                                        .resizable()
-                                        .padding()
-                                        .foregroundStyle(LinearGradient(colors: [Color.red, Color.purple], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
-                                }
-                            }, content: {
-                            LineGraph(data: $HeartRateGraphData, dataTime: $HeartRateGraphTimes, dataMin: 50, dataRange: 150, height: 250, width: 290, gradient: Gradient(colors: [Color.pink, Color.orange, Color.red]))
-                                .frame(width: UIScreen.main.bounds.size.width - 20, height: 330, alignment: .center)
-                                .padding(.leading, -10)
-                                .id(0)
-                            VStack{
-                                HStack{
-                                    Text("Todays Levels")
-                                        .font(.title2)
-                                        .padding(.top)
-                                        .foregroundColor(Color(UIColor.systemGray))
-                                        .padding(.horizontal)
-                                    Spacer()
-                                }
-                                Divider()
-                                Spacer()
-                                SegmentedRingChartView(stat: HeartRate(), dataList: HeartRateTuples)
-                                    .frame(width: 178)
-                                    .padding()
-                            }
-                            .frame(width: UIScreen.main.bounds.size.width - 20, height: 330, alignment: .center)
-                            .id(1)
-                        })
-                        .environmentObject(statsWrapper)
-                        .padding(.top, 40)
-                        MainUIBox(title: SPO2Object.name!, dataVal: SPO2Object.data.last as! Double, dataValStr: String(SPO2Object.data.last as! Double), imageName: "wind", foregroundColor: Color.white, numScrollViews: 2, stats: [SPO2()], fullscreenData:
-                                    statViewData(name: "SPO2", statName: "SPO2", tupleData: SPO2Object.generateTupleData(), dataRange: 25, dataMin: 75, gradient: Gradient(colors: [Color.blue, Color.purple])), cardContent: {
-                                CardView(name: "VO2", backgroundColor: Color.green, fullScreenView: AnyView(FullScreenStatInfo(readings: [getVO2Max(hrData: HeartRateObject.generateTupleData())], topText: "Current VO2 Max", subText: "A measure to estimate maximum exertion potential", stats: [VO2Max()], colors: [.blue]))){
-                                    RingChart(progress: .constant(0.5), text: .constant("60"), color: Color.blue)
-                                        .padding()
-                                }
-                                CardView(name: "Set a Goal", backgroundColor: Color.purple){
-                                    Image(systemName: "checkmark.seal")
-                                        .resizable()
-                                        .padding()
-                                        .foregroundStyle(LinearGradient(colors: [Color.pink, Color.orange], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
-                                }
-                                CardView(name: "Set an Alert", backgroundColor: Color.pink, fullScreenView: AnyView(
-                                    BasicSettingView(title: "SPO2 Notifications"){
-                                        AlertMeView(stats: [SPO2.shared])
-                                        }
-                                )){
-                                    Image(systemName: "exclamationmark.bubble")
-                                        .resizable()
-                                        .padding()
-                                        .foregroundStyle(LinearGradient(colors: [Color.red, Color.purple], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
-                                }
-                        }, content: {
-                            VerticalLinePlotter(data: $SPO2Tuples, title: "Todays Readings", stat: SPO2(), width: UIScreen.main.bounds.size.width - 60, height: 300)
-                                .padding()
-                                .id(0)
-                            SPO2LevelView(SPO2Data: $SPO2GraphData)
-                                .frame(width: UIScreen.main.bounds.size.width - 20, height: 300, alignment: .center)
-                                .padding()
-                                .id(1)
-                        })
-                        .environmentObject(statsWrapper)
-                        MainUIBox(title: "Blood Pressure", dataVal: 1.0, dataValStr: String(SystolicPressureObject.data.last as! Int) + "/" + String(DiastolicPressureObject.data.last as! Int), imageName: "thermometer", foregroundColor: Color.white, numScrollViews: 2, stats: [SystolicPressure(), DiastolicPressure()], fullscreenData:
-                                    statViewData(name: "Blood Pressure", multiTupleData: [SystolicPressureObject.generateTupleData(), DiastolicPressureObject.generateTupleData()]), cardContent: {
-                            CardView(name: "Pulse Pressure", backgroundColor: Color.green, fullScreenView: AnyView(FullScreenStatInfo(tupleData: [getPulsePressure(sysData: SystolicPressureObject.generateTupleData(), diaData: DiastolicPressureObject.generateTupleData())], topText: "Pulse Pressure", subText: "A measure of the difference between systolic and diastolic pressure", stats: [PulsePressure()], colors: [.green]))){
-                                Image(systemName: "dial.min")
-                                    .resizable()
-                                    .aspectRatio(1.0, contentMode: .fit)
-                                    .padding()
-                            }
-                            CardView(name: "Set a Goal", backgroundColor: Color.purple){
-                                Image(systemName: "checkmark.seal")
-                                    .resizable()
-                                    .padding()
-                                    .foregroundStyle(LinearGradient(colors: [Color.pink, Color.orange], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
-                            }
-                            CardView(name: "Set an Alert", backgroundColor: Color.pink, fullScreenView: AnyView(
-                                BasicSettingView(title: "Blood Pressure Notifications"){
-                                    AlertMeView(stats: [SystolicPressure.shared, DiastolicPressure.shared])
-                                    }
-                            )){
-                                Image(systemName: "exclamationmark.bubble")
-                                    .resizable()
-                                    .padding()
-                                    .foregroundStyle(LinearGradient(colors: [Color.red, Color.purple], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 1.0, y: 1.0)))
-                            }
-                        }, content: {
-                            MultiLineGraph(data: $BPData, dataWithLabels: $BPTimes, height: 250, width: 290, gradients: [Gradient(colors: [Color.pink, Color.purple]), Gradient(colors: [Color.purple, Color.blue])], statNames: ["Systolic Pressure", "Diastolic Pressure"])
+                        if refreshing {
+                            ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                                .offset(y: 30)
+                                .scaleEffect(1.2)
+                        }
+                        MainUIBox(title: "Blood Pressure", dataVal: 1.0, dataValStr: String((SystolicPressureObject.data.last?.intValue ?? 0)) + "/" + String((DiastolicPressureObject.data.last?.intValue ?? 0)), imageName: "thermometer", foregroundColor: Color.white, numScrollViews: 2, stats: [SystolicPressure(), DiastolicPressure()], fullscreenData:
+                                    statViewData(name: "Blood Pressure", multiTupleData: [SystolicPressureObject.generateTupleData(), DiastolicPressureObject.generateTupleData()]), cardData: BPCards.list, content: {
+                            MultiLineGraph(data: $BPData, dataWithLabels: $BPTimes, height: 250, width: UIScreen.main.bounds.size.width - 90, gradients: [Gradient(colors: [Color.pink, Color.purple]), Gradient(colors: [Color.purple, Color.blue])], statNames: ["Systolic Pressure", "Diastolic Pressure"])
                                 .frame(width: UIScreen.main.bounds.size.width - 20, alignment: .center)
                                 .padding(.leading, -10)
                                 .padding(.top, 10)
@@ -167,78 +71,89 @@ struct VitalView: View {
                                 .frame(width: UIScreen.main.bounds.size.width - 20, height: 365.5, alignment: .center)
                                 .id(1)
                         })
-                        .environmentObject(statsWrapper)
+                        .padding(.top, 40)
+                        MainUIBox(title: HeartRateObject.name!, dataVal: HeartRateObject.data.last as? Double ?? 0.0, dataValStr: String(format: "%.01f", HeartRateObject.data.last as? Double ?? 0.0), imageName: "heart.fill", foregroundColor: Color.red, numScrollViews: 2, stats: [HeartRate()], fullscreenData:
+                                    statViewData(name: "Heart Rate", statName: "HeartRate", tupleData: HeartRateObject.generateTupleData(), dataRange: HeartRate().getRange(label: "").1 - HeartRate().getRange(label: "").0, dataMin: HeartRate().getRange(label: "").0, gradient: Gradient(colors: [Color.orange, Color.pink])), cardData: HeartRateCards.list, content: {
+                            LineGraph(data: $HeartRateGraphData, dataTime: $HeartRateGraphTimes, dataMin: 50, dataRange: 150, height: 250, width: UIScreen.main.bounds.size.width - 90, gradient: Gradient(colors: [Color.pink, Color.orange, Color.red]))
+                                .frame(width: UIScreen.main.bounds.size.width - 20, height: 330, alignment: .center)
+                                .padding(.leading, -10)
+                                .id(0)
+                            HeartRateSegmentedChartView(stat: HeartRate.shared, tuples: HeartRateTuples)
+                                .id(1)
+                        })
+                        MainUIBox(title: SPO2Object.name!, dataVal: SPO2Object.data.last as? Double ?? 0.0, dataValStr: String(format: "%.01f", SPO2Object.data.last as? Double ?? 0.0), imageName: "wind", foregroundColor: Color.white, numScrollViews: 2, stats: [SPO2()], fullscreenData:
+                                    statViewData(name: "SPO2", statName: "SPO2", tupleData: SPO2Object.generateTupleData(), dataRange: 25, dataMin: 75, gradient: Gradient(colors: [Color.blue, Color.purple])), cardData: SPO2Cards.list, content: {
+                            VerticalLinePlotter(data: $SPO2Tuples, title: "Day's Readings", stat: SPO2(), width: UIScreen.main.bounds.size.width - 60, height: 300)
+                                .padding()
+                                .id(0)
+                            SPO2LevelView(SPO2Data: $SPO2GraphData)
+                                .frame(width: UIScreen.main.bounds.size.width - 20, height: 300, alignment: .center)
+                                .padding()
+                                .id(1)
+                        })
                     }
-                    .offset(x: 0, y: 40)
+                    .offset(x: 0, y: 55)
                     .padding(.bottom, 100)
+                }
+                .coordinateSpace(name: "VITALVIEW")
+                .onPreferenceChange(OffsetPreferenceKey.self) { value in
+                    DispatchQueue(label: "serial.queue").async {
+                        if value >  50 && finishedRefresh{
+                            print("VITALVIEW::CALLING REFRESH")
+                            finishedRefresh = false
+                            refreshing = true
+                            StatDataObjectListWrapper.update(){success in
+                                sleep(1)
+                                HeartRateObject = getStatDataObject(stats: StatDataObjectListWrapper.stats, name: "HeartRate")
+                                SPO2Object = getStatDataObject(stats: StatDataObjectListWrapper.stats, name: "SPO2")
+                                SystolicPressureObject = getStatDataObject(stats: StatDataObjectListWrapper.stats, name: "SystolicPressure")
+                                DiastolicPressureObject = getStatDataObject(stats: StatDataObjectListWrapper.stats, name: "DiastolicPressure")
+                                refreshData(value: 0)
+                                refreshing = false
+                            }
+                        }
+                        if value <= 0{
+                            finishedRefresh = true
+                        }
+                    }
                 }
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .padding(.bottom, 0.3)
-            .background(LinearGradient(gradient: Gradient(colors: [bgColor.opacity(0.5), Color.black]), startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 1.0)))
+            .background(LinearGradient(gradient: Gradient(colors: [bgColor, Color.black]), startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 1.0)))
             .onAppear(){
                 withAnimation(){
                     print("Loading offset")
-                    HeartRateGraphData = slimDataTuples(forData: HeartRateObject.generateTupleData(), to: 50, within: .day, withOffset: 0).map{$0.0}
-                    HeartRateGraphTimes = slimDataTuples(forData: HeartRateObject.generateTupleData(), to: 50, within: .day, withOffset: 0).map{$0.1}
-                    SPO2GraphData = slimDataTuples(forData: SPO2Object.generateTupleData(), to: 30, within: .day, withOffset: 0).map{$0.0}
-                    SPO2GraphTimes = slimDataTuples(forData: SPO2Object.generateTupleData(), to: 30, within: .day, withOffset: 0).map{$0.1}
-                    SysGraphData = slimDataTuples(forData: SystolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: 0).map{$0.0}
-                    SysGraphTimes = slimDataTuples(forData: SystolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: 0).map{$0.1}
-                    DiaGraphData = slimDataTuples(forData: DiastolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: 0).map{$0.0}
-                    DiaGraphTimes = slimDataTuples(forData: DiastolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: 0).map{$0.1}
-                    HeartRateTuples = slimDataTuples(forData: HeartRateObject.generateTupleData(), to: 50, within: .day, withOffset: 0)
-                    SPO2Tuples = slimDataTuples(forData: SPO2Object.generateTupleData(), to: 30, within: .day, withOffset: 0)
-                    SysTuples = slimDataTuples(forData: SystolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: 0)
-                    DiaTuples = slimDataTuples(forData: DiastolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: 0)
-                    BPData = [SysGraphData, DiaGraphData]
-                    BPTimes = [SysGraphTimes, DiaGraphTimes]
+                    refreshData(value: 0)
                 }
             }
         }
         .onAppear(){
-            statsWrapper.update()
+            StatDataObjectListWrapper.update(){success in
+            }
         }
-        .onChange(of: offset.num){offset in
-            print("Reading offset of: \(offset)")
+        .onChange(of: offset.num){value in
+            print("Reading offset of: \(value)")
             withAnimation(){
                 print("Loading new offset")
-                HeartRateGraphData = slimDataTuples(forData: HeartRateObject.generateTupleData(), to: 50, within: .day, withOffset: offset).map{$0.0}
-                HeartRateGraphTimes = slimDataTuples(forData: HeartRateObject.generateTupleData(), to: 50, within: .day, withOffset: offset).map{$0.1}
-                SPO2GraphData = slimDataTuples(forData: SPO2Object.generateTupleData(), to: 30, within: .day, withOffset: offset).map{$0.0}
-                SPO2GraphTimes = slimDataTuples(forData: SPO2Object.generateTupleData(), to: 30, within: .day, withOffset: offset).map{$0.1}
-                SysGraphData = slimDataTuples(forData: SystolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: offset).map{$0.0}
-                SysGraphTimes = slimDataTuples(forData: SystolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: offset).map{$0.1}
-                DiaGraphData = slimDataTuples(forData: DiastolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: offset).map{$0.0}
-                DiaGraphTimes = slimDataTuples(forData: DiastolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: offset).map{$0.1}
-                HeartRateTuples = slimDataTuples(forData: HeartRateObject.generateTupleData(), to: 50, within: .day, withOffset: offset)
-                SPO2Tuples = slimDataTuples(forData: SPO2Object.generateTupleData(), to: 30, within: .day, withOffset: offset)
-                SysTuples = slimDataTuples(forData: SystolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: offset)
-                DiaTuples = slimDataTuples(forData: DiastolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: offset)
-                BPData = [SysGraphData, DiaGraphData]
-                BPTimes = [SysGraphTimes, DiaGraphTimes]
+                refreshData(value: value)
             }
         }
     }
-    fileprivate func genRandomData() -> [(Double, Date)]{
-        var randomData: [(Double, Date)] = []
-        for _ in 0..<30{
-            let randomDecider = Int.random(in: 0..<3)
-            if randomDecider == 1{
-                randomData.append((100.0, Date()))
-            } else {
-                randomData.append((95.0 + Double.random(in: 0..<5), Date()))
-            }
-        }
-        return randomData
-    }
-    fileprivate func getGradient(forName name: String) -> Gradient {
-        var colors : [Color]
-        switch name {
-        case "HeartRate": colors = [Color.pink, Color.orange]
-        case "SPO2": colors = [Color.green, Color.blue]
-        default: colors = []
-        }
-        return Gradient(colors: colors)
+    func refreshData(value: Int){
+        HeartRateGraphData = slimDataTuples(forData: HeartRateObject.generateTupleData(), to: 50, within: .day, withOffset: value).map{$0.0}
+        HeartRateGraphTimes = slimDataTuples(forData: HeartRateObject.generateTupleData(), to: 50, within: .day, withOffset: value).map{$0.1}
+        SPO2GraphData = slimDataTuples(forData: SPO2Object.generateTupleData(), to: 30, within: .day, withOffset: value).map{$0.0}
+        SPO2GraphTimes = slimDataTuples(forData: SPO2Object.generateTupleData(), to: 30, within: .day, withOffset: value).map{$0.1}
+        SysGraphData = slimDataTuples(forData: SystolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: value).map{$0.0}
+        SysGraphTimes = slimDataTuples(forData: SystolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: value).map{$0.1}
+        DiaGraphData = slimDataTuples(forData: DiastolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: value).map{$0.0}
+        DiaGraphTimes = slimDataTuples(forData: DiastolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: value).map{$0.1}
+        HeartRateTuples = slimDataTuples(forData: HeartRateObject.generateTupleData(), to: 50, within: .day, withOffset: value)
+        SPO2Tuples = slimDataTuples(forData: SPO2Object.generateTupleData(), to: 30, within: .day, withOffset: value)
+        SysTuples = slimDataTuples(forData: SystolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: value)
+        DiaTuples = slimDataTuples(forData: DiastolicPressureObject.generateTupleData(), to: 50, within: .day, withOffset: value)
+        BPData = [SysGraphData, DiaGraphData]
+        BPTimes = [SysGraphTimes, DiaGraphTimes]
     }
 }

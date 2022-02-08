@@ -21,4 +21,9 @@ struct CBUUIDs {
                                   CBUUID(string: "3EB819D7-0C8A-6686-EC11-C368440BFA7D"): "isRaw",
                                   CBUUID(string: "E5E305D7-8567-F795-8A42-347D342FF240"): "HrVar"
     ]
+    static func shouldWriteStatObject(namestr: String)  -> Bool{
+        let stats: [Stat] = [HeartRate.shared, SPO2.shared, DiastolicPressure.shared, SystolicPressure.shared]
+        let statsToWrite = stats.map{$0.name}
+        return statsToWrite.first(where: {$0 == namestr}) !=  nil
+    }
 }

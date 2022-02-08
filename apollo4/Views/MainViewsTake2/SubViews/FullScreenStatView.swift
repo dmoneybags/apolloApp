@@ -23,8 +23,6 @@ struct statViewData {
 struct FullScreenStatView: View {
     //Grabs the context of the presentation
     @Environment(\.presentationMode) var presentationMode
-    //Stats passed in for inference
-    @EnvironmentObject var statsWrapper: StatDataObjectListWrapper
     //Text at the top
     var name: String
     //Actual technical name
@@ -37,7 +35,7 @@ struct FullScreenStatView: View {
     var showTitle: Bool = true
     //Start on week
     @State private var timeFrame: Calendar.Component = .weekOfYear
-    @State private var poolTimeFrame: Calendar.Component = .hour
+    @State private var poolTimeFrame: Calendar.Component = .day
     @State private var poolNum: Int = 1
     private var graphData: [(Double, Date)] {
         //Computd variable which returns the data for the timeframe
@@ -47,7 +45,7 @@ struct FullScreenStatView: View {
     //works, eventually fullscreenstatview will take an optional argument of the statobject, and access
     //the string via stat object
     private var inferenceObject : aggregateInferenceObject{
-        return aggregateInferenceObject(data: aggregateDataObject(stats: statsWrapper.stats, within: poolTimeFrame), forStat: statName, graphData: graphData)
+        return aggregateInferenceObject(data: aggregateDataObject(stats: StatDataObjectListWrapper.stats, within: timeFrame), forStat: statName, graphData: graphData)
     }
     var body: some View {
         VStack{
@@ -66,7 +64,7 @@ struct FullScreenStatView: View {
             HStack{
                 Text("Day")
                     .fontWeight(.bold)
-                    .padding()
+                    .padding(10)
                     .background(Color.green.opacity(timeFrame == .day ? 0.7 : 0.0))
                     .cornerRadius(10)
                     .onTapGesture {
@@ -80,7 +78,7 @@ struct FullScreenStatView: View {
                 Spacer()
                 Text("Week")
                     .fontWeight(.bold)
-                    .padding()
+                    .padding(10)
                     .background(Color.green.opacity(timeFrame == .weekOfYear ? 0.7 : 0.0))
                     .cornerRadius(10)
                     .onTapGesture {
@@ -94,7 +92,7 @@ struct FullScreenStatView: View {
                 Spacer()
                 Text("Month")
                     .fontWeight(.bold)
-                    .padding()
+                    .padding(10)
                     .background(Color.green.opacity(timeFrame == .month ? 0.7 : 0.0))
                     .cornerRadius(10)
                     .onTapGesture {
@@ -108,7 +106,7 @@ struct FullScreenStatView: View {
                 Spacer()
                 Text("Year")
                     .fontWeight(.bold)
-                    .padding()
+                    .padding(10)
                     .background(Color.green.opacity(timeFrame == .year ? 0.7 : 0.0))
                     .cornerRadius(10)
                     .onTapGesture {
@@ -123,8 +121,8 @@ struct FullScreenStatView: View {
             .padding(.horizontal)
             ScrollViewReader { proxy in
                 ScrollView{
-                    LazyVStack{
-                        LineGraph(data: .constant(graphData.map{$0.0}), dataTime: .constant(graphData.map{$0.1}), dataMin: dataMin, dataRange: dataRange, height: 400, width: UIScreen.main.bounds.width - 60, gradient: gradient, title: "  " + getTimeComponent(date: graphData.map{$0.1}.first!, timeFrame: .day) + " - " + getTimeComponent(date: graphData.map{$0.1}.last!, timeFrame: timeFrame == .day ? .hour : .day), pooledData: true, aggregateInference: inferenceObject)
+                    VStack{
+                        LineGraph(data: .constant(graphData.map{$0.0}), dataTime: .constant(graphData.map{$0.1}), dataMin: dataMin, dataRange: dataRange, height: 400, width: UIScreen.main.bounds.width - 60, gradient: gradient, title: graphData.isEmpty ? "No Data" : "  " + getTimeComponent(date: graphData.map{$0.1}.first!, timeFrame: .day) + " - " + getTimeComponent(date: graphData.map{$0.1}.last!, timeFrame: timeFrame == .day ? .hour : .day), pooledData: true, aggregateInference: inferenceObject)
                             .padding(.top, 15)
                             .padding(.leading)
                             .padding(.bottom, 30)

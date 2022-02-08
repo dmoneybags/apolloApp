@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ECGAnimation: View {
-    private let gradient = Gradient(colors: [Color.black, Color.white, Color.black])
+    private let gradient = Gradient(colors: [Color.clear, Color.white, Color.black])
     @State private var xEnd: CGFloat = 0.1
     var body: some View {
         Image(systemName: "waveform.path.ecg")

@@ -68,7 +68,7 @@ struct HeartRate: Stat {
         case "Average": return (75, 77)
         case "Below Average": return (78, 85)
         case "Poor" : return (86, 120)
-        default: return (40, 120)
+        default: return (Double(minVal), Double(maxVal))
         }
     }
     func getColor(forLabel label: String) -> Color {
@@ -111,7 +111,7 @@ struct SPO2: Stat{
         case "Low": return (85, 89)
         case "Insufficient": return (90, 94)
         case "Optimal": return (95, 100)
-        default: return (75, 100)
+        default: return (Double(minVal), Double(maxVal))
         }
     }
     func getColor(forLabel label: String) -> Color {
@@ -155,7 +155,7 @@ struct SystolicPressure: Stat{
         case "Grade 1 Hypertension" : return (140, 159)
         case "Grade 2 Hypertension" : return (160, 179)
         case "Grade 3 Hypertension" : return (180, 200)
-        default: return (90,200)
+        default: return (Double(minVal), Double(maxVal))
         }
     }
     func getColor(forLabel label: String) -> Color {
@@ -200,7 +200,7 @@ struct DiastolicPressure: Stat{
         case "Grade 1 Hypertension" : return (90, 99)
         case "Grade 2 Hypertension" : return (100, 109)
         case "Grade 3 Hypertension" : return (110, 130)
-        default: return (50,130)
+        default: return (Double(minVal), Double(maxVal))
         }
     }
     func getColor(forLabel label: String) -> Color {
@@ -242,7 +242,7 @@ struct PulsePressure: Stat {
         case "Sub-Optimal": return (51.0, 70.0)
         case "Unhealthy": return (71.0, 90.0)
         case "Severely unhealthy": return (91, 140)
-        default: return (90.0, 200.0)
+        default: return (Double(minVal), Double(maxVal))
         }
     }
     func getColor(forLabel label: String) -> Color {
@@ -285,7 +285,7 @@ struct VO2Max: Stat{
         case "Fair": return (39, 45)
         case "Good": return (45, 50)
         case "Excellent": return (50, 55)
-        default: return (55, 80)
+        default: return (Double(minVal), Double(maxVal))
         }
     }
     func getColor(forLabel label: String) -> Color {

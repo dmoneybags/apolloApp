@@ -68,3 +68,10 @@ func getRange(data: [Double]) -> Double {
     let max = getMax(data: data)
     return max - min
 }
+func createTupleData(data: [Double], dates: [Date]) -> [(Double, Date)]{
+    var tupleData: [(Double, Date)] = []
+    for i in 0..<data.count{
+        tupleData.append((data[i], dates[i]))
+    }
+    return tupleData
+}

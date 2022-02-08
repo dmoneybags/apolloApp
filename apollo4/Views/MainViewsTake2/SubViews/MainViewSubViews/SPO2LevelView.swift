@@ -13,7 +13,7 @@ struct SPO2LevelView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Todays Level")
+                Text("Day's Level")
                     .font(.title2)
                     .foregroundColor(Color(UIColor.systemGray))
                     .padding(.horizontal)

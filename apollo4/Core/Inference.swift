@@ -46,6 +46,9 @@ func getProgress(stat: String, reading: Double) -> Double{
     return (reading - minVal)/(maxVal - minVal)
 }
 func getColor(stat: String, progress: Double) -> Color{
+    if progress.isNaN{
+        return .green
+    }
     var inverted = false
     var red: Int
     var green: Int
@@ -136,7 +139,7 @@ func filterDataV1(data: [(Double, Date)], timeFrame: Calendar.Component, num: In
             filteredData.append(reading)
         }
     }
-    print("Filtered data to \(filteredData)")
+    print("INFERENCE::Filtered data to \(filteredData)")
     return filteredData
 }
 func convertDateValuesToString(data: [(Double, Date)]) -> [(String, Double)] {

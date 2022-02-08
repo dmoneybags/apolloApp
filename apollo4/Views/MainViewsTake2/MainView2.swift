@@ -36,9 +36,10 @@ struct MainView2: View {
                         Label("Vitals", systemImage: "heart.fill")
                 }
                 //Shows fonts for easy viewing
-                FontView()
+                UpdatedDebugView()
+                    .environment(\.managedObjectContext, AppDelegate.originalAppDelegate.persistentContainer.viewContext)
                     .tabItem {
-                        Label("Live Read", systemImage: "waveform.path.ecg")
+                        Label("Debug", systemImage: "waveform.path.ecg")
                 }
             }
             HStack{
@@ -51,9 +52,6 @@ struct MainView2: View {
                     .resizable()
                     .frame(width: 100, height: 50, alignment: .center)
                     .padding(.top, 30)
-                    .onTapGesture{
-                        sendNotification(title: "A notificiation!", subtitle: "Wow!")
-                    }
                 Spacer()
                 ZStack{
                     Circle()

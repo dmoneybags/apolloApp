@@ -171,7 +171,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         
         if nameStr != nil {
             NotificationCenter.default.post(name:NSNotification.Name(rawValue: nameStr!), object: "\((characteristicASCIIValue as String))")
-            if nameStr != "isRaw" && nameStr != "Raw"{
+            if CBUUIDs.shouldWriteStatObject(namestr: nameStr ?? ""){
                 updateStatDataObject(withString: ASCIIstring as String, statNamed: nameStr!)
                 checkAndSendNotification(stat: nameStr!, value: (ASCIIstring as NSString).doubleValue)
                 updateNotificationDataAndSend(with: ASCIIstring as String, for: nameStr!)

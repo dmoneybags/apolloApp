@@ -23,8 +23,10 @@ struct apollo4App: App {
             if !LOADMAIN{
                 ContentView()
                     .environment(\.managedObjectContext, DataController.shared.container.viewContext)
+                    .preferredColorScheme(.dark)
             } else {
                 MainView2()
+                    .preferredColorScheme(.dark)
             }
         }
     }
@@ -49,8 +51,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        setBGtasks()
         registerBGTasks()
+        setBGtasks()
         return true
     }
 }

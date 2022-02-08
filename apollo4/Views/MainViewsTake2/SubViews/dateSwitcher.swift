@@ -26,8 +26,9 @@ struct DateSwitcher: View {
     var body: some View {
         ZStack{
             Capsule()
+                .foregroundColor(.black)
             HStack{
-                Image(systemName: "lessthan.circle.fill")
+                Image(systemName: "chevron.backward")
                     .foregroundColor(Color.blue)
                     .padding(.horizontal, 5)
                     .onTapGesture {
@@ -38,9 +39,8 @@ struct DateSwitcher: View {
                 Spacer()
                 Text(dateStr)
                     .fontWeight(.bold)
-                    .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
                 Spacer()
-                Image(systemName: "lessthan.circle.fill")
+                Image(systemName: "chevron.backward")
                     .foregroundColor(Color.blue)
                     .rotationEffect(Angle(degrees: 180))
                     .padding(.horizontal, 5)

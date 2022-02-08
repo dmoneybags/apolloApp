@@ -16,7 +16,6 @@ struct InferenceMultiLineAverageBox: View {
             Text("Averages")
                 .font(.footnote)
                 .fontWeight(.bold)
-                .foregroundColor(.black)
             Divider()
                 .padding(.horizontal)
             ForEach(names.indices, id: \.self){i in
@@ -27,7 +26,6 @@ struct InferenceMultiLineAverageBox: View {
                         .padding(.horizontal, 5)
                     Spacer()
                     Text(names[i])
-                        .foregroundColor(.black)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
                         .padding(.horizontal)
@@ -36,7 +34,7 @@ struct InferenceMultiLineAverageBox: View {
             }
         }
         .frame(width: 180, height: 30 + CGFloat(gradients.count) * 30)
-        .background(.white)
+        .background(.black)
         .cornerRadius(20)
         .scaleEffect(scaleEffect ? 1.5: 1.0)
         .offset(x: scaleEffect ? -20: 0, y: 0)

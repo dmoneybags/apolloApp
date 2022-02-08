@@ -176,12 +176,21 @@ func setBGtasks(){
             request.earliestBeginDate = Date(timeIntervalSinceNow: TimeInterval(notificationSetting!.averageTimeFrame))
             do {
                 try BGTaskScheduler.shared.submit(request)
-                print("NOTIFICATIONS::Scheduled notifications for \(stat.name)")
+                print("NOTIFICATIONS::Scheduled alert notifications for \(stat.name)")
                } catch {
-                print("NOTIFICATIONS::Could not schedule app refresh: \(error)")
+                print("NOTIFICATIONS::Could not schedule alert app refresh: \(error)")
                }
-        } else {
-            continue
+        }
+        let goalSetting = getGoalSetting(for: stat.name)
+        if goalSetting != nil {
+            let request = BGAppRefreshTaskRequest(identifier: "com.apollo.remindGoal." + stat.name)
+            request.earliestBeginDate = Date(timeIntervalSinceNow: TimeInterval(goalSetting!.timeInterval))
+            do {
+                try BGTaskScheduler.shared.submit(request)
+                print("NOTIFICATIONS::Scheduled goal notifications for \(stat.name)")
+               } catch {
+                print("NOTIFICATIONS::Could not schedule goal app refresh: \(error)")
+               }
         }
     }
 }
@@ -193,6 +202,12 @@ func registerBGTasks() {
         let taskIdentifier = "com.apollo.sendNotification." + stat.name
         BGTaskScheduler.shared.register(forTaskWithIdentifier: taskIdentifier, using: nil) { task in
             handleNotificationRefresh(stat: stat.name)
+        }
+    }
+    for stat in stats {
+        let taskIdentifier = "com.apollo.remindGoal." + stat.name
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: taskIdentifier, using: nil) { task in
+            handleGoalNotification(stat: stat.name)
         }
     }
 }

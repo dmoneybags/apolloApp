@@ -14,7 +14,7 @@ struct BPMiniLevelView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Todays Level")
+                Text("Day's Level")
                     .font(.title2)
                     .foregroundColor(Color(UIColor.systemGray))
                     .padding(.horizontal)
@@ -29,11 +29,11 @@ struct BPMiniLevelView: View {
                 Divider()
                 VStack{
                     Text(SystolicPressure().getLabel(reading: averageData(data: sysData)))
-                        .font(.title)
+                        .font(.title2)
                         .padding(.top)
                     Divider()
                     Spacer()
-                    Text(HypertensionStruct.descriptionDict[SystolicPressure().getLabel(reading: averageData(data: sysData))]!)
+                    Text(HypertensionStruct.descriptionDict[SystolicPressure().getLabel(reading: averageData(data: sysData))] ?? "No Data")
                         .font(.callout)
                         .padding(.bottom, 15)
                         .padding(.horizontal)
